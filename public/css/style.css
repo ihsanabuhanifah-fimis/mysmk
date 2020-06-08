@@ -1,0 +1,49 @@
+
+*{
+	padding: 0;margin: 0;
+}
+main{
+	height: 80%;
+	background-color: hotpink;
+	overflow: auto;
+	position: relative;
+}
+
+row{
+	height: 100%;
+}
+	
+.navigasi{
+	background-color: red;
+	height: 100%;
+}
+.menu-nav{
+	display: none;
+}
+@media screen and (max-width: 1050px){
+	.navigasi{
+		background-color:blue;
+	}	
+}
+@media screen and (max-width: 1000px){
+	.navigasi{
+		background-color:yellow;
+	}
+}
+
+@media screen and (max-width: 900px){
+	
+	.navigasi{
+		
+		display: none;
+		
+		
+	}
+	.hide-show{
+		display: block;
+		position: absolute;
+		background-color: tomato;
+		z-index:1;
+		left:0px;
+	}
+}
