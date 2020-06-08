@@ -104,7 +104,7 @@ Route::get('/ujian/nilai/{nilai}','PenilaianController@nilai_ujian')->name("nila
 Route::get('/materi','MateriController@materi_siswa')->name("materi_siswa");
 Route::get('/materi/bab/{id}','MateriController@bab_siswa')->name("bab.siswa");
 Route::get('/materi/akses/{id}','MateriController@akses_siswa')->name("akses.siswa");
-Route::post('/materi/akses/{id}','MateriController@akses_siswa')->name("akses.siswa.saya");
+
 
 
 
