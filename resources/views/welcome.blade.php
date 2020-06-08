@@ -9,10 +9,12 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -61,51 +63,59 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            a{
+                font-size:20px;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+    <div class="cantainer">
+        <div class="flex-center position-ref  ">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a class="btn btn-info bg-success px-4 py-2" href="{{ url('/Dashboard') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a  class="btn btn-info bg-success px-4 py-2" href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a class="btn btn-success px-4 py-2" href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    SMK MADINATULQURAN
-                </div>
+            </div>  
+        <div class="row">
+        <div class="container p-3 my-3  text-white">
+    <h2>Selamat Dat</h2>
+     
+    <div class="row mt-5 mb-5 mx-auto">
+        <div class="col"></div>
+        
+        <div class="col-sm-6 col-md-4 col-md-offset-4  p-3 my-3 bg-primary text-white rounded border-success">
+            <img class="rounded-circle mx-auto mt-4 mb-4" src="img/avatar.jpeg" alt="avatar.jpg" width="100px" height="100px ">
 
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
+            <form class="form-row-border-primary" method="post" action="">
+                <h5 class='text-center'>Silahkan Login</h5>
+                
+                <label class="text-center" for="username">Username :</label>
+                <br>
+                <input class="form-control form-control-sm input_pass mt-10" type="text" name="username" id="username" />
+                <br>
+                <label for="password">password :</label>
+                <br>
+                <input class="form-control"x type="password" name="password" id="password" />
+                <br>
+                <input type="checkbox" class="name="remember" id="remember" />
+                <label class="satu" for="remember">Remember Me</label>
+                
+                <button class="btn btn-info bg-success form-control mt-2 mb-3" type="submit" name="login">Login</button>
+                <p>Belum punya akun? Silahkan Registrasi <a href="registrasi.php">Disini</a></p>  
+        </div>
+        <div class="col"></div>
     </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-            </div>
+        </div>
         </div>
     </body>
 </html>
