@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Wali;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,6 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+       
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -61,9 +63,12 @@ class RegisterController extends Controller
             'tahun'=>['required','max:4'],
             'no-hp'=>['required','string','max:13'],
             'daftar-sebagai'=>['required','integer'],
+            'secret-number'=>['string','nullable'],
             'nama_santri'=>['string','nullable']
 
         ]);
+
+       
         
     }
 
@@ -92,7 +97,7 @@ class RegisterController extends Controller
            
         ]);
 
-        return "ok";
+      
     }
 }
 
