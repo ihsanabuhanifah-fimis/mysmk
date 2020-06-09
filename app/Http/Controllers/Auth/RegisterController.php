@@ -56,7 +56,13 @@ class RegisterController extends Controller
             'nisn' => ['required', 'string', 'min:8'],
             'username'=>['required', 'string', 'max:255', 'unique:users'],
             'tempat'=>['required'],
-            'tanggal'=>['required'],
+            'tanggal'=>['required','max:2'],
+            'bulan'=>['required','max:2'],
+            'tahun'=>['required','max:4'],
+            'no-hp'=>['required','string','max:13'],
+            'daftar-sebagai'=>['required','integer'],
+            'nama_santri'=>['string','nullable']
+
         ]);
         
     }
@@ -74,13 +80,19 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'username' => $data['username'],
             'tanggal' => $data['tanggal'],
-            'wali'=> "",
-            'level' => "1",
-            'status'=>"2",
             'tempat' => $data['tempat'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'no-hp'=>$data['no-hp'],
+            'daftar-sebagai'=>$data['daftar-sebagai'],
+            'nama_santri'=>$data['nama_santri'],
+            'bulan' =>$data['bulan'],
+            'tahun' =>$data['tahun'],
+            'password' => Hash::make($data['password'])
+            
+           
         ]);
+
+        return "ok";
     }
 }
 
