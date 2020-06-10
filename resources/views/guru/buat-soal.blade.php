@@ -1,5 +1,5 @@
 @extends('guru.layout.master')
-@section('title','Home')
+@section('title','Bank Soal')
 
 @section('content')
 <div class="bg-light">

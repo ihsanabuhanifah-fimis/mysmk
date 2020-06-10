@@ -47,7 +47,9 @@
                                 <a  class="nav-link materi-saya" data-toggle="pill" 
                                  role="tab" aria-controls="pills-tugas" 
                                 aria-selected="true" >My Materi</a>
-                                <a class="nav-link bab-saya" >My Bab</a>
+                                <a class="nav-link bab-saya" data-toggle="pill" 
+                                 role="tab" aria-controls="pills-tugas" 
+                                aria-selected="true"  >My Bab</a>
                               </nav>
                             </div>
 

@@ -3,8 +3,12 @@
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
  </ol>
-
-   <table class="table datatable myTable table-bordered" >
+ <script>
+    $(document).ready( function () {
+        $('#myTableMateri').DataTable();
+    } );
+    </script>
+   <table id="myTableMateri" class="table table-bordered table-responsive-sm" >
         <thead >
             <th class="text-center">No</th>
             <th>Mata Pelajaran</>
