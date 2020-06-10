@@ -1,7 +1,6 @@
 
 
-        
-    <script src="{{ asset('js/app.js') }}"></script>
+   
     <script>
     $(document).ready( function () {
         $('#myTableUjian').DataTable();
@@ -14,8 +13,11 @@
     }
     </style>
     <table class="table datatable table-bordered myTable table-ujian table-responsive" id="myTableUjian">
-    
-    <h4 class="text-center">Jadwal Ujian</h4>
+
+    <h2 class="mt-4">Jadwal Penilaian</h2>
+ <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
+ </ol>
         <thead class="bg-info" >
             <th>No</th>
             <th>Mata Pelajaran</th>

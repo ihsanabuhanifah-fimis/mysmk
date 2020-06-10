@@ -1,26 +1,12 @@
 
-<div class="container">
-<div class="row">
-<table class="table table-borderless">
-    <tr>
-        <td>Mata Pelajaran</td>
-        <td>:</td>
-        <td>{{$ujians[0]->subject_name}}</td>
-    </tr>
-    <tr>
-        <td>Kelas</td>
-        <td>:</td>
-        <td>{{$ujians[0]->nama_rombel}}</td>
-    </tr>
-    <tr>
-        <td>Mata Pelajaran</td>
-        <td>:</td>
-        <td>{{$ujians[0]->nama_ta}}</td>
-    </tr>
    
-</table>
-</div>
-    <table class="table datatable table-bordered">
+<script>
+    $(document).ready( function () {
+        $('#myRekapNilaiPraktek').DataTable();
+    } );
+    </script>
+
+    <table id="myRekapNilaiPraktek" class="table datatable table-bordered table-responsive-sm">
         <thead class="bg-secondary text-white" >
             <th>No</th>
             <th>NIS</th>
@@ -95,5 +81,3 @@
 
         
     </table>
-
-    </div>

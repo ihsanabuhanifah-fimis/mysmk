@@ -1,10 +1,16 @@
 
     
-    
+    <div>
+<h1 class="mt-4">Rekapitulasi Nilai Praktek</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Hasil Ujian Praktek</li>
+   </ol>
+
+</div>
     <form method="post" class="form-rekap-nilai-praktek"  action="javascript:void(0)">
     <div class="form-row">
     @csrf
-    <div class="col">
+    <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
     <label for="id_subject">Mata Pelajaran</label>
     <select class="form-control" name="id_subject" id="id_subject">
         @forelse ($subjects as $subject)
@@ -15,7 +21,7 @@
     </select>
     </div>
 
-    <div class="col">
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
     <label for="id_rombel"> Kelas   </label>
     <select class="form-control" name="id_rombel" id="id_rombel">
         @forelse ($rombels as $rombel)
@@ -24,7 +30,7 @@
         @endforelse
     </select>
     </div>
-    <div class="col">
+    <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
     <label for="id_ta"> Tahun Ajaran </label>
     <select class="form-control" name="id_ta" id="id_ta">
          @forelse ($tas as $ta)
@@ -33,7 +39,7 @@
         @endforelse
     </select>
     </div>
-    <div class="col">
+    <div class="col-lg-2 col-md-2 col-sm-12 mb-3">
   <label for="semester"> Semester</label>
  
     <select class="form-control" name="semester" id="semester">
@@ -45,15 +51,15 @@
    <option value="6">Semester 6</option>
   </select>
   </div>
-  <div class="col">
-  <label for="">dddd</label>
-  <br>
-    <button class="btn btn-success temukan-nilai-praktek"  type="submit">submit</button>
+  <div class="col-lg-1 col-md-1 col-sm-12 mt-sm-4 mt-lg-2 mt-md-2 ">
+
+    <button class="btn mt-lg-4 mt-md-4 btn-success temukan-nilai-praktek"  type="submit">submit</button>
+    
     </div>
     </div>
     
     </form>
-    
+    <div class=" mt-3 rekap-nilai-praktek"></div>
 
     <script>
     $(document).ready(function(){
@@ -98,4 +104,3 @@
         });
     </script>
     
-    <div class=" mt-3 rekap-nilai-praktek"></div>

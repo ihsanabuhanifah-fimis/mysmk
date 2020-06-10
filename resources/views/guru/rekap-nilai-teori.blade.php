@@ -1,29 +1,15 @@
 
-<div class="container">
-<div class="row">
-<table class="table table-borderless">
-    <tr>
-        <td>Mata Pelajaran</td>
-        <td>:</td>
-        <td>{{$ujians[0]->subject_name}}</td>
-    </tr>
-    <tr>
-        <td>Kelas</td>
-        <td>:</td>
-        <td>{{$ujians[0]->nama_rombel}}</td>
-    </tr>
-    <tr>
-        <td>Mata Pelajaran</td>
-        <td>:</td>
-        <td>{{$ujians[0]->nama_ta}}</td>
-    </tr>
    
-</table>
+<script>
+    $(document).ready( function () {
+        $('#myRekapNilaiTeori').DataTable();
+    } );
+    </script>
 </div>
-    <table class="table datatable table-bordered">
+    <table id="myRekapNilaiTeori" class="table datatable table-responsive-sm table-bordered">
         <thead class="bg-secondary text-white" >
-            <th>No</th>
-            <th>NIS</th>
+            <th class="text-center">No</th>
+            <th class="text-center">NIS</th>
             <th>Nama</th>
             @forelse ($ujians as $ujian)
             <th class="text-center">{{$ujian->nama_ujian}}</>
@@ -36,8 +22,8 @@
         <?php $i=0 ; $jmlsiswa=count($siswas) ; $jmlnilai=count($hasils) ; ?>
         @while($i < $jmlsiswa)
         <tr>
-            <td>{{$i+1}}</td>
-            <td>{{$siswas[$i]->nis}}</td>
+            <td class="text-center">{{$i+1}}</td>
+            <td class="text-center">{{$siswas[$i]->nis}}</td>
             <td>{{$siswas[$i]->nama}}</td>
             <?php $a=0 ; ;?>
             @while($a<$jmlnilai)
@@ -95,5 +81,3 @@
 
         
     </table>
-
-    </div>

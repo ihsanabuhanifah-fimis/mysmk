@@ -131,7 +131,7 @@ $(document).ready(function(){
                         $(".notice-bank").addClass("alert alert-success");
                             $(".notice-bank").text("Alhamdulilah bank soal berhasil ditambahkan");
                             $("#tambah-bank-soal").text("Simpan");
-                            $(".banksoal").load("guru/banksoal"); 
+                            $(".bank-soal-saya").load("guru/banksoal"); 
                             
                         setTimeout(function(){
                             $(".notice-bank").removeClass("alert alert-success");

@@ -1,5 +1,5 @@
 <div>
-<h3 class="text-center mb-2">JADWAL PENILAIAN TEORI</h3>
+
 
 </div>
     <form method="post" class="form-jadwal-ujian-teori"  action="javascript:void(0)">

@@ -1,5 +1,7 @@
-<script src="{{ asset('js/app.js') }}"></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<h1 class="mt-4">Pelajaran</h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Daftar Pelajaran Anda di kelas X Teknik Komputer dan Jaringan</li>
+  </ol>                       
 <div class="row row-cols-1 row-cols-md-4 ">
 <?php $i=0; ?>
 @forelse ($mapels as $mapel)

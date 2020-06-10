@@ -1,5 +1,5 @@
 <div>
-<h3 class="text-center mb-2">JADWAL PENILAIAN PRAKTEK</h3>
+
 
 </div>
     <form method="post" class="form-jadwal-ujian-praktek"  action="javascript:void(0)">

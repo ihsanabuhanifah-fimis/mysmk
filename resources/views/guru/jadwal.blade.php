@@ -1,4 +1,4 @@
-<h4 class="text-center">Jadwal Pelajaran</h4>
+
 
 <script>
 $(document).ready( function () {
@@ -6,7 +6,7 @@ $(document).ready( function () {
 } );
 </script>
 </script>
-<table class="table myTable ">
+<table class="table myTable table-responsive-sm ">
     <thead >
         <tr>
         
