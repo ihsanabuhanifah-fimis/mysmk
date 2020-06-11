@@ -6,7 +6,7 @@
 
 </style>
 <h6 class="text-center text-black-50">Bank Soal Lain</h6>
-    <table class="table datatable table-bordered table-bank">
+    <table class="table datatable table-bordered table-bank table-responsive-sm">
         <thead class="bg-info">
            <tr>
                <th class="text-center">No</th>
@@ -25,7 +25,7 @@
             <td>{{$banksoal2->subject_name}}</td>
             <td>{{$banksoal2->nama_bab}}</td>
             <td>{{$banksoal2->materi}}</td>
-            <td class="text-center"><a data-toggle="modal" data-target="#ModalSalin" class="btn btn-outline-warning">Salin</a></td>
+            <td class="text-center"><a data-toggle="modal" data-target="#ModalSalin" class="btn text-white btn-warning">Salin</a></td>
             @if($banksoal2->status == 1)
             <td class="text-center"><p class="btn-success btn">Lock</p></td>
             @else
@@ -34,6 +34,7 @@
             
         </tr>
         @empty
+        <td colspan="100"><h6 class="alert alert-danger text-center">Tidak Ada BANK soal yang dapat di salin</h6></td>
         @endforelse
         </tbody>
     </table>

@@ -159,7 +159,7 @@
                             <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
                         </ol>
 
-                      <form class="form-row" action="javascript:void(0)" id="form-jadwal" method="post">
+                      <form class="form-row" action="javascript:void(0)" id="form-jadwal-hari-ini" method="POST">
                         <div class=" font-weight-bold FontColor1 form-group  mt-2 mb-2 ml-2 mr-4">
                           <select class="ml-2 form-control"  name="hari" id="">
                               <option class="font-weight-bold " selected value="<?= date('l') ;?>"><?= date('l') ;?>
@@ -175,7 +175,7 @@
                       </select>
                       </div>
                       <div class="font-weight-bold form-group mb-2  mt-2">
-                      <button type="submit" name="cari" class=" butt cari-jadwal form-control mx-auto btn btn-success border">submit</button> 
+                      <button type="submit" name="cari" id="tombol-jadwal-saya-hari-ini" class="form-control mx-auto btn btn-success border">submit</button> 
                       </div>
                       @csrf
                     </form>

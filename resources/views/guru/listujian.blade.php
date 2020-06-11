@@ -82,7 +82,7 @@
         @endif
         </tr>  
         @empty
-        <td colspan="13"><h6 class="alert alert-danger text-center">Ustadz saat ini tidak memilki penilaian</h6></td>
+        <td colspan="100"><h6 class="alert alert-danger text-center">Ustadz saat ini tidak memilki penilaian</h6></td>
         @endforelse   
         </tbody>
     </table>

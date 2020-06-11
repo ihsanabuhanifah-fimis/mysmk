@@ -2,7 +2,7 @@
 <script src="/js/jquery-3.3.1.slim.min.js"></script> 
 
 
-<table class="table table-bordered table-striped mt-2">
+<table class="table table-bordered table-striped mt-2 table-responsive-sm">
 <p class="d-flex justify-content-end"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
     <thead class="bg-success">
         <tr>

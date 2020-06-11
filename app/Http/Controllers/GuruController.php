@@ -31,13 +31,15 @@ class GuruController extends Controller
    {
         $days =$hari->hari;
         $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
         $jadwal = DB::table('jadwals')
         -> leftjoin ('mapels','mapels.id_subject','=','jadwals.id_subject')
         -> leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
         -> leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
         ->where('days',$days )
-        ->where('id_cikgu',3)
-        ->get();
+       
+        ->where('id_cikgu',$id_cikgu->id_cikgu)->get();
+  
         
 
             return view('guru.jadwal',['jadwals'=>$jadwal]);
@@ -268,17 +270,22 @@ class GuruController extends Controller
     
     public function tampilkanmateri()
     {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
         $materi = DB::table('materis')
         -> leftjoin ('mapels','mapels.id_subject','=','materis.id_subject')
         -> leftjoin ('babs','babs.id_bab','=','materis.id_bab')
-        ->get();
+        -> where('materis.id_cikgu',$id_cikgu->id_cikgu)->get();
         return view('guru.listmateri',['materis'=>$materi]);
 
     }
     public function tampilkanbab()
     {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
         $bab = DB::table('babs')
         -> leftjoin ('mapels','mapels.id_subject','=','babs.id_subject')
+        -> where('babs.id_cikgu',$id_cikgu->id_cikgu)
         ->get();
         return view('guru.list-bab',['babs'=>$bab]);
 

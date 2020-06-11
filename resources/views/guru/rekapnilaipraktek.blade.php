@@ -59,7 +59,7 @@
     </div>
     
     </form>
-    <div class="keterangan2"></div>
+    <div class="keterangan2 mt-3"></div>
     <div class=" mt-3 rekap-nilai-praktek"></div>
 
     <script>

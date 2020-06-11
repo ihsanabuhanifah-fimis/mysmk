@@ -391,7 +391,7 @@ class PenilaianController extends Controller
                                     $nilai -> id_subject = $banksoal[0]->id_subject;
                                     $nilai -> id_rombel = $banksoal[0]->id_rombel;
                                     $nilai -> id_ta = $banksoal[0]->id_ta;
-                                    $nilai -> semester = $banksoal[0]->id_subject;
+                                    $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
                                     $nilai -> tanggal= date('y-m-d h:i');
@@ -490,7 +490,7 @@ class PenilaianController extends Controller
                                     $nilai -> id_subject = $banksoal[0]->id_subject;
                                     $nilai -> id_rombel = $banksoal[0]->id_rombel;
                                     $nilai -> id_ta = $banksoal[0]->id_ta;
-                                    $nilai -> semester = $banksoal[0]->id_subject;
+                                    $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
                                     $nilai -> tanggal= NOW();
@@ -648,7 +648,7 @@ class PenilaianController extends Controller
                                     $nilai -> id_subject = $banksoal[0]->id_subject;
                                     $nilai -> id_rombel = $banksoal[0]->id_rombel;
                                     $nilai -> id_ta = $banksoal[0]->id_ta;
-                                    $nilai -> semester = $banksoal[0]->id_subject;
+                                    $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
                                     $nilai -> tanggal= date('y-m-d h:i');
@@ -748,7 +748,7 @@ class PenilaianController extends Controller
                                     $nilai -> id_subject = $banksoal[0]->id_subject;
                                     $nilai -> id_rombel = $banksoal[0]->id_rombel;
                                     $nilai -> id_ta = $banksoal[0]->id_ta;
-                                    $nilai -> semester = $banksoal[0]->id_subject;
+                                    $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
                                     $nilai -> tanggal= NOW();
@@ -795,7 +795,9 @@ class PenilaianController extends Controller
 
     public function simpan_ujian(Request $request)
     {
-            $id=$request["id"];
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();   
+        $id=$request["id"];
             $id_ujian=$request["attemp"];
            
     
@@ -806,6 +808,70 @@ class PenilaianController extends Controller
             $soals1=json_decode($soal1);
             $soals2=json_decode($soal2);
             $soals3=json_decode($soal3);
+            $ujian_saya = DB::table('penilaian_siswas')
+            ->where('id_penilaian',$banksoal->id )
+            ->where('nis',$nis->nis)
+            ->where('status',2)
+            ->get();
+           
+            $jawab_soal1=$ujian_saya[0]->jawab_soal1;
+            $jawab_soal2=$ujian_saya[0]->jawab_soal2;
+            $jawab_soal3=$ujian_saya[0  ]->jawab_soal3;
+            $jawab_soals1=json_decode($jawab_soal1);
+            $jawab_soals2=json_decode($jawab_soal2);
+            $jawab_soals3=json_decode($jawab_soal3);
+
+
+            $jml_soal_total = count($jawab_soals1) + count($jawab_soals2) + count($jawab_soals3);
+           
+            $u=0;
+            $p=0;
+            $o=0;
+            // return "ok";
+
+            // return count($jawab_soals3);
+            while($u < count($jawab_soals1)){
+                if($jawab_soals1[$u]->k ==0){
+                    $sudah_jawab_pg[$u]="0";
+                }else{
+                    $sudah_jawab_pg[$u]="1";
+                }
+               
+                $u++;
+            };
+            
+            while($p < count($jawab_soals3)){
+               
+                if($jawab_soals3[$p]->k == 0){
+                  
+                    $sudah_jawab_truefalse[$p]="0";
+                }else{
+                    $sudah_jawab_truefalse[$p]="1";
+                }
+               
+                $p++;
+            }
+            while($o < count($jawab_soals2)){
+               
+                if($jawab_soals2[$o]->k == null){
+                  
+                    $sudah_jawab_isian[$o]="0";
+                }else{
+                    $sudah_jawab_isian[$o]="1";
+                }
+               
+                $o++;
+            }
+
+
+        
+        $jml_soal_dijawab = array_sum($sudah_jawab_pg)+ array_sum ($sudah_jawab_isian)+ array_sum($sudah_jawab_truefalse);
+           
+        // return $jml_soal_total;
+        
+        $persentase_sudah_dijawab = ($jml_soal_dijawab / $jml_soal_total) * 100 ;
+          
+      
              if($request["tipe_soal1"] != NULL){
             $jml_soal=count($request["tipe_soal1"]);
             $jml_database_soal=count($soals1);
@@ -989,7 +1055,18 @@ class PenilaianController extends Controller
                 $nilai -> jawab_soal3 = $jawaban_soal_truefalse;
                 
                 $nilai -> save(); 
-                return $update_save;
+
+                $data_ujian= [
+                    'update'=> $update_save,
+                    'persen'=>number_format($persentase_sudah_dijawab)
+                ];
+
+                $json=json_encode($data_ujian);
+                $json2=json_decode($json);
+       
+               
+              
+                return view('siswa.data-ujian',['data'=>$json2]);
        }
 
        public function selesai_ujian(Request $request)

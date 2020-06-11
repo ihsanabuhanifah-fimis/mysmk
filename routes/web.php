@@ -28,6 +28,7 @@ Route::get('/', function () {
     // }
 });
 //Route Admin
+Route::post('/data-diri','HomeController@data_diri')->name('data');
 Route::prefix('/admin')->middleware('CekSessionAdmin')->group(function (){
 Route::get('/user','HomeController@user')->name('admin.users');
 Route::get('/user/{id}','HomeController@edit')->name('admin.edituser');
@@ -36,7 +37,7 @@ Route::get('/user/{id}','HomeController@edit')->name('admin.edituser');
 
 //Route Guru
 Route::prefix('/guru')->middleware('CekSessionGuru')->group(function (){
-Route::post('/jadwal', 'GuruController@requestjadwal')->name('jadwal');
+Route::post('/jadwal-saya', 'GuruController@requestjadwal')->name('jadwal');
 Route::get('/absensi/{id}', 'GuruController@absensi')->name('absensi');
 Route::get('/materi','GuruController@tambahmateri')->name('materi');
 Route::put('/save-form', 'GuruController@store')->name('savekbm');

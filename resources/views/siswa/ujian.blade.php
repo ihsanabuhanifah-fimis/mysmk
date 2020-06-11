@@ -6,7 +6,7 @@
 
  <div class="container-fluid bg-white">
         <div class="row">
-            <div class="col-md-8 col-xl-6">
+            <div class="col-md-8 col-sm-12 col-xl-6">
                
                 @if($errors->any())
                 <div class="alert alert-danger">
@@ -27,18 +27,20 @@
 @csrf
 {{method_field('PUT')}}
 
-<div class="container ">
-<div class="row-fluid mt-2 mb-2  ">
+<div class="container-md container-lg container-sm-fluid container-small-fluid ">
+<div class="row-fluid mt-2 mb-2   ">
     <div>
-    <div class="card">
+    <div class="card ">
     
-  <h5 class="card-header bg-primary"></h5>
-  <div class="card-body">
-  <div class="d-flex justify-content-between">
+  <h5 class="card-header bg-primary d-none d-md-block d-lg-block d-xl-block" "></h5>
+  <div class="card-body d-none d-md-block d-lg-block d-xl-block">
+  <div class="d-flex justify-content-between ">
     <div>
     <h5 class="card-title">{{$banksoals[0]->subject_name}}</h5>
     <p class="card-text">Selamat Mengerjakan, sukses dan semangat</p>
     </div>
+    </div>
+  
     <div>
     
     @if($soals1[0]->s != "xr")
@@ -69,10 +71,10 @@
 <style>
 
 </style>
-<div class="container mt-3 d-flex justify-content-md-between">
+<div class="container-md container-lg container-fluid-sm container-fluid-small mt-3 d-flex justify-content-md-between">
 
 
-<div class="col-md-9">
+<div class="col-md-9 col-sm-12">
 <input type="hidden" name="id" value="{{$banksoals[0]->id}}">
 <input type="hidden" name="attemp" value="{{$attemp[0]->id}}">
 <!-- soal pilihan ganda -->
@@ -388,13 +390,11 @@ i{
     font-size:14px;
 }
 </style>
-<div class="col-md-3">
+
+<div class="col-md-3 ">
 <div class="mt-5 bg-white timer border  rounded text-center p-2">
 <h4 class="waktu rounded text-center p-1 "></h4>
-<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-</div>
-<i><p class="last-save"></p></i>
+<div class="info-ujian"></div>
 <a class="simpan-ujian border p-1  rounded mb-5">Save Progress</a>
 </div>
 </div>
@@ -436,7 +436,7 @@ i{
 				url: "{{route('simpan_ujian')}}",
 				data: $('#form-ujian').serialize(),
 				success: function(data) {
-                $(".last-save").text("Last Saved : "+ data);
+                $(".info-ujian").html(data);
               
                 },
                
@@ -454,7 +454,7 @@ i{
 				data: $('#form-ujian').serialize(),
 				success: function(data) {
                     
-                    $(".last-save").text("Last Saved : "+ data);
+          $(".info-ujian").html(data);
               
                 },
                

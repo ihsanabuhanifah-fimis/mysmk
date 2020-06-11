@@ -7,7 +7,7 @@
 
 </div>
     <form method="post" class="form-rekap-nilai-teori"  action="javascript:void(0)">
-    <div class="form-row">
+    <div class="form-row ">
     @csrf
     <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
     <label for="id_subject">Mata Pelajaran</label>
@@ -52,7 +52,7 @@
   </div>
   <div class="col-lg-1 col-md-1 col-sm-12 mt-sm-4 mt-lg-2 mt-md-2 ">
 
-    <button class="btn mt-lg-4 mt-md-4 btn-success temukan-nilai-teori"  type="submit">submit</button>
+    <button class="btn mt-lg-4 mt-md-4 btn-success mb-sm-4 temukan-nilai-teori"  type="submit">submit</button>
     </div>
     </div>
     
@@ -112,5 +112,5 @@
 			});
         });
     </script>
-    <div class="keterangan"></div>
+    <div class="keterangan mt-3"></div>
     <div class=" mt-3 rekap-nilai-teori"></div>

@@ -5,7 +5,7 @@
     <form method="post" class="form-jadwal-ujian-teori"  action="javascript:void(0)">
     <div class="form-row">
     @csrf
-    <div class="col">
+    <div class="col-sm-4">
     <label for="id_rombel"> Kelas   </label>
     <select class="form-control" name="id_rombel" id="id_rombel">
         @forelse ($rombels as $rombel)
@@ -14,7 +14,7 @@
         @endforelse
     </select>
     </div>
-    <div class="col">
+    <div class="col-sm-2">
     <label for="id_ta"> Tahun Ajaran </label>
     <select class="form-control" name="id_ta" id="id_ta">
          @forelse ($tas as $ta)
@@ -23,7 +23,7 @@
         @endforelse
     </select>
     </div>
-    <div class="col">
+    <div class="col-sm-2">
   <label for="semester"> Semester</label>
  
     <select class="form-control" name="semester" id="semester">
@@ -36,9 +36,9 @@
   </select>
   </div>
   <div class="col">
-  <label for="">dddd</label>
+  
   <br>
-    <button class="btn btn-success temukan-jadwal-ujian-teori"  type="submit">submit</button>
+    <button class="btn mt-lg-2 mt-md-2 btn-success temukan-jadwal-ujian-teori"  type="submit">submit</button>
     </div>
     </div>
     

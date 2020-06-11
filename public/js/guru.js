@@ -186,7 +186,7 @@ $(document).ready(function(){
 
 
                 $(document).ready(function(){
-                    $(".cari-jadwal").click(function(){
+                    $("#tombol-jadwal-saya-hari-ini").click(function(){
 
                         $.ajaxSetup({
                           headers: {
@@ -195,8 +195,8 @@ $(document).ready(function(){
                         });
                         $.ajax({
                             type: 'POST',
-                            url: "guru/jadwal/  ",
-                            data: $('#form-jadwal').serialize(),
+                            url: "guru/jadwal-saya  ",
+                            data: $('#form-jadwal-hari-ini').serialize(),
                             success: function(data) {
                             $(".tampilkan-jadwal").html(data);
                             
@@ -221,8 +221,8 @@ $(document).ready(function(){
                             });
                             $.ajax({
                                 type: 'POST',
-                                url: "guru/jadwal/  ",
-                                data: $('#form-jadwal').serialize(),
+                                url: "guru/jadwal-saya  ",
+                                data: $('#form-jadwal-hari-ini').serialize(),
                                 success: function(data) {
                                 $(".tampilkan-jadwal").html(data);
                                                

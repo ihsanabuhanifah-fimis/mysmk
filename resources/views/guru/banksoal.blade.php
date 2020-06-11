@@ -6,7 +6,7 @@
 
 </style>
 <h6 class="text-center text-black-50">Bank Soal</h6>
-    <table class="table datatable table-bordered table-bank ">
+    <table class="table datatable table-bordered table-bank table-responsive-sm ">
         <thead class="bg-info" >
            <tr>
                <th class="text-center">No</th>
@@ -42,6 +42,7 @@
             
         </tr>
         @empty
+        <td colspan="100"><h6 class="alert alert-danger text-center">Ustadz saat ini tidak memiliki BANK soal</h6></td>
         @endforelse
         
         </tbody>

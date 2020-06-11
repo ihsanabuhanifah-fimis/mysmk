@@ -7,7 +7,7 @@
     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBab">
             Tambah_bab
         </button> -->
-    <table class="table table-bordered">
+    <table class="table table-bordered table-responsive-sm">
         <thead>
             <tr>
                 <th class="text-center">No</th>
@@ -28,6 +28,7 @@
               
             </tr>
             @empty
+            <td colspan="100"><h6 class="alert alert-danger text-center">Ustadz saat ini tidak memiliki BAB Materi yang dibuat</h6></td>
                 @endforelse
         </tbody>
 

@@ -14,9 +14,9 @@
         e.preventDefault();
         $("body").toggleClass("sb-sidenav-toggled");
     });
-    $(".layoutSidenav_content").on("click", function(e) {
-        alert();
-        e.preventDefault();
-        $("body").toggleClass("sb-sidenav-toggled");
-    });
+    // $("#layoutSidenav_content").on("click", function(e) {
+      
+    //     e.preventDefault();
+    //     $("body").removeClass("sb-sidenav-toggled");
+    // });
 })(jQuery);
