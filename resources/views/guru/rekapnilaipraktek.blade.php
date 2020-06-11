@@ -1,6 +1,6 @@
 
-    
-    <div>
+<script src="{{ asset('js/app.js') }}"></script>    
+<div>
 <h1 class="mt-4">Rekapitulasi Nilai Praktek</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Hasil Ujian Praktek</li>
@@ -59,11 +59,16 @@
     </div>
     
     </form>
+    <div class="keterangan2"></div>
     <div class=" mt-3 rekap-nilai-praktek"></div>
 
     <script>
     $(document).ready(function(){
 		$(".temukan-nilai-praktek").click(function(){
+            $(this).text("Mencari ...")
+            $(".keterangan2").removeClass("alert alert-success");
+            $(".keterangan2").removeClass("alert alert-danger");
+            $(".keterangan2").empty();
            
             $.ajaxSetup({
               headers: {
@@ -74,30 +79,36 @@
 				type: 'POST',
 				url: "/guru/rekapnilaipraktek",
 				data: $('.form-rekap-nilai-praktek').serialize(),
-				success: function(data) {
+                success: function(data) {
+          
+           $(".rekap-nilai-praktek").html(data);
+           $(".temukan-nilai-praktek").text("submit");
+           $(".keterangan2").addClass("alert alert-success");
+           $(".keterangan2").text("Rekap Nilai Ditemukan");
+         
+         
+         
+   
+           setTimeout(function(){
+             $(".keterangan2").removeClass("alert alert-success");
+           $(".keterangan2").empty();
+               },3000);
+                         
+          
+       },
+       error: function (jqXHR, exception) {
+        $(".rekap-nilai-praktek").empty();
+         $(".temukan-nilai-praktek").text("submit");
+         $(".keterangan2").addClass("alert alert-danger");
+         $(".keterangan2").text("Rekap Nilai Teori Tidak ditemukan");
 
-                    
-                    $(".rekap-nilai-praktek").html(data);
-                    // $(".noticeujian").text(data);
-                    // $("#tambah-ujian").text("Save");
-                    // $(".tampilkanujian").load("guru/tampilkanujian");   
-                    // setTimeout(function(){
-                    //     $(".noticeujian").removeClass("alert alert-success");
-                    //     $(".noticeujian").empty();
-                    //     },5000);
-                    //     document.getElementById("form-ujian").reset();               
-                   
-                },
-                // error: function (jqXHR, exception) {
-                // $(".noticeujian").text("Penilaian tidak berhasil ditambahkan");
-                // $(".noticeujian").addClass("alert alert-danger");
-                // $("#tambah-ujian").text("Simpan");
-                // setTimeout(function(){
-                //     $(".noticeujian").removeClass("alert alert-danger");
-                //     $(".noticeujian").empty();
-                //     },3000);
-                // }
-			});
+       setTimeout(function(){
+        $(".keterangan2").removeClass("alert alert-danger");
+         $(".keterangan2").empty();
+
+           },3000);
+       }
+   });
 			
 			
 			});

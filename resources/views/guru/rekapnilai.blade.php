@@ -1,3 +1,4 @@
+<script src="{{ asset('js/app.js') }}"></script>
 <div>
 <h1 class="mt-4">Rekapitulasi Nilai Teori</h1>
     <ol class="breadcrumb mb-4">
@@ -61,6 +62,10 @@
     <script>
     $(document).ready(function(){
 		$(".temukan-nilai-teori").click(function(){
+      $(this).text("Mencari ...")
+      $(".keterangan").removeClass("alert alert-success");
+      $(".keterangan").removeClass("alert alert-danger");
+      $(".keterangan").empty();
            
             $.ajaxSetup({
               headers: {
@@ -72,33 +77,40 @@
 				url: "/guru/rekapnilai",
 				data: $('.form-rekap-nilai-teori').serialize(),
 				success: function(data) {
-
-                    
-                    $(".rekap-nilai-teori").html(data);
-                    // $(".noticeujian").text(data);
-                    // $("#tambah-ujian").text("Save");
-                    // $(".tampilkanujian").load("guru/tampilkanujian");   
-                    // setTimeout(function(){
-                    //     $(".noticeujian").removeClass("alert alert-success");
-                    //     $(".noticeujian").empty();
-                    //     },5000);
-                    //     document.getElementById("form-ujian").reset();               
+          
+                   $(".rekap-nilai-teori").html(data);
+                    $(".temukan-nilai-teori").text("submit");
+                    $(".keterangan").addClass("alert alert-success");
+                    $(".keterangan").text("Rekap Nilai Ditemukan");
+                  
+                  
+                  
+            
+                    setTimeout(function(){
+                      $(".keterangan").removeClass("alert alert-success");
+                    $(".keterangan").empty();
+                        },3000);
+                                  
                    
                 },
-                // error: function (jqXHR, exception) {
-                // $(".noticeujian").text("Penilaian tidak berhasil ditambahkan");
-                // $(".noticeujian").addClass("alert alert-danger");
-                // $("#tambah-ujian").text("Simpan");
-                // setTimeout(function(){
-                //     $(".noticeujian").removeClass("alert alert-danger");
-                //     $(".noticeujian").empty();
-                //     },3000);
-                // }
+                error: function (jqXHR, exception) {
+                  $(".rekap-nilai-teori").empty();
+                  $(".temukan-nilai-teori").text("submit");
+                  $(".keterangan").addClass("alert alert-danger");
+                  $(".keterangan").text("Rekap Nilai Teori Tidak ditemukan");
+
+                setTimeout(function(){
+                  $(".keterangan").removeClass("alert alert-danger");
+                  $(".keterangan").empty();
+
+                   
+                    },3000);
+                }
 			});
 			
 			
 			});
         });
     </script>
-    
+    <div class="keterangan"></div>
     <div class=" mt-3 rekap-nilai-teori"></div>

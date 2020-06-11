@@ -1,3 +1,12 @@
+@if (Route::has('login'))
+@auth
+<script>
+ window.location.href="/Dashboard";
+</script>
+
+@endauth
+@endif
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,7 +72,10 @@
                     </div>
                 </div>
                 </div>
-                <div class="col-md-4">
+                @if (Route::has('login'))
+                    @auth
+                    @else
+                     <div class="col-md-4">
                     <div class="border p-3">
                 <img class="rounded-circle mx-auto mt-4 mb-4" src="img/avatar.jpeg" alt="avatar.jpg" width="100px" height="100px ">
             <form class="form-row-border-primary" method="POST" action="{{ route('login') }}">
@@ -115,6 +127,9 @@
                     </form>
                     </div>
                 </div>
+               
+                @endauth
+                    @endif
             </div>
             </div>
         </header>

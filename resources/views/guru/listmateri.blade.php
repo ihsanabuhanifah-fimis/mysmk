@@ -3,6 +3,7 @@
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
  </ol>
+
  <script>
     $(document).ready( function () {
         $('#myTableMateri').DataTable();
