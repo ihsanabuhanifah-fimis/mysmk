@@ -1,7 +1,5 @@
-@extends('guru.layout.master')
-@section('title','Absensi Harian')
 
-@section('content')
+
 
  <div class="container-fluid bg-white">
         <div class="row">
@@ -26,8 +24,9 @@
 
 <!-- isi -->
 <div class="container">
-    <div class="row">
-          <h3 class="text-center mx-auto mt-5">Absensi Harian</h3>
+
+<div class="row">
+          <h3 class="text-center mx-auto mt-5">Edit Absensi</h3>
     </div>
     <form class="form-row-border-primary absen_form" method="post" action="javascript:void(0)" id="contact_us">
     @csrf
@@ -35,42 +34,41 @@
     <div class="row">
     <div class="col-md-6 col-lg-6">
                   <label class="font-weight-bolder" for="tAjaran">Tahun Ajaran</label>
-                  <input class="form-control" type="text" name="tAjaran" id="tAjaran" value="{{$jadwal->nama_ta}}" />
+                  <input class="form-control" type="text" name="tAjaran" id="tAjaran" value="{{$kbms[0]->nama_ta}}" />
 
                   <label class="font-weight-bolder" for="mapel">Mata Pelajaran</label>
-                  <input class="form-control" type="text" name="id_subject" id="mapel" value="{{$jadwal->subject_name}}" /> 
+                  <input class="form-control" type="text" name="id_subject" id="mapel" value="{{$kbms[0]->subject_name}}" /> 
                  
                 
                   <input type="hidden" name="id_rombel" id="id_rombel" ?>
                   <label class="font-weight-bolder" for="semester">Semester</label>
                   
-                  <input class="form-control" type="text" disabl= name="semester" id="semester" value="{{$jadwal->semester}}" />
+                  <input class="form-control" type="text" disabl= name="semester" id="semester" value="{{$kbms[0]->semester}}" />
       </div>
       <div class="col-md-6  col-lg-6">
-                  <label class="font-weight-bolder" for="hari">Hari</label>
-                  <input class="form-control" type="text" name="hari" id="hari" value="{{$jadwal->days}}" />
+                
 
                   <label class="font-weight-bolder" for="tanggal">Tanggal</label>
-                  <input class="form-control" type="date" required name="tanggal" id="tanggal" value=date('Y-m-d') />
+                  <input class="form-control" type="date" required name="tanggal" id="tanggal" value="{{$kbms[0]->tanggal}}" />
                  
                 
                   
                   <label class="font-weight-bolder" for="kelas">Kelas</label>
-                  <input class="form-control" type="text" name="id_rombel" value="{{$jadwal->nama_rombel}}" />
-                  <input type="hidden" id="no" name="no" value="{{$jadwal->no}}">
+                  <input class="form-control" type="text" name="id_rombel" value="{{$kbms[0]->nama_rombel}}" />
+
 </div>
 </div>
              <div class="row">
            
                             
-            @for ($i=0 ; $i< $jadwal->duration  ; $i++)
+            @for ($i=0 ; $i< $jml_jurnal  ; $i++)
            
             <div class="col-md-10">
             <div class="keterangan{{$i+1}} mt-2"></div>
             <input type="hidden" name="_token" id="token{{$i+1}}" value="{{ csrf_token() }}">
             <label  class="font-weight-bold" for="materi">Materi Jam ke- {{$i+1}}</label>
-            <textarea class="form-control " id="materi{{$i+1}}" ></textarea>
-            <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}" value="{{$jadwal->jam_ke+$i}}">
+            <textarea class="form-control " id="materi{{$i+1}}" >{{$jurnal[$i]->materi}}</textarea>
+            <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}">
             </div>
             <div class="col-md-2 mb-2">
               <br>
@@ -132,7 +130,6 @@
             <br>
             </table>     
       </div>
-    
     <div class="row ">
           <table class="table mx-5 border table-responsive-sm">
             <thead>
@@ -147,12 +144,22 @@
             @forelse($absensi as $absen)
                 <tr class="tr">
                     <td class="no">{{$loop->iteration}}</td>
-                        <input class="form-control nis" value="{{$absen->nis}}"  type="hidden" name="nis[]" id="nis" />
+                        <input class="form-control nis" value="{{$absen->n}}"  type="hidden" name="nis[]" id="nis" />
                     <td class="tr">
-                        <input class="form-control nama" value="{{$absen->nama}}"  type="text" name="nama[]" id="nama" />
+                        <input class="form-control nama" value="{{$absen->i}}"  type="text" name="nama[]" id="nama" />
                     </td>
                     <td class="no2">
                         <select class="form-control status" name="status[]" id="status"> 
+                        @if($absen->k == 1)
+                        <option selected value="{{$absen->k}}">Hadir</option>
+                        @elseif($absen->k == 2)
+                        <option selected value="{{$absen->k}}">Sakit</option>
+                        @elseif($absen->k == 3)
+                        <option selected value="{{$absen->k}}">Izin</option>
+                        @elseif($absen->k == 4)
+                        <option selected value="{{$absen->k}}">Tanpa Keterangan</option>
+                        @endif
+
                         <option value=1>Hadir</option>
                         <option value=2>Sakit</option>
                         <option value=3>Izin</option>
@@ -160,7 +167,7 @@
                         </select>
                     </td>
                     <td class="tr">  
-                        <input class="form-control ket" type="text" name="ket[]" id="ket" value="" />
+                        <input class="form-control ket" type="text" name="ket[]" id="ket" value="{{$absen->s}}" />
                     </td>
                 </tr>
                 @empty
@@ -173,44 +180,5 @@
           <button type="submit" id="send_form" class="absensi form-control justify-content-md-end btn btn-success" name="absen" >Simpan</button> 
 </form>
 </div>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#send_form").click(function(){
-            $('.notif-absen').removeClass('alert alert-success');
-            $('.notif-absen').removeClass('alert alert-danger');
-            $('.notif-absen').empty(    );
-            $('#send_form').html('Bismillah sedang menyimpan absensi..');
-            $.ajaxSetup({
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-            });
-            $.ajax({
-				type: 'POST',
-				url: "{{route('savekbm')}}",
-				data: $('#contact_us').serialize(),
-				success: function(data) {
-                    $('.notif-absen').addClass('alert alert-success');
-                    $('.notif-absen').text(data);
-                    $('#send_form').html('Simpan');
-                   
-                   
-                },
-                error: function (jqXHR, exception) {
-                    $('.notif-absen').addClass('alert alert-danger');
-                    $('.notif-absen').text("Absensi tidak berhasil tersimpan, Mohon untuk mengecek tanggal");
-                    $('#send_form').html('Simpan');       
-                }
-			});
-			
-			
-			});
-		});
-	
-  </script>
-
-
-
+<
 </script> 
-@endsection

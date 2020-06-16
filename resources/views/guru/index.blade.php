@@ -152,13 +152,58 @@
                       </div>
 
                       <!-- menu-jadwal -->
+                    <div class="tampilkan-edit-absen">
+                    <h1 class="mt-4">Edit Absensi</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Edit absensi di sini</li>
+                        </ol>
+                        <!-- guru/edit-absen   -->
+                    <form class="form-row" action="javascript:void(0)" id="form-edit-absen" method="POST">
+                        <div class="col-md-2 ml-2">
+                            <label for="tanggal">Tanggal</label>
+                            <input type="date" class="form-control" name="tanggal">
+                        </div>
+                        <div class="col-md-3 ml-2">
+                        <label for="id_subject">Mata Pelajaran</label>
+                          <select name="id_subject" class="form-control">
+                          @forelse ($subjects as $subject)
+                                <option value="{{$subject->id_subject}}">{{$subject->subject_name}}</option>
+                            @empty
+                            @endforelse
+                          </select>
+                        </div>
+                      
+                        <div class=" col-md-4 ml-2">
+                            <label for="id_rombel">Kelas</label>
+                          <select name="id_rombel" class="form-control">
+                          @forelse ($rombels as $rombel)
+                                <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
+                            @empty
+                            @endforelse
+                          </select>
+                        </div>
+                      <div class="col-md-2 ml-2 font-weight-bold form-group ">
+                          <label for=""></label>
+                      <button type="submit"  id="tombol-edit-absen" class=" mt-4  form-control-inline mx-auto btn btn-success border">submit</button> 
+                      </div>
+                      @csrf
+                    </form>
+                   <div class="conteiner">
+                   <div class="keterangan-absensi mt-3"></div>
+                   <div class="tampilkan-hasil-absen"></div>
+                   </div>
+                   
+                    </div>
                       <div class="tampilkan-menu-jadwal">
+                      
   
                       <h1 class="mt-4">Jadwal Hari Ini</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
                         </ol>
-
+                        
+                        
+                       
                       <form class="form-row" action="javascript:void(0)" id="form-jadwal-hari-ini" method="POST">
                         <div class=" font-weight-bold FontColor1 form-group  mt-2 mb-2 ml-2 mr-4">
                           <select class="ml-2 form-control"  name="hari" id="">
@@ -175,10 +220,13 @@
                       </select>
                       </div>
                       <div class="font-weight-bold form-group mb-2  mt-2">
-                      <button type="submit" name="cari" id="tombol-jadwal-saya-hari-ini" class="form-control mx-auto btn btn-success border">submit</button> 
+                      <button type="submit" name="cari" id="tombol-jadwal-saya-hari-ini" class="form-control-inline mx-auto btn btn-success border">submit</button> 
+                      <button class="form-control-inline mx-auto btn btn-success edit-absensi">Edit Absensi</button>
                       </div>
                       @csrf
                     </form>
+
+                    
               <div class="tampilkan-jadwal"></div>
                       </div>
 
@@ -337,13 +385,10 @@
         <br>
         <label for="id_rombel">Kelas</label>
         <select class="form-control" name="id_rombel" id="id_rombel">
-            <option value="1">X Teknik Komputer dan Jaringan</option>
-            <option value="2">X Rekayasa Perangakat Lunak</option>
-            <option value="3">XI Teknik Komputer dan Jaringan</option>
-            <option value="4">XI Rekayasa Perangakat Lunak</option>
-            <option value="5">XII Teknik Komputer dan Jaringan</option>
-            <option value="6">XII Rekayasa Perangakat Lunak</option>
-
+        @forelse ($rombels as $rombel)
+                                <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
+                            @empty
+                            @endforelse
         </select>
         <br>
         <label for="kkm">KKM</label>

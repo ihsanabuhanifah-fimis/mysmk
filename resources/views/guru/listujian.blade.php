@@ -1,6 +1,6 @@
 
 
-   
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
     $(document).ready( function () {
         $('#myTableUjian').DataTable();
@@ -65,15 +65,15 @@
         @else
         <td class="text-center">Ya</td>
         @endif
-        <td><a id="{{$ujian->id}}" class="btn btn-outline-primary akses-ujian" >Akses</a></>
+        <td><a id="{{$ujian->id}}" class="btn btn-primary akses-ujian" >Akses</a></>
         @if($ujian->id_tipe == 2)
-        <td class="text-center"><a class="btn btn-outline-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</a></div>
+        <td class="text-center"><a class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</a></div>
         @else
-        <td class="text-center"><a class="btn btn-outline-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</a></div>
+        <td class="text-center"><a class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</a></div>
         @endif
-        <td class="text-center"><a class="btn btn-outline-primary" href="{{route('nilaiujian',['nilai'=>$ujian->id])}}">Nilai</a></td>
-        <td class="text-center"><a class="btn btn-outline-danger text-center delete" id="{{$ujian->id}}" >Hapus</a></td>
-        <td><a id="{{$ujian->id}}" class="btn btn-outline-success edit-ujian">Edit</a></td>
+        <td class="text-center"><a class="btn btn-primary" href="{{route('nilaiujian',['nilai'=>$ujian->id])}}">Nilai</a></td>
+        <td class="text-center"><a class="btn btn-danger text-center delete" id="{{$ujian->id}}" >Hapus</a></td>
+        <td><a id="{{$ujian->id}}" class="btn btn-success edit-ujian">Edit</a></td>
         <td class="text-center">{{$ujian->remidial}}</td>
         @if($ujian->tampil_nilai == 1)
         <td class="text-center">Ya</td>

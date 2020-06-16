@@ -46,6 +46,76 @@ class GuruController extends Controller
             
    }
 
+   public function edit_absen(request $request)
+   {
+
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $kbm = DB::table('kbms')
+        -> leftjoin ('mapels','mapels.id_subject','=','kbms.id_subject')
+        -> leftjoin('rombels','rombels.id_rombel','=','kbms.id_rombel')
+        -> leftjoin('tas','tas.id_ta','=','kbms.id_ta')
+        ->where('kbms.id_rombel',$request["id_rombel"] )
+        ->where('kbms.id_subject',$request["id_subject"] )
+        ->where('kbms.tanggal',$request["tanggal"] )
+        ->where('kbms.id_cikgu',$id_cikgu->id_cikgu)
+        ->get();
+      
+        $absen = $kbm[0]->absen;
+        $absens = json_decode($absen); 
+      
+        
+        $absensi=[];      
+        $namasiswa = DB::table('student_rombels') 
+        -> leftjoin ('students','students.nis','=','student_rombels.nis')
+        ->where('id_rombel', $kbm[0]->id_rombel) 
+        ->get();
+
+        $i=0;
+       
+        $jml = count ($absens);
+        $jml_siswa= count($namasiswa);
+        while($i<$jml){
+            $j=0;
+            while($j<$jml_siswa){
+            if($namasiswa[$i]->nis == $absens[$j]->n){
+                $absensi[$i]=[
+                    'i'=>$namasiswa[$i]->nama,
+                    'n'=>$absens[$j]->n,
+                    's'=>$absens[$j]->s,
+                    'k'=>$absens[$j]->k,
+                  ];
+            }
+            $j++;
+        }
+        $i++;
+        }
+
+        $json=json_encode($absensi);
+        $json2=json_decode($json);
+
+        $jurnal = DB::table('jurnals')
+        -> leftjoin ('mapels','mapels.id_subject','=','jurnals.id_subject')
+        -> leftjoin('rombels','rombels.id_rombel','=','jurnals.id_rombel')
+        -> leftjoin('tas','tas.id_ta','=','jurnals.id_ta')
+        ->where('jurnals.id_rombel',$request["id_rombel"] )
+        ->where('jurnals.id_subject',$request["id_subject"] )
+        ->where('jurnals.tanggal',$request["tanggal"] )
+        ->where('jurnals.id_cikgu',$id_cikgu->id_cikgu)
+        ->get();
+
+
+        $jml_jurnal=count($jurnal);
+       
+        return view('guru.edit-absen',['absensi'=>$json2,'kbms'=>$kbm, 'jurnal'=>$jurnal, 'jml_jurnal'=>$jml_jurnal]);
+
+ 
+
+
+      
+
+        // return view('guru.edit-absen',['absensi'=>$absensi,'nama'=>$namasiswa]);
+   }
    public function absensi($id)
    {
      
@@ -119,7 +189,8 @@ class GuruController extends Controller
    }
    public function store_jurnal(Request $request)
    {  
-    return "ok";
+     
+    
         $jurnal= new Jurnal();
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
@@ -128,31 +199,34 @@ class GuruController extends Controller
         ->where('no',$id )
         ->where('id_cikgu',$id_cikgu->id_cikgu)
         ->first();
-     
-        $urut = $request["urut"];
+       
+       
         $jurnal-> id_cikgu= $id_cikgu->id_cikgu;
         $jurnal-> id_rombel=$jadwal->id_rombel;
         $jurnal-> id_subject=$jadwal->id_subject;
         $jurnal-> id_ta=$jadwal->id_ta;
         $jurnal-> semester=$jadwal->semester;
         $jurnal-> tanggal = $request["tanggal"];
-    
-        if($request["materi1"] != NULL){
-            $jurnal-> materi = $request["materi1"];
-            $jurnal-> jam_ke = $request["jam1"];
-        }
-  
-        elseif($request["materi2"] != NULL){
-            $jurnal-> materi = $request["materi2"];
-            $jurnal-> jam_ke = $request["jam2"];
+        $jurnal-> materi = $request["materi"];
+        $jurnal-> jam_ke = $request["jam"];
+        $cek_jurnal = Jurnal::where('id_cikgu',$id_cikgu->id_cikgu)
+        ->where('id_subject',$jadwal->id_subject)
+        ->where('id_rombel',$jadwal->id_rombel)
+        ->where('jam_ke',$request["jam"])
+        ->where('tanggal',$request["tanggal"])->first();
+
+     
+        if($cek_jurnal != NULL){
+            return "Mohon maaf ustadz sudah menyimpan materi jam ke-Jazakumullahu Khairan";
+        } else{
+            $jurnal->save();
+            return "Alhamduliah Materi jam ke-telah tersimpan. Jazakumullahu Khairan";
         }
 
-        elseif($request["materi3"] != NULL){ 
-            $jurnal-> materi = $request["materi3"];
-            $jurnal-> jam_ke = $request["jam3"];
-        }
       
-        $jurnal->save();
+        
+
+        return "Materi berhasil tersimpan";
      
 
   

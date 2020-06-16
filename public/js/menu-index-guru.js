@@ -3,6 +3,8 @@ $(document).ready(function(){
        $(".tampilkan-menu-penilaian").hide(); 
        $(".tampilkan-menu-jadwal").hide();
        $(".tampilkan-menu-bank-soal").hide();
+       $(".tampilkan-edit-absen").hide();
+    
        $(".dashboard").show(); 
 });
 
@@ -10,6 +12,7 @@ $(document).ready(function(){
     $(".menu-materi").click(function(){
         $(".tampilkanbab").hide(); 
         $(".tampilkan-menu-bank-soal").hide();
+        $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide();
         $(".dashboard").hide();
     $(".tampilkanmateri").load("guru/tampilkanmateri"); 
@@ -24,6 +27,7 @@ $(document).ready(function(){
   $(document).ready(function(){
     $(".menu-dashboard").click(function(){
     $(".tampilkan-menu-materi").hide(); 
+    $(".tampilkan-edit-absen").hide();
     $(".tampilkan-menu-bank-soal").hide();
     $(".tampilkan-menu-penilaian").hide(); 
     $(".tampilkan-menu-jadwal").hide();
@@ -36,15 +40,18 @@ $(document).ready(function(){
     $(".menu-jadwal").click(function(){
         $(".tampilkan-menu-penilaian").hide(); 
         $(".tampilkan-menu-bank-soal").hide();
+        $(".tampilkan-edit-absen").hide();
     $(".tampilkan-menu-materi").hide(); 
     $(".dashboard").hide();
     $(".tampilkan-menu-jadwal").show(); 
+    $(".tampilkan-jadwal").show();
    
      });
   });
   $(document).ready(function(){
     $(".menu-penilaian").click(function(){
     $(".tampilkan-menu-materi").hide(); 
+    $(".tampilkan-edit-absen").hide();
     $(".tampilkan-menu-bank-soal").hide();
     $(".rekapnilaipraktek").hide();
     $(".rekapnilaiteori").hide();
@@ -61,6 +68,7 @@ $(document).ready(function(){
   $(document).ready(function(){
     $(".menu-bank-soal").click(function(){
         $(".tampilkan-menu-materi").hide(); 
+        $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();

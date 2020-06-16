@@ -209,6 +209,57 @@ $(document).ready(function(){
                         
                         
                         });
+
+                        $(".edit-absensi").click(function(){
+                           $(".tampilkan-menu-jadwal").hide();
+                           $(".tampilkan-jadwal").hide();
+                           $(".tampilkan-edit-absen").show();
+                           $("#form-edit-absen").show();
+                        });
+
+                        $("#tombol-edit-absen").click(function(){
+                            $(this).text("mencari ....");
+                            $(".keterangan-absensi").removeClass("alert alert-success");
+                            $(".keterangan-absensi").removeClass("alert alert-danger");
+                            $(".keterangan-absensi").empty();
+                            $(".tampilkan-hasil-absen").empty();
+                              
+                            $.ajaxSetup({
+                                headers: {
+                                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                      }
+                              });
+                              $.ajax({
+                                  type: 'POST',
+                                  url: "guru/edit-absen  ",
+                                  data: $('#form-edit-absen').serialize(),
+                                  success: function(data) {
+                                    $(".keterangan-absensi").addClass("alert alert-success");
+                                    $(".keterangan-absensi").text("Alhamdulilah absensi ditemukan");
+                                    $("#tombol-edit-absen").text("Cari");
+                                    $(".tampilkan-hasil-absen").html(data);
+                                    setTimeout(function(){
+                                        $(".keterangan-absensi").removeClass("alert alert-success");
+                                        $(".keterangan-absensi").removeClass("alert alert-danger");
+                                        $(".keterangan-absensi").empty();
+                                        },3000);
+                                     
+                              
+                                                 
+                                     
+                                  },
+                                  error: function (jqXHR, exception) {
+                                    $(".keterangan-absensi").addClass("alert alert-danger");
+                                    $(".keterangan-absensi").text("Mohon maaf absensi tidak ditemukan ditemukan");
+                                    $("#tombol-edit-absen").text("Cari");
+                                    setTimeout(function(){
+                                        $(".keterangan-absensi").removeClass("alert alert-success");
+                                        $(".keterangan-absensi").removeClass("alert alert-danger");
+                                        $(".keterangan-absensi").empty();
+                                        },3000);
+                                  }
+                              });
+                        })
                     });
 
                     $(document).ready(function(){

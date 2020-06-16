@@ -824,12 +824,15 @@ class PenilaianController extends Controller
 
             $jml_soal_total = count($jawab_soals1) + count($jawab_soals2) + count($jawab_soals3);
            
+            
             $u=0;
             $p=0;
             $o=0;
             // return "ok";
 
             // return count($jawab_soals3);
+           
+            if(count($jawab_soals1)!=NULL){
             while($u < count($jawab_soals1)){
                 if($jawab_soals1[$u]->k ==0){
                     $sudah_jawab_pg[$u]="0";
@@ -838,8 +841,11 @@ class PenilaianController extends Controller
                 }
                
                 $u++;
-            };
-            
+            }
+        }else{
+            $sudah_jawab_pg[0]="0";
+        }
+        if(count($jawab_soals1)!=NULL){
             while($p < count($jawab_soals3)){
                
                 if($jawab_soals3[$p]->k == 0){
@@ -851,6 +857,11 @@ class PenilaianController extends Controller
                
                 $p++;
             }
+        }else{
+            $sudah_jawab_truefalse[]="0";
+        }
+
+        if(count($jawab_soals2)!=NULL){
             while($o < count($jawab_soals2)){
                
                 if($jawab_soals2[$o]->k == null){
@@ -862,12 +873,14 @@ class PenilaianController extends Controller
                
                 $o++;
             }
+        }else{
+            $sudah_jawab_isian[]="0";
+        }
 
-
-        
+       return $sudah_jawab_truefalse;
         $jml_soal_dijawab = array_sum($sudah_jawab_pg)+ array_sum ($sudah_jawab_isian)+ array_sum($sudah_jawab_truefalse);
            
-        // return $jml_soal_total;
+        return $jml_soal_dijawab;
         
         $persentase_sudah_dijawab = ($jml_soal_dijawab / $jml_soal_total) * 100 ;
           

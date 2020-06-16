@@ -38,6 +38,7 @@ Route::get('/user/{id}','HomeController@edit')->name('admin.edituser');
 //Route Guru
 Route::prefix('/guru')->middleware('CekSessionGuru')->group(function (){
 Route::post('/jadwal-saya', 'GuruController@requestjadwal')->name('jadwal');
+Route::post('/edit-absen', 'GuruController@edit_absen')->name('edit.absen');
 Route::get('/absensi/{id}', 'GuruController@absensi')->name('absensi');
 Route::get('/materi','GuruController@tambahmateri')->name('materi');
 Route::put('/save-form', 'GuruController@store')->name('savekbm');
