@@ -37,8 +37,10 @@ class MateriController extends Controller
         ->leftjoin('mapels','mapels.id_subject','=','materis.id_subject') 
         ->leftjoin('cikgus','cikgus.id_cikgu','=','materis.id_cikgu')
         ->where('materis.id_rombel',$id_rombel->id_rombel)
-   
+        // ->groupBy('materis.id_subject')
         ->get();
+
+        
 
         $jml_mapel=count($mapel);
         $i = 0 ;

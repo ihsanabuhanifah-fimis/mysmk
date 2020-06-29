@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', 'ApiController@register');
 Route::get('users', 'ApiController@users');
+Route::post('login', 'ApiController@login');
+Route::get('profile','ApiController@profile')->middleware('auth:api');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+
+
+// Auth::routes();
+
+// Route::get('/Dashboard', 'HomeController@index')->name('dashboard');

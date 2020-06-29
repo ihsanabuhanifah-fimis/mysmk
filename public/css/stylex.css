@@ -1,0 +1,174 @@
+.table1 { 
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+  /* Zebra striping */
+  .tr1:nth-of-type(odd) { 
+    background: #eee; 
+  }
+  .th1 { 
+    background: #333; 
+    color: white; 
+    font-weight: bold; 
+    
+  }
+  .td1, .th1 { 
+    padding: 6px; 
+    word-wrap: break-word;
+    border: 1px solid #ccc; 
+    text-align: center; 
+    white-space: pre-wrap;
+    min-width: 100px;
+    max-width: 400px;
+  }
+  .td2{
+      display: none;
+  }
+  .td6{
+    text-align: justify; 
+  }
+  .phone{
+    display: none;
+  }
+
+  .footer{
+    display: none;
+  }
+  .titik{
+    max-width: 20px;
+  }
+  /* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	.table1, .thead1, .tbody1, .th1,.td1, .tr1 { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.thead1, .tr1 { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+  }
+  
+  .tr1:nth-of-type(odd) { 
+    background: white; 
+  }
+	
+	.tr1 {
+     border: 1px solid #eee;;
+    margin-top: 20px;
+    ;
+    }
+	
+	.td1,.th1 { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+        position: relative;
+        right: 0px;
+        padding-left: 50%; 
+        text-align: justify;
+        min-height: 40px;
+        max-width: 100%;
+       
+    }
+    .td2 { 
+        /* Behave  like a "row" */
+        display: flex;
+        font-size: 12px;;
+        align-content: center;
+        border: none;
+        font-weight: bold;
+		border-bottom: 1px solid #eee; 
+        position: relative;
+        right: 0px;
+        padding-left: 50%; 
+        text-align: justify;
+        max-height:20px;
+        white-space: pre-wrap;
+    }
+    .td4{
+        justify-content: center;
+        font-size: 15px;
+        min-height: 50px;
+      
+    }
+    .td3{
+        display: none;
+    }
+	
+	.td1:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+        white-space: wrap;
+        text-align: left;
+        font-weight: bold;
+  }
+  .dekstop{
+    display: none;
+  }
+  .phone{
+    display: inline-block;
+    position: fixed;
+    z-index: 9999;
+    bottom:2px;
+    left: 0px;
+    right: 0px;
+    background-color:white;
+    border: 1px solid white;
+    font-size: 10px;
+    padding:3px ;
+  }
+  .ph{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+    
+    
+  }
+
+  
+  .buphon{
+    
+    text-align: center;
+    font-size: 12px;
+    
+    
+    
+  }
+  .form{
+    display: block;
+  }
+  
+  .footer{
+    display: block;
+    min-height: 100px;
+    border: 1px solid white;
+  }
+	/*
+	Label the data
+	/* */
+	/* td:nth-of-type(1):before { content: "Pelajaran ke-"; }
+	td:nth-of-type(2):before { content: "Mata Pelajaran"; }
+	td:nth-of-type(3):before { content: "Pengampu"; }
+	td:nth-of-type(4):before { content: "Status Kehadiran Siswa"; }
+	td:nth-of-type(5):before { content: "Keterangan"; }
+	td:nth-of-type(6):before { content: "Materi"; } */ 
+	/* td:nth-of-type(7):before { content: "Date of Birth"; }
+	td:nth-of-type(8):before { content: "Dream Vacation City"; }
+	td:nth-of-type(9):before { content: "GPA"; }
+	td:nth-of-type(10):before { content: "Arbitrary Data"; } */
+}

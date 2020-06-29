@@ -1,3 +1,5 @@
+
+  
 @extends('guru.layout.master')
 @section('title','Absensi Harian')
 
@@ -68,7 +70,7 @@
             <div class="col-md-10">
             <div class="keterangan{{$i+1}} mt-2"></div>
             <input type="hidden" name="_token" id="token{{$i+1}}" value="{{ csrf_token() }}">
-            <label  class="font-weight-bold" for="materi">Materi Jam ke- {{$i+1}}</label>
+            <label  class="font-weight-bold" for="materi">Materi Jam ke- {{$jadwal->jam_ke+$i}}</label>
             <textarea class="form-control " id="materi{{$i+1}}" ></textarea>
             <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}" value="{{$jadwal->jam_ke+$i}}">
             </div>

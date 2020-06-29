@@ -53,12 +53,19 @@ class BanksoalController extends Controller
             's'=>"xr",
             
         ];
+        $soal_praktek[0] = [
+            'm'=>'',
+            's'=>"",
+            
+        ];
         $soal1=json_encode($soal1);
         $soal2=json_encode($soal2);
         $soal3=json_encode($soal3);
+        $soal_praktek=json_encode($soal_praktek);
         $bank->soal1=$soal1;
         $bank->soal2=$soal2;
         $bank->soal3=$soal3;
+        $bank->soal_praktek=$soal_praktek;
         $bank->save();
         return "sukses";
     }
@@ -130,7 +137,9 @@ class BanksoalController extends Controller
         ->where('id',$id)
         ->where('id_cikgu',$id_cikgu->id_cikgu)->get();
               
-      return view('guru.buat-soal-praktek',['banksoals'=>$banksoal]);
+        $soal_praktek = $banksoal[0]->soal_praktek;
+        $soal_praktek_siswa = json_decode($soal_praktek);
+      return view('guru.buat-soal-praktek',['banksoals'=>$banksoal,'soal_prakteks'=>$soal_praktek_siswa]);
         
         // return view('guru.buat-soal',['soals'=>$soals,'soals2'=>$soals2,'soals3'=>$soals3, 'banksoals'=>$banksoal]);
     }
@@ -288,13 +297,38 @@ class BanksoalController extends Controller
 
     public function editsoalpraktek(Request $request)
     {
+        
+      ;
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
         $id=$request["id"];
 
         $soal = new Banksoal();
         $soal = Banksoal::where('id',$id)->where('id_cikgu',$id_cikgu->id_cikgu)->first();
-        $soal-> soal_praktek = $request["soal_praktek"];
+        
+        if($request["materi"] != NULL){
+        $jml_soal = count($request["materi"]);
+      
+        $i=0;
+        while($i < $jml_soal){
+            $soal_praktek[$i]= 
+            [
+                'm'=> $request["materi"][$i],
+                's'=> $request["soal"][$i],
+            ];
+            $i++;
+        }
+    }else{
+        $soal_praktek[0]= 
+        [
+            'm'=> '',
+            's'=> '',
+        ];
+    }
+    
+        $soal_praktek_save = json_encode($soal_praktek);
+ 
+        $soal-> soal_praktek = $soal_praktek_save;
         $soal->save();
         $success_output = 'ok';
         $output=[

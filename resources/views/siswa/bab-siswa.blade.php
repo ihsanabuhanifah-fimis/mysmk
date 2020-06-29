@@ -2,8 +2,7 @@
 @section('title','Materi')
 
 @section('content')
-
- <div class="container-fluid bg-white">
+<div class="container-fluid bg-white">
         <div class="row">
             <div class="col-md-8 col-xl-6">
                
@@ -20,56 +19,84 @@
             </div>
         </div>
     </div>
-<!-- awal web -->
 
-<div class="container-fluid">
-<div class="row">
- <div class="col-md-3">
+<div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">  <h5>BAB : {{$bab->nama_bab}}</h5></div>
+                            @forelse ($materis as $materi)
+                            <a id="{{$materi->id}}" class="nav-link menu-dashboard" >
+                            {{$materi->submateri}}
+                              </a >
+                                                                
+                                <script>
+                                $(document).ready(function(){
+                                    var id
+                                  $("#{{$materi->id}}").on('click',function(){
 
- <ul class="nav flex-column">
-<li class="nav-item">
-<h4 class="nav-link">{{$bab->nama_bab}}</h4>
-</li >
- @forelse ($materis as $materi)
-  <li class="nav-item">
-    <a id="{{$materi->id}}" class="nav-link active" >{{$materi->submateri}}</a>
-   
-<script>
-$(document).ready(function(){
-    var id
-  $("#{{$materi->id}}").on('click',function(){
+                                    id = $(this).attr('id');
+                                  
+                                    $.ajax({
+                                          url:"/siswa/materi/akses/"+id,
+                                          success:function(data){
+                                          $(".akses-materi").html(data);
+                                          
+                                          }
+                                    });
+                                  
+                                });
+                                });
 
-    id = $(this).attr('id');
-   
-    $.ajax({
-          url:"/siswa/materi/akses/"+id,
-          success:function(data){
-           $(".akses-materi").html(data);
-           
-          }
-    });
-   
-});
-});
- 
-</script>
-  </li>
-  @empty
-  @endforelse
-  <!-- <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-  </li> -->
-</ul></div>
- <div class="col-md-9">
- <div class="akses-materi"></div>
- </div>
-</div>
-</div>
+                                $(document).ready(function(){
+                                   
 
+                                    id = {{$materis[0]->id}};
+                                  
+                                    $.ajax({
+                                          url:"/siswa/materi/akses/"+id,
+                                          success:function(data){
+                                          $(".akses-materi").html(data);
+                                          
+                                          }
+                                    });
+                                  
+                                });
+                                
+                                
+                                
+                                </script>
+
+                                  @empty
+                                  @endforelse
+
+                                <!-- menu pelajaran -->
+                          
+                </nav>
+            </div>
+
+            <!-- konten -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                      <!-- awal dashboard -->
+
+                      <!-- awal pelajaran -->
+                     
+
+
+
+                      <!-- akhir menu materi -->
+                      <div class="akses-materi"></div>
+                        <!-- akhir dahsboard -->
+                    </div>
+                </main>
+                <footer class="bg-light py-2">
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Ihsanabuhanifah</div></div>
+        </footer>
+            </div>
+        </div>
+<script src="/js/siswa.js"></script>
+<script src="/js/menu-siswa.js"></script>
 @endsection

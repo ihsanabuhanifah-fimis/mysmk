@@ -81,6 +81,12 @@ Route::get('/banksoal/pdf/{id}','BanksoalController@pdf')->name('banksoal_pdf');
 Route::post('/tambah_bab/','GuruController@tambah_bab')->name('tambah_bab');
 Route::get('/dapatkan_bab/{id}','GuruController@dapatkan_bab')->name('dapatkan_bab');
 
+
+Route::get('/halaqoh','HalaqohController@get_halaqoh')->name('halaqoh');
+Route::get('/halaqoh/daftar','HalaqohController@daftar_halaqoh')->name('daftar.halaqoh');
+Route::get('/halaqoh/siswa/{id}','HalaqohController@siswa_halaqoh')->name('siswa.halaqoh');
+Route::post('/halaqoh','HalaqohController@add_halaqoh')->name('halaqoh.add');
+
 });
 
 //Route Guru
@@ -106,16 +112,28 @@ Route::get('/ujian/nilai/{nilai}','PenilaianController@nilai_ujian')->name("nila
 Route::get('/materi','MateriController@materi_siswa')->name("materi_siswa");
 Route::get('/materi/bab/{id}','MateriController@bab_siswa')->name("bab.siswa");
 Route::get('/materi/akses/{id}','MateriController@akses_siswa')->name("akses.siswa");
-
-
-
-
 //route siswa Materi
+
+Route::get('/halaqoh','HalaqohsiswaController@halaqoh')->name("halaqoh");
+Route::get('/halaqoh-hasil/{id}','HalaqohsiswaController@halaqoh_hasil')->name("halaqoh.hasil");
+Route::put('/halaqoh','HalaqohsiswaController@halaqoh_save')->name("halaqoh.save");
 });
 //Route Uplod
 Route::get('/file-upload', 'FileUploadController@fileUpload')->name('fileupload');
 Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('prosesfileupload');
 
+
+//Route Wali
+    Route::prefix('/wali')->group(function (){
+    Route::post('/kehadiran','WalisController@kehadiran')->name('kehadiran');
+    Route::get('/jadwal-ujian','WalisController@jadwal_ujian')->name('jadwal.ujian');
+    Route::get('/catatan-halaqoh-online','WalisController@catatan_halaqoh_online')->name('halaqoh.online');
+
+    
+   
+    });
+
+//routeWali
 //Route Upload
 Auth::routes();
 

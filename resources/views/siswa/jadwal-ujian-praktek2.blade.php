@@ -1,9 +1,17 @@
 
-<script src="/js/jquery-3.3.1.slim.min.js"></script> 
-
-
-<table class="table table-bordered table-striped mt-2 table-responsive-sm">
-<p class="d-flex justify-content-end"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
+<script>
+    $(document).ready( function () {
+        $('#myPraktek').DataTable();
+    } );
+    </script>
+<style>
+.font{
+    font-size:12px;
+}
+</style>
+<div class="container mt-3 p-4 border">
+<table id="myPraktek" class="table table-bordered table-striped mt-2 table-responsive-sm">
+<p class="d-flex justify-content-end font"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
     <thead class="bg-success">
         <tr>
             <th>No</th>
@@ -14,12 +22,10 @@
             <th>Tipe Ujian</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
-      
             <th>Action</th>
-            
             <th>Nilai Akhir</th>
             <th>Status</th>
-            <th class="text-center" colspan="10">Riwayat Ujian</th>
+            <th class="text-center">Riwayat Ujian</th>
             
         </tr>
     </thead>
@@ -53,6 +59,7 @@
            
             @empty
             @endforelse
+            <td><button class="btn btn-success">Lihat</button></td>
         </tr>
 
         <?php $k++ ; ?>
@@ -61,6 +68,4 @@
     </tbody>
 
 </table>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script>
+</div>

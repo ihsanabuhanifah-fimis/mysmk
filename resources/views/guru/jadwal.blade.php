@@ -1,13 +1,8 @@
 
 
-<script>
-$(document).ready( function () {
-    $('.myTable').DataTable();
-} );
-</script>
-</script>
-<table class="table myTable table-responsive-sm ">
-    <thead >
+<div class="border p-md-4">
+<table class="table myTable table-responsive-sm table-bordered ">
+    <thead class="bg-success" >
         <tr>
         
                 <th class="text-center">No</th>
@@ -27,7 +22,7 @@ $(document).ready( function () {
             <td class="text-center">{{$loop->iteration}}</td>
             <td>{{$jadwal->subject_name}}</td>
             <td>{{$jadwal->nama_rombel}}</td>
-            <td class="text-center">{{$jadwal->mulai}}</td>
+            <td class="text-center">{{$jadwal->jam_ke}}</td>
             <td class="text-center">{{$jadwal->duration}}</td>
             <td class="text-center">{{$jadwal->semester}}</td>
             <td class="text-center">{{$jadwal->nama_ta}}</td>
@@ -40,3 +35,4 @@ $(document).ready( function () {
     </tbody>
 
 </table>
+</div>

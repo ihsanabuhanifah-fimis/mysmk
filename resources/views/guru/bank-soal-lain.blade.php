@@ -1,11 +1,15 @@
-<script src="/js/jquery-3.3.1.min.js"></script> 
+
 <style>
 .table-bank,.btn{
       font-size:12px;
     }
 
 </style>
-<h6 class="text-center text-black-50">Bank Soal Lain</h6>
+<h2 class="mt-4">Daftar Bank Soal Lain</h2>
+ <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Ini adalah daftar bank milik Ustadz lain yang dapat di salin, apabila telah mendapatkan izin</li>
+ </ol>
+ <div class="p-md-4 border">
     <table class="table datatable table-bordered table-bank table-responsive-sm">
         <thead class="bg-info">
            <tr>
@@ -38,7 +42,7 @@
         @endforelse
         </tbody>
     </table>
-
+    </div>
 
     <div class="modal fade" id="myModal2" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

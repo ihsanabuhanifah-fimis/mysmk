@@ -28,7 +28,7 @@
                             <div class="sb-sidenav-menu-heading">MySMK</div>
                             <a class="nav-link menu-dashboard" 
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard</a >
+                                Santri</a >
 
                                 <!-- menu pelajaran -->
                             <div class="sb-sidenav-menu-heading">Menu</div>
@@ -43,62 +43,30 @@
                             <!-- menu materi -->
                                 <!-- menu materi -->
                          
-                            <a class="nav-link collapsed menu-jadwal-ujian" data-toggle="collapse" data-target="#collapseJadwal" aria-expanded="false" aria-controls="collapseLayouts"
+                            <a class="nav-link collapsed menu-jadwal-ujian-teori" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
-                                Jadwal Ujian
+                                Penilaian Teori
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <div class="collapse" id="collapseJadwal" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                
-                                <a  class="nav-link menu-jadwal-ujian-teori" data-toggle="pill" 
-                                 role="tab" aria-controls="pills-tugas" 
-                                aria-selected="true" >Jadwal Ujian Teori</a>
-                                <a class="nav-link menu-jadwal-ujian-praktek" data-toggle="pill" 
-                                 role="tab" aria-controls="pills-tugas" 
-                                aria-selected="true" >Jadwal Ujian Praktek</a>
-                              </nav>
-                            </div>
+                            <a class="nav-link collapsed menu-jadwal-ujian-praktek" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                                Penilaian Praktek
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                           
 
                             <!-- menu materi -->
                            
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
+                            <a class="nav-link collapsed menu-halaqoh-online" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
+                                Halaqoh Online
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
-                                        >Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
-                                        >Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts</a
-                            ><a class="nav-link" href="tables.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables</a
-                            >
+                            
+                           
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Siswa
-                    </div>
+                   
                 </nav>
             </div>
 
@@ -114,14 +82,25 @@
                       </div>
                        <!-- awal pelajaran -->
                       <!-- awal materi -->
-                      <div class="tampilkan-menu-jadwal-ujian">
-                      <h1 class="mt-4">Jadwal Penilaian</h1>
+                      <div class="tampilkan-menu-jadwal-ujian-teori">
+                      <h1 class="mt-4">Jadwal Penilaian Teori</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Jadwal Penilaian Teori dan Praktek Kelas X Teknik Komputer dan Jaringan</li>
+                            <li class="breadcrumb-item active">Jadwal Penilaian Teori X Teknik Komputer dan Jaringan</li>
                         </ol>
-                      <div class="tampilkan-ujian-praktek"></div>
+                  
                       <div class="tampilkan-ujian-teori"></div>
                       </div>
+
+                      <div class="tampilkan-menu-jadwal-ujian-praktek">
+                      <h1 class="mt-4">Jadwal Penilaian Praktek</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Jadwal Penilaian Teori X Teknik Komputer dan Jaringan</li>
+                        </ol>
+                      <div class="tampilkan-ujian-praktek"></div>
+                   
+                      </div>
+
+                      <div class="tampilkan-halaqoh-online"></div>
 
 
 

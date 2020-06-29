@@ -1,5 +1,5 @@
 
-    <script src="/js/jquery-3.3.1.min.js"></script> 
+
     <h1 class="mt-4">List BAB</h1>
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar bab yang telah di buat</li>

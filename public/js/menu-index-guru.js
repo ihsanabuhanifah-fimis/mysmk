@@ -2,6 +2,7 @@ $(document).ready(function(){
        $(".tampilkan-menu-materi").hide();
        $(".tampilkan-menu-penilaian").hide(); 
        $(".tampilkan-menu-jadwal").hide();
+       $(".tampilkan-menu-halaqoh").hide(); 
        $(".tampilkan-menu-bank-soal").hide();
        $(".tampilkan-edit-absen").hide();
     
@@ -14,12 +15,12 @@ $(document).ready(function(){
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide();
+        $(".tampilkan-menu-penilaian").hide();
+        $(".tampilkan-menu-halaqoh").hide(); 
         $(".dashboard").hide();
-    $(".tampilkanmateri").load("guru/tampilkanmateri"); 
-    $(".tampilkanmateri").show();
-
-   
-    $(".tampilkan-menu-materi").show(); 
+        $(".tampilkanmateri").load("guru/tampilkanmateri"); 
+        $(".tampilkanmateri").show();
+        $(".tampilkan-menu-materi").show(); 
 
        });
   });
@@ -27,6 +28,7 @@ $(document).ready(function(){
   $(document).ready(function(){
     $(".menu-dashboard").click(function(){
     $(".tampilkan-menu-materi").hide(); 
+    $(".tampilkan-menu-halaqoh").hide(); 
     $(".tampilkan-edit-absen").hide();
     $(".tampilkan-menu-bank-soal").hide();
     $(".tampilkan-menu-penilaian").hide(); 
@@ -38,9 +40,11 @@ $(document).ready(function(){
 
   $(document).ready(function(){
     $(".menu-jadwal").click(function(){
+      $(".tampilkan-menu-halaqoh").hide(); 
         $(".tampilkan-menu-penilaian").hide(); 
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-edit-absen").hide();
+        $(".tampilkan-menu-penilaian").hide();
     $(".tampilkan-menu-materi").hide(); 
     $(".dashboard").hide();
     $(".tampilkan-menu-jadwal").show(); 
@@ -57,6 +61,7 @@ $(document).ready(function(){
     $(".rekapnilaiteori").hide();
     $(".dashboard").hide();
     $(".tampilkan-menu-jadwal").hide(); 
+    $(".tampilkan-menu-halaqoh").hide(); 
     $(".tampilkan-menu-penilaian").show(); 
     $(".tampilkanujian").load("guru/tampilkanujian");
     $(".tampilkanujian").show();
@@ -72,7 +77,8 @@ $(document).ready(function(){
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();
-        $(".banksoallain").hide();   
+        $(".banksoallain").hide();  
+        $(".tampilkan-menu-halaqoh").hide(); 
         $(".bank-soal-saya").load("guru/banksoal");
         $(".tampilkan-menu-bank-soal").show();
        
@@ -80,3 +86,22 @@ $(document).ready(function(){
 
     });
   });
+
+
+  $(document).ready(function(){
+    $(".menu-halaqoh").click(function(){
+        $(".tampilkan-menu-materi").hide(); 
+        $(".tampilkan-edit-absen").hide();
+        $(".tampilkan-menu-jadwal").hide(); 
+         $(".tampilkan-menu-penilaian").hide(); 
+        $(".dashboard").hide();
+        $(".tampilkan-menu-bank-soal").hide();
+        $(".tampilkan-menu-halaqoh").show();
+        $(".tampilkan-menu-halaqoh").load("/guru/halaqoh");
+
+       
+        
+
+    });
+  });
+  

@@ -7,25 +7,26 @@
     }
 </style>
 
-<table class="table">
-    <thead class="table-akses">
+<table class="table table-responsive-sm table-bordered ">
+    <thead class="table-akses text-center">
         <tr>
-            <td>No</td>
-            <td>Izin</td>
-            <td>NIS</td>
-            <td>Nama</td>
+            <th><h6>No</h6></th>
+            <th><h6>Izin</h6></th>
+            <th><h6>NISN</h6></th>
+            <th><h6>Nama</h6></th>
+            
         </tr>
     </thead>
 <tbody class="table-akses">
 <?php $i=0 ; ?>
-@forelse ($aksess as $aks)
+@forelse ($akses as $aks)
 
     <tr>
         <td>{{$loop->iteration}}</td>
         <td>
      
-        <select class="" name="izin[]" id="">
-        @if($aks->a == 1)
+        <select class="form-control" name="izin[]" id="">
+        @if($aks["hak_akses"]== 1)
         <option selected value="1">Ya</option>
         <option value="0">Tidak</option>
         @else
@@ -38,10 +39,11 @@
       
         </td>
         <td>
-            <input class="" type="number" name="nis[]" id="nis" value="{{$aks->s}}" />
-        </td>
+        <input class="form-control" type="number" name="nis[]" id="nis" value="{{$aks['nis']}}" />
         <td>
-            <input class="" type="text" name="nama[]" value="nama">
+    
+        <input class="form-control" type="text" name="nama[]" value="{{$aks['nama']}}">
+       
         </td>
         
     </tr>
@@ -49,6 +51,6 @@
 @empty
 @endforelse
 
-<input type="hidden" name="id" value="{{$akses->id}}">
+<input type="hidden" name="id" value="{{$id->id}}">
 </tbody>
 </table>

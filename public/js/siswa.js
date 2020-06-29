@@ -4,7 +4,7 @@ $(document).ready(function(){
 $('.ujian-teori').click(function(){
     $(".jadwal-ujian-teori").show();
     $(".jadwal-ujian-praktek").hide();
-    $(".jadwal-ujian-teori").load("/siswa/jadwal-ujian");
+  
 });
 $('.ujian-praktek').click(function(){
     $(".jadwal-ujian-praktek").show();

@@ -41,10 +41,8 @@
 
     <select class="btn border-secondary" name="" id="tambahsoal">
             <option selected value="0">--    Tambahkan Soal --</option>
-            <option  value="1">Pilihan Ganda</option>
-            <option  value="2">Isian Singkat</option>
-            <option value="3">True False</option>
-            <option value="4">Multiple Choise</option>
+            <option  value="1">Soal Praktek</option>
+            
         </select>
         
         </div>
@@ -63,14 +61,35 @@
 </div> -->
 <div class="col-md-12">
 <form  id="form-soal" method="post" action="{{route('editsoalpraktek')}}">
+<input type="hidden" name="id"  value="{{$banksoals[0]->id}}">
 @csrf
 {{method_field('PATCH')}}
-<input type="hidden" name="id"  value="{{$banksoals[0]->id}}">
-<textarea class="summernote" name="soal_praktek" id="" cols="30" rows="10">{{$banksoals[0]->soal_praktek}}</textarea>
+@forelse($soal_prakteks as $soal_praktek)
+<div class="border p-3 mb-4 soal-no-{{$loop->iteration}}">
+<div class="mb-4 d-flex justify-content-end ">
+  
+    <button type="button" id="{{$loop->iteration}}" class="btn btn-outline-danger hapus">Hapus soal</button>
 
+    </div>
+<div class="mb-3">
+<label for="">Materi</label>
+<br>
+<input class="form-control" required name="materi[]" type="text" placeholder="materi..." value="{{$soal_praktek->m}}">
+</div>
+
+<div class="p-3">
+<textarea class="summernote" name="soal[]" id="" cols="30" rows="10">{{$soal_praktek->s}}</textarea>
+
+</div>
+</div>
+@empty
+@endforelse
+
+<div class="soal"></div>
 <button type="submit" class="form-control btn btn-success">Simpan</button>
 </form>
 </div>
+
 
 </div>
 
@@ -85,4 +104,30 @@
         });     
     </script>
     <script src="/js/summernote.js"></script>
+    
+
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var i=100;
+  $("#tambahsoal").change(function(){
+      i++;
+     
+    var a = $(this).val();
+    if(a==1){  
+    $(".soal").append('<div class="border p-3 mb-4 soal-no-'+i+'"><div class="mb-4 d-flex justify-content-end "><button type="button" id="'+i+'" class="btn btn-outline-danger hapus">Hapus soal</button></div><div class="mb-3"><label for="">Materi</label><br><input class="form-control" required name="materi[]" type="text" placeholder="materi..."></div><div class="p-3"><textarea class="summernote" name="soal[]" id="" cols="30" rows="10"></textarea></div></div>');
+    }
+    $(this).val('0');
+    });
+  
+$(document).on('click','.hapus',function(){
+    var button_id=$(this).attr("id");
+    $(".soal-no-"+button_id+"").remove();
+    
+        });
+       
+    });
+
+    </script>
+
     @endsection 

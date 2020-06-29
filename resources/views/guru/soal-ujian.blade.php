@@ -2,12 +2,11 @@
 @section('title','Home')
 
 @section('content')
-<script src="/js/jquery-3.3.1.min.js"></script> 
+ 
 <style>
 .hide{
     display:none;
 }
-
 .cari{
     min-width:300px;
 }
@@ -15,7 +14,6 @@
     width:350px;
     height:400px;
     font-size:8px;
-
 }
 </style>
  <div class="container-fluid bg-white">
@@ -313,8 +311,6 @@ $(document).ready(function(){
             });
     });
 });
-
-
 $(document).ready(function(){
     $(".simpan-soal-ujian").click(function(){
         $(this).text("Sedang Menyimpan ...");
@@ -342,17 +338,13 @@ $(document).ready(function(){
                
                     
                     
-
                 
                 }
             });
     });
 });
-
 </script>
-<script src="/js/drag-drop.js"></script>
+
 <!-- //buat javascript -->
 
 @endsection
-
-<input type="text">

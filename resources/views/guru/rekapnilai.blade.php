@@ -1,5 +1,3 @@
-<script src="{{ asset('js/app.js') }}"></script>
-<div>
 <h1 class="mt-4">Rekapitulasi Nilai Teori</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Hasil Ujian Teori</li>

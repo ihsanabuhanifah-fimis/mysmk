@@ -3,14 +3,16 @@
     font-size:12px;
 }
 </style>
+
 <script>
     $(document).ready( function () {
-        $('#myTeoriUjian').DataTable();
+        $('#myJadwalUjian').DataTable();
     } );
     </script>
 
-<div class="container mt-3 p-4 border">
-<table id="myTeoriUjian" class="table table-bordered table-striped mt-2 table-responsive-sm">
+
+<div class="p-4 border ">
+<table id="myJadwalUjian" class="table table-bordered table-striped mt-2 table-responsive-sm">
 <p class="d-flex justify-content-end font"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
     <thead class="bg-success">
         <tr>
@@ -22,17 +24,10 @@
             <th>Tipe Ujian</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
-      
-            <th>Action</th>
-            
+
             <th>Nilai Akhir</th>
             <th>Status</th>
-
-<?php $jml= count($nilais) ; ?>
-@if($jml != NULL)
-
-            <th class="text-center" colspan="10">Riwayat Ujian</th>
-@endif
+            <th class="text-center">Riwayat <br> Ujian</th>
 
             
         </tr>
@@ -49,8 +44,7 @@
             <td>{{$ujian->nama_tipe}}</td>
             <td>{{$ujian->tanggal_mulai}} <br> {{$ujian->waktu_mulai}}</td>
             <td>{{$ujian->tanggal_selesai}} <br> {{$ujian->waktu_selesai}}</td>
-            <td><a href="{{route('masuk_ujian',['id'=>$ujian->id])}}" class="btn btn-primary kerjakan-soal">Masuk</a></td>
-           
+          
             <td>{{$nilai_akhir[$k]}}</td>
 
             @if($nilai_akhir[$k] >= $ujian->kkm)
@@ -60,13 +54,51 @@
             @else
             <td>Tidak Lulus</td>
             @endif
-            @forelse ($nilais as $nilai)
+            <td>
+            <button type="button" class="btn btn-success" 
+            data-toggle="modal" data-target="#exampleModal{{$loop->iteration}}">
+           Lihat
+            </button>
+            </td>
+            <!-- Button trigger modal -->
+           
+            
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+       
+      </div>
+      <div class="modal-body">
+     <H4 class="text-center font-weight-bold mb-4">RIWAYAT UJIAN </H4>
+     
+
+      @forelse ($nilais as $nilai)
             @if($nilai->id_penilaian == $ujian->id)
-            <td> Hasil Ujian ke-{{$loop->iteration}} : {{$nilai->nilai}}</td>
+            
+
+            <div class="alert alert-primary" role="alert">
+                NILAI HASIL UJIAN: <p class="font-weight-bolder">{{$nilai->nilai}}</p> 
+            </div>
+           
             @endif
            
             @empty
+            <div class="alert alert-primary" role="alert">
+                BELUM ADA RIWAYAT UJIAN 
+            </div>
             @endforelse
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+           
         </tr>
 
         <?php $k++ ; ?>
@@ -76,5 +108,4 @@
 
 </table>
 </div>
-
 <script>

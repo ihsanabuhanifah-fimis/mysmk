@@ -1,6 +1,6 @@
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
     $(document).ready( function () {
         $('#myTableUjian').DataTable();
@@ -12,12 +12,15 @@
       font-size:12px;
     }
     </style>
-    <table class="table datatable table-bordered myTable table-ujian table-responsive" id="myTableUjian">
-
-    <h2 class="mt-4">Jadwal Penilaian</h2>
+       <h2 class="mt-4">Jadwal Penilaian</h2>
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
  </ol>
+ <div class="border p-md-3">
+    <table class="table datatable table-bordered myTable table-ujian table-responsive" id="myTableUjian">
+    <div class="d-flex justify-content-end">
+    <button  class="btn btn-success d-none d-md-block" data-toggle="modal" data-target="#exampleModal" >Buat Penilaian</button>
+    </div>
         <thead class="bg-info" >
             <th>No</th>
             <th>Mata Pelajaran</th>
@@ -86,7 +89,7 @@
         @endforelse   
         </tbody>
     </table>
-
+    </div>
 <div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -110,7 +113,7 @@
 
 <!-- modal akses ujian -->
 <div class="modal fade" id="myAkses" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Berikan Akses kepada</h5>
@@ -124,9 +127,12 @@
       {{method_field('PUT')}}
         <div class="akses-siswa"></div>
       </div>
+      <div class="p-3">
+      <div class="ket-akses text-center"></div>
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="simpan-akses-ujian btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="simpan-akses-ujian btn btn-primary">Simpan</button>
       </div>
     </div>
     </form>
@@ -141,7 +147,7 @@
 <!-- modal edit ujian -->
 
 <div class="modal fade" id="ModalEditUjian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
+<div class="modal-dialog " role="document">
   
     <div class="modal-content">
       <div class=" modal-header bg-primary">
@@ -155,12 +161,12 @@
     @csrf
     {{method_field('PUT')}}
       <div class="form-edit-ujian"></div>
-      <div class="noticeujian text-center"></div>  
+      <div class="noticeujian mt-3 text-center"></div>  
   </div>
   <div class="modal-footer">
     
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-    <button type="submit" id="edit-ujian-ini" class="btn btn-primary">edit</button>
+    <button type="submit" id="edit-ujian-ini" class="btn btn-primary">Perharui</button>
   </div>
   </form>
 </div>
@@ -187,6 +193,8 @@ $(document).ready(function(){
     });
     $(".simpan-akses-ujian").on('click',function(){
         $(this).text("Perbaharui data");
+        $(".ket-akses").removeClass("alert alert-success");
+        $(".ket-akses").empty();
         $.ajaxSetup({
                       headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -197,7 +205,15 @@ $(document).ready(function(){
           url: "/guru/ujian/akses/",
           data: $('.form-akses-ujian').serialize(),
           success: function(data) {
+            $(".ket-akses").addClass("alert alert-success");
+            $(".ket-akses").text(data);
             $(".simpan-akses-ujian").text("Simpan");
+            setTimeout(function(){
+              $(".tampilkanujian").load("tampilkanujian");
+              $(".ket-akses").removeClass("alert alert-success");
+               $(".ket-akses").empty();
+
+              },4000);
                   }
               });
          });    
@@ -259,7 +275,11 @@ $(document).ready(function(){
     $("#ModalEditUjian").modal();
     $("#edit-ujian-ini").click(function(){
      
-      $(this).text("Perbaharui data");
+      $(this).text("Perbaharui penilaian ...");
+      $(".noticeujian").removeClass("alert alert-success");
+      $(".noticeujian").removeClass("alert alert-danger");
+   
+      $(".noticeujian").empty();
         $.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -270,10 +290,27 @@ $(document).ready(function(){
           url: "/guru/edit/ujian/",
           data: $('.form-edit-ujian-ini').serialize(),
           success: function(data) {
-            // $(".tampilkanujian").load("tampilkanujian");
-            alert(data);
-            // $(".edit-ujian-ini").text("Simpan");
-                  }
+            $("#edit-ujian-ini").text("Perbaharui");
+           $(".noticeujian").addClass("alert alert-success");
+           $(".noticeujian").text("Alhamdulilah pengaturan penilaian berhasil diperbaharui");
+        
+           setTimeout(function(){
+                    $(".noticeujian").removeClass("alert alert-success");
+                    $(".noticeujian").empty();
+                  
+                    },3000);
+                    
+                  },
+
+                  error: function (jqXHR, exception) {
+                    $("#edit-ujian-ini").text("Perbaharui");
+                    $(".noticeujian").addClass("alert alert-danger");
+                    $(".noticeujian").text("Mohon maaf pengaturan tidak berhasil diperbaharui");
+                setTimeout(function(){
+                    $(".noticeujian").removeClass("alert alert-danger");
+                    $(".noticeujian").empty();
+                    },3000);
+                }
                 });
     });
   });

@@ -1,12 +1,24 @@
-<script src="/js/jquery-3.3.1.min.js"></script> 
+<script>
+    $(document).ready( function () {
+        $('#myTableBankSoal').DataTable();
+    } );
+    </script>
 <style>
 .table-bank,.btn{
       font-size:12px;
     }
 
 </style>
-<h6 class="text-center text-black-50">Bank Soal</h6>
-    <table class="table datatable table-bordered table-bank table-responsive-sm ">
+
+<h2 class="mt-4">Daftar Bank Soal</h2>
+ <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Ini adalah daftar bank soal yang telah dibuat</li>
+ </ol>
+ <div class="p-md-4 border">
+ <div class="d-flex justify-content-end ">
+ <button class="btn btn-success d-md-block d-none" data-toggle="modal" data-target="#banksoal" >Buat Bank Soal</button>
+ </div>
+    <table id="myTableBankSoal" class="table datatable table-bordered table-bank table-responsive-sm ">
         <thead class="bg-info" >
            <tr>
                <th class="text-center">No</th>
@@ -15,7 +27,7 @@
                <th>Materi</th>
                <th class="text-center">Tipe Ujian</th>
                <th class="text-center">Soal</th>
-               <th class="text-center" colspan="2">Action</th>
+               <th class="text-center" >Action</th>
                <th class="text-center">Status</th>
            </tr>
         </thead>
@@ -28,12 +40,11 @@
             <td>{{$banksoal->materi}}</td>
             <td class="text-center">{{$banksoal->nama_tipe}}</td>
             @if($banksoal->id_tipe == 1)
-            <td class="text-center"><a class="btn btn-outline-success" href="{{route('buatsoalpraktek',['id'=>$banksoal->id])}}">Buat Soal</a></td>
+            <td class="text-center"><a class="btn btn-success" href="{{route('buatsoalpraktek',['id'=>$banksoal->id])}}">Buat Soal</a></td>
             @else
-            <td class="text-center"><a class="btn btn-outline-success" href="{{route('buatsoal',['id'=>$banksoal->id])}}">Buat Soal</a></td>
+            <td class="text-center"><a class="btn btn-success" href="{{route('buatsoal',['id'=>$banksoal->id])}}">Buat Soal</a></td>
             @endif
-            <td class="text-center"><a class="btn btn-outline-danger deletebank" id="{{$banksoal->id}}" >Hapus</a></td>
-            <td class="text-center"><a class="btn btn-outline-warning">Salin</a></td>
+            <td class="text-center"><a class="btn btn-danger deletebank" id="{{$banksoal->id}}" >Hapus</a></td>
             @if($banksoal->status == 1)
             <td class="text-center"><p class="btn-success btn">Lock</p></td>
             @else
@@ -47,7 +58,7 @@
         
         </tbody>
     </table>
-
+    </div>
 
     <div class="modal fade" id="myModal2" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

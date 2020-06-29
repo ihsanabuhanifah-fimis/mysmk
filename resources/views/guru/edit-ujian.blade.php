@@ -1,3 +1,35 @@
+         <div class="modal-body">
+          <label for="id_ta"> Tahun Ajaran</label>
+          <select class="form-control" name="id_ta" id="id_ta">
+            <option value="1">2020/2021</option>
+          </select>
+
+          <label for="semester"> Semester </label>
+          <select class="form-control" name="semester" id="semester">
+          <option seleceted value="{{$ujiandata->semester}}">Semester {{$ujiandata->semester}}</option>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+          </select>
+
+        <label for="remidial">Aktifkan Waktu Ujian</label>
+        <select class="form-control" name="status" id="status">
+
+        @if($ujiandata->disable_waktu == 2)
+       
+        <option selected value="2">Ya</option>
+        <option value="1">Tidak</option>
+
+        @else
+       
+        <option  selected  value="1">Tidak</option>
+        <option value="2">Ya</option>
+        @endif
+        </select>
+            
         <input type="hidden" name="id" value="{{$ujiandata->id}}" >
         <label for="tanggal">Tanggal Mulai</label>
         <br>

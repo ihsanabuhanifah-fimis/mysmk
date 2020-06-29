@@ -5,9 +5,9 @@
         $('#myRekapNilaiPraktek').DataTable();
     } );
     </script>
-
+<div class="border p-md-4">
     <table id="myRekapNilaiPraktek" class="table datatable table-bordered table-responsive-sm">
-        <thead class="bg-secondary text-white" >
+        <thead class="bg-info" >
             <th>No</th>
             <th>NIS</th>
             <th>Nama</th>
@@ -72,12 +72,7 @@
         <?php $i++ ; ?>
         @endwhile
 
-        
-
-
-
-
         </tbody>
-
-        
+      
     </table>
+    </div>

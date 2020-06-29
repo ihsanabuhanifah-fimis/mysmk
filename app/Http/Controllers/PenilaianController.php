@@ -800,6 +800,7 @@ class PenilaianController extends Controller
         $id=$request["id"];
             $id_ujian=$request["attemp"];
            
+        
     
             $banksoal = Penilaian::findorFail($id);
             $soal1=$banksoal->soal1;
@@ -821,6 +822,7 @@ class PenilaianController extends Controller
             $jawab_soals2=json_decode($jawab_soal2);
             $jawab_soals3=json_decode($jawab_soal3);
 
+         
 
             $jml_soal_total = count($jawab_soals1) + count($jawab_soals2) + count($jawab_soals3);
            
@@ -845,7 +847,7 @@ class PenilaianController extends Controller
         }else{
             $sudah_jawab_pg[0]="0";
         }
-        if(count($jawab_soals1)!=NULL){
+        if(count($jawab_soals3)!=NULL){
             while($p < count($jawab_soals3)){
                
                 if($jawab_soals3[$p]->k == 0){
@@ -861,12 +863,16 @@ class PenilaianController extends Controller
             $sudah_jawab_truefalse[]="0";
         }
 
+       
         if(count($jawab_soals2)!=NULL){
             while($o < count($jawab_soals2)){
                
-                if($jawab_soals2[$o]->k == null){
+                if($jawab_soals2[$o]->k == null  ){
                   
                     $sudah_jawab_isian[$o]="0";
+                }else if($jawab_soals2[$o]->k == "lk"  ){
+                  
+                        $sudah_jawab_isian[$o]="0";
                 }else{
                     $sudah_jawab_isian[$o]="1";
                 }
@@ -876,11 +882,12 @@ class PenilaianController extends Controller
         }else{
             $sudah_jawab_isian[]="0";
         }
+       
 
-       return $sudah_jawab_truefalse;
+      
         $jml_soal_dijawab = array_sum($sudah_jawab_pg)+ array_sum ($sudah_jawab_isian)+ array_sum($sudah_jawab_truefalse);
            
-        return $jml_soal_dijawab;
+        
         
         $persentase_sudah_dijawab = ($jml_soal_dijawab / $jml_soal_total) * 100 ;
           
@@ -940,44 +947,51 @@ class PenilaianController extends Controller
         $jawaban_soal_pg=json_encode($jawaban_pg);
         $skor_pg_saya = array_sum($skor_pg);
         $skor_pg_max= array_sum($skor_pg_max);
+
+      
          if($request["tipe_soal2"] != NULL){
-            $i=0 ; $k=0;
+             
+            
+
+          
             $jawabanisi=[];
             $jawaban_max_isian=[];
-            $jmlpg=count($request["tipe_soal2"]);
+            $jml_soal_isi=count($request["tipe_soal2"]);
+          
             $jmlsoals2=count($soals2);
-            while($i<$jmlpg){
-                $j=0;
-                while($j < $jmlsoals2){
-                    if($request["nomor_soal2"][$i]==$soals2[$j]->n){
-                       
-                        $jwbisi[$i]=[
-                            'k'=> $request["isi$i"][0],
-                            'n'=> $request["nomor_soal2"][$i]
+         
+            $m=0 ;
+            while($m <$jml_soal_isi){
+               
+                $n=0;
+                while($n < $jmlsoals2){
+                    if($request["nomor_soal2"][$m]==$soals2[$n]->n){
+                        $jwbisi[$m]=[
+                            'k'=> $request["isi$m"][0],
+                            'n'=> $request["nomor_soal2"][$m]
                         ];
-                        if($soals2[$j]->a == strtolower($request["isi$i"][0]) || $soals2[$j]->b == strtolower($request["isi$i"][0]) || 
-                        $soals2[$j]->c == strtolower($request["isi$i"][0])){
-                            $jawabanisi[$j]= $soals2[$j]->v ;
+
+                        
+                       
+                        if($soals2[$n]->a == strtolower($request["isi$m"][0]) || $soals2[$n]->b == strtolower($request["isi$m"][0]) || 
+                        $soals2[$n]->c == strtolower($request["isi$m"][0])){
+                            $jawabanisi[$n]= $soals2[$n]->v ;
                         }else{
-                            $jawabannisi[$j]=0 ;
+                            $jawabannisi[$n]=0 ;
                         }
                         
-                    }else{
-                        $jwbisi[$i]=[
-                            'k'=> "lk",
-                            'n'=> $request["nomor_soal2"][$i]
-                        ];
                     }
-
-                    $j++;
+                  
+                    $n++;
                 }
-                $jawaban_max_isian[$i]=$soals2[$i]->v;
-            $i++;
+                $jawaban_max_isian[$m]=$soals2[$m]->v;
+            $m++;
             }
             $skor_isian = array_sum($jawabanisi);
             $skor_max_isian=array_sum($jawaban_max_isian);
             $jawaban_soal_isi=json_encode($jwbisi);
             
+           
             
          }else{
             $skor_isian = 0;
@@ -986,8 +1000,11 @@ class PenilaianController extends Controller
          }
 
         
+       
+      
+       
          if($request["tipe_soal3"] != NULL){
-            $i=0 ; $k=0;
+            $i=0 ;
             $jawabantruefalse=[];
             $jawaban_max_truefalse=[];
             $jmltruefalse=count($request["tipe_soal3"]);
@@ -1049,14 +1066,6 @@ class PenilaianController extends Controller
                
                 $nilai = Penilaian_siswa::where('id',$id_ujian)
                 ->where('nis',$nis->nis)->first();
-                
-                // $waktu_mulai=$nilai->tanggal ;
-                // $waktu_saat_ini=date('y-m-d h:i');
-                // $selisih = strtotime($waktu_saat_ini) - strtotime($waktu_mulai);
-                // $jam= floor($selisih/(60*60));
-                // $menit= $selisih/60;
-                // $update_waktu= $nilai->sisa_waktu - $menit;
-              
                 $update_save=date('y-m-d h:i:s');
                 $nilai->  tanggal_update = $update_save;
                 $nilai-> nilai = $skor_akhir;  
@@ -1173,11 +1182,6 @@ class PenilaianController extends Controller
                             $jawabannisi[$j]=0 ;
                         }
                         
-                    }else{
-                        $jwbisi[$i]=[
-                            'k'=> "lk",
-                            'n'=> $request["nomor_soal2"][$i]
-                        ];
                     }
 
                     $j++;

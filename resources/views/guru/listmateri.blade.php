@@ -1,16 +1,22 @@
 
+
+<script>
+    $(document).ready( function () {
+        $('#myTableMateri').DataTable();
+    } );
+</script>
  <h1 class="mt-4">List Materi</h1>
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
  </ol>
 
- <script>
-    $(document).ready( function () {
-        $('#myTableMateri').DataTable();
-    } );
-    </script>
+<div class="p-md-4 ">
+ <div class="d-flex justify-content-md-end ">
+   <button  class="btn btn-success d-none d-md-block" onclick="window.location.href='{{route('materi')}}'">Tambah Materi</button>    
+   </div>
    <table id="myTableMateri" class="table table-bordered table-responsive-sm" >
-        <thead >
+     
+   <thead >
             <th class="text-center">No</th>
             <th>Mata Pelajaran</>
             <th>Bab</th>
@@ -60,9 +66,7 @@
     </div>
   </div>
 </div>
-
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+</div>
 <script>
 $(document).ready(function(){
     var id

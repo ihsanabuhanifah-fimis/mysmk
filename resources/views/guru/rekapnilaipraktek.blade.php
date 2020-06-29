@@ -1,5 +1,4 @@
-
-<script src="{{ asset('js/app.js') }}"></script>    
+   
 <div>
 <h1 class="mt-4">Rekapitulasi Nilai Praktek</h1>
     <ol class="breadcrumb mb-4">

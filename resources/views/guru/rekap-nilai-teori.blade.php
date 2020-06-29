@@ -6,8 +6,9 @@
     } );
     </script>
 </div>
+<div class="border p-md-4">
     <table id="myRekapNilaiTeori" class="table datatable table-responsive-sm table-bordered">
-        <thead class="bg-secondary text-white" >
+        <thead class="bg-info"" >
             <th class="text-center">No</th>
             <th class="text-center">NIS</th>
             <th>Nama</th>
@@ -81,3 +82,4 @@
 
         
     </table>
+    </div>

@@ -340,7 +340,7 @@
     <div class="succest"></div>
     <button type="submit" id="siempan-soal" class="create-soal form-control btn btn-success simpansoal mt-3 ">Simpan</button>
     </form>
-    <script src="/js/"></script>
+   
     <script>
         $(document).ready(function() {
         $('.summernote').summernote();

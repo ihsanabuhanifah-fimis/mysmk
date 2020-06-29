@@ -158,6 +158,10 @@ class GuruController extends Controller
         $kbm-> tanggal = $request["tanggal"];
         $nis = $request["nis"];
         $ket = $request["ket"];
+        $nis = $request["nis"];
+        $materi = $request["materi"];
+        $jam = $request["jam"];
+        $ket = $request["ket"];
         $status = $request["status"];
         $jml=count($nis);
         $i=0;
@@ -169,8 +173,14 @@ class GuruController extends Controller
           ];
         $i++;
         }
+
+       
+      
+        
         $soal=json_encode($data);
+
         $kbm-> absen=$soal;
+     
         
         $cek_kbm = Kbm::where('id_cikgu',$id_cikgu->id_cikgu)
             ->where('id_subject',$jadwal->id_subject)
@@ -468,20 +478,40 @@ class GuruController extends Controller
         $akses = new Penilaian();
         $akses = Penilaian::where('id',$id)
         ->where('id_cikgu', $id_cikgu->id_cikgu)->first();
+
         
         $akses_siswa = $akses->akses;
         $aksess = json_decode($akses_siswa);
-       
-        $jml=count($aksess);
+        $jml_akses=count($aksess);
+        $nama_siswa= DB::table("students")
+        ->get([
+            'nis',
+            'nama',
+            
+        ]);
+        $jml_siswa=count($nama_siswa);
         $i=0;
-        while($i<$jml)
-        {
-            $siswa[$i] =DB::table('students')
-            ->where('nis',$aksess[$i]->s)->get();
-            $i++;   
-        }
+        while($i < $jml_akses){
+            $j=0;
+            while($j < $jml_siswa){
 
-        return view('guru.akses-ujian',['siswa'=> $siswa, 'akses'=>$akses, 'aksess'=>$aksess]);
+                if($aksess[$i]->s == $nama_siswa[$j]->nis){
+
+                    $hak_akses[$i] = [
+                        'nis' =>$nama_siswa[$j]->nis,
+                        'nama'=>$nama_siswa[$j]->nama,
+                        'hak_akses'=>$aksess[$i]->a
+                    ];
+                   
+                }
+
+                $j++;
+            }
+            $i++;
+        }
+      
+      
+        return view('guru.akses-ujian',['akses'=> $hak_akses,'id' => $akses]);
     }
     public function nilaiujian($id)
     {
@@ -581,9 +611,12 @@ class GuruController extends Controller
     }
     public function carisoal(Request $request)
     {
+       
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
         $key = $request["cari-soal"];
+
+      
         $banksoal =DB::table('banksoals')
         ->where('id_bab',$key)
         ->where('id_cikgu',$id_cikgu->id_cikgu)
@@ -635,7 +668,11 @@ class GuruController extends Controller
                 $username= Auth::user()->username;
                 $id_cikgu=Cikgu::where('username',"$username")->first();
                 $jml=count($request["nis"]);
+
+              
                 $id=$request["id"];
+
+           
                 $i=0;
                 while($i<$jml){
                     $data[$i]=[
@@ -648,7 +685,7 @@ class GuruController extends Controller
                 $ujian = Penilaian::find($id);
                 $ujian->akses=$hasil;
                 $ujian->save();
-                return "ALhamdulilah";
+                return "Alhamdulilah Hak Akses berhasil diperharui";
         }
 
         
