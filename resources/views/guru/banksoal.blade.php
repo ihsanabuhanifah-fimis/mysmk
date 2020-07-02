@@ -14,10 +14,13 @@
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar bank soal yang telah dibuat</li>
  </ol>
- <div class="p-md-4 border">
- <div class="d-flex justify-content-end ">
- <button class="btn btn-success d-md-block d-none" data-toggle="modal" data-target="#banksoal" >Buat Bank Soal</button>
+
+ <div class="d-flex justify-content-md-end d-flex justify-content-sm-start mb-3 ">
+ <button class="btn btn-success" data-toggle="modal" data-target="#banksoal" >Buat Bank Soal</button>
+ <button class="btn btn-success ml-2 bank-soal-lain" > Bank Soal Lain</button>
  </div>
+ <div class="p-md-4 border">
+ 
     <table id="myTableBankSoal" class="table datatable table-bordered table-bank table-responsive-sm ">
         <thead class="bg-info" >
            <tr>
@@ -64,17 +67,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-danger" id="staticBackdropLabel">Konfirmasi</h5>
+        <h5 class="modal-title " id="staticBackdropLabel">Konfirmasi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h6 class="text-danger">Apakah Ustadz yakin akan menghapusnya?</h6>
+        <h6 >Apakah Ustadz yakin akan menghapusnya?</h6>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" id="hapus" class="btn btn-danger">Bismillah</button>
+        <button type="button" id="hapus" class="btn btn-danger">Hapus</button>
       </div>
     </div>
   </div>
@@ -93,18 +96,18 @@ $(document).ready(function(){
   });
   $('#hapus').click(function(){
       $.ajax({
-          url:"/hapusbanksoal/"+id,
+          url:"/guru/hapusbanksoal/"+id,
           beforeSend:function(){
-          $('#hapus').text("delete");
+          $('#hapus').text("Manghapus ...");
           },
             success:function(data)
           {
+            $("#myModal2").modal('toggle');
             
-            setTimeout(function(){
-                 $(".banksoal").load("banksoal");
-                
-
-              },3000);
+            $(".bank-soal-saya").load("guru/banksoal");
+          
+      
+            
              
              
               
@@ -114,6 +117,14 @@ $(document).ready(function(){
 
  
 });
+$(document).ready(function(){
+    $(".bank-soal-lain").click(function(){
+      $(".bank-soal-saya").hide(); 
+        $(".bank-soal-lain").load("guru/banksoallain");
+    
+        $(".bank-soal-lain").show();   
+    });
+  });
 </script>
 
 

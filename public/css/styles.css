@@ -10023,13 +10023,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
   height: 100%;
   background: #000;
   z-index: 1037;
-  opacity: 0;
+  opacity: 0.6  ;
   transition: opacity 0.3s ease-in-out;
 }
+
 
 @media (min-width: 992px) {
   #layoutSidenav #layoutSidenav_nav {
@@ -10156,36 +10157,39 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
-  color: rgba(255, 255, 255, 0.5);
+  background-color: white;
+  color: black;
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
-  color: rgba(255, 255, 255, 0.25);
+  color: black;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: black;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
-  color: rgba(255, 255, 255, 0.25);
+  color: black;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
-  color: rgba(255, 255, 255, 0.25);
+ color: black;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #fff;
+  background-color: #c6c8ca;
+  color: #000;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
-  color: #fff;
+  background-color: #c6c8ca;
+  color: #000;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
-  color: #fff;
+  background-color: #c6c8ca;
+  color: #000;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
   background-color: #343a40;
 }
 
 .sb-sidenav-light {
-  background-color: #f8f9fa;
+  background-color: #c6c8ca;
   color: #212529;
 }
 .sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {

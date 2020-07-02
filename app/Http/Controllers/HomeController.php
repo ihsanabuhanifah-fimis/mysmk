@@ -44,6 +44,7 @@ class HomeController extends Controller
     {
       
         if(auth()->user()->hasRole('admin')){  
+          
             return view('admin.index');
           }elseif(auth()->user()->hasRole('guru')){
             $days =date('l');
@@ -62,8 +63,10 @@ class HomeController extends Controller
             'tipes'=>$tipe, 'ujians'=>$ujian]);
             
           }elseif(auth()->user()->hasRole('siswa')){
+           
             return view('siswa.index');
           }elseif(auth()->user()->hasRole('wali')){
+          
               return view('wali.index');
           }else{
             
@@ -153,7 +156,50 @@ class HomeController extends Controller
             auth()->user()->assignRole('guru');
             return "Alhamdulilah data berhasil tersimpan, silahkan reload untuk masuk menu utama";
         }else{
-            return "ok";
+             
+            $username= Auth::user()->username;
+            $student= new Student();   
+     
+            $validateData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'tempat'=>['required','string', 'max:255'],
+            'bulan'=>['required','max:2'],
+            'tahun_masuk'=>['required'],
+            'nisn' => ['required', 'string', 'min:8'],
+            'tanggal'=>['required','max:2'],
+            'bulan'=>['required','max:2'],
+            'tahun'=>['required','max:4'],
+            'jurusan'=>['required'],
+            'asal_sekolah'=>['required'],
+            'nama_ayah'=>['required','string','max:255'],
+            'nama_ibu'=>['required','string','max:255']
+        ]);
+      
+
+       
+            $student= new Student();   
+            $student-> nama=  $validateData["name"];
+            $student-> email=  $validateData["email"];
+            $student-> username=  $username;
+            $student-> nis=  $validateData["nisn"];
+            $student-> status=  1;
+            $student-> tempat=  $validateData["tempat"];
+            $student-> tanggal=  $validateData["tanggal"];
+            $student-> bulan=  $validateData["bulan"];
+            $student-> tahun=  $validateData["tahun"];
+            $student-> tahun_masuk =  $validateData["tahun_masuk"];
+            $student-> jurusan =$validateData["jurusan"];
+            $student-> asal_sekolah=$validateData["asal_sekolah"];
+            $student-> nama_ayah=$validateData["nama_ayah"];
+            $student-> nama_ibu=$validateData["nama_ibu"];
+            $student-> 	created_at=NOW();
+         
+           
+         
+            $student->save();
+            auth()->user()->assignRole('siswa');
+            return "Alhamdulilah data berhasil tersimpan, silahkan reload untuk masuk menu utama";
         }
        
 

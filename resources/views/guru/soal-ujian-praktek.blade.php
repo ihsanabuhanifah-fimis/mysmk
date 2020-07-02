@@ -1,8 +1,8 @@
-@extends('guru.layout.master')
-@section('title','Home')
+@extends('guru.layout.master2')
+@section('title','Soal Penilaian Praktek')
 
 @section('content')
-<script src="/js/jquery-3.3.1.min.js"></script> 
+
 <style>
 .hide{
     display:none;

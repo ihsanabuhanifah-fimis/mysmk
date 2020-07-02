@@ -56,16 +56,7 @@
         @endforelse
 
           </select>
-        <!-- <br>
-        <label for="id_rombel">Kelas</label> -->
-        <!-- <select class="form-control" name="id_rombel" id="id_rombel">
-        <option class="font-weight-bold" selected value="{{$ujiandata->id_rombel}}">{{$ujiandata->nama_rombel}}</option>
-        @forelse($rombels as $rombel)
-          
-            <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
-        @empty
-        @endforelse
-        </select>` -->
+      
         <br>
         <label for="kkm">KKM</label>
         <input class="form-control" type="number" value="{{$ujiandata->kkm}}" name="kkm" id="kkm" required  />
@@ -92,19 +83,19 @@
           @endforelse
         
         </select>
-        <label for="remidial">Attemp</label>  
+        <label for="remidial">Jumlah Remidial</label>  
         <select class="form-control" name="remidial" id="remidial">
-        <option class="font-weight-bold" selected value="{{$ujiandata->remidial}}">{{$ujiandata->remidial}}</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
+        <option class="font-weight-bold" selected value="{{$ujiandata->remidial}}">{{$ujiandata->remidial-1}}</option>
+          <option value="1">0</option>
+          <option value="2">1</option>
+          <option value="3">2</option>
+          <option value="4">3</option>
+          <option value="5">4</option>
+          <option value="6">5</option>
+          <option value="7">6</option>
+          <option value="8">7</option>
+          <option value="9">8</option>
+          <option value="10">9</option>
 
         </select>
     <br>

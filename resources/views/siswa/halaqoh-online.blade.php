@@ -4,7 +4,7 @@
     } );
     </script>
 <table id="myHalaqohOnline" class="table table-bordered mt-4 table-responsive-sm">
-    <thead class="bg-success">
+    <thead class="bg-success text-center">
         <tr>
             <th>No</th>
             <th>Tanggal</th>
@@ -125,6 +125,7 @@
 </div>
 
         @empty
+        <td colspan="10" class="alert alert-warning text-center text-bold ">Saat Ini Tidak Ada Jadwal Halaqoh</td>
         @endforelse
     </tbody>
 </table>

@@ -7,7 +7,7 @@
     </script>
 <div class="border p-md-4">
     <table id="myRekapNilaiPraktek" class="table datatable table-bordered table-responsive-sm">
-        <thead class="bg-info" >
+        <thead class="bg-success" >
             <th>No</th>
             <th>NIS</th>
             <th>Nama</th>

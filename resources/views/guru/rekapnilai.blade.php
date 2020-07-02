@@ -4,6 +4,12 @@
    </ol>
 
 </div>
+<div class="d-flex justify-content-md-end d-flex justify-content-sm-start mb-3">
+    <button  class="btn btn-success persen " >Bobot Penilaian</button>
+    <button  class="btn btn-success rekapnilaipraktek ml-2 " >Rekap Nilai Praktek</button>
+    </div>
+    </div>
+<div class="border p-2 pl-4">
     <form method="post" class="form-rekap-nilai-teori"  action="javascript:void(0)">
     <div class="form-row ">
     @csrf
@@ -55,7 +61,7 @@
     </div>
     
     </form>
-    
+    </div>
 
     <script>
     $(document).ready(function(){
@@ -112,3 +118,30 @@
     </script>
     <div class="keterangan mt-3"></div>
     <div class=" mt-3 rekap-nilai-teori"></div>
+
+    <script>
+
+$(document).ready(function(){
+    $(".persen").click(function(){
+      $(".rekapnilaiteori").hide(); 
+       $(".mapel-saya").show(); 
+       $(".mapel-saya").load("/guru/mapel");  
+      
+        
+      
+    });
+
+    });
+
+    $(document).ready(function(){
+        $(".rekapnilaipraktek").click(function(){
+            $(".mapel-saya").hide(); 
+            $(".rekapnilaiteori").hide();
+            $(".rekapnilaipraktek").show();
+            $(".rekapnilaipraktek").load("guru/rekapnilaipraktek"); 
+   
+
+
+        });
+  });
+    </script>

@@ -43,6 +43,7 @@ Route::get('/absensi/{id}', 'GuruController@absensi')->name('absensi');
 Route::get('/materi','GuruController@tambahmateri')->name('materi');
 Route::put('/save-form', 'GuruController@store')->name('savekbm');
 Route::put('/save-jurnal', 'GuruController@store_jurnal')->name('savejurnal');
+Route::put('/edit-jurnal', 'GuruController@edit_jurnal')->name('editjurnal');
 Route::post('/tambahmateri', 'GuruController@savemateri')->name('savemateri');
 Route::put('/edit-materi', 'GuruController@updatemateri')->name('updatemateri');
 Route::get('/edit-materi/{materi}', 'GuruController@editmateri')->name('editmateri');
@@ -80,12 +81,20 @@ Route::get('/hapusbanksoal/{id}','BanksoalController@hapusbanksoal')->name('hapu
 Route::get('/banksoal/pdf/{id}','BanksoalController@pdf')->name('banksoal_pdf');
 Route::post('/tambah_bab/','GuruController@tambah_bab')->name('tambah_bab');
 Route::get('/dapatkan_bab/{id}','GuruController@dapatkan_bab')->name('dapatkan_bab');
-
-
 Route::get('/halaqoh','HalaqohController@get_halaqoh')->name('halaqoh');
 Route::get('/halaqoh/daftar','HalaqohController@daftar_halaqoh')->name('daftar.halaqoh');
 Route::get('/halaqoh/siswa/{id}','HalaqohController@siswa_halaqoh')->name('siswa.halaqoh');
 Route::post('/halaqoh','HalaqohController@add_halaqoh')->name('halaqoh.add');
+Route::get('/mapel','JadwalController@mapel_saya')->name('guru.mapel-saya');
+Route::get('/edit/mapel/{id}','JadwalController@edit_mapel_saya')->name('guru.edit-mapel-saya');
+Route::put('/simpan-mapel','JadwalController@simpan_mapel_saya')->name('guru.simpan-mapel-saya');
+Route::get('/rekap-absen','JadwalController@rekap_absen')->name('guru.rekap-absen');
+Route::post('/cari-rekap-absen', 'JadwalController@cari_rekap_absen')->name('cari-rekap-absen');
+Route::get('/jurnal-guru', 'JurnalController@jurnal_guru')->name('jurnal-guru');
+Route::get('/rekap-jurnal-guru', 'JurnalController@rekap_jurnal_guru')->name('rekap-jurnal-guru');
+Route::post('/jurnal-guru/simpan', 'JurnalController@simpan_jurnal_guru')->name('simpan-jurnal-guru');
+Route::get('/jurnal-guru/cari/{id}', 'JurnalController@cari_jurnal_guru')->name('cari-jurnal-guru');
+Route::put('/jurnal-guru/edit', 'JurnalController@edit_jurnal_guru')->name('edit-jurnal-guru');
 
 });
 
@@ -124,7 +133,7 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
 
 
 //Route Wali
-    Route::prefix('/wali')->group(function (){
+    Route::prefix('/wali')->middleware('CekSessionWali')->group(function (){
     Route::post('/kehadiran','WalisController@kehadiran')->name('kehadiran');
     Route::get('/jadwal-ujian','WalisController@jadwal_ujian')->name('jadwal.ujian');
     Route::get('/catatan-halaqoh-online','WalisController@catatan_halaqoh_online')->name('halaqoh.online');
@@ -137,5 +146,5 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
 //Route Upload
 Auth::routes();
 
-Route::get('/Dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/Dashboard', 'HomeController@index')->name('dashboard'); 
 

@@ -1,4 +1,4 @@
-@extends('guru.layout.master')
+@extends('guru.layout.master2')
 @section('title','nilai')
 
 @section('content')
@@ -72,7 +72,7 @@ p{
             <td class="no text-center"><input class="form-control text-center" type="number" value="{{$i}}"></td>
             <td class="no2"><input class="form-control" type="text" name="nis[]" value="{{$hasils[$i]->s}}"></td>
            
-            <td class="no3"><input class="form-control" type="text" value="{{$siswas[4][0]->nama}}">
+            <td class="no3"><input class="form-control" type="text" value="ihsan">
          
             <td class="no text-center"><input class="form-control text-center" value="{{$hasils[$i]->n}}" name="nilai[]" type="text"></td>
            @forelse ($nilai as $nila)

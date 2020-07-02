@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Mapel_aktif extends Model
 {
     public $timestamps = false;
 }

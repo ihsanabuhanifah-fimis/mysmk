@@ -1,5 +1,5 @@
-@extends('guru.layout.master')
-@section('title','Home')
+@extends('guru.layout.master2')
+@section('title','Soal Penilaian Teori')
 
 @section('content')
  

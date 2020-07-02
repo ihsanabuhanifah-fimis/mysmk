@@ -9,6 +9,10 @@
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar bank milik Ustadz lain yang dapat di salin, apabila telah mendapatkan izin</li>
  </ol>
+ <div class="d-flex justify-content-md-end d-flex justify-content-sm-start mb-3 ">
+
+ <button class="btn btn-success ml-2 bank-soal-saya" > My Bank Soal</button>
+ </div>
  <div class="p-md-4 border">
     <table class="table datatable table-bordered table-bank table-responsive-sm">
         <thead class="bg-info">
@@ -65,8 +69,6 @@
 </div>
 
 
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
     var id
@@ -125,3 +127,15 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+
+<script>
+  $(document).ready(function(){
+    $(".bank-soal-saya").click(function(){
+      $(".bank-soal-lain").hide();  
+      $(".bank-soal-saya").load("guru/banksoal");
+        $(".banksoal-soal-saya").show();
+       
+    });
+  });
+</script>

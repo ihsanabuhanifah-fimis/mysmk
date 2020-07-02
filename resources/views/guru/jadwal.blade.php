@@ -30,7 +30,7 @@
         </tr>
 
         @empty
-         <td class="text-center alert alert-warning" colspan="8">Alhamdulilah ustadz hari ini tidak memiliki jadwal mengajar</td>
+         <td class="text-center alert alert-warning mt-2" colspan="8">Alhamdulilah ustadz hari ini tidak memiliki jadwal mengajar</td>
         @endforelse
     </tbody>
 

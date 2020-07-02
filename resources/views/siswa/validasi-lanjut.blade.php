@@ -1,6 +1,6 @@
 
-@extends('siswa.layout.master')
-@section('title','Home')
+@extends('siswa.layout.master2')
+@section('title','Validasi Penilaian')
 
 @section('content')
 

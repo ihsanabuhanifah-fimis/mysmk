@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Jurnal_guru extends Model
 {
     public $timestamps = false;
 }

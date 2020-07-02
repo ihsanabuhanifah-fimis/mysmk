@@ -1,14 +1,21 @@
 
+<script>
+    $(document).ready( function () {
+        $('#myTableBAB').DataTable();
+    } );
+</script>
 
     <h1 class="mt-4">List BAB</h1>
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar bab yang telah di buat</li>
  </ol>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBab">
-            Tambah_bab
-        </button> -->
-    <table class="table table-bordered table-responsive-sm">
-        <thead>
+ <div class="d-flex justify-content-md-end justify-content-sm-start mb-sm-3 ">
+  
+   <button  class="btn btn-success materi-saya ml-2 ">My Materi</button>        
+   </div>
+   <div class="mt-3 p-md-3 p-sm-0 border border ">
+    <table id="myTableBAB" class="table table-bordered table-responsive-sm">
+        <thead class="bg-success text-center">
             <tr>
                 <th class="text-center">No</th>
                 <th>Mata Pelajaran</th>
@@ -23,7 +30,7 @@
                 <td class="text-center">{{$loop->iteration}}</td>
                 <td>{{$bab->subject_name}}</td>
                 <td>{{$bab->nama_bab}}</td>
-                <td class="text-center"><a class="btn btn-outline-danger">Hapus</a></td>
+                <td class="text-center"><a class="btn btn-danger">Hapus</a></td>
 
               
             </tr>
@@ -33,9 +40,8 @@
         </tbody>
 
     </table>
+</div>
 
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
@@ -84,5 +90,14 @@
 			
 			});
 		});
+        $(document).ready(function(){
+   
+    $(".materi-saya").click(function(){
+        $(".tampilkanbab").hide();
+        $(".tampilkanmateri").load("guru/tampilkanmateri"); 
+        $(".tampilkanmateri").show(); 
        
+    });
+   
+  });
   </script>

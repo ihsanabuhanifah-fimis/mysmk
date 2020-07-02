@@ -1,4 +1,4 @@
-@extends('siswa.layout.master')
+@extends('siswa.layout.master2')
 @section('title','Hasil')
 
 @section('content')

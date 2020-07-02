@@ -24,39 +24,44 @@
 
 
     <title>@yield('title')</title>
-    <style>
-    footer{
-        
-        margin-bottom:2px;
-        width:100%;
-    }
-
-    .navnav{
-        height:100%;
-        margin-bottom:0px;
-    }
-    </style>
+   
 </head>
+<style>
+    .btn-xl{
+        width:400px;
 
-<body class="bg-light">
+    }
+   
+</style>
+<body class="bg-light  ">
 <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary d-flex justify-content-lg-between">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-white sticky-top d-flex justify-content-between">
         <div>  
-        <button class="btn btn-link btn-lg order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button ><!-- Navbar Search-->
-           </div>
+        <button class="btn btn-link btn-lg order-1 order-lg-0 text-black-50 " id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button ><!-- Navbar Search-->
+        <b>MySMK</b>  
+    </div>
             <!-- Navbar-->
-            <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <div class="d-flex">
+
+            <ul class="navbar-nav ml-auto ml-md-0 ">
+            <li class="nav-item dropdown ">
+           
+                                <a  id="navbarDropdown" class="nav-link dropdown-toggle text-bold text-black-50" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right text-black-50 p- pt-3 pb-3" aria-labelledby="navbarDropdown">
+                                <img style="display:block;" class="rounded-circle mx-auto mb-3" src="/img/avatar.jpeg" height="60" width="60" alt="">    
+                                <div class="text-center menu-drop">
+                                <a class="dropdown-item" href="#">
+                                    {{ Auth::user()->email }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    </div>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -64,6 +69,8 @@
                                 </div>
                             </li>
             </ul>
+            <img class="rounded-circle mt-1" src="/img/avatar.jpeg" height="40" width="40" alt="">
+            </div>
         </nav>
 @yield('content')
 
@@ -73,17 +80,7 @@
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/js/scripts.js"></script>
-       
 
-
-
-
-
-<!-- <footer class="bg-dark p-4 text-white text-center mt-4">
-<div class="conteiner">
- Sistem Informasi SMK MADINATULQURAN | Copyright © {{ date("Y") }} | ihsanabuhanifah
- </div>
-</footer> -->
 </body>
 </html>
 

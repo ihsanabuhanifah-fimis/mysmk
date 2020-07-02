@@ -26,15 +26,7 @@ $(document).ready(function(){
   });
 
   
-$(document).ready(function(){
-    $(".bank-soal-saya").click(function(){
-        $(".banksoal").load("guru/banksoal");
-        $(".banksoal").show();
-        $(".banksoallain").hide();   
-        
 
-    });
-  });
 
 
 	$(document).ready(function(){
@@ -216,6 +208,25 @@ $(document).ready(function(){
                            $(".tampilkan-edit-absen").show();
                            $("#form-edit-absen").show();
                         });
+                        $(".jadwal").click(function(){
+         
+                            $(".tampilkan-menu-jadwal").show();
+                            $(".tampilkan-jadwal").show();
+                            $(".tampilkan-edit-absen").hide();
+                            $("#form-edit-absen").hide();
+                            $(".tampilkan-rekap-absen").hide();
+                        
+                         });
+                        $(".rekap-absensi").click(function(){
+                            $(".tampilkan-menu-jadwal").hide();
+                            $(".tampilkan-jadwal").hide();
+                            $(".tampilkan-edit-absen").hide();
+                            $("#form-edit-absen").hide();
+                            $(".tampilkan-rekap-absen").show();
+                            $(".tampilkan-rekap-absen").load("/guru/rekap-absen");
+                         });
+
+                  
 
                         $("#tombol-edit-absen").click(function(){
                             $(this).text("mencari ....");

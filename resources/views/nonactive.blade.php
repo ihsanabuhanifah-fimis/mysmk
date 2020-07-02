@@ -181,19 +181,19 @@
                                 @enderror
                             </div>
                             </div>
-                            <div class="form-group row">
-                            <label for="tempat" class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
+                                <div class="form-group row">
+                                <label for="tempat" class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="tempat" type="text" class="form-control @error('tempat') is-invalid @enderror" name="tempat" value="{{ $data->tempat}}" required autocomplete="tempat" autofocus>
+                                <div class="col-md-6">
+                                    <input id="tempat" type="text" class="form-control @error('tempat') is-invalid @enderror" name="tempat" value="{{ $data->tempat}}" required autocomplete="tempat" autofocus>
 
-                                @error('tempat')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('tempat')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
                             <div class="form-group row">
                             
                             <label for="tanggal" class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
@@ -312,7 +312,204 @@
                         </div>
                         
                         @else
-                        <div>ihsan</div>
+                       <!-- daftar siswa -->
+                       <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$data->name}}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="text" class="form-control @error('name') is-invalid @enderror" name="email" value="{{$data->email}}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tempat" class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="tempat" type="text" class="form-control @error('tempat') is-invalid @enderror" name="tempat" value="{{ $data->tempat}}" required autocomplete="tempat" autofocus>
+
+                                @error('tempat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            
+                            <label for="tanggal" class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
+                            
+                            <div class="col-md-6">
+                                <input id="tanggal" type="number" class="form-control  d-inline col-md-3 @error('tanggal') is-invalid @enderror" name="tanggal" value="{{$data->tanggal}}" required autocomplete="tanggal" placeholder="Tanggal" autofocus>
+                                
+                                <select id="bulan" type="number" class="form-control  d-inline col-md-5 @error('bulan') is-invalid @enderror" name="bulan"  required autocomplete="bulan" autofocus>
+                                    
+                                    @if($data->bulan == 1)
+                                    <option selected value="1">Januari</option>
+                                    @elseif($data->bulan == 2)
+                                    <option selected value="2">Februari</option>
+                                    @elseif($data->bulan == 3)
+                                    <option  selected value="3">Maret</option>                                    
+                                    @elseif($data->bulan == 4)
+                                    <option  selected value="4">April</option>
+                                    @elseif($data->bulan == 5)
+                                    <option selected value="5">Mei</option>
+                                   
+                                    @elseif($data->bulan == 6)
+                                    <option selected value="6">Juni</option>
+                                  
+                                    @elseif($data->bulan == 7)
+                                    <option selected value="7">Juli</option>
+                                    
+                                    @elseif($data->bulan == 8)
+                                    <option selected value="8">Agustus</option>
+                                   
+                                    @elseif($data->bulan == 9)
+                                    <option selected value="9">September</option>
+                                   
+                                    @elseif($data->bulan == 10)
+                                    <option selected value="10">Oktober</option>
+                                    
+                                    @elseif($data->bulan == 11)
+                                    <option selected value="11">November</option>
+                                   
+                                    @elseif($data->bulan == 12)
+                                    <option selected value="12">Desember</option>
+                                    @endif
+                                  
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                                <input id="tahun" type="number" class="form-control  d-inline col-md-3 @error('tahun') is-invalid @enderror" placeholder="Tahun" name="tahun" value="{{ $data->tahun}}" required autocomplete="tahun" autofocus>
+
+                                @error('tahun')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                            <div class="form-group row">
+                            <label for="nisn" class="col-md-4 col-form-label text-md-right">{{ __('NISN') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nisn" type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{$data->nisn}}" required autocomplete="name" autofocus>
+
+                                @error('nisn')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                             </div>
+
+                             
+                             <div class="form-group row">
+                            <label for="tahun_masuk" class="col-md-4 col-form-label text-md-right">{{ __('Tahun Masuk') }}</label>
+
+                            <div class="col-md-6">
+                               
+                        <select name="tahun_masuk"  class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk">
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+
+                        </select>
+                                @error('tahun_masuk')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                             </div>
+                             <div class="form-group row">
+                            <label for="asal_sekolah" class="col-md-4 col-form-label text-md-right">{{ __('Sekolah Asal') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="asal_sekolah" type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" name="asal_sekolah" value="" required autocomplete="name" autofocus placeholder="Nama Sekolah saat SMP/MTs">
+
+                                @error('asal_sekolah')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="jurusan" class="col-md-4 col-form-label text-md-right">{{ __('Jurusan Yang Dipilih') }}</label>
+
+                            <div class="col-md-6">
+                            <select name="jurusan"  class="form-control @error('jurusan') is-invalid @enderror" id="jurusan">
+                            <option value="1">Teknik Komputer dan Jaringan</option>
+                            <option value="2">Rekayasa Perangkat Lunak</option>
+                        </select>
+
+                                @error('nama_ibu')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nama_ayah" class="col-md-4 col-form-label text-md-right">{{ __('Nama Ayah') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nama_ayah" type="text" class="form-control @error('nama_ayah') is-invalid @enderror" name="nama_ayah" value="" required autocomplete="name" autofocus >
+
+                                @error('nama_ayah')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="nama_ibu" class="col-md-4 col-form-label text-md-right">{{ __('Nama Ibu') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nama_ibu" type="text" class="form-control @error('nama_ibu') is-invalid @enderror" name="nama_ibu" value="" required autocomplete="name" autofocus>
+
+                                @error('nama_ibu')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                       <!-- daftar siswa -->
                         @endif
                         
 

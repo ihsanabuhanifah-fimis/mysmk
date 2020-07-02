@@ -343,9 +343,10 @@ class BanksoalController extends Controller
         $id_cikgu=Cikgu::where('username',"$username")->first();
         $ujian = new Banksoal();
         $ujian = Banksoal::find($id);
+      
         $ujian -> delete($id_cikgu->id_cikgu);
         
-        return $id_cikgu->id_cikgu;
+        return "Alhamdulilah Bank Soal berhasil di hapus";
     
     }
 

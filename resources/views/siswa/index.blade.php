@@ -20,11 +20,13 @@
         </div>
     </div>
 
-<div id="layoutSidenav">
+   
+
+<div id="layoutSidenav" >
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                        <div class="nav p">
                             <div class="sb-sidenav-menu-heading">MySMK</div>
                             <a class="nav-link menu-dashboard" 
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -69,7 +71,7 @@
                    
                 </nav>
             </div>
-
+         
             <!-- konten -->
             <div id="layoutSidenav_content">
                 <main>

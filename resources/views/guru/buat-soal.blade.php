@@ -1,4 +1,4 @@
-@extends('guru.layout.master')
+@extends('guru.layout.master2')
 @section('title','Bank Soal')
 
 @section('content')

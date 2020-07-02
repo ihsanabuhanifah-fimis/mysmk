@@ -16,12 +16,13 @@
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
  </ol>
+ <div class="d-flex justify-content-md-end d-flex justify-content-sm-start mb-3">
+    <button  class="btn btn-success " data-toggle="modal" data-target="#exampleModal" >Buat Penilaian</button>
+    </div>
  <div class="border p-md-3">
     <table class="table datatable table-bordered myTable table-ujian table-responsive" id="myTableUjian">
-    <div class="d-flex justify-content-end">
-    <button  class="btn btn-success d-none d-md-block" data-toggle="modal" data-target="#exampleModal" >Buat Penilaian</button>
-    </div>
-        <thead class="bg-info" >
+   
+        <thead class="bg-success" >
             <th>No</th>
             <th>Mata Pelajaran</th>
             <th>Tahun Ajaran</th>
@@ -39,7 +40,7 @@
             <th class="text-center">Soal</th>
             <th class="text-center">Nilai</th>
             <th colspan="2" class="text-center">Action</th>
-            <th class="text-center">Attempt</th>
+            <th class="text-center">Jumlah Remidial</th>
             <th class="text-center">Tampilkan <br> Nilai</th>
             
         </thead>
@@ -94,18 +95,19 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-danger" id="staticBackdropLabel">Konfirmasi</h5>
+        <h5 class="modal-title " id="staticBackdropLabel">Konfirmasi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h6 class="text-danger">Apakah Ustadz yakin akan menghapusnya?</h6>
+        <h6 class="">Apakah Ustadz yakin akan menghapusnya?</h6>
 
       </div>
       <div class="modal-footer">
+        <div class="ket-hapus-ujian"></div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" id="hapusujian" class="btn btn-danger">Bismillah</button>
+        <button type="button" id="hapusujian" class="btn btn-danger">Hapus</button>
       </div>
     </div>
   </div>
@@ -175,8 +177,7 @@
 
 
 <!-- modal akses ujian -->
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 
 <script>
 $(document).ready(function(){
@@ -192,7 +193,7 @@ $(document).ready(function(){
           }
     });
     $(".simpan-akses-ujian").on('click',function(){
-        $(this).text("Perbaharui data");
+        $(this).text("Perbaharui ...");
         $(".ket-akses").removeClass("alert alert-success");
         $(".ket-akses").empty();
         $.ajaxSetup({
@@ -237,19 +238,12 @@ $(document).ready(function(){
       $.ajax({
           url:"/guru/hapusujian/"+id,
           beforeSend:function(){
-          $('#hapus').text("deleting...");
+          $('#hapus').text("Menghapus ...");
           },
-            success:function(data)
-           
-          {
-            
-            setTimeout(function(){
-              $(".tampilkanujian").load("tampilkanujian");
-                
-
-              },2000);
-              
-              
+            success:function(data){
+            $('#hapus').text("Hapus");
+            $(".tampilkanujian").load("guru/tampilkanujian");  
+            $("#myModal").modal("toggle");
             }
          });
     });
@@ -293,6 +287,9 @@ $(document).ready(function(){
             $("#edit-ujian-ini").text("Perbaharui");
            $(".noticeujian").addClass("alert alert-success");
            $(".noticeujian").text("Alhamdulilah pengaturan penilaian berhasil diperbaharui");
+          
+           $("#ModalEditUjian").modal("toggle");
+           $(".tampilkanujian").load("guru/tampilkanujian");  
         
            setTimeout(function(){
                     $(".noticeujian").removeClass("alert alert-success");

@@ -29,34 +29,42 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                        <div class="nav nav-pills" role="tablist"">
                             <div class="sb-sidenav-menu-heading">MYSMK</div>
-                            <a class="nav-link menu-dashboard" 
+                            <a class="nav-link active menu-dashboard"  data-toggle="pill" role="tab" aria-selected="true"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</a >
+
+
+
                                 <!-- menu materi -->
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link collapsed menu-materi" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                            
+                            <!-- jurnal -->
+                            <a class="nav-link collapsed menu-jurnal-guru"  data-toggle="pill" role="tab" aria-selected="false"
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                               Jurnal Guru
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <!-- jurnal -->
+                                <!-- mata pelajaran -->
+                                <a class="nav-link collapsed menu-mapel"  data-toggle="pill" role="tab" aria-selected="false"
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                                Mata Pelajaran
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                                <!-- mata pelajaran -->
+                            <a class="nav-link collapsed menu-materi" data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Materi
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                <a  class="nav-link d-md-none d-sm-block" onclick="window.location.href='{{route('materi')}}'">Tambah Materi</a>
-                                <a  class="nav-link materi-saya" data-toggle="pill" 
-                                 role="tab" aria-controls="pills-tugas" 
-                                aria-selected="true" >My Materi</a>
-                                <a class="nav-link bab-saya" data-toggle="pill" 
-                                 role="tab" aria-controls="pills-tugas" 
-                                aria-selected="true"  >My Bab</a>
-                              </nav>
-                            </div>
+                           
 
                             <!-- menu materi -->
                             <!-- menu jadwal -->
               
-                            <a class="nav-link collapsed menu-jadwal"  aria-expanded="false" aria-controls="collapseLayouts"
+                            <a class="nav-link collapsed menu-jadwal"  data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Jadwal
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
@@ -67,61 +75,33 @@
 
                             <!-- menu penilaian -->
                         
-                            <a class="nav-link collapsed menu-penilaian" data-toggle="collapse" data-target="#collapsePenilaian" aria-expanded="false" aria-controls="collapseLayouts"
+                            <a class="nav-link collapsed menu-penilaian"  data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Daftar Penilaian
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             
-                            <div class="collapse" id="collapsePenilaian" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                <a  class="nav-link d-sm-block d-md-none" data-toggle="modal" data-target="#exampleModal" >Buat Penilaian</a>
-                                <a  class="nav-link rekap-nilai-teori2" data-toggle="pill" 
-                                 role="tab" aria-controls="pills-tugas" 
-                                aria-selected="true" >Rekap Nilai teori</a>
-                                <a data-toggle="pill" 
-                                 role="tab" aria-controls="pills-tugas" 
-                                aria-selected="true" class="nav-link rekap-nilai-praktek2" >Rekap Nilai Praktek</a>
-                              </nav>
-                            </div>
+                            
                             <!-- menu penilaian -->
 
                              <!-- menu BankSoal -->
                         
-                             <a class="nav-link collapsed menu-bank-soal" data-toggle="collapse" data-target="#collapseBankSoal" aria-expanded="false" aria-controls="collapseLayouts"
+                             <a class="nav-link collapsed menu-bank-soal" data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Bank Soal
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <div class="collapse" id="collapseBankSoal" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                <a  class="nav-link d-md-none d-sm-block" data-toggle="modal" data-target="#banksoal" >Buat Bank Soal</a>
-                                <a  class="nav-link bank-soal-saya2"  >Bank Soal Saya</a>
-                                <a class="nav-link bank-soal-lain2" >Bank Soal Lain</a>
-                              </nav>
-                            </div>
+                            
                             <!-- menu BankSoal -->
                            
-                            <a class="nav-link collapsed menu-halaqoh" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseLayouts"
+                            <a class="nav-link collapsed menu-halaqoh" data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon "><i class=" fas fa-book-open"></i></div>
                                 Halaqoh Online
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                           
-                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts</a
-                            ><a class="nav-link" href="tables.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables</a
-                            > -->
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
+                    
                 </nav>
             </div>
 
@@ -129,6 +109,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
+                    <div class="tampilkan-menu-jurnal-guru"></div>
                       <!-- awal dashboard -->
                       <div class="tampilkan-menu-materi">
                       <div class="tampilkanmateri"></div>
@@ -136,12 +117,16 @@
                       </div>
 
                       <!-- menu-jadwal -->
+                      <div class="tampilkan-rekap-absen"></div>
                     <div class="tampilkan-edit-absen">
+                   
                     <h1 class="mt-4">Edit Absensi</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Edit absensi di sini</li>
                         </ol>
+                      
                         <!-- guru/edit-absen   -->
+                        <div class="p-3 border">
                     <form class="form-row" action="javascript:void(0)" id="form-edit-absen" method="POST">
                         <div class="col-md-2 ml-2">
                             <label for="tanggal">Tanggal</label>
@@ -166,14 +151,19 @@
                             @endforelse
                           </select>
                         </div>
-                      <div class="col-md-2 ml-2 font-weight-bold form-group ">
-                          <label for=""></label>
-                      <button type="submit"  id="tombol-edit-absen" class=" mt-4  form-control-inline mx-auto btn btn-success border">submit</button> 
+                      <div class="col-md-1 ml-2 font-weight-bold form-group ">
+                         <br>
+                      <button type="submit"  id="tombol-edit-absen" class=" mt-1  form-control mx-auto btn-success border">Cari</button> 
+                      </div>
+                      <div class="col-md-1 ml-2 font-weight-bold form-group ">
+                         <br>
+                      <button class=" mt-1  form-control mx-auto btn-success border jadwal" >Jadwal</button> 
                       </div>
                       @csrf
                     </form>
-                   <div class="conteiner">
-                   <div class="keterangan-absensi mt-3"></div>
+                    </div>
+                   <div class="p-3 mt-3 border border-black">
+                   <div class="keterangan-absensi "></div>
                    <div class="tampilkan-hasil-absen"></div>
                    </div>
                    
@@ -206,6 +196,7 @@
                       <div class="font-weight-bold form-group mb-2  mt-2">
                       <button type="submit" name="cari" id="tombol-jadwal-saya-hari-ini" class="form-control-inline mx-auto btn btn-success border">submit</button> 
                       <button class="form-control-inline mx-auto btn btn-success edit-absensi">Edit Absensi</button>
+                      <button class="form-control-inline mx-auto btn btn-success rekap-absensi">Rekap Absensi</button>
                       </div>
                       @csrf
                     </form>
@@ -217,8 +208,7 @@
                       <!-- tampilkan penilaian -->
                       <div class="tampilkan-menu-penilaian">
                           <div class="tampilkanujian"></div>
-                          <div class="rekapnilaiteori"></div>
-                          <div class="rekapnilaipraktek"></div>
+                          
                       </div>
                        <!-- tampilkan penilaian -->
 
@@ -299,6 +289,14 @@
                         <!-- menu-halaqoh-online -->
                         <div class="tampilkan-menu-halaqoh"></div>
                         <!-- menu-halaqoh-online -->
+                        <!-- menu-halaqoh-online -->
+                        <div class="tampilkan-menu-mapel">
+                          <div class="mapel-saya"></div>
+                          <div class="rekapnilaiteori"></div>
+                          <div class="rekapnilaipraktek"></div>
+                        
+                        </div>
+                        <!-- menu-halaqoh-online -->
                     </div>
                 </main>
                 <footer class="bg-light py-2">
@@ -320,13 +318,13 @@
   
     <div class="modal-content">
       <div class=" modal-header bg-primary">
-        <h5 class="modal-title bg-pr" id="exampleModalLabel">Tambahkan Ujian Baru</h5>
+        <h5 class="modal-title bg-pr" id="exampleModalLabel">Tambahkan Ujian</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <label for="id_ta"> Tahun Ajaran</label>
+      <label class="text-bold" for="id_ta"> Tahun Ajaran</label>
       <select class="form-control" name="id_ta" id="id_ta">
         <option value="1">2020/2021</option>
       </select>
@@ -341,7 +339,7 @@
         <option value="6">Semester 6</option>
       </select>
     
-      <label for="remidial">Aktifkan Waktu Ujian</label>
+      <label for="status">Aktifkan Waktu Penilaian</label>
         <select class="form-control" name="status" id="status">
           <option value="2">Ya</option>
           <option value="1">Tidak</option>
@@ -359,7 +357,7 @@
         <input class="form-control" value="" type="date" name="tanggal_selesai" value="00:00:0000" id="tanggal" />
         <input class=" ml-2 btn border" type="time" value="00:00" name="waktu_selesai">
         </div>
-        <label for="durasi">Durasi Ujian</label>
+        <label for="durasi"> Penilaian</label>
         <input class="form-control" type="number" name="durasi" id="durasi" placeholder="Waktu dalam menit" required />
         <br>
         <label for="id_subject">Mata Pelajaran</label>
@@ -385,10 +383,10 @@
         <label for="materi">Materi</label>
         <input class="form-control" type="text" name="materi" id="materi" required />
         <br>
-        <label for="nama_ujian">Nama Ujian</label>
+        <label for="nama_ujian">Jenis Ujian</label>
         <select class="form-control" name="id_ujian" id="id_ujian">
        @forelse ($ujians as $ujian)
-          <option value="{{$ujian->id_ujian}}">{{$ujian->nama_ujian}}</option>
+          <option value="{{$ujian->id_ujian}}">{{$ujian->nama_ujian}} - {{$ujian->singkatan_ujian}}</option>
        @empty
        @endforelse
 
@@ -402,18 +400,18 @@
           @endforelse
         
         </select>
-        <label for="remidial">Attemp</label>
+        <label for="remidial">Jumlah Remidial</label>
         <select class="form-control" name="remidial" id="remidial">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
+          <option value="1">-</option>
+          <option value="2">1</option>
+          <option value="3">2</option>
+          <option value="4">3</option>
+          <option value="5">4</option>
+          <option value="6">5</option>
+          <option value="7">6</option>
+          <option value="8">7</option>
+          <option value="9">8</option>
+          <option value="10">9</option>
 
         </select>
     <br>

@@ -67,8 +67,16 @@
             <div class="keterangan{{$i+1}} mt-2"></div>
             <input type="hidden" name="_token" id="token{{$i+1}}" value="{{ csrf_token() }}">
             <label  class="font-weight-bold" for="materi">Materi Jam ke- {{$i+1}}</label>
+            @if(!isset($jurnal[$i]->materi))
+            <textarea class="form-control " id="materi{{$i+1}}" ></textarea>
+            <input type="text" id="jam{{$i+1}}" name="jam{{$i+1}} value="">
+            <input type="text" id="id{{$i+1}}"  value="id{{$i+1}}">
+            @else
             <textarea class="form-control " id="materi{{$i+1}}" >{{$jurnal[$i]->materi}}</textarea>
-            <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}">
+            <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}" value="{{$jurnal[$i]->jam_ke}}">
+            <input type="hidden" id="id{{$i+1}}" name="id{{$i+1}}" value="{{$jurnal[$i]->no}}">
+            @endif
+       
             </div>
             <div class="col-md-2 mb-2">
               <br>
@@ -82,32 +90,37 @@
         var tanggal;
         var token;
         var no; 
+        var id;
         $('#tombol_materi{{$i+1}}').click(function(){
             $(this).text("Menyimpan materi ...");
             $('.keterangan{{$i+1}}').removeClass('alert alert-success');
-                    $('.keterangan{{$i+1}}').empty();
+            $('.keterangan{{$i+1}}').empty();
            materi= $('#materi{{$i+1}}').val();  
            tanggal= $('#tanggal').val();
            jam = $('#jam{{$i+1}}').val();
            token = $('#token{{$i+1}}').val();  
-           no = $('#no').val();          
+           no = $('#no').val(); 
+           id = $('#id{{$i+1}}').val(); 
+                 
             $.ajax({
 				type: 'PUT',
-				url: "{{route('savejurnal')}}",
+				url: "{{route('editjurnal')}}",
 				data: {
                     "_token":token,
                     "materi":materi,
                     "jam":jam,
                     "tanggal":tanggal,
                     "no":no,
+                    "id":id,
                     
                    
                 },
                 
 				success: function(data) {
+                    alert(data);
                     $('#tombol_materi{{$i+1}}').text("Simpan")
-                    $('.keterangan{{$i+1}}').addClass('alert alert-success');
-                    $('.keterangan{{$i+1}}').text(data);
+                    // $('.keterangan{{$i+1}}').addClass('alert alert-success');
+                    // $('.keterangan{{$i+1}}').text(data);
                     // $('.notif-absen').text(data);
                     // $('#send_form').html('Simpan');
                    
@@ -180,5 +193,5 @@
           <button type="submit" id="send_form" class="absensi form-control justify-content-md-end btn btn-success" name="absen" >Simpan</button> 
 </form>
 </div>
-<
+
 </script> 

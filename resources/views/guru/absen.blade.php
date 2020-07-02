@@ -1,6 +1,6 @@
 
   
-@extends('guru.layout.master')
+@extends('guru.layout.master2')
 @section('title','Absensi Harian')
 
 @section('content')
@@ -74,6 +74,7 @@
             <textarea class="form-control " id="materi{{$i+1}}" ></textarea>
             <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}" value="{{$jadwal->jam_ke+$i}}">
             </div>
+            <input type="hidden" class="total" value="{{$jadwal->duration}}">
             <div class="col-md-2 mb-2">
               <br>
             <button class="btn btn-success mt-lg-4 mt-md-3 mt-sm-0" type="submit" id="tombol_materi{{$i+1}}">Simpan</button>
@@ -86,6 +87,7 @@
         var tanggal;
         var token;
         var no; 
+        var total;
         $('#tombol_materi{{$i+1}}').click(function(){
             $(this).text("Menyimpan materi ...");
             $('.keterangan{{$i+1}}').removeClass('alert alert-success');
@@ -94,7 +96,9 @@
            tanggal= $('#tanggal').val();
            jam = $('#jam{{$i+1}}').val();
            token = $('#token{{$i+1}}').val();  
-           no = $('#no').val();          
+           no = $('#no').val();  
+           total = $(".total").val();  
+              
             $.ajax({
 				type: 'PUT',
 				url: "{{route('savejurnal')}}",
@@ -104,6 +108,7 @@
                     "jam":jam,
                     "tanggal":tanggal,
                     "no":no,
+                    "total":total,
                     
                    
                 },

@@ -13,10 +13,11 @@
     $("#sidebarToggle").on("click", function(e) {
         e.preventDefault();
         $("body").toggleClass("sb-sidenav-toggled");
+        $("#layoutSidenav_content").toggleClass("sb-acc");
     });
-    // $("#layoutSidenav_content").on("click", function(e) {
+    $(".sb-acc").on("click", function(e) {
       
-    //     e.preventDefault();
-    //     $("body").removeClass("sb-sidenav-toggled");
-    // });
+        e.preventDefault();
+        $("body").removeClass("sb-sidenav-toggled");
+    });
 })(jQuery);

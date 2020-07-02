@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use App\Mapel_aktif;
 use App\Jadwal;
 use App\Student_rombel;
 use App\Student;
@@ -105,7 +106,8 @@ class GuruController extends Controller
         ->get();
 
 
-        $jml_jurnal=count($jurnal);
+        $jml_jurnal=$jurnal[0]->total_jam;
+        
        
         return view('guru.edit-absen',['absensi'=>$json2,'kbms'=>$kbm, 'jurnal'=>$jurnal, 'jml_jurnal'=>$jml_jurnal]);
 
@@ -217,6 +219,7 @@ class GuruController extends Controller
         $jurnal-> id_ta=$jadwal->id_ta;
         $jurnal-> semester=$jadwal->semester;
         $jurnal-> tanggal = $request["tanggal"];
+        $jurnal-> total_jam = $request["total"];
         $jurnal-> materi = $request["materi"];
         $jurnal-> jam_ke = $request["jam"];
         $cek_jurnal = Jurnal::where('id_cikgu',$id_cikgu->id_cikgu)
@@ -254,6 +257,69 @@ class GuruController extends Controller
         //     $kbm->save();
         //     return "Alhamduliah Absensi Hari telah tersimpan. Jazakumullahu Khairan";
         // }
+       
+  
+      
+   }
+
+   public function edit_jurnal(Request $request)
+   {  
+     
+
+     
+
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $jurnal = new Jurnal();
+        $jurnal = Jurnal::where('no',$request["id"])->where('id_cikgu',$id_cikgu->id_cikgu)->first();
+     
+        $jurnal-> materi=$request["materi"];
+      
+        $jurnal->update();    
+     
+      return "ok";
+        $jurnal= new Jurnal();
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $id = $request["no"];
+        $jadwal = DB::table('jadwals')
+        ->where('no',$id )
+        ->where('id_cikgu',$id_cikgu->id_cikgu)
+        ->first();
+       
+       
+        $jurnal-> id_cikgu= $id_cikgu->id_cikgu;
+        $jurnal-> id_rombel=$jadwal->id_rombel;
+        $jurnal-> id_subject=$jadwal->id_subject;
+        $jurnal-> id_ta=$jadwal->id_ta;
+        $jurnal-> semester=$jadwal->semester;
+        $jurnal-> tanggal = $request["tanggal"];
+        $jurnal-> total_jam = $request["total"];
+        $jurnal-> materi = $request["materi"];
+        $jurnal-> jam_ke = $request["jam"];
+        $cek_jurnal = Jurnal::where('id_cikgu',$id_cikgu->id_cikgu)
+        ->where('id_subject',$jadwal->id_subject)
+        ->where('id_rombel',$jadwal->id_rombel)
+        ->where('jam_ke',$request["jam"])
+        ->where('tanggal',$request["tanggal"])->first();
+
+     
+        if($cek_jurnal != NULL){
+            return "Mohon maaf ustadz sudah menyimpan materi jam ke-Jazakumullahu Khairan";
+        } else{
+            $jurnal->save();
+            return "Alhamduliah Materi jam ke-telah tersimpan. Jazakumullahu Khairan";
+        }
+
+      
+        
+
+        return "Materi berhasil tersimpan";
+     
+
+  
+        
+        
        
   
       
@@ -727,7 +793,9 @@ class GuruController extends Controller
         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
         ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
         ->leftjoin('tas','tas.id_ta','=','penilaians.id_ta')
-        ->where('id_cikgu',$id_cikgu->id_cikgu)->get();
+        ->where('id_cikgu',$id_cikgu->id_cikgu)
+        ->orderby('id', 'desc')
+        ->get();
         return view('guru.listujian',['ujians'=>$ujian,'rombels'=>$rombel,'subjects'=>$subject,
         'tipes'=>$tipe, 'ujians'=>$ujian]);
         
@@ -896,6 +964,13 @@ class GuruController extends Controller
         ->where('id_rombel',$request["id_rombel"])
         ->get();
 
+        $persen=DB::table('mapel_aktifs')
+        ->where('id_rombel', $request["id_rombel"])
+        ->where('id_subject',$request["id_subject"])
+        ->where('status',1)
+        ->where('id_tipe',2)
+        ->where('id_cikgu',$id_cikgu->id_cikgu)
+        ->get();
     
         $ujian=DB::table('penilaians')
         ->leftjoin('rombels','rombels.id_rombel','=','penilaians.id_rombel')
@@ -917,7 +992,66 @@ class GuruController extends Controller
             $hasil[$i]=json_decode($ujian[$i]->hasil);
             $i++;
          }
-        return view('guru.rekap-nilai-teori',['ujians'=>$ujian,'hasils'=>$hasil,'siswas'=>$siswa]);
+         $PH=DB::table('penilaians')
+         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
+         ->where('penilaians.id_tipe',2)
+         ->where('id_cikgu',$id_cikgu->id_cikgu)
+         ->where('penilaians.id_rombel',$request["id_rombel"])
+         ->where('penilaians.id_subject',$request["id_subject"])
+         ->where('penilaians.id_ta',$request["id_ta"])
+         ->where('penilaians.semester',$request["semester"])
+         ->where('penilaians.id_ujian',1)
+         ->get();
+         $PTS=DB::table('penilaians')
+         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
+         ->where('penilaians.id_tipe',2)
+         ->where('id_cikgu',$id_cikgu->id_cikgu)
+         ->where('penilaians.id_rombel',$request["id_rombel"])
+         ->where('penilaians.id_subject',$request["id_subject"])
+         ->where('penilaians.id_ta',$request["id_ta"])
+         ->where('penilaians.semester',$request["semester"])
+         ->where('penilaians.id_ujian',2)
+         ->get();
+         $PAS=DB::table('penilaians')
+         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
+         ->where('penilaians.id_tipe',2)
+         ->where('id_cikgu',$id_cikgu->id_cikgu)
+         ->where('penilaians.id_rombel',$request["id_rombel"])
+         ->where('penilaians.id_subject',$request["id_subject"])
+         ->where('penilaians.id_ta',$request["id_ta"])
+         ->where('penilaians.semester',$request["semester"])
+         ->where('penilaians.id_ujian',3)
+         ->get();
+         $Kuis=DB::table('penilaians')
+         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
+         ->where('penilaians.id_tipe',2)
+         ->where('id_cikgu',$id_cikgu->id_cikgu)
+         ->where('penilaians.id_rombel',$request["id_rombel"])
+         ->where('penilaians.id_subject',$request["id_subject"])
+         ->where('penilaians.id_ta',$request["id_ta"])
+         ->where('penilaians.semester',$request["semester"])
+         ->where('penilaians.id_ujian',4)
+         ->get();
+         $Tugas=DB::table('penilaians')
+         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
+         ->where('penilaians.id_tipe',2)
+         ->where('id_cikgu',$id_cikgu->id_cikgu)
+         ->where('penilaians.id_rombel',$request["id_rombel"])
+         ->where('penilaians.id_subject',$request["id_subject"])
+         ->where('penilaians.id_ta',$request["id_ta"])
+         ->where('penilaians.semester',$request["semester"])
+         ->where('penilaians.id_ujian',5)
+         ->get();
+         
+        return view('guru.rekap-nilai-teori',
+        [
+            'ujians'=>$ujian,'hasils'=>$hasil,'siswas'=>$siswa,'persen'=>$persen,
+            'PH'=>$PH,
+            'PTS'=>$PTS,
+            'PAS'=>$PAS,
+            'Kuis'=>$Kuis,
+            'Tugas'=>$Tugas
+        ]);
     }
 
     public function rekapnilaipraktek2(Request $request)
