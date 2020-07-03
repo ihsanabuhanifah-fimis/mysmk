@@ -5,7 +5,7 @@
     } );
     </script>
 <table id="myHalaqohOnline" class="table table-bordered table-responsive-sm ">
-    <thead class="bg-info text-center">
+    <thead class="bg-success text-center">
         <tr>
             <th>No</th>
             <th>Nama Kelompok</th>

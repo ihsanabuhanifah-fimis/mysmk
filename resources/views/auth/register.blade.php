@@ -250,7 +250,7 @@
                             <label for="secret-number" class="col-md-4 col-form-label text-md-right">{{ __('Secret Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="secret-number" type="password"  class="form-control @error('secret-number') is-invalid @enderror" name="secret-number" value="{{ old('secret-number') }}"  autocomplete="secret-number">
+                                <input id="secret-number" required type="password"  class="form-control @error('secret-number') is-invalid @enderror" name="secret-number" value="{{ old('secret-number') }}"  autocomplete="secret-number">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -312,6 +312,7 @@
     }
     else{
     $(".secret-number").addClass("hide");
+    $("#secret-number").removeAttr('required');
     }
   });
 });

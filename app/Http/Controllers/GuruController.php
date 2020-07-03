@@ -1056,7 +1056,7 @@ class GuruController extends Controller
      
          
 
-        
+    
         return view('guru.rekap-nilai-teori',
         [
             'ujians'=>$ujian,'hasils'=>$hasil,'siswas'=>$siswa,'persen'=>$persen,

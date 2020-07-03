@@ -25,7 +25,7 @@
             <input required type="time" value="{{$kegiatan->s}}" class="form-control" name="waktu_selesai[]">
         </div>
         <div class="col-md-6 mb-1">
-            <textarea required class="form-control" name="kegiatan[]" id="" cols="30" rows="1">{{$kegiatan->k}}"</textarea>
+            <textarea required class="form-control" name="kegiatan[]" id="" cols="30" rows="1">{{$kegiatan->k}}</textarea>
          </div>  
          <div class="col-md-2 mt-1">
             <button type="button" id="{{$loop->iteration}}"  class="btn btn-danger hapus"> Hapus</button>
@@ -72,7 +72,10 @@ $(document).on('click','.hapus',function(){
 				success: function(data) {
                     $(".edit-jurnal-guru-ini").text("Edit");
                     $("#Edit_jurnal").modal("toggle");
+                  
+                  setTimeout(function() {
                     $(".rekap-jurnal").load("/guru/rekap-jurnal-guru");
+                  }, 1500);
 
                     
                   

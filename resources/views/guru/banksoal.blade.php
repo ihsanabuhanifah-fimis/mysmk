@@ -22,7 +22,7 @@
  <div class="p-md-4 border">
  
     <table id="myTableBankSoal" class="table datatable table-bordered table-bank table-responsive-sm ">
-        <thead class="bg-info" >
+        <thead class="bg-success" >
            <tr>
                <th class="text-center">No</th>
                <th>Mata Pelajaran</th>

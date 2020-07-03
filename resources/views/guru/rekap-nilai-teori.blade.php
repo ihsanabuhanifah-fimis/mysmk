@@ -190,11 +190,54 @@
             $jml_PAS=count($PAS);
             $jml_Kuis=count($Kuis);
             $jml_Tugas=count($Tugas);
-            $jml_nilai_PH = ((array_sum($nilai_PH))/$jml_PH) * ($persen_PH/100);
-            $jml_nilai_PTS = array_sum($nilai_PTS);
+            
            
             ?>
 
+            @if($jml_PH == 0)
+           
+            <?php $jml_nilai_PH = 0 ?>
+            @else
+
+            <?php $jml_nilai_PH = ((array_sum($nilai_PH))/$jml_PH) * ($persen_PH/100); ?>
+            @endif
+
+            @if($jml_PTS == 0)
+           
+           <?php $jml_nilai_PTS = 0 ?>
+           @else
+
+           <?php $jml_nilai_PTS = ((array_sum($nilai_PTS))/$jml_PTS) * ($persen_PTS/100); ?>
+           @endif
+
+           @if($jml_PAS == 0)
+           
+           <?php $jml_nilai_PAS = 0 ?>
+           @else
+
+           <?php $jml_nilai_PAS = ((array_sum($nilai_PAS))/$jml_PAS) * ($persen_PAS/100); ?>
+           @endif
+
+           @if($jml_Kuis == 0)
+           
+           <?php $jml_nilai_Kuis = 0 ?>
+           @else
+
+           <?php $jml_nilai_Kuis = ((array_sum($nilai_Kuis))/$jml_Kuis) * ($persen_Kuis/100); ?>
+           @endif
+
+           @if($jml_Tugas == 0)
+           
+           <?php $jml_nilai_Tugas = 0 ?>
+           @else
+
+           <?php $jml_nilai_Tugas = ((array_sum($nilai_Tugas))/$jml_Tugas) * ($persen_Tugas/100); ?>
+           @endif
+          
+
+           <?php $jumlahnilai= $jml_nilai_PH + $jml_nilai_PTS + $jml_nilai_PAS + $jml_nilai_Kuis +$jml_nilai_Tugas ;?>
+            <?= number_format(($jumlahnilai),2) ;?>
+           
 
 
       

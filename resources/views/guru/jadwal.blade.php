@@ -38,15 +38,7 @@
 </div>
 
 
-            <?php
-                $nilai_Tugas = (((array_sum($nilai_Tugas))*$persen_Tugas)/100)/$jml_Tugas;
-                $nilai_Kuis = (((array_sum($nilai_Kuis))*$persen_Kuis)/100)/$jml_Kuis;
-              $nilai_PAS = (((array_sum($nilai_PAS))*$persen_PAS)/100)/$jml_PAS;
-              $nilai_PTS = (((array_sum($nilai_PTS))*$persen_PTS)/100)/$jml_PTS;
-              $nilai_PH = (((array_sum($nilai_PH))*$persen_PH)/100)/$jml_PH;
-           
-           
-            ;?>
+            
 
             <?php $jumlahnilai= $nilai_PH + $nilai_PTS + $nilai_PAS + $nilai_Kuis +$nilai_Tugas ;?>
             <?= number_format(($jumlahnilai)) ;?>
