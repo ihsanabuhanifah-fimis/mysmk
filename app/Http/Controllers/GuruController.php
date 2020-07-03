@@ -721,13 +721,14 @@ class GuruController extends Controller
         ->get();
 
         
-        $soal = $banksoal[0]->soal_praktek;
+        $soals = $banksoal[0]->soal_praktek;
+        $soal = json_decode($soals);
        
         // $json1=json_encode($data);
         // $json=json_decode($json1);
         //return $key;
         
-        return view('guru.pilih-bank-soal-praktek',['soal'=>$soal, 'key'=>$key]);   
+        return view('guru.pilih-bank-soal-praktek',['soals'=>$soal, 'key'=>$key]);   
         }
         public function aksessoalujian(Request $request)
         {
@@ -957,12 +958,15 @@ class GuruController extends Controller
 
     public function rekapnilaiteori(Request $request)
     {
+       
+        
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
         $siswa=DB::table('student_rombels')
         ->leftjoin('students','students.nis','=','student_rombels.nis')
         ->where('id_rombel',$request["id_rombel"])
         ->get();
+       
 
         $persen=DB::table('mapel_aktifs')
         ->where('id_rombel', $request["id_rombel"])
@@ -970,8 +974,10 @@ class GuruController extends Controller
         ->where('status',1)
         ->where('id_tipe',2)
         ->where('id_cikgu',$id_cikgu->id_cikgu)
-        ->get();
-    
+        ->first();
+
+
+     
         $ujian=DB::table('penilaians')
         ->leftjoin('rombels','rombels.id_rombel','=','penilaians.id_rombel')
         ->leftjoin('mapels','mapels.id_subject','=','penilaians.id_subject')
@@ -990,8 +996,10 @@ class GuruController extends Controller
          while($i < $jml)
          {
             $hasil[$i]=json_decode($ujian[$i]->hasil);
+            $jenis[$i]=$ujian[$i]->id_ujian;
             $i++;
          }
+
          $PH=DB::table('penilaians')
          ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
          ->where('penilaians.id_tipe',2)
@@ -1002,6 +1010,8 @@ class GuruController extends Controller
          ->where('penilaians.semester',$request["semester"])
          ->where('penilaians.id_ujian',1)
          ->get();
+
+      
          $PTS=DB::table('penilaians')
          ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
          ->where('penilaians.id_tipe',2)
@@ -1043,6 +1053,10 @@ class GuruController extends Controller
          ->where('penilaians.id_ujian',5)
          ->get();
          
+     
+         
+
+        
         return view('guru.rekap-nilai-teori',
         [
             'ujians'=>$ujian,'hasils'=>$hasil,'siswas'=>$siswa,'persen'=>$persen,
@@ -1050,7 +1064,8 @@ class GuruController extends Controller
             'PTS'=>$PTS,
             'PAS'=>$PAS,
             'Kuis'=>$Kuis,
-            'Tugas'=>$Tugas
+            'Tugas'=>$Tugas,
+            'jenis'=>$jenis,
         ]);
     }
 
@@ -1105,6 +1120,7 @@ class GuruController extends Controller
         $penilaian->materi=$request["materi"];
         $penilaian->id_ujian=$request["id_ujian"];
         $penilaian->id_tipe=$request["id_tipe"];
+        $penilaian->id_subject=$request["id_subject"];
         $penilaian->remidial=$request["remidial"];
         $penilaian->tampil_nilai=$request["tnilai"];    
         $penilaian->save();

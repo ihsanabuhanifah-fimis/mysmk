@@ -32,9 +32,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
-
     /**
      * Show the application dashboard.
      *
@@ -63,9 +62,10 @@ class HomeController extends Controller
             'tipes'=>$tipe, 'ujians'=>$ujian]);
             
           }elseif(auth()->user()->hasRole('siswa')){
-           
+            return view('waiting');
             return view('siswa.index');
           }elseif(auth()->user()->hasRole('wali')){
+              return view('waiting');
           
               return view('wali.index');
           }else{
@@ -118,10 +118,12 @@ class HomeController extends Controller
         return "Alhamdulilah data berhasil tersimpan, silahkan reload untuk masuk menu utama";
         
         }else if($users[0]->secret_number == "KMX78665@J#$"){
+
+            
            
             $cikgu= new Cikgu();   
             $username= Auth::user()->username;
-     
+        
             $validateData = $request->validate([
             'cikgu_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:cikgus'],
@@ -135,7 +137,8 @@ class HomeController extends Controller
             'tahun2'=>['required'],
             'bulan2'=>['required']
         ]);
-      
+       
+    
             $cikgu= new Cikgu();   
             $cikgu-> email=  $validateData["email"];
             $cikgu-> username=  $validateData["username"];
@@ -149,7 +152,7 @@ class HomeController extends Controller
            
             $cikgu-> bulan2=$validateData["bulan2"];
             $cikgu-> tahun2=$validateData["tahun2"];
-         
+          
            
            
             $cikgu->save();

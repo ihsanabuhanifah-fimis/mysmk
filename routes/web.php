@@ -144,7 +144,7 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
 
 //routeWali
 //Route Upload
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/Dashboard', 'HomeController@index')->name('dashboard'); 
 

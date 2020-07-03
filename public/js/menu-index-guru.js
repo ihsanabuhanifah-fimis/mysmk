@@ -131,6 +131,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-menu-halaqoh").hide();
         $(".tampilkan-menu-mapel").show();
+        $(".mapel-saya").show();  
         $(".mapel-saya").load("/guru/mapel");  
 
     });

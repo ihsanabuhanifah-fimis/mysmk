@@ -89,7 +89,7 @@
         </div>
     </form>
 
-    <div class="hide daftar-bank-soal"></div>
+    <div class="hide daftar-bank-soal mt-3"></div>
     <div class="bank-soal-empty list alert alert-warning mt-4"></div>
 </div>
 </div>
@@ -157,9 +157,8 @@ $(document).ready(function(){
 });
 
 </script>
-<script src="/js/drag-drop.js"></script>
+
 <!-- //buat javascript -->
 
 @endsection
 
-<input type="text">

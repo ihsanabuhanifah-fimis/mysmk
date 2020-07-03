@@ -45,145 +45,159 @@
             @endwhile
 
             <td class="text-center">
-            
-            <?php $jml_PH=count($PH) ;?>
-            <?php $nilai=[] ;?>
-            <?php $a=0 ; ;?>    
-            @while($a<$jml_PH)
-            
-            <?php $b=0 ;?>
-            @while($b<$jmlsiswa)
-            
+                <?php $jml_penilaian = count($hasils) ; ?>
+        
+             <!-- PH -->
+             <?php $jml_PH=count($PH) ;?>
+            <?php $nilai_PH=[] ;?>
+            <?php $c=0 ; ;?>    
           
-            @if ($hasils[$a][$b]->s== $siswas[$i]->nis)
-            <?php $nilai[]=$hasils[$a][$b]->n ;?>
-            @else
-            
+            <?php $x=0; ?>
+            @while($x < $jml_penilaian)
+              
+                @if($jenis[$x]==1)
+                <?php $d=0 ;?>
+                    @while($d<$jmlsiswa)
+                         @if ($hasils[$x][$d]->s== $siswas[$i]->nis)
+          
+                         <?php $nilai_PH[]=$hasils[$x][$d]->n ;?>
+                        @endif
+                        <?php $d++;?>
+                    @endwhile
+                 @endif
+            <?php $x++; ?>
+            @endwhile
+            @if($jml_PH = NULL)
+            <?php $nilai_PH[]=0 ;?>
             @endif
-
-
-            <?php $b++;?>
-            @endwhile
-            <?php $a++ ;?>
-            @endwhile
-
+           
+<!-- PH -->
             <!-- PTS -->
             <?php $jml_PTS=count($PTS) ;?>
             <?php $nilai_PTS=[] ;?>
             <?php $c=0 ; ;?>    
-            @while($c<$jml_PTS)
-            
-            <?php $d=0 ;?>
-            @while($d<$jmlsiswa)
-            
           
-            @if ($hasils[$c][$d]->s== $siswas[$i]->nis)
-            <?php $nilai_PTS[]=$hasils[$c][$d]->n ;?>
-            @else
-            
+            <?php $x=0; ?>
+            @while($x < $jml_penilaian)
+              
+                @if($jenis[$x]==2)
+                <?php $d=0 ;?>
+                    @while($d<$jmlsiswa)
+                         @if ($hasils[$x][$d]->s== $siswas[$i]->nis)
+          
+                         <?php $nilai_PTS[]=$hasils[$x][$d]->n ;?>
+                        @endif
+                        <?php $d++;?>
+                    @endwhile
+                 @endif
+            <?php $x++; ?>
+            @endwhile
+            @if($jml_PTS = NULL)
+            <?php $nilai_PTS[]=0 ;?>
             @endif
 
-
-            <?php $d++;?>
-            @endwhile
-            <?php $c++ ;?>
-            @endwhile
-            
+       
             <!-- PTS -->
 
             <!-- PAS -->
+            
             <?php $jml_PAS=count($PAS) ;?>
             <?php $nilai_PAS=[] ;?>
-            <?php $e=0 ; ;?>    
-            @while($e<$jml_PAS)
-            
-            <?php $f=0 ;?>
-            @while($f<$jmlsiswa)
-            
+            <?php $c=0 ; ;?>    
           
-            @if ($hasils[$e][$f]->s== $siswas[$i]->nis)
-            <?php $nilai_PAS[]=$hasils[$e][$f]->n ;?>
-            @else
-            
+            <?php $x=0; ?>
+            @while($x < $jml_penilaian)
+              
+                @if($jenis[$x]==3)
+                <?php $d=0 ;?>
+                    @while($d<$jmlsiswa)
+                         @if ($hasils[$x][$d]->s== $siswas[$i]->nis)
+          
+                         <?php $nilai_PAS[]=$hasils[$x][$d]->n ;?>
+                        @endif
+                        <?php $d++;?>
+                    @endwhile
+                 @endif
+            <?php $x++; ?>
+            @endwhile
+            @if($jml_PAS = NULL)
+            <?php $nilai_PAS[]=0 ;?>
             @endif
-
-
-            <?php $f++;?>
-            @endwhile
-            <?php $e++ ;?>
-            @endwhile
-            
-           
+         
             <!-- PAS -->
             <!-- Kuis -->
+            
             <?php $jml_Kuis=count($Kuis) ;?>
             <?php $nilai_Kuis=[] ;?>
-            <?php $e=0 ; ;?>    
-            @while($e<$jml_Kuis)
-            
-            <?php $f=0 ;?>
-            @while($f<$jmlsiswa)
-            
+            <?php $c=0 ; ;?>    
           
-            @if ($hasils[$e][$f]->s== $siswas[$i]->nis)
-            <?php $nilai_Kuis[]=$hasils[$e][$f]->n ;?>
-            @else
-            
+            <?php $x=0; ?>
+            @while($x < $jml_penilaian)
+              
+                @if($jenis[$x]==4)
+                <?php $d=0 ;?>
+                    @while($d<$jmlsiswa)
+                         @if ($hasils[$x][$d]->s== $siswas[$i]->nis)
+          
+                         <?php $nilai_Kuis[]=$hasils[$x][$d]->n ;?>
+                        @endif
+                        <?php $d++;?>
+                    @endwhile
+                 @endif
+            <?php $x++; ?>
+            @endwhile
+            @if($jml_Kuis = NULL)
+            <?php $nilai_Kuis[]=0 ;?>
             @endif
-
-
-            <?php $f++;?>
-            @endwhile
-            <?php $e++ ;?>
-            @endwhile
-            
+         
            
             <!-- Kuis -->
              <!-- Tugas -->
-             <?php $jml_Tugas=count($Kuis) ;?>
+            
+             <?php $jml_Tugas=count($Tugas) ;?>
             <?php $nilai_Tugas=[] ;?>
-            <?php $e=0 ; ;?>    
-            @while($e<$jml_Tugas)
-            
-            <?php $f=0 ;?>
-            @while($f<$jmlsiswa)
-            
+            <?php $c=0 ; ;?>    
           
-            @if ($hasils[$e][$f]->s== $siswas[$i]->nis)
-            <?php $nilai_Tugas[]=$hasils[$e][$f]->n ;?>
-            @else
-            
+            <?php $x=0; ?>
+            @while($x < $jml_penilaian)
+              
+                @if($jenis[$x]==5)
+                <?php $d=0 ;?>
+                    @while($d<$jmlsiswa)
+                         @if ($hasils[$x][$d]->s== $siswas[$i]->nis)
+          
+                         <?php $nilai_Tugas[]=$hasils[$x][$d]->n ;?>
+                        @endif
+                        <?php $d++;?>
+                    @endwhile
+                 @endif
+            <?php $x++; ?>
+            @endwhile
+            @if($jml_Tugas = NULL)
+            <?php $nilai_Tugas[]=0 ;?>
             @endif
-
-
-            <?php $f++;?>
-            @endwhile
-            <?php $e++ ;?>
-            @endwhile
-            
+           
            
             <!-- Tugas -->
             <?php
-            $persen_PH = $persen[$i]->PH ; 
-            $persen_PTS = $persen[$i]->PTS ; 
-            $persen_PAS = $persen[$i]->PAS;
-            $persen_Kuis = $persen[$i]->Kuis ; 
-            $persen_Tugas = $persen[$i]->Tugas ; 
+            $persen_PH = $persen->PH ; 
+            $persen_PTS = $persen->PTS ; 
+            $persen_PAS = $persen->PAS;
+            $persen_Kuis = $persen->Kuis ; 
+            $persen_Tugas = $persen->Tugas ; 
+            $jml_PH=count($PH);
+            $jml_PTS=count($PTS);
+            $jml_PAS=count($PAS);
+            $jml_Kuis=count($Kuis);
+            $jml_Tugas=count($Tugas);
+            $jml_nilai_PH = ((array_sum($nilai_PH))/$jml_PH) * ($persen_PH/100);
+            $jml_nilai_PTS = array_sum($nilai_PTS);
            
             ?>
 
-            <?php
-                $nilai_Tugas = (((array_sum($nilai))*$persen_Tugas)/100)/$jml_Tugas;
-                $nilai_Kuis = (((array_sum($nilai))*$persen_Kuis)/100)/$jml_Kuis;
-              $nilai_PAS = (((array_sum($nilai_PAS))*$persen_PAS)/100)/$jml_PAS;
-              $nilai_PTS = (((array_sum($nilai_PTS))*$persen_PTS)/100)/$jml_PTS;
-              $nilai_PH = (((array_sum($nilai))*$persen_PH)/100)/$jml_PH;
-           
-           
-            ;?>
 
-            <?php $jumlahnilai= $nilai_PH + $nilai_PTS + $nilai_PAS + $nilai_Kuis +$nilai_Tugas ;?>
-            <?= number_format(($jumlahnilai)) ;?>
+
+      
             </td>
         </tr>
 

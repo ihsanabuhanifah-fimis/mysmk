@@ -67,7 +67,18 @@ class RegisterController extends Controller
             'daftar-sebagai'=>['required','integer'],
             'secret-number'=>['string','nullable'],
             'nama_santri'=>['string','nullable'],
+
+            [
+
+                'unique ' =>  ':attribute sudah digunakan.',
+                'required' => ':attribute wajib diisi.',
+                'min' => ':attribute min : karater.',
+            ]
+
+            
         ]);
+
+       
 
        
         
