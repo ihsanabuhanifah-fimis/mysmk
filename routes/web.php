@@ -28,6 +28,8 @@ Route::get('/', function () {
     // }
 });
 //Route Admin
+Route::post('/admin/simpan-rombel','AdminController@simpan_rombel')->name('save.rombel');
+Route::get('/admin/daftar-siswa-rombel/{id}','AdminController@daftar_siswa_rombel')->name('siswa.rombel');
 Route::post('/data-diri','HomeController@data_diri')->name('data');
 Route::prefix('/admin')->middleware('CekSessionAdmin')->group(function (){
 // Route::get('/user','HomeController@user')->name('admin.users');
@@ -35,6 +37,10 @@ Route::get('/user/{id}','HomeController@edit')->name('admin.edituser');
 Route::get('/user','AdminController@user')->name('admin.users');
 Route::get('/daftar-siswa','AdminController@daftar_siswa')->name('admin.siswa');
 Route::get('/daftar-wali','AdminController@daftar_wali')->name('admin.wali');
+Route::get('/kelas','AdminController@daftar_kelas')->name('admin.kelas');
+
+
+
 });
 //Route Admin
 
@@ -98,7 +104,8 @@ Route::get('/rekap-jurnal-guru', 'JurnalController@rekap_jurnal_guru')->name('re
 Route::post('/jurnal-guru/simpan', 'JurnalController@simpan_jurnal_guru')->name('simpan-jurnal-guru');
 Route::get('/jurnal-guru/cari/{id}', 'JurnalController@cari_jurnal_guru')->name('cari-jurnal-guru');
 Route::put('/jurnal-guru/edit', 'JurnalController@edit_jurnal_guru')->name('edit-jurnal-guru');
-
+Route::get('/kelas','AdminController@daftar_kelas')->name('admin.kelas');
+Route::get('/daftar-siswa-rombel/{id}','AdminController@daftar_siswa_rombel')->name('siswa.rombel');
 });
 
 //Route Guru

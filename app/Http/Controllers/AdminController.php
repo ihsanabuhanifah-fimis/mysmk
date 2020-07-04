@@ -47,8 +47,15 @@ class AdminController extends Controller
     public function daftar_siswa()
     {
         $siswa=Student::all();
+        $rombel = DB::table('rombels')
+        ->get();
+        $ta = DB::table('tas')
+        ->get();
+        
+ 
+       
 
-        return view('admin.daftar-siswa',['siswas'=>$siswa]);
+        return view('admin.daftar-siswa',['siswas'=>$siswa,'rombels'=>$rombel,'tas'=>$ta]);
     }
 
     public function daftar_wali()
@@ -62,5 +69,80 @@ class AdminController extends Controller
 
         return dump($wali);
         return view('admin.daftar-wali',['walis'=>$wali]);
+    }
+
+    public function daftar_kelas()
+    {
+        $kelas=Rombel::all();
+       
+        return view('admin.daftar-kelas',['rombels' => $kelas]);
+    
+    }
+
+    public function simpan_rombel(Request $request)
+    {
+        $id_ta = $request["id_ta"];
+        $id_rombel = $request["id_rombel"];
+        $semester = $request["semester"];
+        $siswa = $request["pilih-siswa"];
+
+        if($request["pilih-siswa"]=NULL){
+            return "tidak ada siswa di pilih";
+        }else{
+        $jml_siswa = count($siswa);
+        if($request["id_rombel"] == 1)
+        $id_angkatan = 1;
+        elseif($request["id_rombel"] == 2)
+        $id_angkatan = 1;
+        elseif($request["id_rombel"] == 3)
+        $id_angkatan = 2;
+        elseif($request["id_rombel"] == 4)
+        $id_angkatan = 2;
+        elseif($request["id_rombel"] == 5)
+        $id_angkatan = 3;
+        elseif($request["id_rombel"] == 6)
+        $id_angkatan = 3;
+
+       
+      
+        $i=0;
+        while($i < $jml_siswa){
+
+            $rombel= new Student_rombel();
+           
+            $rombel-> id_rombel = $id_rombel;
+            $rombel-> semester = $semester;
+            $rombel-> id_ta = $id_ta;
+            $rombel-> time_stamp = NOW();
+            $rombel-> nis = $siswa[$i];
+            $rombel-> id_angkatan = $id_angkatan;
+            $rombel->save();
+
+
+           
+
+            $i++;
+        }
+        }
+        
+
+        
+        
+
+        return "Alhamdulilah";
+    }
+    
+
+    public function daftar_siswa_rombel($id)
+    {
+       $siswa = DB::table('student_rombels')
+       ->leftjoin('students','students.nis','=','student_rombels.nis')
+       ->leftjoin('tas','tas.id_ta','=','student_rombels.id_ta')
+       ->leftjoin('rombels','rombels.id_rombel','=','student_rombels.id_rombel')
+       ->where('student_rombels.id_rombel', $id)
+       ->get();
+
+     
+       return view('admin.daftar-rombel-siswa',['siswas' =>$siswa]);
     }
 }

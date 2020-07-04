@@ -31,9 +31,15 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav nav-pills" role="tablist"">
                             <div class="sb-sidenav-menu-heading">MYSMK</div>
-                            <a class="nav-link active menu-dashboard"  data-toggle="pill" role="tab" aria-selected="true"
+                            <a class="nav-link active menu-dashboard"  data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</a >
+
+                                <a class="nav-link collapsed menu-daftar-kelas" data-toggle="pill" role="tab" aria-selected="false"
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                               Daftar Kelas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a
 
 
 
@@ -221,6 +227,14 @@
                        <!-- tampilkan Bank Soal -->
 
                       <!-- akhir menu jadwal -->
+
+                      <!-- daftar kelas -->
+                      <div id="menu-kelas">               
+                       <div class="tampilkan-daftar-kelas"></div>
+                    
+                     
+                    </div>
+                    <!-- daftar kelas -->
                       <div class="dashboard">
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">

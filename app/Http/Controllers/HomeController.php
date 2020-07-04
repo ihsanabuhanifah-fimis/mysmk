@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use DB;
+use Cookie;
+use Redirect;
 use Illuminate\Http\Request;
 use App\User;
 use App\Jadwal;
@@ -44,7 +46,7 @@ class HomeController extends Controller
       
         if(auth()->user()->hasRole('admin')){  
           
-            return view('admin.index');
+            return response(view('admin.index'))->cookie('secret', 'index' ,10080);
           }elseif(auth()->user()->hasRole('guru')){
             $days =date('l');
             
@@ -58,16 +60,16 @@ class HomeController extends Controller
             $ujian = DB::table('jenis_ujians')->get();
             $tipe = DB::table('tipe_ujians')->get();
             $user=User::where('username',"$username")->first();
-            return view('guru.index',['user'=>$user,'babs'=>$babs, 'rombels'=>$rombel,'subjects'=>$subject,
-            'tipes'=>$tipe, 'ujians'=>$ujian]);
+            return response(view('guru.index',['user'=>$user,'babs'=>$babs, 'rombels'=>$rombel,'subjects'=>$subject,
+            'tipes'=>$tipe, 'ujians'=>$ujian]))->cookie('secret-guru', 'index' ,10080);
             
           }elseif(auth()->user()->hasRole('siswa')){
-            return view('waiting');
-            return view('siswa.index');
+            return response(view('waiting'))->cookie('secret', 'index' ,10080);;
+            return response(view('siswa.index'))->cookie('secret', 'index' ,10080);;
           }elseif(auth()->user()->hasRole('wali')){
-              return view('waiting');
+              return response(view('waiting'))->cookie('secret-guru', 'index' ,10080);;
           
-              return view('wali.index');
+              return response(view('wali.index'))->cookie('secret-guru', 'index' ,10080);;
           }else{
             
             $username= Auth::user()->email;

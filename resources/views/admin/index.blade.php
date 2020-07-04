@@ -37,13 +37,12 @@
                                Daftar User
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                               </a>
-                               <!-- menu kehadiran -->
-
-                               
-                                 <!-- menu-catatan-pelanggaran -->
-                            
-
-                            
+                              <a class="nav-link collapsed menu-daftar-kelas" 
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                               Daftar Kelas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
+                                                        
                            
                            
                         </div>
@@ -77,11 +76,17 @@
 
                     <div id="menu-daftar-user">
                       
-                        <div class="">
+                       
                         
                         <div class="ket-menu-daftar-user"></div>
                        <div class="tampilkan-daftar-user"></div>
                       
+                        <!-- akhir dahsboard -->
+                    </div>
+
+                    <div id="menu-kelas">               
+                       <div class="tampilkan-daftar-kelas"></div>
+                    
                         <!-- akhir dahsboard -->
                     </div>
 
