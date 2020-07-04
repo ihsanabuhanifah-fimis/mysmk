@@ -29,9 +29,10 @@
                 <th class="text-center">No</td>
                 <th>Nama</td>
                 <th class="text-center">NISN</th>
-                <th class="text-center">Email</th>
+                <th>Email</th>
                 <th class="text-center">Daftar Sebagai</th>
                 <th>Secret</th>
+                <th>Verifikasi Email</th>
                 
             
                 
@@ -61,6 +62,7 @@
 
             </td>
             <td>{{$user->secret_number}}</td>
+            <td>{{$user->email_verified_at}}</td>
           
         
             
