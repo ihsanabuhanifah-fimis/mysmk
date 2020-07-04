@@ -304,10 +304,12 @@
     var a = $(this).val();
     if(a==5){
     $(".secret-number").removeClass("hide");
+    $("#secret-number").attr('required');
      $("#secret-number").attr('placeholder','Secret Number diumumkan via WA Grup Wali Santri');
     
     }else if(a!=6){
         $(".secret-number").removeClass("hide");
+        $("#secret-number").attr('required');
      $("#secret-number").attr('placeholder','Secret Number diumumkan via WA Grup Guru ');
     }
     else{

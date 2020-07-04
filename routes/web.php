@@ -30,8 +30,11 @@ Route::get('/', function () {
 //Route Admin
 Route::post('/data-diri','HomeController@data_diri')->name('data');
 Route::prefix('/admin')->middleware('CekSessionAdmin')->group(function (){
-Route::get('/user','HomeController@user')->name('admin.users');
+// Route::get('/user','HomeController@user')->name('admin.users');
 Route::get('/user/{id}','HomeController@edit')->name('admin.edituser');
+Route::get('/user','AdminController@user')->name('admin.users');
+Route::get('/daftar-siswa','AdminController@daftar_siswa')->name('admin.siswa');
+Route::get('/daftar-wali','AdminController@daftar_wali')->name('admin.wali');
 });
 //Route Admin
 

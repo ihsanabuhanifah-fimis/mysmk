@@ -40,5 +40,4 @@
 
             
 
-            <?php $jumlahnilai= $nilai_PH + $nilai_PTS + $nilai_PAS + $nilai_Kuis +$nilai_Tugas ;?>
-            <?= number_format(($jumlahnilai)) ;?>
+          
