@@ -142,7 +142,8 @@ class AdminController extends Controller
        ->where('student_rombels.id_rombel', $id)
        ->get();
 
+    $jml_siswa=count($siswa);
      
-       return view('admin.daftar-rombel-siswa',['siswas' =>$siswa]);
+       return view('admin.daftar-rombel-siswa',['siswas' =>$siswa, 'jml_siswa'=>$jml_siswa]);
     }
 }

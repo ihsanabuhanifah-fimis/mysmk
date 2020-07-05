@@ -1,21 +1,47 @@
 <style>
-    p,a{
+    .font{
         font-size:13px;
     }
 </style>
+<div class="border p-md-4 p-sm-0">
+<table class="table-responsive table table-borderless">
+    <tr>
+        <th>Kelas</th>
+      
+        <th>:</th>
+      
+        <th>{{$siswas[0]->nama_rombel}}</th>
+    </tr>
+    <tr>
+        <th>Jumlah Santri</th>
+       
+        <th>:</th>
+        
+        <th>{{$jml_siswa}}</th>
+    </tr>
+    <tr>
+        <th>Wali Kelas</th>
+       
+        <th>:</th>
+        
+        <th>{{$siswas[0]->wali_kelas}}</th>
+    </tr>
+</table>
+</div>
+<div class="row row-cols-1 mt-4 row-cols-md-5">
 
-<div class="row row-cols-1 row-cols-md-4">
   @forelse($siswas as $siswa)
 
   <div class="col mb-4">
+  
     <div class="card">
     <div class="p-4">
       <img src="/img/avatar.jpeg" class="card-img-top rounded-circle" alt="..." >
       </div>
       <div class="card-body">
-        <h6 class="card-title font-weight-bolder text-center">{{$siswa->nama}}</h6>
+        <h6 class="card-title font-weight-bolder text-center font">{{$siswa->nama}}</h6>
         <div class="card-text">
-       <p class="text-center">
+       <p class="text-center font">
         @if($siswa->bulan == 1)
        <a>{{$siswa->tempat}}, {{$siswa->tanggal}} Januari {{$siswa->tahun}}</a>
         @elseif($siswa->bulan == 2)
