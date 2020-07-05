@@ -146,4 +146,77 @@ class AdminController extends Controller
      
        return view('admin.daftar-rombel-siswa',['siswas' =>$siswa, 'jml_siswa'=>$jml_siswa]);
     }
+
+    public function jadwal_kelas()
+    {
+        $rombel = DB::table('rombels')
+        ->get();
+        $ta = DB::table('tas')
+        ->get();
+        $subject = DB::table('mapels')
+        ->get();
+        $cikgu = DB ::table('cikgus')
+        ->get();
+
+
+        return view('admin.jadwal',[
+            'rombels'=>$rombel,
+            'tas'=>$ta,
+            'subjects'=>$subject,
+            'cikgus'=>$cikgu
+            ]);
+    }
+
+    public function simpan_jadwal_kelas(Request $request)
+    {
+        $days= $request['days'];
+        $id_subject=$request['id_subject'];
+        $id_rombel = $request['id_rombel'];
+        $id_cikgu=$request['id_cikgu'];
+        $id_ta= $request['id_ta'];
+        $waktu=$request['waktu'];
+        $semester = $request['semester'];
+        $jam_ke=$request['jam_ke'];
+        $durasi=$request['durasi'];
+        $mulai=$request['mulai'];
+
+        $jml = count($mulai);
+
+        $i=0;
+        while($i < $jml){
+            $jadwal= new Jadwal();
+            $jadwal -> id_subject = $id_subject[$i];
+            $jadwal -> id_rombel = $id_rombel;
+            $jadwal -> id_cikgu = $id_cikgu[$i];
+            $jadwal -> days = $days;
+            $jadwal-> waktu = $waktu[$i];
+            $jadwal -> jam_ke = $jam_ke[$i];
+            $jadwal -> id_ta = $id_ta; 
+            $jadwal -> semester = $semester;
+            $jadwal -> duration = $durasi[$i];
+            $jadwal -> mulai = $mulai[$i];
+            $jadwal -> status =1;
+
+           
+            $jadwal->save();
+            $i++;
+        }
+        return "Alhamdulilah Jadwal tersimpan   ";
+
+    }
+
+    public function tampilkan_jadwal_kelas()
+    {
+       $jadwal = DB::table('jadwals')
+       ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+       ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+       ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+       ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+       ->where('jadwals.status',1)
+       ->get();
+
+   
+
+       return view('admin.jadwal-siswa',['jadwals'=>$jadwal]);
+    }
 }

@@ -42,6 +42,11 @@
                                Daftar Kelas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                               </a>
+                              <a class="nav-link collapsed menu-jadwal" 
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                               Jadwal
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
                                                         
                            
                            
@@ -89,6 +94,14 @@
                     
                         <!-- akhir dahsboard -->
                     </div>
+
+                    <!-- jadwal -->
+                    <div id="menu-jadwal">               
+                       <div class="tampilkan-jadwal"></div>
+                    
+                        <!-- akhir dahsboard -->
+                    </div>
+                    <!-- Jadwal -->
 
                     
                         

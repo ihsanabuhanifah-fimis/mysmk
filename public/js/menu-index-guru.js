@@ -4,6 +4,7 @@ $(document).ready(function(){
        $(".tampilkan-menu-jadwal").hide();
        $(".tampilkan-menu-mapel").hide();
        $("#menu-kelas").hide(); 
+       $("#menu-jadwal-siswa").hide();  
        $(".tampilkan-menu-jurnal-guru").hide();
        $(".tampilkan-menu-halaqoh").hide(); 
        $(".tampilkan-menu-bank-soal").hide();
@@ -23,6 +24,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-jurnal-guru").hide();
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-menu-penilaian").hide();
+        $("#menu-jadwal-siswa").hide();  
         $(".tampilkan-menu-mapel").hide();
         $(".tampilkan-menu-halaqoh").hide(); 
         $(".dashboard").hide();
@@ -39,6 +41,7 @@ $(document).ready(function(){
     $(".tampilkan-menu-halaqoh").hide(); 
     $(".tampilkan-menu-jurnal-guru").hide();
     $("#menu-kelas").hide(); 
+    $("#menu-jadwal-siswa").hide();  
     $(".tampilkan-menu-mapel").hide();
     $(".tampilkan-edit-absen").hide();
     $(".tampilkan-menu-bank-soal").hide();
@@ -56,6 +59,7 @@ $(document).ready(function(){
       $("#menu-kelas").hide(); 
         $(".tampilkan-menu-penilaian").hide(); 
         $(".tampilkan-menu-mapel").hide();
+        $("#menu-jadwal-siswa").hide();  
         $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-penilaian").hide();
     $(".tampilkan-menu-materi").hide(); 
@@ -76,6 +80,7 @@ $(document).ready(function(){
     $(".rekapnilaipraktek").hide();
     $(".rekapnilaiteori").hide();
     $(".dashboard").hide();
+    $("#menu-jadwal-siswa").hide();  
     $(".tampilkan-menu-jadwal").hide(); 
     $(".tampilkan-menu-halaqoh").hide(); 
     $(".tampilkan-menu-penilaian").show(); 
@@ -96,6 +101,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();
+        $("#menu-jadwal-siswa").hide();  
         $(".banksoallain").hide();  
         $(".tampilkan-menu-halaqoh").hide(); 
         $(".bank-soal-saya").load("guru/banksoal");
@@ -117,6 +123,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();
+        $("#menu-jadwal-siswa").hide();  
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-menu-halaqoh").show();
         $(".tampilkan-menu-halaqoh").load("/guru/halaqoh");
@@ -136,6 +143,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();
+        $("#menu-jadwal-siswa").hide();  
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-menu-halaqoh").hide();
         $(".tampilkan-menu-mapel").show();
@@ -153,6 +161,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();
+        $("#menu-jadwal-siswa").hide();  
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-menu-halaqoh").hide();
         $(".tampilkan-menu-mapel").hide();
@@ -168,6 +177,7 @@ $(document).ready(function(){
         $(".rekapnilaipraktek").click(function(){
             $(".mapel-saya").hide(); 
             $(".rekapnilaiteori").hide();
+            $("#menu-jadwal-siswa").hide();  
             $(".rekapnilaipraktek").show();
             $(".rekapnilaipraktek").load("guru/rekapnilaipraktek"); 
    
@@ -189,12 +199,36 @@ $(document).ready(function(){
         $(".tampilkan-menu-bank-soal").hide();
         $(".tampilkan-menu-halaqoh").hide();
         $(".tampilkan-menu-mapel").hide();
+        $("#menu-jadwal-siswa").hide();     
         $(".tampilkan-menu-jurnal-guru").hide();
         $("#menu-kelas").show(); 
-     
+      
         $(".tampilkan-daftar-kelas").load("/guru/kelas");
      
        
 
     });
   });
+
+  $(document).ready(function(){
+    $(".menu-jadwal-siswa").click(function(){
+
+        $(".dashboard").hide(); 
+        $(".tampilkan-menu-materi").hide(); 
+        $(".tampilkan-edit-absen").hide();
+        $(".tampilkan-menu-jadwal").hide(); 
+         $(".tampilkan-menu-penilaian").hide(); 
+        $(".dashboard").hide();
+        $(".tampilkan-menu-bank-soal").hide();
+        $(".tampilkan-menu-halaqoh").hide();
+        $(".tampilkan-menu-mapel").hide();
+        $(".tampilkan-menu-jurnal-guru").hide();
+        $("#menu-kelas").hide(); 
+        $("#menu-jadwal-siswa").show();     
+        $('.tampilkan-jadwal-siswa').load('/guru/tampilkan/jadwal');
+     
+       
+
+    });
+  });
+

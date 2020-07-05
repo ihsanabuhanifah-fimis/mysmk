@@ -39,6 +39,11 @@
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                Daftar Kelas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                              <a class="nav-link collapsed menu-jadwal-siswa" data-toggle="pill" role="tab" aria-selected="false"
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                               Jadwal Kelas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                               </a
 
 
@@ -72,7 +77,7 @@
               
                             <a class="nav-link collapsed menu-jadwal"  data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Jadwal
+                                Jadwal Hari Ini
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             
@@ -115,6 +120,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
+                  
                     <div class="tampilkan-menu-jurnal-guru"></div>
                       <!-- awal dashboard -->
                       <div class="tampilkan-menu-materi">
@@ -299,6 +305,10 @@
                             </div>
                         </div>
                         <!-- akhir dahsboard -->
+                        <div id="menu-jadwal-siswa">
+                          <div class="tampilkan-jadwal-siswa"></div>
+                          
+                        </div>
 
                         <!-- menu-halaqoh-online -->
                         <div class="tampilkan-menu-halaqoh"></div>

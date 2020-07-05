@@ -1,3 +1,7 @@
+<div class="text-center mt-5">
+<h5>Daftar Rombel SMK MADINATULQURAN <br> Tahun Pelajaran 2020/2021</h5>
+</div>
+
 <div class="row row-cols-1 row-cols-md-3 mt-2 p-md-5 p-sm-0">
 
 @forelse($rombels as $rombel)

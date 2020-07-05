@@ -38,6 +38,11 @@ Route::get('/user','AdminController@user')->name('admin.users');
 Route::get('/daftar-siswa','AdminController@daftar_siswa')->name('admin.siswa');
 Route::get('/daftar-wali','AdminController@daftar_wali')->name('admin.wali');
 Route::get('/kelas','AdminController@daftar_kelas')->name('admin.kelas');
+Route::get('/jadwal','AdminController@jadwal_kelas')->name('admin.jadwal');
+Route::post('/simpan/jadwal','AdminController@simpan_jadwal_kelas')->name('simpan.jadwal.kelas');
+Route::post('/tampilkan/jadwal','AdminController@tampilkan_jadwal_kelas')->name('jadwal.kelas');
+Route::get('/tampilkan/jadwal','AdminController@tampilkan_jadwal_kelas')->name('tampilkanjadwal.kelas');
+
 
 
 
@@ -106,6 +111,7 @@ Route::get('/jurnal-guru/cari/{id}', 'JurnalController@cari_jurnal_guru')->name(
 Route::put('/jurnal-guru/edit', 'JurnalController@edit_jurnal_guru')->name('edit-jurnal-guru');
 Route::get('/kelas','AdminController@daftar_kelas')->name('admin.kelas');
 Route::get('/daftar-siswa-rombel/{id}','AdminController@daftar_siswa_rombel')->name('siswa.rombel');
+Route::get('/tampilkan/jadwal','AdminController@tampilkan_jadwal_kelas')->name('tampilkanjadwal.kelas');
 });
 
 //Route Guru
