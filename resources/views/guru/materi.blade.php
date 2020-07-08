@@ -76,9 +76,9 @@
           </select>
           <br>
     
-          <label for="materi">Bab</label>
+          <label for="id_bab">Bab</label>
           <div class="bab"></div>
-          <select  class="form-control remove-select" name="" id="">
+          <select  class="form-control remove-select" name="id_bab" id="id_bab">
             @if($materi->submateri != NULL)
                 <option class="font-weight-bold" value="{{$materi->id_bab}}">{{$materi->nama_bab}}</option>
             @endif
@@ -90,21 +90,30 @@
           <label for="mapel">Kelas</label>
           
           <select  class="form-control" name=id_rombel id="kelas">
+       
           @if($materi->submateri != NULL)
+         
             <option class="font-weight-bold" value="{{$materi->id_rombel}}">{{$materi->nama_rombel}}</option>
           @endif
-          
-              @forelse ($rombels as $rombel)
+          <option value="">-</option>
+         @forelse ($rombels as $rombel)
            <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
          @empty
          @endforelse
          
           </select>
-          <p class="alert alert-danger"><i>(kosongkan jika materi untuk 2 kelas dan 1 angkatan)</i></p>         
-          <label for="mapel">Angkatan</label>
+          <p class="alert alert-danger"><i>(kosongkan jika materi untuk 2 kelas dalam 1 tingkat)</i></p>         
+          <label for="mapel">Tingkat</label>
           
           <select  class="form-control" name="angkatan" id="angkatan">
-          <option  class="font-weight-bold" selected value="1">1</option>
+          @if($materi->id_angkatan != NULL)
+
+          <option class="font-weight-bold" value="{{$materi->id_angkatan}}">{{$materi->id_angkatan}}</option>
+          @endif
+          <option  class="font-weight-bold" value="">-</option>
+          <option   value="1">1</option>
+          <option   value="2">2</option>
+          <option   value="3">3</option>
          
          
           </select>

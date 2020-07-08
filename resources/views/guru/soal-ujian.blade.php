@@ -60,7 +60,11 @@
 @if($soals1[0]->s != "xr")
 @forelse($soals1 as $soal)
 <div class="mb-1 border form-control list-item alert-primary"  draggable="true">
-    <h6>{{$soal->s}}</h6>
+    <div class="d-flex justify-content-lg-between">
+    <h6>{{$soal->ns}}</h6>
+    <a>Lihat</a>
+    </div>
+    <input value="{{$soal->ns}}" type="hidden" name="nama_soal[]" class="form-control mb-2" required>
     <!-- awal -->
     <div class=" hide soalpg{{$loop->iteration}}  border btn-group-toggle p-4 mt-4 mb-4 bg-white rounded-lg">
     
@@ -161,7 +165,11 @@
 <!-- soal isian singkat -->
 @forelse($soals2 as $soal2)
 <div class="mb-1 border form-control list-item alert-warning"  draggable="true">
-    <h6>{{$soal2->s}}</h6>
+<div class="d-flex justify-content-lg-between">
+    <h6>{{$soal2->ns}}</h6>
+    <a>Lihat</a>
+    </div>
+    <input value="{{$soal2->ns}}" type="hidden" name="nama_soal2[]" class="form-control mb-2" required>
     <!-- awal -->
     <div class="soal-isian border btn-group-toggle p-4 mt-4 mb-4 bg-white hide rounded-lg">
     
@@ -208,7 +216,11 @@
 <!-- soal true false -->
 @forelse($soals3 as $soal3)
 <div class="border form-control list-item alert-danger"  draggable="true">
-    <h6>{{$soal3->s}}</h6>
+<div class="d-flex justify-content-lg-between">
+    <h6>{{$soal3->ns}}</h6>
+    <a>Lihat</a>
+    </div>
+    <input value="{{$soal3->ns}}" type="hidden" name="nama_soal3[]" class="form-control mb-2" required>
     <!-- awal -->
     <div class="true-false border btn-group-toggle p-4 mt-4 mb-4 bg-white hide  rounded-lg">
     

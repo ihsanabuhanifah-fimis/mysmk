@@ -1,7 +1,7 @@
 @if (Route::has('login'))
 @auth
 <script>
- window.location.href="/Dashboard";
+ window.location.href="/Home";
 </script>
 
 @endauth
@@ -42,9 +42,9 @@
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     @if (Route::has('login'))
                     @auth
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/Dashboard') }}" >Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/home') }}" >Dashboard</a></li>
                         @else
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/Dashboard') }}" >Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/home') }}" >Dashboard</a></li>
                         @if (Route::has('register'))
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('register') }}" >Registrasi</a></li>
                         @endif

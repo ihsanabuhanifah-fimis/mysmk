@@ -176,9 +176,11 @@ class AdminController extends Controller
         $id_ta= $request['id_ta'];
         $waktu=$request['waktu'];
         $semester = $request['semester'];
-        $jam_ke=$request['jam_ke'];
-        $durasi=$request['durasi'];
-        $mulai=$request['mulai'];
+        $jam_ke= $request['jam_ke'];
+        $durasi= $request['durasi'];
+        $mulai=  $request['mulai'];
+        $perjam= $request['perjam'];
+
 
         $jml = count($mulai);
 
@@ -189,6 +191,7 @@ class AdminController extends Controller
             $jadwal -> id_rombel = $id_rombel;
             $jadwal -> id_cikgu = $id_cikgu[$i];
             $jadwal -> days = $days;
+            $jadwal -> perjam= $perjam[$i];
             $jadwal-> waktu = $waktu[$i];
             $jadwal -> jam_ke = $jam_ke[$i];
             $jadwal -> id_ta = $id_ta; 

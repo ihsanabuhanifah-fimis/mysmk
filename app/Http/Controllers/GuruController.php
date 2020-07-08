@@ -199,6 +199,36 @@ class GuruController extends Controller
   
       
    }
+   public function edit(Request $request)
+   {  
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $id = $request["id"];
+   
+        $kbm= new Kbm();
+        $kbm = Kbm::where('id',$request["id"])->where('id_cikgu',$id_cikgu->id_cikgu)->first();
+        $ket = $request["ket"];
+        $nis = $request["nis"];
+        $status = $request["status"];
+        $jml=count($nis);
+        $i=0;
+       
+        while($i<$jml){
+        $data[$i]=[
+            'n'=>$nis[$i],
+            's'=>$ket[$i],
+            'k'=>$status[$i],
+          ];
+        $i++;
+        }
+        $soal=json_encode($data);
+      
+        $kbm-> absen=$soal;
+        $kbm->save();
+            return "Alhamduliah Absensi berhasil diperbaharui.
+            Jazakumullahu Khairan";
+  
+   }
    public function store_jurnal(Request $request)
    {  
      
@@ -270,51 +300,19 @@ class GuruController extends Controller
 
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
+        
         $jurnal = new Jurnal();
         $jurnal = Jurnal::where('no',$request["id"])->where('id_cikgu',$id_cikgu->id_cikgu)->first();
      
-        $jurnal-> materi=$request["materi"];
+         $materi = $request["materi"];
       
-        $jurnal->update();    
+        $jurnal-> materi = $materi; 
+        $jurnal-> save(); 
      
-      return "ok";
-        $jurnal= new Jurnal();
-        $username= Auth::user()->username;
-        $id_cikgu=Cikgu::where('username',"$username")->first();
-        $id = $request["no"];
-        $jadwal = DB::table('jadwals')
-        ->where('no',$id )
-        ->where('id_cikgu',$id_cikgu->id_cikgu)
-        ->first();
-       
-       
-        $jurnal-> id_cikgu= $id_cikgu->id_cikgu;
-        $jurnal-> id_rombel=$jadwal->id_rombel;
-        $jurnal-> id_subject=$jadwal->id_subject;
-        $jurnal-> id_ta=$jadwal->id_ta;
-        $jurnal-> semester=$jadwal->semester;
-        $jurnal-> tanggal = $request["tanggal"];
-        $jurnal-> total_jam = $request["total"];
-        $jurnal-> materi = $request["materi"];
-        $jurnal-> jam_ke = $request["jam"];
-        $cek_jurnal = Jurnal::where('id_cikgu',$id_cikgu->id_cikgu)
-        ->where('id_subject',$jadwal->id_subject)
-        ->where('id_rombel',$jadwal->id_rombel)
-        ->where('jam_ke',$request["jam"])
-        ->where('tanggal',$request["tanggal"])->first();
-
      
-        if($cek_jurnal != NULL){
-            return "Mohon maaf ustadz sudah menyimpan materi jam ke-Jazakumullahu Khairan";
-        } else{
-            $jurnal->save();
-            return "Alhamduliah Materi jam ke-telah tersimpan. Jazakumullahu Khairan";
-        }
+       
 
-      
-        
-
-        return "Materi berhasil tersimpan";
+        return $materi;
      
 
   
@@ -414,7 +412,7 @@ class GuruController extends Controller
         $ujian = new Materi();
         $ujian = Materi::find($id);
         $ujian -> delete($id_cikgu->id_cikgu);
-        return "alhamdulilah";
+        return "Alhamdulilah";
     }
  
     
@@ -661,18 +659,17 @@ class GuruController extends Controller
         $babs = DB::table('babs')
         ->where('id_subject',$penilaian->id_subject)
         ->get();
-        $soal1 = $penilaian->soal1;
-        $soal2 = $penilaian->soal2;
-        $soal3 = $penilaian->soal3;
-        $soals1=json_decode($soal1);
-        $soals2=json_decode($soal2);
-        $soals3=json_decode($soal3);
+        $soal = $penilaian->soal_praktek;
+        
+        $soals=json_decode($soal);
+
+       
         
         
         
         // return $babs;
         
-        return view('guru.soal-ujian-praktek',['babs'=>$babs,'penilaian'=>$penilaian,
+        return view('guru.soal-ujian-praktek',['babs'=>$babs,'penilaian'=>$penilaian, 'soals'=>$soals
         ]);
     }
     public function carisoal(Request $request)
@@ -819,6 +816,7 @@ class GuruController extends Controller
         while($i<$jml){
             $data[$i]=[
                 't'=>'pg',
+                'ns'=>$request->nama_soal[$i],
                 'n'=>$request->nomor_soal[$i],
                 's'=>$request->soal[$i],
                 'v'=>$request->skor[$i],
@@ -872,6 +870,7 @@ class GuruController extends Controller
             };
             $datax[$j]=[
                 't'=>'isi',
+                'ns'=>$request->nama_soal2[$j],
                 's'=>$request->soal2[$j],
                 'n'=>$request->nomor_soal2[$j],
                 'v'=>$request->skor2[$j],
@@ -901,6 +900,7 @@ class GuruController extends Controller
             while($k < $jml3){
                 $data3[$k]=[
                     't'=>'tf',
+                    'ns'=>$request->nama_soal3[$k],
                     'n'=>$request->nomor_soal3[$k],
                     's'=>$request->soal3[$k],
                     'v'=>$request->skor3[$k],
@@ -925,7 +925,42 @@ class GuruController extends Controller
         $soal->save();
         return "Alhamdulilah soal ujian berhasil tersimpan";
     }
+    public function simpansoalujianpraktek(Request $request)
+    {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $id=$request["id"];
+        $soal= new Penilaian(); 
+        $soal = Penilaian::find($id);
+
+        if(!isset($request['materi']))
+        {
+            $soal -> soal_praktek = NULL;
+            $soal ->save();
+            return "Alhamdulilah Ujian Tersimpan";
+        }else{
     
+        $materi = $request["materi"][0];
+        $soals = $request["soal"][0];
+      
+        $data[]= 
+        [
+            'm' => $materi,
+            's' => $soals
+        ];
+
+        $soal_praktek = json_encode($data);
+
+      
+        $soal -> soal_praktek = $soal_praktek;
+        $soal ->save();
+
+        return "Alhamdulilah Ujian Tersimpan";         
+
+    }
+        
+        
+    }
     public function rekapnilai()
     {
         $username= Auth::user()->username;
@@ -1122,7 +1157,8 @@ class GuruController extends Controller
         $penilaian->id_tipe=$request["id_tipe"];
         $penilaian->id_subject=$request["id_subject"];
         $penilaian->remidial=$request["remidial"];
-        $penilaian->tampil_nilai=$request["tnilai"];    
+        $penilaian->tampil_nilai=$request["tampilkan_nilai"];
+        
         $penilaian->save();
         
         return "ok";

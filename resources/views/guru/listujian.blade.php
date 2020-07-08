@@ -41,7 +41,7 @@
             <th class="text-center">Nilai</th>
             <th colspan="2" class="text-center">Action</th>
             <th class="text-center">Jumlah Remidial</th>
-            <th class="text-center">Tampilkan <br> Nilai</th>
+            <th class="text-center">Teknis Ujian</th>
             
         </thead>
         <tbody>
@@ -69,9 +69,17 @@
         @else
         <td class="text-center">Ya</td>
         @endif
-        <td><a id="{{$ujian->id}}" class="btn btn-primary akses-ujian" >Akses</a></>
+        @if($ujian->tampil_nilai == 2)
+<td><p>Penilaian Offline</p></td>
+        @else
+        <td><a id="{{$ujian->id}}" class="btn btn-primary akses-ujian" >Akses</a></td>
+        @endif
         @if($ujian->id_tipe == 2)
+        @if($ujian->tampil_nilai == 2)
+        <td><p>Penilaian Offline</p></td>
+        @else
         <td class="text-center"><a class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</a></div>
+        @endif
         @else
         <td class="text-center"><a class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</a></div>
         @endif
@@ -80,9 +88,9 @@
         <td><a id="{{$ujian->id}}" class="btn btn-success edit-ujian">Edit</a></td>
         <td class="text-center">{{$ujian->remidial}}</td>
         @if($ujian->tampil_nilai == 1)
-        <td class="text-center">Ya</td>
+        <td class="text-center">Online</td>
         @else
-        <td class="text-center">Tidak</td>
+        <td class="text-center">Offline / Kertas</td>
         @endif
         </tr>  
         @empty

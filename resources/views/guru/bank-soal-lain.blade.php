@@ -11,7 +11,7 @@
  </ol>
  <div class="d-flex justify-content-md-end d-flex justify-content-sm-start mb-3 ">
 
- <button class="btn btn-success ml-2 bank-soal-saya" > My Bank Soal</button>
+ <button  class="btn btn-success ml-2 banksoalku" > My Bank Soal</button>
  </div>
  <div class="p-md-4 border">
     <table class="table datatable table-bordered table-bank table-responsive-sm">
@@ -131,7 +131,8 @@ $(document).ready(function(){
 
 <script>
   $(document).ready(function(){
-    $(".bank-soal-saya").click(function(){
+    $(".banksoalku").click(function(){
+      alert();
       $(".bank-soal-lain").hide();  
       $(".bank-soal-saya").load("guru/banksoal");
         $(".banksoal-soal-saya").show();

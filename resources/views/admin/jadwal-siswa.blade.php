@@ -32,7 +32,7 @@
             <td>{{$jadwal->subject_name}}</td>
             <td>{{$jadwal->cikgu_name}}</td>
             <td class="text-center">{{$jadwal->jam_ke}}</td>
-            <td class="text-center">{{$jadwal->duration}} x 45 Menit</td>
+            <td class="text-center">{{$jadwal->duration}} x {{$jadwal->perjam}} Menit</td>
             <td class="text-center"> Semester {{$jadwal->semester}}</td>
             <td class="text-center">{{$jadwal->nama_ta}}</td>
             <td><button class="btn btn-success">Edit</button></td>

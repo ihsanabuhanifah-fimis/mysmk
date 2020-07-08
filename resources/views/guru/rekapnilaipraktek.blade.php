@@ -123,7 +123,7 @@
     <script>
 $(document).ready(function(){
     $(".persen").click(function(){
-      $(".rekapnilaipraktek").hide();
+      $(".rekapnilaipraktek2").hide();
        $(".mapel-saya").show(); 
        $(".mapel-saya").load("/guru/mapel");  
       
@@ -135,9 +135,8 @@ $(document).ready(function(){
 
     $(document).ready(function(){
     $(".rekapnilai").click(function(){
-      alert();
        $(".mapel-saya").hide(); 
-        $(".rekapnilaipraktek").hide();
+        $(".rekapnilaipraktek2").hide();
         $(".rekapnilaiteori").show();
         $(".rekapnilaiteori").load("guru/rekapnilai"); 
       

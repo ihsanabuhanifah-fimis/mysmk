@@ -162,6 +162,7 @@ class BanksoalController extends Controller
         while($i<$jml){
             $data[$i]=[
                 't'=>'pg',
+                'ns'=>$request->nama_soal[$i],
                 's'=>$request->soal[$i],
                 'v'=>$request->skor[$i],
                 'a'=>$request->pg1[$i],
@@ -183,6 +184,7 @@ class BanksoalController extends Controller
     } else{
         $data[0] = [
             't'=>'pg',
+            'ns'=>"",
             's'=>"xr",
             'v'=>"1",
             'a'=>"",
@@ -222,6 +224,7 @@ class BanksoalController extends Controller
             };
             $datax[$j]=[
                 't'=>'isi',
+                'ns'=>$request->nama_soal2[$j],
                 's'=>$request->soal2[$j],
                 'v'=>$request->skor2[$j],
                 'a'=>strtolower($isi1),
@@ -238,6 +241,7 @@ class BanksoalController extends Controller
     }else{
         $datax[0]=[
             't'=>'isi',
+            'ns'=>"",
             's'=>"xr",
             
         ];
@@ -250,6 +254,7 @@ class BanksoalController extends Controller
             while($k < $jml3){
                 $data3[$k]=[
                     't'=>'tf',
+                    'ns'=>$request->nama_soal3[$k],
                     's'=>$request->soal3[$k],
                     'v'=>$request->skor3[$k],
                     'k'=>$request->truefalse[$k],
@@ -263,6 +268,7 @@ class BanksoalController extends Controller
         }else{
             $data3[0]=[
                 't'=>'tf',
+                'ns'=>"",
                 's'=>"xr",
             ];
         $soal3=json_encode($data3);

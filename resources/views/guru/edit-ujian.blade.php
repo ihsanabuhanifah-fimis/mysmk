@@ -15,6 +15,18 @@
             <option value="6">Semester 6</option>
           </select>
 
+          <label for="tnilai">Ujian dilakukan dengan</label>
+        <br>
+        <select class="form-control" name="tampilkan_nilai" id="tnilai">
+        @if($ujiandata->tampil_nilai == 1)
+        <option selected value="1">Online</option>
+        <option value="2">Offline/Kertas</option>
+        @else
+        <option selected value="2">Offline/Kertas</option>
+        <option value="1">Online</option>
+        @endif
+        </select>
+
         <label for="remidial">Aktifkan Waktu Ujian</label>
         <select class="form-control" name="status" id="status">
 
@@ -99,25 +111,6 @@
 
         </select>
     <br>
-    <label for="remidial">Status</label>
-        <select class="form-control" name="status" id="status">
-        @if($ujiandata->status == 1)
-          <option selected value="1">Aktif</option>
-          <option value="2">Tidak Aktif</option>
-        @else
-          <option selected value="2">Tidak Aktif</option>
-          <option value="1">Aktif</option>
-        @endif
-        </select>
-        <label for="tnilai">Tampilkan Nilai</label>
-        <br>
-        <select class="form-control" name="tampilkan_nilai" id="tnilai">
-        @if($ujiandata->tampil_nilai == 1)
-        <option selected value="1">Ya</option>
-        <option value="2">Tidak</option>
-        @else
-        <option selected value="2">Tidak</option>
-        <option value="1">Ya</option>
-        @endif
-        </select>
+    
+       
     <div class="noticeujian text-center"></div>  

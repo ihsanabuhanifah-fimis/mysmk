@@ -28,6 +28,7 @@
 <div class="row">
           <h3 class="text-center mx-auto mt-5">Edit Absensi</h3>
     </div>
+    
     <form class="form-row-border-primary absen_form" method="post" action="javascript:void(0)" id="contact_us">
     @csrf
     {{method_field('PUT')}}
@@ -40,7 +41,7 @@
                   <input class="form-control" type="text" name="id_subject" id="mapel" value="{{$kbms[0]->subject_name}}" /> 
                  
                 
-                  <input type="hidden" name="id_rombel" id="id_rombel" ?>
+                  <input type="hidden" name="id_rombel" id="id_rombel" />
                   <label class="font-weight-bolder" for="semester">Semester</label>
                   
                   <input class="form-control" type="text" disabl= name="semester" id="semester" value="{{$kbms[0]->semester}}" />
@@ -50,7 +51,7 @@
 
                   <label class="font-weight-bolder" for="tanggal">Tanggal</label>
                   <input class="form-control" type="date" required name="tanggal" id="tanggal" value="{{$kbms[0]->tanggal}}" />
-                 
+                  <input class="form-control" type="hidden" required name="id" value="{{$kbms[0]->id}}" />
                 
                   
                   <label class="font-weight-bolder" for="kelas">Kelas</label>
@@ -59,6 +60,50 @@
 </div>
 </div>
              <div class="row">
+            <table class="table mx-5 border table-responsive-sm">
+            <thead>
+                <tr class="tr">
+                    <th class="no">No</th>
+                    <th class="tr">Nama Siswa</th>
+                    <th class="tr">Absensi</th>
+                    <th class="tr">Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+            @forelse($absensi as $absen)
+                <tr class="tr">
+                    <td class="no">{{$loop->iteration}}</td>
+                        <input class="form-control nis" value="{{$absen->n}}"  type="hidden" name="nis[]" id="nis" />
+                    <td class="tr">
+                        <input class="form-control nama" value="{{$absen->i}}"  type="text" name="nama[]" id="nama" />
+                    </td>
+                    <td class="no2">
+                        <select class="form-control status" name="status[]" id="status"> 
+                        @if($absen->k == 1)
+                        <option selected value="{{$absen->k}}">Hadir</option>
+                        @elseif($absen->k == 2)
+                        <option selected value="{{$absen->k}}">Sakit</option>
+                        @elseif($absen->k == 3)
+                        <option selected value="{{$absen->k}}">Izin</option>
+                        @elseif($absen->k == 4)
+                        <option selected value="{{$absen->k}}">Tanpa Keterangan</option>
+                        @endif
+
+                        <option value=1>Hadir</option>
+                        <option value=2>Sakit</option>
+                        <option value=3>Izin</option>
+                        <option value=4>Tanpa Keterangan</option>  
+                        </select>
+                    </td>
+                    <td class="tr">  
+                        <input class="form-control ket" type="text" name="ket[]" id="ket" value="{{$absen->s}}" />
+                    </td>
+                </tr>
+                @empty
+                @endforelse
+                </tbody>     
+          </table>
            
                             
             @for ($i=0 ; $i< $jml_jurnal  ; $i++)
@@ -144,54 +189,48 @@
             </table>     
       </div>
     <div class="row ">
-          <table class="table mx-5 border table-responsive-sm">
-            <thead>
-                <tr class="tr">
-                    <th class="no">No</th>
-                    <th class="tr">Nama Siswa</th>
-                    <th class="tr">Absensi</th>
-                    <th class="tr">Keterangan</th>
-                </tr>
-            </thead>>
-            <tbody>
-            @forelse($absensi as $absen)
-                <tr class="tr">
-                    <td class="no">{{$loop->iteration}}</td>
-                        <input class="form-control nis" value="{{$absen->n}}"  type="hidden" name="nis[]" id="nis" />
-                    <td class="tr">
-                        <input class="form-control nama" value="{{$absen->i}}"  type="text" name="nama[]" id="nama" />
-                    </td>
-                    <td class="no2">
-                        <select class="form-control status" name="status[]" id="status"> 
-                        @if($absen->k == 1)
-                        <option selected value="{{$absen->k}}">Hadir</option>
-                        @elseif($absen->k == 2)
-                        <option selected value="{{$absen->k}}">Sakit</option>
-                        @elseif($absen->k == 3)
-                        <option selected value="{{$absen->k}}">Izin</option>
-                        @elseif($absen->k == 4)
-                        <option selected value="{{$absen->k}}">Tanpa Keterangan</option>
-                        @endif
-
-                        <option value=1>Hadir</option>
-                        <option value=2>Sakit</option>
-                        <option value=3>Izin</option>
-                        <option value=4>Tanpa Keterangan</option>  
-                        </select>
-                    </td>
-                    <td class="tr">  
-                        <input class="form-control ket" type="text" name="ket[]" id="ket" value="{{$absen->s}}" />
-                    </td>
-                </tr>
-                @empty
-                @endforelse
-                </tbody>     
-          </table>
-           
+     
+         
     </div>
+ 
     <div class="text-center notif-absen"></div>
           <button type="submit" id="send_form" class="absensi form-control justify-content-md-end btn btn-success" name="absen" >Simpan</button> 
 </form>
 </div>
 
 </script> 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#send_form").click(function(){
+            $('.notif-absen').removeClass('alert alert-success');
+            $('.notif-absen').removeClass('alert alert-danger');
+            $('.notif-absen').empty(    );
+            $('#send_form').html('Bismillah sedang menyimpan absensi..');
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+				type: 'POST',
+				url: "{{route('editkbm')}}",
+				data: $('#contact_us').serialize(),
+				success: function(data) {
+                    $('.notif-absen').addClass('alert alert-success');
+                    $('.notif-absen').text(data);
+                    $('#send_form').html('Simpan');
+                   
+                   
+                },
+                error: function (jqXHR, exception) {
+                    $('.notif-absen').addClass('alert alert-danger');
+                    $('.notif-absen').text("Absensi tidak berhasil tersimpan, Mohon untuk mengecek tanggal");
+                    $('#send_form').html('Simpan');       
+                }
+			});
+			
+			
+			});
+		});
+	
+  </script>

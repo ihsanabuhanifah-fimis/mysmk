@@ -89,7 +89,7 @@
              <div class="form-row mt-3 hapus-input-jadwal">
                 
                  
-                 <div class="col-md-3">
+                 <div class="col-md-2">
                        <label for="id_subject"><b>Mata Pelajaran</b></label>
                      <select class="form-control" name="id_subject[]" id="id_subject">
                      <option selected value="">-</option>
@@ -128,6 +128,15 @@
                         <option  value="5">5</option>
                         <option  value="6">6</option>
                         <option  value="7">7</option>
+                     </select>
+                 </div>
+                 <div>
+                     <label for="durasi_perjam"><b>Perjam</b></label>
+                     <select class="form-control" name="perjam[]" id="durasi_perjam">
+                     <option value="">-</option>    
+                     <option value="30">30</option>
+                         <option value="45">45</option>
+                         <option value="60">60</option>
                      </select>
                  </div>
                  <div class="col-md-1">
@@ -185,7 +194,7 @@
     $(".tambah-input-jadwal").click(function(){
       
         j++;
-  $(".input-jadwal").append('<div class="form-row mt-3 hapus-input-jadwal'+j+'"><div class="col-md-3"><label for="id_subject"><b>Mata Pelajaran</b></label><select class="form-control" name="id_subject[]" id="id_subject"> <option selected value="">-</option> @forelse($subjects as $subject)<option value="{{$subject->id_subject}}">{{$subject->subject_name}}</option> @empty @endforelse </select></div><div class="col-md-3"> <label for="id_cikgu"><b>Nama Guru</b></label><br><select class="form-control" name="id_cikgu[]" id="id_cikgu"> <option selected value="">-</option> @forelse($cikgus as $cikgu)<option value="{{$cikgu->id_cikgu}}">{{$cikgu->cikgu_name}}</option> @empty @endforelse</select></div><div class="col-md-2"><label for="waktu"><b>Jam Masuk</b></label><input class="form-control" type="time" name="waktu[]"></div><div class="col-md-1"><label for="jam_ke"><b>Jam Ke</b></label><br><select class="form-control" name="jam_ke[]" id="jam_ke"><option selected value="">-</option><option  value="1">1</option><option value="2">2</option><option value="3">3</option><option  value="4">4</option><option  value="5">5</option><option  value="6">6</option><option  value="7">7</option></select></div><div class="col-md-1"><label for="durasi"><b>Durasi</b></label><br> <select class="form-control" name="durasi[]" id="durasi"><option selected value="">-</option><option  value="1">1</option><option value="2">2</option><option value="3">3</option> <option  value="4">4</option><option  value="5">5</option><option  value="6">6</option><option  value="7">7</option></select></div><div class="col-md-1"><label for="mulai"><b>Mulai</b></label><br><select class="form-control" name="mulai[]" id="mulai"><option selected value="">-</option><option  value="1">1</option><option value="2">2</option><option value="3">3</option><option  value="4">4</option><option  value="5">5</option><option  value="6">6</option><option  value="7">7</option></select></div><div class="col-md-1 mt-1 "><br>  <button type="button" id="'+j+'" class="btn btn-danger hapus-input">Hapus</button> </div></div>');
+  $(".input-jadwal").append('<div class="form-row mt-3 hapus-input-jadwal'+j+'"><div class="col-md-2"><label for="id_subject"><b>Mata Pelajaran</b></label><select class="form-control" name="id_subject[]" id="id_subject"> <option selected value="">-</option> @forelse($subjects as $subject)<option value="{{$subject->id_subject}}">{{$subject->subject_name}}</option> @empty @endforelse </select></div><div class="col-md-3"> <label for="id_cikgu"><b>Nama Guru</b></label><br><select class="form-control" name="id_cikgu[]" id="id_cikgu"> <option selected value="">-</option> @forelse($cikgus as $cikgu)<option value="{{$cikgu->id_cikgu}}">{{$cikgu->cikgu_name}}</option> @empty @endforelse</select></div><div class="col-md-2"><label for="waktu"><b>Jam Masuk</b></label><input class="form-control" type="time" name="waktu[]"></div><div class="col-md-1"><label for="jam_ke"><b>Jam Ke</b></label><br><select class="form-control" name="jam_ke[]" id="jam_ke"><option selected value="">-</option><option  value="1">1</option><option value="2">2</option><option value="3">3</option><option  value="4">4</option><option  value="5">5</option><option  value="6">6</option><option  value="7">7</option></select></div>  <div><label for="durasi_perjam"><b>Perjam</b></label><select class="form-control" name="perjam[]" id="durasi_perjam"><option value="">-</option><option value="30">30</option><option value="45">45</option><option value="60">60</option></select></div><div class="col-md-1"><label for="durasi"><b>Durasi</b></label><br> <select class="form-control" name="durasi[]" id="durasi"><option selected value="">-</option><option  value="1">1</option><option value="2">2</option><option value="3">3</option> <option  value="4">4</option><option  value="5">5</option><option  value="6">6</option><option  value="7">7</option></select></div><div class="col-md-1"><label for="mulai"><b>Mulai</b></label><br><select class="form-control" name="mulai[]" id="mulai"><option selected value="">-</option><option  value="1">1</option><option value="2">2</option><option value="3">3</option><option  value="4">4</option><option  value="5">5</option><option  value="6">6</option><option  value="7">7</option></select></div><div class="col-md-1 mt-1 "><br>  <button type="button" id="'+j+'" class="btn btn-danger hapus-input">Hapus</button> </div></div>');
 $(document).on('click','.hapus-input',function(){
     var button_id=$(this).attr("id");
     $(".hapus-input-jadwal"+button_id+"").remove();

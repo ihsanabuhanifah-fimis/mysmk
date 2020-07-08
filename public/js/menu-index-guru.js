@@ -173,19 +173,7 @@ $(document).ready(function(){
     });
   });
  
-    $(document).ready(function(){
-        $(".rekapnilaipraktek").click(function(){
-            $(".mapel-saya").hide(); 
-            $(".rekapnilaiteori").hide();
-            $("#menu-jadwal-siswa").hide();  
-            $(".rekapnilaipraktek").show();
-            $(".rekapnilaipraktek").load("guru/rekapnilaipraktek"); 
-   
 
-
-        });
-  });
-  
 
   $(document).ready(function(){
     $(".menu-daftar-kelas").click(function(){

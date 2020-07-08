@@ -26,13 +26,18 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">MySMK</div>
-                            <a class="nav-link menu-dashboard" 
+                            <a data-toggle="pill" data-toggle="pill" role="tab" aria-selected="false" class="nav-link menu-dashboard" 
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard</a >
+                                Identitas Santri</a >
 
                                 <!-- menu kehadiran -->
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link collapsed menu-kehadiran" 
+                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-mapel" 
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                                Mata Pelajaran 
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
+                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-kehadiran" 
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Kehadiran Santri
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -40,7 +45,7 @@
                                <!-- menu kehadiran -->
 
                                <!-- menu-rekap-nilai -->
-                               <a class="nav-link collapsed menu-jadwal-ujian" 
+                               <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-jadwal-ujian" 
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Jadwal Ujian dan Hasil
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -48,7 +53,7 @@
                                  <!-- menu-rekap-nilai -->
 
                                    <!-- menu-halaqoh -->
-                               <a class="nav-link collapsed menu-halaqoh-online" 
+                               <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-halaqoh-online" 
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Halaqoh Online
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -56,7 +61,7 @@
                                  <!-- menu-halaqoh -->
 
                                   <!-- menu-nilai-sikap -->
-                               <a class="nav-link collapsed menu-nilai-sikap" 
+                               <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-nilai-sikap" 
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Nilai Sikap
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -64,7 +69,7 @@
                                  <!-- menu-nilai-sikap -->
 
                                  <!-- menu-catatan-pelanggaran -->
-                               <a class="nav-link collapsed menu-catatan-pelanggaran" 
+                               <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-catatan-pelanggaran" 
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Catatan Pelanggaran
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -77,10 +82,7 @@
                            
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Wali Santri
-                    </div>
+                   
                 </nav>
             </div>
 
@@ -107,20 +109,15 @@
 
                       <!-- akhir menu materi -->
                       <div class="dashboard">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                       
-                        <!-- akhir dahsboard -->
-                    </div>
+                      <div class="dashboard-show"></div>
+                      </div>
 
                     <div class="kehadiran">
                         <h2 class="mt-4 mb-3 text-center">Kehadiran Santri</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">kehadiran</li>
                         </ol>
-                        <div class="p-4">
+                        <div class="p-4 ">
                         <form method="post" class="form-kehadiran" action="javascript:void(0)">
                         @csrf
                         <div class="form-row">
@@ -129,10 +126,10 @@
                         </div>
                         </div>
                         </form>
-                        <div class="border p-4">
+                        
                         <div class="ket-absen"></div>
                        <div class="tampilkan-kehadiran"></div>
-                       </div>
+                      
                         <!-- akhir dahsboard -->
                     </div>
 
@@ -140,15 +137,16 @@
                     <div class="jadwal-ujian">
                         <h2 class="mt-4 mb-3 text-center">Jadwal Penilaian dan Hasil</h2>
                       
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt delectus quis cum fuga quidem optio a magni eligendi tempora. Similique autem ipsam saepe nostrum.</li>
-                        </ol>
-                        <div class="p-4">
-                        
+                       
+                  
+                     
                         <div class="ket-jadwal"></div>
                        <div class="tampilkan-jadwal-ujian"></div>
                         <!-- akhir dahsboard -->
+                  
+
                     </div>
+                     <div id="menu-mapel"></div>
 
                     
                         

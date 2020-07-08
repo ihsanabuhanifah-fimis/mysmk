@@ -136,10 +136,11 @@ class HalaqohController extends Controller
         
         $id_pembimbing = DB::table('pembimbing_halaqohs')
         ->where('id_cikgu', $id_cikgu->id_cikgu)
-        ->get();
+        ->get();    
         $surat =DB::table('surat_alqurans')
         ->get();
 
+       
 
         $halaqoh = DB::table('laporan_halaqoh_onlines')
         ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
@@ -205,7 +206,8 @@ class HalaqohController extends Controller
         $siswa = json_decode($halaqoh[0]->nama_santri);
         $jml_siswa=count($siswa);
 
-        
+
+     
         $i = 0;
         while($i < $jml_siswa){
            
@@ -219,8 +221,9 @@ class HalaqohController extends Controller
             $i++;
         }
 
-
-      
+        return dump($data);
+        
+     
    
         return view('guru.halaqoh-online',['siswas'=>$data,'rekaman'=>$halaqoh_siswa,'surat'=>$surat]);
       

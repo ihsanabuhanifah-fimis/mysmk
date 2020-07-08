@@ -24,3 +24,10 @@
 </div>
 
 <input type="hidden" name="id" value="{{$mapels[0]->id}}">
+<div class="p-2 pb-4 border mt-3 bg-light">
+      <label for="hapus-data">Apakah ustadz akan menghapus  ini?</label>
+          <select class="form-control" name="hapus-data" id="hapus">
+          <option value="">-</option>
+          <option value="1">Ya</option>
+          </select>
+          </div>

@@ -24,6 +24,9 @@
   .box{
     min-height:700px;
   }
+  label{
+    font-weight:bold;
+  }
 </style>
 <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -156,7 +159,8 @@
                       
                         <div class=" col-md-4 ml-2">
                             <label for="id_rombel">Kelas</label>
-                          <select name="id_rombel" class="form-control">
+                          <select required name="id_rombel" class="form-control">
+                          <option value="">-</option>
                           @forelse ($rombels as $rombel)
                                 <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
                             @empty
@@ -317,7 +321,7 @@
                         <div class="tampilkan-menu-mapel">
                           <div class="mapel-saya"></div>
                           <div class="rekapnilaiteori"></div>
-                          <div class="rekapnilaipraktek"></div>
+                          <div class="rekapnilaipraktek2"></div>
                         
                         </div>
                         <!-- menu-halaqoh-online -->
@@ -354,7 +358,8 @@
       </select>
 
       <label for="semester"> Semester </label>
-      <select class="form-control" name="semester" id="semester">
+      <select required class="form-control" name="semester" id="semester">
+      <option value="">-</option>
         <option value="1">Semester 1</option>
         <option value="2">Semester 2</option>
         <option value="3">Semester 3</option>
@@ -363,11 +368,25 @@
         <option value="6">Semester 6</option>
       </select>
     
+       <label for="tnilai">Ujian dilakukan dengan </label>
+        <br>
+        <select required class="form-control" name="tampilkan_nilai" id="tnilai">
+        <option value="">-</option>
+        <option value="1">Online</option>
+        <option value="2">Offline / Kertas</option>
+        </select>
       <label for="status">Aktifkan Waktu Penilaian</label>
-        <select class="form-control" name="status" id="status">
+        <select class="form-control waktu_nilai" name="status" id="status">
+        <option value="">-</option>
           <option value="2">Ya</option>
           <option value="1">Tidak</option>
         </select>
+        <style>
+          .hide{
+            display:none;
+          }
+        </style>
+        <div class="tanggal hide">
         <label for="tanggal">Tanggal Mulai</label>
         <br>
         <div class="d-flex justify-content-lg-between">
@@ -381,11 +400,13 @@
         <input class="form-control" value="" type="date" name="tanggal_selesai" value="00:00:0000" id="tanggal" />
         <input class=" ml-2 btn border" type="time" value="00:00" name="waktu_selesai">
         </div>
-        <label for="durasi"> Penilaian</label>
+        </div>
+        <label for="durasi"> Durasi Ujian</label>
         <input class="form-control" type="number" name="durasi" id="durasi" placeholder="Waktu dalam menit" required />
         <br>
         <label for="id_subject">Mata Pelajaran</label>
-        <select  class="form-control" name="id_subject" id="id_subject">
+        <select required class="form-control" name="id_subject" id="id_subject">
+        <option value="">-</option>
        @forelse ($subjects as $subject)
         <option value="{{$subject->id_subject}}">{{$subject->subject_name}}</option>
        @empty
@@ -394,7 +415,9 @@
           </select>
         <br>
         <label for="id_rombel">Kelas</label>
-        <select class="form-control" name="id_rombel" id="id_rombel">
+       
+        <select required class="form-control" name="id_rombel" id="id_rombel">
+        <option value="">-</option>
         @forelse ($rombels as $rombel)
                                 <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
                             @empty
@@ -409,6 +432,7 @@
         <br>
         <label for="nama_ujian">Jenis Ujian</label>
         <select class="form-control" name="id_ujian" id="id_ujian">
+        <option value="">-</option>
        @forelse ($ujians as $ujian)
           <option value="{{$ujian->id_ujian}}">{{$ujian->nama_ujian}} - {{$ujian->singkatan_ujian}}</option>
        @empty
@@ -418,6 +442,7 @@
         <br>
         <label for="tipe_ujian">Tipe Ujian</label>
         <select class="form-control" name="id_tipe" id="tipe_ujian">
+        <option value="">-</option>
            @forelse ($tipes as $tipe)
           <option value="{{$tipe->id_tipe}}">{{$tipe->nama_tipe}}</option>
           @empty
@@ -440,12 +465,6 @@
         </select>
     <br>
     
-        <label for="tnilai">Tampilkan Nilai</label>
-        <br>
-        <select class="form-control" name="tampilkan_nilai" id="tnilai">
-        <option value="1">Ya</option>
-        <option value="2">Tidak</option>
-        </select>
     <div class="noticeujian text-center"></div>  
 
   </div>
@@ -514,6 +533,18 @@
           <div></div>
         </div>
         <!-- Modal-buat-bank-soal -->
+<script>
+  $(document).ready(function(){
 
+$(".waktu_nilai").change(function(){
+  var a = $(this).val();
+  if(a==2){
+  $(".tanggal").removeClass("hide");
+  }else{
+  $(".tanggal").addClass("hide");
+  }
+});
+});
+</script>
 
 @endsection

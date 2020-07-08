@@ -27,7 +27,29 @@ use Illuminate\Support\Facades\Auth;
 
 class JadwalController extends Controller
 {
+    public function mapel_aktif_save(Request $request)
+    {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $mapel = new Mapel_aktif();
+        $mapel->status = $request["status"];
+        $mapel->id_tipe = $request["id_tipe"];
+        $mapel->id_subject = $request["id_subject"];
+        $mapel->id_rombel = $request["id_rombel"];
+        $mapel->id_ta = $request["id_ta"];
+        $mapel->semester = $request["semester"];
+        $mapel->id_cikgu = $id_cikgu->id_cikgu  ;
+        $mapel->PH = $request["ph"];
+        $mapel->PTS = $request["pts"];
+        $mapel->PAS = $request["pas"];
+        $mapel->Tugas = $request["tugas"];
+        $mapel->Kuis = $request["kuis"];
+        $mapel->save();
+        return "Alhamdulilah berhasil diperbaharui";
+    }
+    
     public function mapel_saya(){
+
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
         $mapel= DB::table("mapel_aktifs")
@@ -39,9 +61,20 @@ class JadwalController extends Controller
         ->where('mapel_aktifs.status', 1)
         ->get();
 
-        
+        $rombel = DB::table('rombels')->get();
+        $subject = DB::table('mapels')->get();
+        $ta = DB::table('tas')->get();
+        $tipe = DB::table('tipe_ujians')->get();
 
-        return view('guru.mapel-saya',['mapels'=>$mapel]);
+      
+        return view('guru.mapel-saya',
+        [
+            'mapels'=>$mapel,
+            'rombels'=>$rombel,
+            'subjects'=>$subject,
+            'tas'=>$ta,
+            'tipes'=>$tipe,
+        ]);
     }
     public function edit_mapel_saya($id)
     {
@@ -70,7 +103,11 @@ class JadwalController extends Controller
      
         $mapel = new Mapel_aktif();
         $mapel = Mapel_aktif::where('id',$id)->where('id_cikgu',$id_cikgu->id_cikgu)->first();
-
+        
+        if($request['hapus-data'] == 1){
+            $mapel -> delete();
+            return "Alhamdulilah berhasil terhapus ";
+        }
         $mapel->PH = $request["ph"];
         $mapel->PTS = $request["pts"];
         $mapel->PAS = $request["pas"];

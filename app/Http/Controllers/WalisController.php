@@ -123,7 +123,7 @@ class WalisController extends Controller
             ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
             ->where('penilaians.id_rombel',$rombel[0]->id_rombel)
             
-            ->where('penilaians.id_tipe',2)
+          
             ->get();
 
             
@@ -227,9 +227,57 @@ class WalisController extends Controller
             return view('wali.halaqoh-online',["surat"=>$surat, "rekamans"=>$datas]);
         }
        
+public function mapel_aktif()
+{
+    $email= Auth::user()->email;
+     
+    $nisn = DB::table('walis')
+    ->where('email', $email)
+    ->get()[0]->nisn;
+    $rombel=DB::table('student_rombels')
+    ->where('nis', $nisn)
+    ->get();
+
+   $mapel = DB:: table('jadwals')
+   ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+   ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+   ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+   ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+   ->where('jadwals.id_rombel',$rombel[0]->id_rombel)
+   ->where('jadwals.status', 1)
+   ->groupby('jadwals.id_subject')
+   ->get();
 
 
-        
+   return view('wali.mapel-aktif',['mapels'=>$mapel]);
+   return dump($mapel);
+}
+
+  public function identitas()
+  {
+    $email= Auth::user()->email;
+     
+    $nisn = DB::table('walis')
+    ->where('email', $email)
+    ->get()[0]->nisn;
+    $rombel=DB::table('student_rombels')
+    ->leftjoin('rombels','rombels.id_rombel','=','student_rombels.id_rombel')
+    ->where('nis', $nisn)
+    ->get();
+    $siswa = DB::table('students')
+    ->where('nis', $nisn)
+    ->first();
+    
+   
+    return view('wali.identitas',
+    [
+        'siswa'=>$siswa,
+        'rombels'=>$rombel,
+    ]);
+
+
+    
+  }      
       
 
     

@@ -58,6 +58,20 @@
 
     <div class="mt-3 mb-3 p-3 list border alert-success kosong dropsoal">
 <!-- //soal pilihan ganda -->
+@if($soals != NULL)
+
+@forelse($soals as $soal)
+
+<div class="list-item class" draggable="true">
+    <div class="p-4 border text-center"><h6>MATERI UJIAN : {{$soal->m}}</h6></div>
+    <input type="hidden" name="materi[]" value=" {{$soal->m}}">
+    <textarea name="soal[]" class="summernote" id="" cols="30" rows="10">  {!!$soal->s!!}</textarea>
+    
+</div>
+@empty
+@endforelse
+
+@endif
 
 
 
@@ -116,7 +130,7 @@ $(document).ready(function(){
                    
                 $(".daftar-bank-soal").html(data);
                 
-                }
+                },
             });
     });
 });
@@ -135,7 +149,7 @@ $(document).ready(function(){
             });
             $.ajax({
 				type: 'PUT',
-				url: "{{route('simpansoalujian')}}",
+				url: "{{route('simpansoalujianpraktek')}}",
 				data: $('#form-soal-ujian').serialize(),
 				success: function(data) {
                     $(".notice-simpan-soal").addClass("alert alert-success");
@@ -146,17 +160,23 @@ $(document).ready(function(){
                         $(".notice-simpan-soal").empty();
                         
                     }, 5000);
-               
-                    
-                    
-
-                
+                },
+                error: function (jqXHR, exception) {
+                    $('.notice-simpan-soal').addClass('alert alert-danger');
+                    $('.notice-simpan-soal').text('Penyimpanan tidak berhasil');
+                    $('#send_form').html('Simpan');       
                 }
             });
     });
 });
 
 </script>
+<script>
+        $(document).ready(function() {
+        $('.summernote').summernote();
+        
+        });     
+    </script>
 
 <!-- //buat javascript -->
 

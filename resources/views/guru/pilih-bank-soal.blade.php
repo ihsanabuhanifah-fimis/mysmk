@@ -24,7 +24,11 @@ img{
     @if($soal->t == "pg")
     @if($soal->s !== "xr")
     <div class="mb-1 border form-control list-item alert-primary"  draggable="true">
-    <div>{!!$soal->s!!}</div>
+    <div class="d-flex justify-content-lg-between">
+        <h6 >{!!$soal->ns!!}</h6>
+        <input type="hidden" value="{!!$soal->ns!!}" name="nama_soal[]">
+      
+    </div>
     <!-- awal -->
     
     <div class=" soalpg{{$loop->iteration}} hide border btn-group-toggle p-4 mt-4 mb-4 bg-white rounded-lg">
@@ -117,13 +121,15 @@ img{
     <!-- akhir  -->
         
     </div>
+    
     <!-- //akhir dari pilihan ganda -->
       <?php $a++; ?>
     @endif
     @elseif($soal-> t== "isi")
     @if($soal->s !== "xr")
     <div class="mb-1 border form-control list-item alert-warning"  draggable="true">
-    <h6>{{$soal->s}}</h6>
+    <h6>{{$soal->ns}}</h6>
+    <input type="hidden" value="{!!$soal->ns!!}" name="nama_soal2[]">
     <!-- awal -->
     <div class="soal-isian border btn-group-toggle p-4 mt-4 mb-4 bg-white hide rounded-lg">
     
@@ -166,7 +172,8 @@ img{
     @elseif($soal->t == "tf")
     @if($soal->s !== "xr")
     <div class="border form-control list-item alert-danger"  draggable="true">
-    <h6>{{$soal->s}}</h6>
+    <h6>{{$soal->ns}}</h6>
+    <input type="hidden" value="{!!$soal->ns!!}" name="nama_soal3[]">
     <!-- awal -->
     <div class="true-false border btn-group-toggle p-4 mt-4 mb-4 bg-white hide  rounded-lg">
     <input type="hidden" name="nomor_soal3[]" value="{{$c}}">

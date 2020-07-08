@@ -64,12 +64,12 @@ class HomeController extends Controller
             'tipes'=>$tipe, 'ujians'=>$ujian]))->cookie('secret-guru', 'index' ,10080);
             
           }elseif(auth()->user()->hasRole('siswa')){
-            return response(view('waiting'))->cookie('secret', 'index' ,10080);;
-            return response(view('siswa.index'))->cookie('secret', 'index' ,10080);;
+            // return response(view('waiting'))->cookie('secret', 'index' ,10080);
+            return response(view('siswa.index'))->cookie('secret', 'index' ,10080);
           }elseif(auth()->user()->hasRole('wali')){
-              return response(view('waiting'))->cookie('secret-guru', 'index' ,10080);;
+            //   return response(view('waiting'))->cookie('secret-guru', 'index' ,10080);
           
-              return response(view('wali.index'))->cookie('secret-guru', 'index' ,10080);;
+              return response(view('wali.index'))->cookie('secret-guru', 'index' ,10080);
           }else{
             
             $username= Auth::user()->email;

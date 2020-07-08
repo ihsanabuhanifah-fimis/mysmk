@@ -85,7 +85,7 @@ $(document).ready(function(){
         $(document).ready(function(){
             $("#rekapnilai").click(function(){
                 $(".tampilkanujian").hide(); 
-                $(".rekapnilaipraktek").hide();
+                $(".rekapnilaipraktek2").hide();
                 $(".rekapnilaiteori").show();
                 $(".rekapnilaiteori").load("guru/rekapnilai"); 
               

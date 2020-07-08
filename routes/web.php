@@ -55,7 +55,8 @@ Route::post('/jadwal-saya', 'GuruController@requestjadwal')->name('jadwal');
 Route::post('/edit-absen', 'GuruController@edit_absen')->name('edit.absen');
 Route::get('/absensi/{id}', 'GuruController@absensi')->name('absensi');
 Route::get('/materi','GuruController@tambahmateri')->name('materi');
-Route::put('/save-form', 'GuruController@store')->name('savekbm');
+Route::put('/save-form/ini', 'GuruController@store')->name('savekbm');
+Route::put('/save-form', 'GuruController@edit')->name('editkbm');
 Route::put('/save-jurnal', 'GuruController@store_jurnal')->name('savejurnal');
 Route::put('/edit-jurnal', 'GuruController@edit_jurnal')->name('editjurnal');
 Route::post('/tambahmateri', 'GuruController@savemateri')->name('savemateri');
@@ -78,6 +79,7 @@ Route::get('/akses/ujian/{nilai}','GuruController@aksesujian')->name('aksesujian
 Route::get('/ujian/soal/{nilai}','GuruController@soalujian')->name('soalujian');
 Route::get('/ujian/praktek/{nilai}','GuruController@soalujianpraktek')->name('soalujianpraktek');
 Route::put('/ujian/soal/','GuruController@simpansoalujian')->name('simpansoalujian');
+Route::put('/ujian/soal/praktek','GuruController@simpansoalujianpraktek')->name('simpansoalujianpraktek');
 Route::put('/ujian/akses/','GuruController@aksessoalujian')->name('aksessoalujian');
 Route::post('/ujian/cari-soal/','GuruController@carisoal')->name('carisoal');
 Route::post('/ujian/cari-soal-praktek/','GuruController@carisoalpraktek')->name('carisoal.praktek');
@@ -99,6 +101,8 @@ Route::get('/halaqoh','HalaqohController@get_halaqoh')->name('halaqoh');
 Route::get('/halaqoh/daftar','HalaqohController@daftar_halaqoh')->name('daftar.halaqoh');
 Route::get('/halaqoh/siswa/{id}','HalaqohController@siswa_halaqoh')->name('siswa.halaqoh');
 Route::post('/halaqoh','HalaqohController@add_halaqoh')->name('halaqoh.add');
+
+Route::post('/mapel-aktif/save','JadwalController@mapel_aktif_save')->name('save-mapel-aktif');
 Route::get('/mapel','JadwalController@mapel_saya')->name('guru.mapel-saya');
 Route::get('/edit/mapel/{id}','JadwalController@edit_mapel_saya')->name('guru.edit-mapel-saya');
 Route::put('/simpan-mapel','JadwalController@simpan_mapel_saya')->name('guru.simpan-mapel-saya');
@@ -152,8 +156,9 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
     Route::prefix('/wali')->middleware('CekSessionWali')->group(function (){
     Route::post('/kehadiran','WalisController@kehadiran')->name('kehadiran');
     Route::get('/jadwal-ujian','WalisController@jadwal_ujian')->name('jadwal.ujian');
+    Route::get('/mapel-aktif','WalisController@mapel_aktif')->name('mapel.aktif');
     Route::get('/catatan-halaqoh-online','WalisController@catatan_halaqoh_online')->name('halaqoh.online');
-
+    Route::get('/identitas','WalisController@identitas')->name('identitas');
     
    
     });
@@ -162,5 +167,5 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
 //Route Upload
 Auth::routes(['verify' => true]);
 
-Route::get('/Dashboard', 'HomeController@index')->name('dashboard'); 
+Route::get('/Home', 'HomeController@index')->name('dashboard'); 
 
