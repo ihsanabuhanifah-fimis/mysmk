@@ -16,7 +16,7 @@
 
 
 
-<div class="p-4 border">
+<div class="p-md-4 m-sm-0 border">
 <table id="myHalaqohOnline" class="table table-responsive-sm table-bordered">
     <thead class="text-center bg-success header">
         <tr class="header">
@@ -97,6 +97,9 @@
 
 
         @empty
+        <tr>
+            <td colspan="10" class="alert alert-warning font-weight-bold text-center">Saat ini belum ada jadwal setoran halaqoh online</td>
+        </tr>
         @endforelse
     </tbody>
 </table>

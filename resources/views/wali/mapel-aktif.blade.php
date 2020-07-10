@@ -1,16 +1,18 @@
 <div class="text-center p-md-5 p-sm-0 pt-3 bg-gradient-success">
-    <h4>DAFTAR MATA PELAJARAN
-     <br>{{$mapels[0]->nama_rombel}}
-     <br> Semester {{$mapels[0]->semester}}
-     <br>Tahun Ajaran {{$mapels[0]->nama_ta}}
-    </h4>
+
+    <h4 class="mt-5 mb-3 text-center">DAFTAR MATA PELAJARAN </h4>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">
+                                Daftar Mata Pelajaran di {{$mapels[0]->nama_rombel}}  Semester {{$mapels[0]->semester}}   Tahun Ajaran {{$mapels[0]->nama_ta}} 
+                            </li>
+                        </ol>
 </div>
 <div class="row row-cols-1 row-cols-md-3 ">
 
   @forelse($mapels as $mapel)
   <div class="col mb-4">
-    <div class="card p-4">
-      <img src="\img\kelas.jpg" class="card-img-top" alt="...">
+    <div class="card p-md-5 p-sm-3">
+      <img src="\img\kelas.jpg" class="card-img-top" alt="jadwal">
       <div class="card-body">
         <table class="table table-borderless">
             <tr>

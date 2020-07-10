@@ -35,7 +35,7 @@
 </style>
 <body class="bg-light  ">
 <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-white sticky-top d-flex justify-content-between">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-white fixed-top d-flex justify-content-between">
         <div>  
         <a class="btn btn-link btn-lg order-1 order-lg-0 text-black-50 "  href="{{ route('dashboard') }}"><b>MySMK</b></a ><!-- Navbar Search-->
         

@@ -1,5 +1,8 @@
 
+<div class="d-flex justify-content-end">
 
+<a class="btn btn-success mb-3" href="{{ asset('file/jadwal.pdf')}}" target="_blank" rel="noopener noreferrer"> <i class="fa fa-file-pdf mr-2" aria-hidden="true""></i>Download</a>
+</div>
 <div class="border p-md-4">
 <table class="table myTable table-responsive-sm table-bordered ">
     <thead class="bg-success" >

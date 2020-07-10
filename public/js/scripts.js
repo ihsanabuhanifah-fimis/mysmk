@@ -15,8 +15,8 @@
         $("body").toggleClass("sb-sidenav-toggled");
         $("#layoutSidenav_content").toggleClass("sb-acc");
     });
-    $(".sb-acc").on("click", function(e) {
-      
+    $(".sb-sidenav-toggled").on("click", function(e) {
+      alert();
         e.preventDefault();
         $("body").removeClass("sb-sidenav-toggled");
     });

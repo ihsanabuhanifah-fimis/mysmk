@@ -2,15 +2,19 @@
 $(document).ready(function(){
     $(".kehadiran").hide();
     $(".jadwal-ujian").hide();
+    $("#menu-jadwal").hide();
     $(".halaqoh-online").hide();
     $('#menu-mapel').hide();
     $(".dashboard").show();
     $(".tampilkan-kehadiran").load('/wali/kehadiran');
+    $(".dashboard-show").load('/wali/identitas');
+       
    
     $('.menu-kehadiran').click(function(){
         $(".dashboard").hide();
         $(".jadwal-ujian").hide();
         $(".halaqoh-online").hide();
+        $("#menu-jadwal").hide();
         $('#menu-mapel').hide();
         $(".kehadiran").show();
         $(".tampilkan-kehadiran").load('/wali/kehadiran');
@@ -20,6 +24,7 @@ $(document).ready(function(){
     $('.menu-jadwal-ujian').click(function(){
         $(".dashboard").hide();
         $(".kehadiran").hide();
+        $("#menu-jadwal").hide();
         $(".halaqoh-online").hide();
         $('#menu-mapel').hide();
         $(".jadwal-ujian").show();
@@ -32,6 +37,7 @@ $(document).ready(function(){
     $('.menu-halaqoh-online').click(function(){
        
         $(".dashboard").hide();
+        $("#menu-jadwal").hide();
         $(".kehadiran").hide();
         $(".jadwal-ujian").hide();
         $('#menu-mapel').hide();
@@ -45,6 +51,7 @@ $(document).ready(function(){
     $('.menu-mapel').click(function(){
        
         $(".dashboard").hide();
+        $("#menu-jadwal").hide();
         $(".kehadiran").hide();
         $(".jadwal-ujian").hide();
         $(".halaqoh-online").hide();
@@ -56,13 +63,26 @@ $(document).ready(function(){
     });
     $('.menu-dashboard').click(function(){
        
-       
+        $("#menu-jadwal").hide();
         $(".kehadiran").hide();
         $(".jadwal-ujian").hide();
         $(".halaqoh-online").hide();
         $('#menu-mapel').hide();
         $(".dashboard").show();
         $(".dashboard-show").load('/wali/identitas');
+       
+       
+     
+    });
+    $('.menu-jadwal').click(function(){
+      
+        $(".kehadiran").hide();
+        $(".jadwal-ujian").hide();
+        $(".halaqoh-online").hide();
+        $('#menu-mapel').hide();
+        $(".dashboard").hide();
+        $("#menu-jadwal").show();
+        $("#menu-jadwal").load('/wali/jadwal');
        
        
      
@@ -89,24 +109,22 @@ $(document).ready(function(){
               success: function(data) {
                   $(".cari-kehadiran").text("Cari");
                    $(".tampilkan-kehadiran").html(data);
-                   $(".ket-absen").addClass("alert alert-success")
-                   $(".ket-absen").text("Alhamdulilah Rekap Absen ditemukan")
+                  
+               
                   
                   setTimeout(function(){
-                      $(".ket-absen").removeClass("alert alert-success")
-                  $(".ket-absen").empty();
+                  
+               
                       },2000);
                                     
                  
               },
               error: function (jqXHR, exception) {
-                  $(".cari-kehadiran").text("Cari");
-                  $(".ket-absen").addClass("alert alert-danger")
-                  $(".ket-absen").text("Mohon Maaf Rekap Absensi Tidak Ditemukan")
+                  $(".cari-kehadiran").text("Bismillah");
+                  
               setTimeout(function(){
                  
-                  $(".ket-absen").removeClass("alert alert-danger")
-                  $(".ket-absen").empty();
+                  
                  
                   },5000);
               }
@@ -116,7 +134,7 @@ $(document).ready(function(){
            
             $(this).text("Mencari ...");
              
-            $(".ket-absen").removeClass("alert alert-danger")
+            
             $(".ket-absen").empty();
             $(".tampilkan-kehadiran").empty();
             $.ajaxSetup({
@@ -129,28 +147,26 @@ $(document).ready(function(){
 				url: "/wali/kehadiran",
 				data: $('.form-kehadiran').serialize(),
 				success: function(data) {
-                    $(".cari-kehadiran").text("Cari");
+                    $(".cari-kehadiran").text("Bismillah");
                      $(".tampilkan-kehadiran").html(data);
-                     $(".ket-absen").addClass("alert alert-success")
-                     $(".ket-absen").text("Alhamdulilah Rekap Absen ditemukan")
+                    
                     
                     setTimeout(function(){
-                        $(".ket-absen").removeClass("alert alert-success")
+                       
                     $(".ket-absen").empty();
                         },2000);
                                       
                    
                 },
                 error: function (jqXHR, exception) {
-                    $(".cari-kehadiran").text("Cari");
-                    $(".ket-absen").addClass("alert alert-danger")
-                    $(".ket-absen").text("Mohon Maaf Rekap Absensi Tidak Ditemukan")
+                    $(".cari-kehadiran").text("Bismillah");
+                  
                 setTimeout(function(){
                    
-                    $(".ket-absen").removeClass("alert alert-danger")
-                    $(".ket-absen").empty();
+                  
                    
-                    },5000);
+                   
+                    },10000);
                 }
 			});
 			

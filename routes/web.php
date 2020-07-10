@@ -159,6 +159,7 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
     Route::get('/mapel-aktif','WalisController@mapel_aktif')->name('mapel.aktif');
     Route::get('/catatan-halaqoh-online','WalisController@catatan_halaqoh_online')->name('halaqoh.online');
     Route::get('/identitas','WalisController@identitas')->name('identitas');
+    Route::get('/jadwal','WalisController@jadwal')->name('jadwal');
     
    
     });

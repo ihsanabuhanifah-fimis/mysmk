@@ -5,9 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="/js/guru.js"></script>
     <link rel="stylesheet" href="/css/summernote.css"> 
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -16,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/style-nav.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script> 
     <script src="/DataTables/js/jquery.dataTables.min.js"></script>
     <script src="/DataTables/css/jquery.dataTables.min.css"></script>
@@ -35,7 +34,7 @@
 </style>
 <body class="bg-light  ">
 <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-white sticky-top d-flex justify-content-between">
+        <nav class="sb-topnav navbar fixed-top navbar-expand navbar-dark bg-white d-flex justify-content-between">
         <div>  
         <button class="btn btn-link btn-lg order-1 order-lg-0 text-black-50 " id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button ><!-- Navbar Search-->
         <b>MySMK</b>  
@@ -79,7 +78,8 @@
 
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="/js/scripts.js"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
+       
 
 </body>
 </html>

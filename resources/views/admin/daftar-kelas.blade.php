@@ -13,6 +13,8 @@
       <div class="card-body">
         <div class="card-title text-center">
             <h6>{{$rombel->nama_rombel}}</h6>
+
+            <h6>Wali Kelas : {{$rombel->wali_kelas}}</h6>
            
             <br>
             <a class="btn btn-success text-white pilih-kelas" id="{{$rombel->id_rombel}}" >Lihat Kelas</a>

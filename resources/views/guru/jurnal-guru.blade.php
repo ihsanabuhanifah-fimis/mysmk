@@ -1,4 +1,4 @@
-<h1 class="mt-4">Jurnal Harian Guru</h1>
+<h3 class="mt-4">Jurnal Harian Guru</h3>
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Jurnal Kegiatan Guru / Tendik</li>
  </ol>

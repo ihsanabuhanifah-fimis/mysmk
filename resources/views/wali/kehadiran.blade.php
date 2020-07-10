@@ -1,11 +1,13 @@
+
+
 <div class="d-none d-md-block p-4 border">
 
 <style>
 
 
 </style>
-<table class="table1 table table-responsive-sm">
-        <thead class="bg-success thread1">
+<table class="table1 table table-responsive-sm table-bordered table-striped">
+        <thead class="bg-success text-center">
             <tr class="tr1">
                 <th >Jam ke-</th>
                 <th ">Mata Pelajaran</th>
@@ -16,14 +18,14 @@
                
             </tr>
         </thead>
-        <tbody class="tbody1">
+        <tbody class="text-center">
        @forelse($kbms as $kbm)
             <tr class="tr1">
             
                 <td >{{$kbm->jam_ke}}</td>
                
                 <td ">{{$kbm->id_subject}}</td>
-                 <td>{{$kbm->id_cikgu}}</td>
+                 <td>Ust. {{$kbm->id_cikgu}}</td>
                 
                 @if($kbm->kehadiran == 1)
                 <td class="td1" ">Hadir</td>
@@ -46,6 +48,9 @@
               
             </tr>
           @empty
+          <tr>
+    <td colspan="10" class="alert alert-warning font-weight-bold text-center">Mohon Maaf Rekap Absensi Tidak Ditemukan  / Absensi saat ini belum masuk di tanggal ini</td>
+  </tr>
           @endforelse
         </tbody>
        
@@ -53,10 +58,15 @@
 
     </div>
 
+    <style>
+      .box{
+        box-shadow: 2px 2px 10px grey;
+      }
+    </style>
 
     <div class="d-sm-block  d-md-none">
     @forelse($kbms as $kbm)
-    <div class="col mb-4 border mb-3 bg-white">
+    <div class="col mb-4 box mb-3 alert-success rounded ">
       <div class="card-body">
         <div class="card-title text-center">
            
@@ -73,7 +83,7 @@
               <tr class="border-bottom">
                   <td>Pengampu</td>
                   <td>:</td>
-                  <td>{{$kbm->id_cikgu}}</td>
+                  <td>Ust. {{$kbm->id_cikgu}}</td>
               </tr>
               <tr class="border-bottom">
                   <td>Status Kehadiran Siswa</td>
@@ -104,12 +114,13 @@
         <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
     
         </tbody>
-        <div class="text-center font-smaller">Materi
-        <div class="border card text-left p-1"">
+        <div class="text-center font-smaller"><b>Materi</b>
+        <div class="border card text-left p-1 alert-success"">
              {{$kbm->materi}}</div>
-    </div>
+        </div>
     </div>
   </div>
   @empty
+ <div class="alert alert-warning font-weight-bold"><p class="text-left">Mohon Maaf Rekap Absensi Tidak Ditemukan  / Absensi saat ini belum masuk di tanggal ini</p></div>
           @endforelse
     </div>

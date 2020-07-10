@@ -8,7 +8,7 @@
 
  
 <div class="container-sm-fluid">
-<h1 class="mt-4">List Materi</h1>
+<h3 class="mt-4">List Materi</h3>
 
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>

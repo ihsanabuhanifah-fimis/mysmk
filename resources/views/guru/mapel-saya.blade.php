@@ -4,9 +4,9 @@
         $('.myTableMapel').DataTable();
     } );
 </script>
-<div class="container-sm-fluid">
+<div class="container-sm-fluid mt-4">
 
-<h1>Mata Pelajaran</h1>
+<h3>Mata Pelajaran</h3>
  <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Ini adalah mata pelajaran Ustadz di Tahun Ajaran aktif</li>
  </ol>

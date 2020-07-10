@@ -6,6 +6,11 @@
   <div class="text-center mt-5">
 <h5>Jadwal KBM SMK MADINATULQURAN <br> Tahun Pelajaran {{$jadwals[0]->nama_ta}}</h5>
 </div>
+
+<div class="d-flex justify-content-end">
+
+<a class="btn btn-success" href="{{ asset('file/jadwal.pdf')}}" target="_blank" rel="noopener noreferrer"> <i class="fa fa-file-pdf mr-2" aria-hidden="true""></i>Download</a>
+</div>
 <table id="myTableJadwal" class="table   table-responsive-sm table-bordered table-striped">
     <thead class="btn-success ">
         <tr>

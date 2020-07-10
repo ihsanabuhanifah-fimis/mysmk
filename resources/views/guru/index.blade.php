@@ -187,7 +187,7 @@
                       <div class="tampilkan-menu-jadwal">
                       
   
-                      <h1 class="mt-4">Jadwal Hari Ini</h1>
+                      <h3 class="mt-4">Jadwal Hari Ini</h3>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Ini adalah daftar materi yang telah di buat</li>
                         </ol>

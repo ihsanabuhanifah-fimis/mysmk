@@ -12,7 +12,7 @@
 
 
 <div class="p-md-4 p-sm-0 border ">
-<table style="width:100%" id="myJadwalUjian" class="hover table table-bordered table-striped mt-2 table-responsive-sm">
+<table style="width:100%" id="myJadwalUjian" class="hover table table-bordered table-striped mt-2 table-responsive-sm table-responsive-md">
 <p class="d-flex justify-content-end font"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
     <thead class="bg-success">
         <tr>
@@ -33,7 +33,7 @@
             
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
     <?php $k=0 ;?>
         @forelse ($ujians as $ujian)
         <tr>
@@ -112,6 +112,9 @@
 
         <?php $k++ ; ?>
         @empty
+        <tr>
+            <td colspan="20" class="alert alert-warning font-weight-bold text-center">Saat ini belum ada Jadwal Penilaian baik Teori/Praktek, baik Online maupu Offlie/Berbasis kertas </td>
+        </tr>
         @endforelse
     </tbody>
 

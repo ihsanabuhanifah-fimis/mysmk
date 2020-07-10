@@ -1,5 +1,5 @@
-@extends('siswa.layout.master')
-@section('title','Dashboard')
+@extends('guru.layout.master')
+@section('title','Home')
 
 @section('content')
 <div class="container-fluid bg-white">
