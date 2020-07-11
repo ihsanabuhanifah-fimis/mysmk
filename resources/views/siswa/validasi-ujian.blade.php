@@ -1,5 +1,5 @@
 
-@extends('siswa.layout.master2')
+@extends('guru.layout.master2')
 @section('title','Validasi Penilaian')
 
 @section('content')
@@ -22,8 +22,9 @@
         </div>
     </div>
 <!-- awal web -->
-<h5 class="mt-2 text-center">Validasi Ujian</h5>
-
+<div class="mt-5">
+<h5 class="mt-2 text-center font-weight-bold">VALIDASI PENILAIAN</h5>
+</div>
 <div class="container">
 <div class="container">
 @if(session()->has('pesan'))
@@ -36,8 +37,11 @@
     <form action="{{route('kerjakan_ujian')}}" method="post">
         @csrf
         <input type="hidden" name="attemp" value="{{$attemp}}">
-    <table class="table table-borderless">
+        <div class="mt-3 card p-sm-1 p-md-4 pl-md-5">
+        <div class="card-title ">
+         <table class="table table-borderless">
         <input type="hidden" name="id" value="{{$ujians[0]->id}}">
+        <thead  class="ml-5">
         <tr>
             <th>Mata Pelajaran</th>
             <td >:</td>
@@ -86,12 +90,14 @@
             <td >:</td>
             <td>{{$ujians[0]->durasi}} </td>
         </tr>
-        
-        
+        </thead>
     </table>
-
+      
+    <button type="submit" class="form-control btn-success mt-4">Kerjakan</button>    
+    </div>
+    </div>
 </div>
-<button type="submit" class="btn btn-success">Kerjakan</button>
+
 </form>
 </div>
 </div>

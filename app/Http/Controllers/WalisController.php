@@ -161,8 +161,8 @@ class WalisController extends Controller
             $a++;
         }
 
-    
-           return view('wali.jadwal-ujian',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]);
+          
+           return view('wali.jadwal-ujian',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel]);
 
       
         }
@@ -305,6 +305,8 @@ public function mapel_aktif()
     ->where('nis', $nisn)
     ->first();
     
+
+    
    
     return view('wali.identitas',
     [
@@ -433,6 +435,4 @@ public function mapel_aktif()
     
   }
       
-
-    
 }

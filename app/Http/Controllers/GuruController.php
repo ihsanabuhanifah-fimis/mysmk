@@ -542,7 +542,13 @@ class GuruController extends Controller
         $akses = new Penilaian();
         $akses = Penilaian::where('id',$id)
         ->where('id_cikgu', $id_cikgu->id_cikgu)->first();
-
+        $rombel = $akses->id_rombel;
+       
+        $siswa_rombel = DB::table('student_rombels')
+        ->where('id_rombel', $rombel)
+        ->get();
+        
+        $jml_siswa_rombel = count($siswa_rombel);
         
         $akses_siswa = $akses->akses;
         $aksess = json_decode($akses_siswa);
@@ -553,26 +559,43 @@ class GuruController extends Controller
             'nama',
             
         ]);
+    
+      
         $jml_siswa=count($nama_siswa);
-        $i=0;
-        while($i < $jml_akses){
-            $j=0;
-            while($j < $jml_siswa){
-
-                if($aksess[$i]->s == $nama_siswa[$j]->nis){
-
-                    $hak_akses[$i] = [
+       
+        $a=0;
+        while ($a < $jml_siswa_rombel){
+        $j=0;
+       
+        while($j < $jml_siswa){
+            
+            if($siswa_rombel[$a]->nis == $nama_siswa[$j]->nis){
+                
+                $i=0;
+                while($i < $jml_akses){
+    
+                    if($aksess[$i]->s == $siswa_rombel[$a]->nis){
+    
+                        $hak_akses[$j] = [
+                            'nis' =>$nama_siswa[$j]->nis,
+                            'nama'=>$nama_siswa[$j]->nama,
+                            'hak_akses'=>$aksess[$i]->a
+                        ];
+                    break;
+                       
+                    }
+                    $hak_akses[$j] = [
                         'nis' =>$nama_siswa[$j]->nis,
                         'nama'=>$nama_siswa[$j]->nama,
-                        'hak_akses'=>$aksess[$i]->a
-                    ];
-                   
+                        'hak_akses'=>"0",                    ];
+    
+                    $i++;
                 }
-
-                $j++;
             }
-            $i++;
+            $j++;
         }
+        $a++;
+    }
       
       
         return view('guru.akses-ujian',['akses'=> $hak_akses,'id' => $akses]);
@@ -589,30 +612,65 @@ class GuruController extends Controller
         ->where('id_cikgu',$id_cikgu->id_cikgu)
         ->where('id',$id)
         ->first();
+
       
-       
 
         // return dump($nilai_ujian);
         $hasils = $penilaian->hasil;
         $hasil = json_decode($hasils);
         $jml=count($hasil);
+        $siswa_rombel = DB::table('student_rombels')
+        ->where('id_rombel', $penilaian->id_rombel)
+        ->get();
+        $siswa = DB::table('students')
+        ->get();
+        $jml_siswa = count($siswa);
+        $jml_siswa_rombel = count($siswa_rombel);
         $i=0;
-        while($i<$jml)
-        {
-            $siswa[$i] =DB::table('students')
-            ->where('nis',$hasil[$i]->s)->get();
-            $i++;   
+        while($i < $jml_siswa_rombel){
+           
+            $j=0;
+            while($j < $jml_siswa){
+              
+                if($siswa_rombel[$i]->nis == $siswa[$j]->nis){
+                    $k=0;
+                    while($k < $jml){
+                        if($siswa_rombel[$i]->nis == $hasil[$k]->s){
+                            
+                            $nilaix[$i] = 
+                            [
+                            'nis' =>$siswa_rombel[$i]->nis,
+                            'nama'=> $siswa[$j]->nama,
+                            'nilai'=>$hasil[$k]->n
+                            ];
+                        break;
+                        }
+                        $nilaix[$i] = 
+                        [
+                        'nis' =>$siswa_rombel[$i]->nis,
+                        'nama'=> $siswa[$j]->nama,
+                        'nilai'=>"",
+                        ];
+                        $k++;
+                    }
+                }
+                $j++;
+            }
+            $i++;
         }
-        
-    
-        if($hasil == NULL){
-            return "ok";
-        }
-        $nilai=DB::table('penilaian_siswas')
+
+        $history = DB::table('penilaian_siswas')
         ->where('id_penilaian',$id)
         ->get();
+
+ 
+
+        $json = json_encode($nilaix);
+        $hasil_nilai = json_decode($json);
+
+       
         // return $nilai[3]->nis;
-        return view('guru.nilai',['hasils'=>$hasil,'penilaians'=>$penilaian,'siswas'=>$siswa,'nilai'=>$nilai]);
+        return view('guru.nilai',['hasils'=>$hasil_nilai, 'penilaian'=>$penilaian,'historys'=>$history]);
 
     }
     public function hapusujian($id)
@@ -732,6 +790,7 @@ class GuruController extends Controller
                 $username= Auth::user()->username;
                 $id_cikgu=Cikgu::where('username',"$username")->first();
                 $jml=count($request["nis"]);
+              
 
               
                 $id=$request["id"];
@@ -768,6 +827,7 @@ class GuruController extends Controller
                 'n'=>$request->nilai[$i]];
             $i++;
         };
+        
         $hasil=json_encode($data);
         $ujian = new Penilaian();
         $ujian = Penilaian::find($id);

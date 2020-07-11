@@ -1,33 +1,4 @@
-@extends('guru.layout.master2')
-@section('title','nilai')
 
-@section('content')
-<style>
-p{
-    font-size:10px;
-}
-</style>
-
- <div class="container-fluid bg-white">
-        <div class="row">
-            <div class="col-md-8 col-xl-6">
-               
-                @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                    </ul>
-                </div>
-                @endif
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-</div> 
 
 <!-- isi -->
 
@@ -42,60 +13,76 @@ p{
     .no2{
         max-width:80px;
     }
+    .input{
+        width:80px;
+      
+    }
 </style>
 <div class="container">
-<table class="table table-bordered">
-<input type="hidden" name="id" value="{{$penilaians->id}}">
-    <thead>
+<?php $jml=count($historys) ?>
+<table class="table table-bordered table-responsive-sm">
+<input type="hidden" name="id" value="{{$penilaian->id}}">
+    <thead class="bg-success">
         <tr>
-            <th rowspan="2" class="no text-center">No</th>
-            <th rowspan="2" class="no2 text-center">NISN</th>
-            <th rowspan="2" class="no3">Nama</th>
-            <th rowspan="2" class="no text-center">Nilai</th>
-            <th class="text-center" colspan="{{$penilaians->remidial}}">Nilai Ujian</th>
-        </tr>
+            <th rowspan="2" class="text-center">No</th>
+            <th rowspan="2" class="text-center">NISN</th>
+            <th rowspan="2" class="">Nama</th>
+            <th rowspan="2" class="text-center input">Nilai</th>
+            <th class="text-center" colspan="{{$jml}}">History</th>
         </tr>
         <tr>
-        <?php $a=1 ?>
-        @while($a <= $penilaians->remidial)
-        <th class="text-center" >Attemp {{$a}}</th>
-        <?php $a++ ; ?>
-        @endwhile
-        <tr></tr>
+        @forelse($historys as $history)
+             <th>Nilai ke- {{$loop->iteration}}</th>
+        @empty
+        @endforelse
+        </tr>
+      
     </thead>
     <tbody>
-        <?php $i=0; $j=0 ;?>
-        <?php $jml=count($hasils) ; ?>
-        <?php $jml_nilai = count($nilai);?>
-        @while($i<$jml)
+     
+      @forelse($hasils as $hasil)
         <tr>
-            <td class="no text-center"><input class="form-control text-center" type="number" value="{{$i}}"></td>
-            <td class="no2"><input class="form-control" type="text" name="nis[]" value="{{$hasils[$i]->s}}"></td>
-           
-            <td class="no3"><input class="form-control" type="text" value="ihsan">
+        <td class="text-center">{{$loop->iteration}}</td>
+        <td class="text-center">
+        {{$hasil->nis}}
+        <input class="form-control" type="hidden" name="nis[]" id="nis" value="{{$hasil->nis}}" />
+        </td>
+        <td >
+        {{$hasil->nama}}
+            <input class="form-control" type="hidden" name="nama[]" id="nama" value="{{$hasil->nama}}" />
+        </td>
+        <td>
          
-            <td class="no text-center"><input class="form-control text-center" value="{{$hasils[$i]->n}}" name="nilai[]" type="text"></td>
-           @forelse ($nilai as $nila)
-           @if($nila->nis == $hasils[$i]->s)
-            <td class="text-center">
-            {{$nila->nilai}}
-            <br>
-            @if($nila->status == 2)
-            <p> santri sedang mengerjakan, tersisa {{$nila->sisa_waktu}} menit</ptersisa>
-            @endif
-            </td>
-            
-            @endif
-
-           @empty
-           @endforelse
+            <input class="form-control font-weight-bold input" type="text" name="nilai[]" id="nilai" value="{{$hasil->nilai}}" />
+        </td>
+        @if($jml == NULL)
+            <td class="text-center"><b>-</b></td>
+     
+        @endif
+      
+        @forelse ($historys as $history)
+        @if($hasil->nis == $history->nis)
+        <td class="text-center"><b>{{$history->nilai}}</b></td>
+      
+        @endif
+        
+     
+        @empty
+      
+        @endforelse
+        </td>
+      
+        
         </tr>
-        <?php $i++; ?>
-        @endwhile
+
+      @empty
+      @endforelse
+       
+  
     </tbody>
 </table>
 <div class="notice-simpan-nilai text-center"></div>
-<button type="submit" class="btn btn-primary form-control simpan-nilai-ujian" name="simpan-ujian">Simpan</button>
+<button type="submit" class="btn btn-success form-control simpan-nilai-ujian" name="simpan-ujian">Simpan</button>
 </form>
 </div>
 
@@ -130,4 +117,3 @@ $(document).ready(function(){
 });
 
 </script>
-@endsection

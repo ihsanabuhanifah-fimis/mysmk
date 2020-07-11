@@ -1,7 +1,4 @@
-<div>
 
-
-</div>
     <form method="post" class="form-jadwal-ujian-praktek"  action="javascript:void(0)">
     <div class="form-row">
     @csrf
@@ -43,7 +40,7 @@
     </div>
     
     </form>
-
+    <div class="tampilkan-jadwal-ujian-praktek"></div>
     
     <script>
     $(document).ready(function(){
@@ -86,4 +83,3 @@
 			});
         });
     </script>
-<div class="tampilkan-jadwal-ujian-praktek"></div>

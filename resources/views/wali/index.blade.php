@@ -1,4 +1,4 @@
-@extends('siswa.layout.master')
+@extends('guru.layout.master')
 @section('title','Home')
 
 @section('content')
@@ -117,6 +117,9 @@
                         <!-- akhir dahsboard -->
                     </div>
 
+                    <div class="pt-5 text-center" id="menu-pengumuman">
+                        <h4>Mohon maaf saat ini menu belum tersedia</h4>
+                    </div>
                     <div id="menu-jadwal"></div>
 
                       <!-- akhir menu materi -->

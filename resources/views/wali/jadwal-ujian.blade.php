@@ -17,7 +17,7 @@
     <thead class="bg-success">
         <tr>
             <th>No</th>
-            <th class="text-center">Riwayat <br> Ujian</th>
+           <th>History</th>
             <th>Mata Pelajaran</th>
             <th>Materi</th>
             <th>Pengampu</th>
@@ -25,9 +25,9 @@
             <th>Tipe Ujian</th>
             <th class="text-center">Tanggal Mulai</th>
             <th class="text-center">Tanggal Selesai</th>
-
-            <th class="text-center">Nilai Akhir</th>
             <th class="text-center">Status</th>
+          
+       
            
 
             
@@ -37,12 +37,10 @@
     <?php $k=0 ;?>
         @forelse ($ujians as $ujian)
         <tr>
+       
             <td>{{$loop->iteration}}</td>
             <td class="text-center">
-            <button type="button" class="btn btn-success" 
-            data-toggle="modal" data-target="#exampleModal{{$loop->iteration}}">
-           Lihat
-            </button>
+           <button class="btn btn-success history" id="{{$ujian->id}}">Lihat</button>
             </td>
             <td>{{$ujian->subject_name}}</td>
             <td>{{$ujian->materi}}</td>
@@ -59,54 +57,11 @@
             @else
             <td class="text-center">{{$ujian->tanggal_selesai}} <br> {{$ujian->waktu_selesai}}</td>
           @endif
-            <td class="text-center">{{$nilai_akhir[$k]}}</td>
+          <td class="text-center">Status</td>
 
-            @if($nilai_akhir[$k] >= $ujian->kkm)
-            <td>Lulus</td>
-            @elseif($nilai_akhir[$k] == NULL)
-            <td>Nilai Belum Masuk</td>
-            @else
-            <td>Tidak Lulus</td>
-            @endif
-            
-            <!-- Button trigger modal -->
            
             
-            <!-- Modal -->
-<div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-       
-       
-      </div>
-      <div class="modal-body">
-     <H4 class="text-center font-weight-bold mb-4">RIWAYAT UJIAN </H4>
-    
 
-      @forelse ($nilais as $nilai)
-            @if($nilai->id_penilaian == $ujian->id)
-            
-
-            <div class="alert alert-primary" role="alert">
-                NILAI HASIL UJIAN: <p class="font-weight-bolder">{{$nilai->nilai}}</p> 
-            </div>
-           
-            @endif
-           
-            @empty
-            <div class="alert alert-primary" role="alert">
-                BELUM ADA RIWAYAT UJIAN 
-            </div>
-            @endforelse
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-       
-      </div>
-    </div>
-  </div>
-</div>
            
         </tr>
 
@@ -121,3 +76,22 @@
 </table>
 </div>
 <script>
+
+
+
+<div class="modal fade" id="myExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Nilai Akhir Santri</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="nilai-exam-siswa"></div>
+      </div>
+    </div>
+   
+  </div>
+</div>

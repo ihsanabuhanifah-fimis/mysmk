@@ -4,6 +4,7 @@ $(document).ready(function(){
     $(".jadwal-ujian").hide();
     $("#menu-jadwal").hide();
     $(".halaqoh-online").hide();
+    $("#menu-pengumuman").hide();
     $('#menu-mapel').hide();
     $(".dashboard").show();
     $(".tampilkan-kehadiran").load('/wali/kehadiran');
@@ -13,6 +14,7 @@ $(document).ready(function(){
     $('.menu-kehadiran').click(function(){
         $(".dashboard").hide();
         $(".jadwal-ujian").hide();
+        $("#menu-pengumuman").hide();
         $(".halaqoh-online").hide();
         $("#menu-jadwal").hide();
         $('#menu-mapel').hide();
@@ -24,6 +26,7 @@ $(document).ready(function(){
     $('.menu-jadwal-ujian').click(function(){
         $(".dashboard").hide();
         $(".kehadiran").hide();
+        $("#menu-pengumuman").hide();
         $("#menu-jadwal").hide();
         $(".halaqoh-online").hide();
         $('#menu-mapel').hide();
@@ -39,6 +42,7 @@ $(document).ready(function(){
         $(".dashboard").hide();
         $("#menu-jadwal").hide();
         $(".kehadiran").hide();
+        $("#menu-pengumuman").hide();
         $(".jadwal-ujian").hide();
         $('#menu-mapel').hide();
         $(".halaqoh-online").show();
@@ -52,6 +56,7 @@ $(document).ready(function(){
        
         $(".dashboard").hide();
         $("#menu-jadwal").hide();
+        $("#menu-pengumuman").hide();
         $(".kehadiran").hide();
         $(".jadwal-ujian").hide();
         $(".halaqoh-online").hide();
@@ -67,6 +72,7 @@ $(document).ready(function(){
         $(".kehadiran").hide();
         $(".jadwal-ujian").hide();
         $(".halaqoh-online").hide();
+        $("#menu-pengumuman").hide();
         $('#menu-mapel').hide();
         $(".dashboard").show();
         $(".dashboard-show").load('/wali/identitas');
@@ -81,8 +87,23 @@ $(document).ready(function(){
         $(".halaqoh-online").hide();
         $('#menu-mapel').hide();
         $(".dashboard").hide();
+        $("#menu-pengumuman").hide();
         $("#menu-jadwal").show();
         $("#menu-jadwal").load('/wali/jadwal');
+       
+       
+     
+    });
+    $('.menu-pengumuman').click(function(){
+      
+      
+        $(".kehadiran").hide();
+        $(".jadwal-ujian").hide();
+        $(".halaqoh-online").hide();
+        $('#menu-mapel').hide();
+        $(".dashboard").hide();
+        $("#menu-jadwal").hide();
+        $("#menu-pengumuman").show();
        
        
      

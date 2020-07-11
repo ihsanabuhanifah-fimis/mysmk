@@ -1,4 +1,4 @@
-@extends('siswa.layout.maste2')
+@extends('guru.layout.master')
 @section('title','Materi')
 
 @section('content')
@@ -27,7 +27,7 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">  <h5>BAB : {{$bab->nama_bab}}</h5></div>
                             @forelse ($materis as $materi)
-                            <a id="{{$materi->id}}" class="nav-link menu-dashboard" >
+                            <a id="{{$materi->id}}" class="nav-link menu-dashboard" data-toggle="pill" role="tab" aria-selected="false" >
                             {{$materi->submateri}}
                               </a >
                                                                 
@@ -79,7 +79,7 @@
             <!-- konten -->
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid">
+                  
                       <!-- awal dashboard -->
 
                       <!-- awal pelajaran -->
@@ -89,8 +89,7 @@
 
                       <!-- akhir menu materi -->
                       <div class="akses-materi"></div>
-                        <!-- akhir dahsboard -->
-                    </div>
+                  
                 </main>
                 <footer class="bg-light py-2">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Ihsanabuhanifah</div></div>

@@ -43,11 +43,11 @@
             <td>{{$banksoal->materi}}</td>
             <td class="text-center">{{$banksoal->nama_tipe}}</td>
             @if($banksoal->id_tipe == 1)
-            <td class="text-center"><a class="btn btn-success" href="{{route('buatsoalpraktek',['id'=>$banksoal->id])}}">Buat Soal</a></td>
+            <td class="text-center"><button class="btn btn-success" href="{{route('buatsoalpraktek',['id'=>$banksoal->id])}}">Buat Soal</button></td>
             @else
-            <td class="text-center"><a class="btn btn-success" href="{{route('buatsoal',['id'=>$banksoal->id])}}">Buat Soal</a></td>
+            <td class="text-center"><button class="btn btn-success" href="{{route('buatsoal',['id'=>$banksoal->id])}}">Buat Soal</button></td>
             @endif
-            <td class="text-center"><a class="btn btn-danger deletebank" id="{{$banksoal->id}}" >Hapus</a></td>
+            <td class="text-center"><button class="btn btn-danger deletebank" id="{{$banksoal->id}}" >Hapus</button></td>
             @if($banksoal->status == 1)
             <td class="text-center"><p class="btn-success btn">Lock</p></td>
             @else
@@ -84,8 +84,7 @@
 </div>
 
 
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 <script>
 $(document).ready(function(){
     var id

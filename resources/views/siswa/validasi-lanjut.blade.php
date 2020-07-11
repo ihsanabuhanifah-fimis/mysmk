@@ -22,15 +22,16 @@
         </div>
     </div>
 <!-- awal web -->
-<h5 class="mt-2 text-center">Validasi Ujian</h5>
-
+<div class="mt-5">
+<h5 class="mt-2 text-center">LANJUTKAN PENILAIAN</h5>
+</div>
 <div class="container">
 @if(session()->has('pesan'))
 <div class="alert alert-danger text-center" role="alert">
 {{ session()->get('pesan')}}
 </div>
 @endif
-<div class="row">
+
 
     <form action="{{route('lanjut_ujian')}}" method="post">
         @csrf
@@ -42,40 +43,42 @@
         <input type="hidden" name="id_ujian" value="{{$ujian_aktif[0]->id_penilaian}}">
 
         <input type="hidden" name="status" value="2">
-    <table class="table">
+        <div class="mt-3 card p-sm-1 p-md-4 pl-md-5">
+        <div class="card-title ">
+    <table class="table table-borderless">
    
         <tr>
-            <td>Msta Pelajaran</td>
+            <th>Mata Pelajaran</th>
             <td >:</td>
             <td>{{$ujians[0]->subject_name}}</td>
         </tr>
         <tr>
-            <td>Pengampu</td>
+            <th>Pengampu</th>
             <td >:</td>
             <td>{{$ujians[0]->cikgu_name}}</td>
         </tr>
         <tr>
-            <td>Materi</td>
+            <th>Materi</th>
             <td >:</td>
             <td>{{$ujians[0]->materi}}</td>
         </tr>
         <tr>
-            <td>Tanggal Mulai</td>
+            <th>Tanggal Mulai</th>
             <td >:</td>
             <td>{{$ujians[0]->tanggal_mulai}} {{$ujians[0]->waktu_mulai}}</td>
         </tr>
         <tr>
-            <td>Tanggal Selesai</td>
+            <th>Tanggal Selesai</th>
             <td >:</td>
             <td>{{$ujians[0]->tanggal_selesai}} {{$ujians[0]->waktu_selesai}}</td>
         </tr>
         <tr>
-            <td>Sisa Waktu</td>
+            <th>Sisa Waktu</th>
             <td >:</td>
             <td>{{$ujian_aktif[0]->sisa_waktu}} </td>
         </tr>
         <tr>
-            <td>Status</td>
+            <th>Status</th>
             <td >:</td>
             @if($ujians[0]->status == 1)
             <td>Aktif</td>
@@ -83,12 +86,14 @@
             <td>Tidak Aktif</td>
             @endif
         </tr>
-        
+     
     </table>
+    <button type="submit" class="form-control btn-success mt-4">Lanjutkan</button>
+    </div></div>
 
 </div>
-<button type="submit" class="btn btn-success">Lanjutkan</button>
+
 </form>
-</div>
+
     
 @endsection

@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/style-nav.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script> 
     <script src="/DataTables/js/jquery.dataTables.min.js"></script>
     <script src="/DataTables/css/jquery.dataTables.min.css"></script>
@@ -29,12 +29,16 @@
 <style>
     .btn-xl{
         width:400px;
+        
 
-    }
-   
+    } 
+   .nav-height{
+       height:45px;
+   }
 </style>
 <body class="bg-light  ">
 <body class="sb-nav-fixed">
+<div class="nav-height">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-white fixed-top d-flex justify-content-between">
         <div>  
         <a class="btn btn-link btn-lg order-1 order-lg-0 text-black-50 "  href="{{ route('dashboard') }}"><b>MySMK</b></a ><!-- Navbar Search-->
@@ -72,6 +76,7 @@
             <img class="rounded-circle mt-1" src="/img/avatar.jpeg" height="40" width="40" alt="">
             </div>
         </nav>
+        </div>
 @yield('content')
 
             </div>

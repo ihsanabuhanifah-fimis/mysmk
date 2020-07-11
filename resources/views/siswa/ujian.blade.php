@@ -32,7 +32,7 @@
     <div>
     <div class="card ">
     
-  <h5 class="card-header bg-primary d-none d-md-block d-lg-block d-xl-block" "></h5>
+  <h5 class="card-header bg-success d-none d-md-block d-lg-block d-xl-block" "></h5>
   <div class="card-body d-none d-md-block d-lg-block d-xl-block">
   <div class="d-flex justify-content-between ">
     <div>
@@ -86,7 +86,7 @@
 
 @if($jwb_soal1[$i]->k == "lk")
 <div class="alert alert-success p-3 card ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -116,7 +116,7 @@
 @if($jwb_soal1[$i]->n != NULL)
 @if($jwb_soal1[$i]->k == 1)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" checked="checked" type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -137,7 +137,7 @@
 </div>
 @elseif($jwb_soal1[$i]->k == 2)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1"  type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -160,7 +160,7 @@
 </div>
 @elseif($jwb_soal1[$i]->k == 3)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1"  type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -183,7 +183,7 @@
 </div>
 @elseif($jwb_soal1[$i]->k == 4)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1"  type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -206,7 +206,7 @@
 </div>
 @elseif($jwb_soal1[$i]->k == 5)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -230,7 +230,7 @@
 @else
 
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Pilihan Ganda</p></div>
+
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" type="radio" value="{{$soal1->k1}}">
 <label class="ml-2" for="k1">{{$soal1->a}}</label>
@@ -278,7 +278,7 @@
 @if($soal2->s != "xr" )
 @if($jwb_soal2[$j]->k == "lk" || $jwb_soal2[$j]->k == "0")
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Isian Singkat</p></div>
+
 <div>{!!$soal2->s!!}</div>
 <label for="isian{{$j}}">Jawaban</label>
 <input class="form-control rounded" name="isi{{$j}}[]" id="isian{{$j}}" type="text">
@@ -294,7 +294,7 @@
 
 
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>Isian Singkat</p></div>
+
 <div>{!!$soal2->s!!}</div>
 <label for="isian{{$j}}">Jawaban</label>
 <input class="form-control rounded" name="isi{{$j}}[]" value="{{$jwb_soal2[$j]->k}}" id="isian{{$j}}" type="text">
@@ -323,7 +323,7 @@
 @if($soal3->s != "xr")
 @if($jwb_soal3[$k]->k == "lk" || $jwb_soal3[$k]->k == "0")
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>True False</p></div>
+
 <div>{!!$soal3->s!!}</div>
 <select class="form-control" name="truefalse{{$k}}[]" id="truefalse{{$k}}">
 <option selected value="0"></option>
@@ -341,7 +341,7 @@
 @if($jwb_soal3[$k]->n != NULL)
 @if($jwb_soal3[$k]->k == 1)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>True False</p></div>
+
 <div>{!!$soal3->s!!}</div>
 <select class="form-control" name="truefalse{{$k}}[]" id="truefalse{{$k}}">
 <option selected value="1"> True</option>
@@ -352,7 +352,7 @@
 </div>
 @elseif($jwb_soal3[$k]->k == 2)
 <div class="alert alert-success p-3 ">
-<div class="d-flex justify-content-end"><p>True False</p></div>
+
 <div>{!!$soal3->s!!}</div>
 <select class="form-control" name="truefalse{{$k}}[]" id="truefalse{{$k}}">
 <option selected value="2"> False</option>

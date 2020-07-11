@@ -1,7 +1,11 @@
 <div class="container container-fluid-sm mt-5 pb-4 border bg-white"    >
     <div class="text-center font-weight-bold mt-5">
         <h4 >IDENTITAS DIRI SANTRI</h4>
-    </div>
+        @if($siswa == NULL)
+                <th class="pl-4 text-left">Santi belum  melakukan pendaftaran</th>
+                @else
+              
+              
     <div class="text-center mt-4">
     <img src="/img/avatar.jpeg" height="200" width="200"  class="img-thumbnail rounded-circle " alt="image-siswa">   
     </div>
@@ -59,10 +63,16 @@
                 <th class="pl-4 text-left">{{$siswa->email}}</th>
             </tr>
            
+
             <tr class="border-bottom">
                 <th class="pr-4 text-left">Kelas</th>
                 <th>:</th>
+                <?php $jml_rombel =count($rombels) ?>
+                @if($jml_rombel == NULL)
+                <th class="pl-4 text-left">Siswa Belum dimasukan ke dalam Rombel</th>
+                @else
                 <th class="pl-4 text-left">{{$rombels[0]->nama_rombel}}</th>
+                @endif
             </tr>
             
             <tr class="border-bottom">
@@ -100,15 +110,20 @@
             <tr class="border-bottom">
                 <th class="pr-4 text-left">Wali Kelas</th>
                 <th>:</th>
+                @if($jml_rombel == NULL)
+                <th class="pl-4 text-left">Siswa Belum dimasukan ke dalam Rombel</th>
+                @else
                 <th class="pl-4 text-left">{{$rombels[0]->wali_kelas}}</th>
+                @endif
+              
             </tr>
             </tbody>
         </table>
         </div>
-        
+    
         <div>
             
         </div>
-
+        @endif
     </div>
 </div>

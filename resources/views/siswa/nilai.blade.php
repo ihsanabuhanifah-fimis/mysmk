@@ -31,7 +31,7 @@
 
 <div class="" >
   <!-- <img src="..." class="card-img-top" alt="..."> -->
-  <div class="card-body text-center">
+  <div class="card p-5 text-center">
       
     @if($nilai > $kkm)
     <h1 class="card-text">Alhamdulilah Selamat anda lulus pada ujian ini !</h1>

@@ -42,7 +42,7 @@ Route::get('/jadwal','AdminController@jadwal_kelas')->name('admin.jadwal');
 Route::post('/simpan/jadwal','AdminController@simpan_jadwal_kelas')->name('simpan.jadwal.kelas');
 Route::post('/tampilkan/jadwal','AdminController@tampilkan_jadwal_kelas')->name('jadwal.kelas');
 Route::get('/tampilkan/jadwal','AdminController@tampilkan_jadwal_kelas')->name('tampilkanjadwal.kelas');
-
+Route::get('/jadwal/edit/{id}','AdminController@edit_jadwal')->name('admin.edit_jadwal');
 
 
 
@@ -126,12 +126,13 @@ Route::get('/jadwal-ujian','PenilaianController@jadwal_ujian')->name("jadwal_uji
 Route::get('/jadwal-ujian-praktek','PenilaianController@jadwal_ujian_praktek')->name("jadwal_ujian_praktek");
 Route::post('/jadwal-ujian-teori','PenilaianController@jadwal_ujian_teori')->name("jadwal_ujian_teori");
 Route::post('/jadwal-ujian-praktek2','PenilaianController@jadwal_ujian_praktek2')->name("jadwal_ujian_praktek2");
-
+Route::get('/Validasi/praktek/{id}','PenilaianController@masuk_ujian_praktek')->name("masuk_ujian_praktek")->middleware('prevent-back-history');
 Route::get('/Validasi/{id}','PenilaianController@masuk_ujian')->name("masuk_ujian")->middleware('prevent-back-history');
 Route::post('/ujian','PenilaianController@siswa_ujian')->name("kerjakan_ujian")->middleware('prevent-back-history');
 Route::get('/ujian','PenilaianController@siswa_ujian_refresh')->name("kerjakan_ujian_refresh")->middleware('prevent-back-history');
 Route::post('/ujian/lanjut','PenilaianController@lanjut_ujian')->name("lanjut_ujian")->middleware('prevent-back-history');
 Route::get('/ujian/lanjut','PenilaianController@lanjut_ujian_refresh')->name("lanjut_ujian_refresh")->middleware('prevent-back-history');
+Route::get('/history/{id}','PenilaianController@history')->name("history");
 Route::put('/selesai','PenilaianController@selesai_ujian')->name("selesai_ujian")->middleware('prevent-back-history');
 Route::put('/simpan','PenilaianController@simpan_ujian')->name("simpan_ujian")->middleware('prevent-back-history');
 Route::put('/update','PenilaianController@update_ujian')->name("update_ujian")->middleware('prevent-back-history');
@@ -160,6 +161,7 @@ Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('pros
     Route::get('/catatan-halaqoh-online','WalisController@catatan_halaqoh_online')->name('halaqoh.online');
     Route::get('/identitas','WalisController@identitas')->name('identitas');
     Route::get('/jadwal','WalisController@jadwal')->name('jadwal');
+    Route::get('/history/{id}','WaliController@history')->name('history');
     
    
     });

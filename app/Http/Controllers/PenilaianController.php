@@ -31,6 +31,7 @@ class PenilaianController extends Controller
     public function jadwal_ujian()
     {
         $username= Auth::user()->username;
+     
         $nis=Student::where('username',"$username")->first();
         $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
         $ta=DB::table('tas')->get();
@@ -42,6 +43,7 @@ class PenilaianController extends Controller
         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
         ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
         ->where('penilaians.id_rombel',$id_rombel->id_rombel)->get();
+
         $jml_ujian=count($ujian);
         $nilai=DB::table('penilaian_siswas')
         ->where('nis',$nis->nis)
@@ -117,6 +119,7 @@ class PenilaianController extends Controller
     public function jadwal_ujian_teori(Request $request)
     {
      
+        
         $username= Auth::user()->username;
         $nis=Student::where('username',"$username")->first();
         $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
@@ -133,34 +136,46 @@ class PenilaianController extends Controller
         ->where('penilaians.semester',$request["semester"])
         ->where('penilaians.id_tipe',2)
         ->get();
+        
         $jml_ujian=count($ujian);
-        $nilai=DB::table('penilaian_siswas')
-        ->where('nis',$nis->nis)
-        ->where('status',1)
-        ->get();
-        // return $nilai;
-        $a=0;
-        while($a<$jml_ujian){
-        $kumpulan_nilai_akhir =  $ujian[$a]->hasil;
-        $nilai_akhir_saya = json_decode($kumpulan_nilai_akhir);
-        $i = 0;
-        $jml= count($nilai_akhir_saya);
-        while($i < $jml){
-            if($nilai_akhir_saya[$i]->s == $nis->nis){
-                $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
-            }
-            
-            $i++;
-        }
-        $a++;
-    }
+    
+    //   
 
+    //            // return $nilai;
+    //     $a=0;
+    //     while($a<$jml_ujian){
+    //     $kumpulan_nilai_akhir =  $ujian[$a]->hasil;
+    //     $nilai_akhir_saya = json_decode($kumpulan_nilai_akhir);
+    //     $i = 0;
+    //     $jml= count($nilai_akhir_saya);
+    //     while($i < $jml){
+    //         if($nilai_akhir_saya[$i]->s == $nis->nis){
+    //             $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
+    //         }
+            
+    //         $i++;
+    //     }
+    //     $a++;
+    // }
 
     
         // return $nilai_akhir;
         // return $nilai;
 
-       return view('siswa.jadwal-ujian-teori',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]);
+       return view('siswa.jadwal-ujian-teori',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel]);
+    }
+
+    public function history($id)
+    {
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+        $nilai=DB::table('penilaian_siswas')
+        ->where('nis',$nis->nis)
+        ->where('status',1)
+        ->get();
+
+        return view('siswa.history',['nilais'=>$nilai]);
     }
 
     public function jadwal_ujian_praktek2(Request $request)
@@ -270,6 +285,10 @@ class PenilaianController extends Controller
     }
     }
 
+    public function masuk_ujian_praktek($id)
+    {
+        return $id;
+    }
     public function siswa_ujian(Request $request)
     {
        
@@ -279,6 +298,7 @@ class PenilaianController extends Controller
         $id=$request["id"];
       
         
+  
         
         $validasi=DB::table('penilaians')
         ->where('id',$id)
@@ -308,6 +328,7 @@ class PenilaianController extends Controller
 
             $hak_akses = $banksoal[0]->akses;
             $akses= json_decode($hak_akses);
+          
             $jml=count($akses);
             $nilaisaya = DB::table('penilaian_siswas')
             ->where('id_penilaian',$id)
@@ -316,12 +337,14 @@ class PenilaianController extends Controller
 
             $jml_nilaisaya=count($nilaisaya);
  
+           
             $attemp = $banksoal[0]->remidial;
           
             $i=0; $j=0;
             while($i< $jml){
 
                 if($nis->nis == $akses[$i]->s){
+                 
                     if($akses[$i]->a == 1){
                         $ujian_saya = DB::table('penilaian_siswas')
                         ->where('id_penilaian',$banksoal[0]->id )
@@ -522,12 +545,12 @@ class PenilaianController extends Controller
                        
                     }
                     
-                }else{
-                    return back()->with('pesan',"Mohon Maaf anda tidak memiliki akses, silahkan hubungi guru pengampu");
                 }
+                   
+                
                 $i++;
             }
-
+            return back()->with('pesan',"Mohon Maaf anda tidak memiliki akses, silahkan hubungi guru pengampu");
     
            
 
@@ -781,11 +804,12 @@ class PenilaianController extends Controller
                        
                     }
                     
-                }else{
-                    return back()->with('pesan',"Mohon Maaf anda tidak memiliki akses, silahkan hubungi guru pengampu");
                 }
                 $i++;
             }
+            
+                return back()->with('pesan',"Mohon Maaf anda tidak memiliki akses, silahkan hubungi guru pengampu");
+            
                         }
                     }
                 }

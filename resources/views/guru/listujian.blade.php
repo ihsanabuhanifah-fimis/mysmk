@@ -72,20 +72,20 @@
         @if($ujian->tampil_nilai == 2)
 <td><p>Penilaian Offline</p></td>
         @else
-        <td><a id="{{$ujian->id}}" class="btn btn-primary akses-ujian" >Akses</a></td>
+        <td><button id="{{$ujian->id}}" class="btn btn-primary akses-ujian" >Akses</button></td>
         @endif
         @if($ujian->id_tipe == 2)
         @if($ujian->tampil_nilai == 2)
         <td><p>Penilaian Offline</p></td>
         @else
-        <td class="text-center"><a class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</a></div>
+        <td class="text-center"><button class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</button></div>
         @endif
         @else
-        <td class="text-center"><a class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</a></div>
+        <td class="text-center"><button class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</button></div>
         @endif
-        <td class="text-center"><a class="btn btn-primary" href="{{route('nilaiujian',['nilai'=>$ujian->id])}}">Nilai</a></td>
-        <td class="text-center"><a class="btn btn-danger text-center delete" id="{{$ujian->id}}" >Hapus</a></td>
-        <td><a id="{{$ujian->id}}" class="btn btn-success edit-ujian">Edit</a></td>
+        <td class="text-center"><button  id="{{$ujian->id}}" class="btn btn-primary nilai-ujian">Nilai</button></td>
+        <td class="text-center"><button class="btn btn-danger text-center delete" id="{{$ujian->id}}" >Hapus</button></td>
+        <td><button id="{{$ujian->id}}" class="btn btn-success edit-ujian">Edit</button></td>
         <td class="text-center">{{$ujian->remidial}}</td>
         @if($ujian->tampil_nilai == 1)
         <td class="text-center">Online</td>
@@ -150,10 +150,26 @@
 </div>
 <!-- modal akses ujian -->
 
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<!-- modal akses ujian -->
+<div class="modal fade" id="myExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Nilai Akhir Santri</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="nilai-exam-siswa"></div>
+      </div>
+    </div>
+   
+  </div>
+</div>
 
 <!-- modal edit js -->
+
 <!-- modal edit ujian -->
 
 <div class="modal fade" id="ModalEditUjian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -181,7 +197,6 @@
   </form>
 </div>
 <!-- modal edit ujian -->
-
 
 
 <!-- modal akses ujian -->
@@ -321,5 +336,25 @@ $(document).ready(function(){
   });
   
 });
+
  
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    var id
+  $(".nilai-ujian").on('click',function(){
+    id = $(this).attr('id');
+ 
+    $.ajax({
+          url:"/guru/nilai/"+id,
+          success:function(data){
+            $(".nilai-exam-siswa").html(data);
+            $("#myExam").modal();
+          }
+    });
+  });
+});
 </script>

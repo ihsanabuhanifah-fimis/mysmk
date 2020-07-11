@@ -26,7 +26,15 @@
                 <th>{{$mapel->cikgu_name}}</th>
             </tr>
         </table>
-        <div class="text-center form-control btn btn-success">Detail</div>
+        <div class="text-center form-control  detail{{$loop->iteration}} btn btn-success">Detail</div>
+        
+<script>
+$(document).ready(function(){
+  $(".detail{{$loop->iteration}}").click(function(){
+    alert("saat ini belum tersedia");
+  });
+});
+</script>
       </div>
     </div>
   </div>
@@ -34,3 +42,6 @@
   @endforelse
  
 </div>
+
+
+

@@ -54,6 +54,7 @@ class BanksoalController extends Controller
             
         ];
         $soal_praktek[0] = [
+            'ns'=>'',
             'm'=>'',
             's'=>"",
             

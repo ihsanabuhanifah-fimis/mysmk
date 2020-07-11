@@ -222,4 +222,17 @@ class AdminController extends Controller
 
        return view('admin.jadwal-siswa',['jadwals'=>$jadwal]);
     }
+
+    public function edit_jadwal($id)
+    {
+        $jadwal = DB::table('jadwals')
+        ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+       ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+       ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+       ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+        ->where('no', $id)
+        ->get();
+
+        return count($jadwal);
+    }
 }
