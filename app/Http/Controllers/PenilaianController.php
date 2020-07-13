@@ -299,7 +299,29 @@ class PenilaianController extends Controller
         ->get();
         $soal_prakteks = $soal[0]->soal_praktek;
         $soal_praktek = json_decode($soal_prakteks);
-  
+        $akses = json_decode($soal[0]->akses);
+        $jml = count($akses);
+
+        $i=0;
+        
+        if($soal[0]->disable_waktu == 1){
+            while($i < $jml){
+            if($nis->nis == $akses[$i]->s){
+                if($akses[$i]->a == 1){
+                    return view('siswa.soal-praktek',
+                    [
+                        'soals'=>$soal_praktek,
+                        'penilaians'=>$soal,
+                    ]); 
+                }
+            }
+            $i++;
+            }
+        }else{
+            "ok";
+        }
+
+        
 
         return view('siswa.soal-praktek',
         [
@@ -1479,7 +1501,7 @@ class PenilaianController extends Controller
             }
           
 
-            return "Mohon maaf anda sudah menyimpan untuk penilaian ini";
+            return "Mohon maaf anda sudah menyimpan untuk penilaian ini, untuk melakukan perubahan silahkan hubungi pengampu";
            
           }
    

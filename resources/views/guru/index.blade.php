@@ -342,7 +342,7 @@
 
         <script src="/js/sintax.js"></script>
         <script src="{{ asset('js/menu-guru-13072020.js') }}"></script>
-  
+       
 
 
         <!-- modal buat penilaian -->

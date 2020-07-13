@@ -88,4 +88,29 @@ class PengumumanController extends Controller
           'subjects'=>$mapel
         ]);
     }
+
+    public function edit_pengumuman_saya(Request $request)
+    {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $pengumuman= new Pengumuman();
+        $pengumuman = Pengumuman::where('id',$request["id"])->where('id_cikgu',$id_cikgu->id_cikgu)->first();
+
+        if($request["hapus"] != NULL)
+        {
+            $pengumuman -> delete($id_cikgu->id_cikgu);
+            return "Alhamdulilah pengumuman telah terhapus";
+        };
+
+        $pengumuman -> id_subject = $request["id_subject"];
+        $pengumuman -> tanggal = $request["tanggal"];
+        $pengumuman -> id_rombel = $request["id_rombel"];
+        $pengumuman -> pengumuman = $request["umum"];
+        $pengumuman -> save();
+
+      
+        return "Alhamdulilah pengumuman berhasil diperbaharui";
+        
+        
+    }
 }

@@ -28,6 +28,7 @@ Route::get('/', function () {
     // }
 });
 //Route Admin
+Route::put('/edit/pengumuman/','PengumumanController@edit_pengumuman_saya')->name('editpengumumansaya');
 Route::get('/edit/pengumuman/{id}','PengumumanController@edit_pengumuman')->name('editpengumuman');
 Route::get('/daftar/pengumuman','PengumumanController@daftar_pengumuman')->name('daftarpengumuman');
 Route::get('/pengumuman','PengumumanController@pengumuman')->name('pengumuman');

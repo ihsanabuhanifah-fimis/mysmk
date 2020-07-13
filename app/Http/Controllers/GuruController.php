@@ -1224,6 +1224,7 @@ class GuruController extends Controller
         $penilaian->tanggal_mulai=$request["tanggal_mulai"]; 
         $penilaian->materi=$request["materi"];
         $penilaian->id_ujian=$request["id_ujian"];
+        $penilaian->disable_waktu=$request["status"];
         $penilaian->id_tipe=$request["id_tipe"];
         $penilaian->id_subject=$request["id_subject"];
         $penilaian->remidial=$request["remidial"];

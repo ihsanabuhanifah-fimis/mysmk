@@ -1,5 +1,6 @@
-<form method="post" class="form-pengumuman" action="javascript:void(0)">
+<form method="post" id="form-pengumuman" action="javascript:void(0)">
          @csrf
+         {{method_field('PUT')}}
          <div>
              <label for="tanggal">Tanggal</label>
              <input type="date" value="{{$daftars[0]->tanggal}}" name="tanggal" class="form-control">
@@ -30,6 +31,7 @@
                  <option value="W">Wali Santri</option>
              </select>
          </div>
+         <input type="hidden" name="id" value="{{$daftars[0]->id}}">
          <div class="mt-3">
              <textarea name="umum" class="summernote">{{$daftars[0]->pengumuman}}</textarea>
          </div> 
@@ -43,12 +45,13 @@
               </select>
 
           </div>
-
+          </form>
+<div class="ket-pengumuman text-center"></div>
       <div class="modal-footer">
         
         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
         <button type="button" class="btn btn-success simpan-pengumuman">Edit</button>
-         </form>
+        
 
          
 <script>
@@ -57,3 +60,52 @@
         
         });     
     </script>
+
+    
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".simpan-pengumuman").click(function(){
+        $(this).text("Memperbaharui ...");
+        $(".ket-pengumuman").removeClass('alert alert-danger');
+        $(".ket-pengumuman").removeClass('alert alert-success');
+        $(".ket-pengumuman").empty();
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+				type: 'PUT',
+				url: "{{route('editpengumumansaya')}}",
+				data: $('#form-pengumuman').serialize(),
+				success: function(data) {
+                    
+                    $(".simpan-pengumuman").text('Simpan');
+                        $(".ket-pengumuman").addClass('alert alert-success');
+                        $(".ket-pengumuman").text(data);
+                        $("#MyPeng").modal('toggle');
+
+                    setTimeout(function(){
+                        $(".ket-pengumuman").removeClass('alert alert-success');
+                         $(".ket-pengumuman").empty();
+                         $("#menu-pengumuman").load("/pengumuman");  
+                    },1000);
+                },
+                error: function(jqXHR, exception){
+                    $(".simpan-pengumuman").text('Simpan');
+                        $(".ket-pengumuman").addClass('alert alert-danger');
+                        $(".ket-pengumuman").text("Pengumuman tidak berhasil diperharui, Silahkan cek koneksi Internet");
+                    setTimeout(function(){
+                        $(".ket-pengumuman").removeClass('alert alert-danger');
+                         $(".ket-pengumuman").empty();
+                    },3000);
+                   
+                }
+			});
+			
+			
+			});
+		});
+	
+  </script>
+  
