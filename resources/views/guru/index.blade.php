@@ -54,6 +54,13 @@
                                 <!-- menu materi -->
                             <div class="sb-sidenav-menu-heading">Menu</div>
                             
+                            <!-- Pengumuman -->
+                            <a class="nav-link collapsed menu-pengumuman"  data-toggle="pill" role="tab" aria-selected="false"
+                                ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
+                               Pengumuman
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <!-- Pengumuman -->
                             <!-- jurnal -->
                             <a class="nav-link collapsed menu-jurnal-guru"  data-toggle="pill" role="tab" aria-selected="false"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
@@ -235,7 +242,7 @@
                          
                       </div>
                        <!-- tampilkan Bank Soal -->
-
+<div id="menu-pengumuman"></div>
                       <!-- akhir menu jadwal -->
 
                       <!-- daftar kelas -->
@@ -334,7 +341,8 @@
         </div>
 
         <script src="/js/sintax.js"></script>
-        <script src="/js/menu-index-guru.js"></script>
+        <script src="{{ asset('js/menu-guru-13072020.js') }}"></script>
+  
 
 
         <!-- modal buat penilaian -->

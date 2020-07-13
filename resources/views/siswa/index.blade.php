@@ -28,15 +28,22 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav p">
                             <div class="sb-sidenav-menu-heading">MySMK</div>
-                            <a class="nav-link menu-dashboard" 
+                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link active  menu-dashboard " 
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Santri</a >
-
+                                Profil Santri</a >
+                                <a class="nav-link menu-jadwal"  data-toggle="pill" role="tab" aria-selected="false"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Jadwal Pelajaran</a >
+                                <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-mapel" 
+                                ><div class="sb-nav-link-icon "><i class="fas fa-book"></i></div>
+                                Mata Pelajaran 
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
                                 <!-- menu pelajaran -->
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link collapsed menu-pelajaran" 
+                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-pelajaran" 
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
-                                Pelajaran
+                                Materi Pelajaran
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 
@@ -45,12 +52,12 @@
                             <!-- menu materi -->
                                 <!-- menu materi -->
                          
-                            <a class="nav-link collapsed menu-jadwal-ujian-teori" aria-expanded="false" aria-controls="collapseLayouts"
+                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-jadwal-ujian-teori" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Penilaian Teori
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <a class="nav-link collapsed menu-jadwal-ujian-praktek" aria-expanded="false" aria-controls="collapseLayouts"
+                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-jadwal-ujian-praktek" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon "><i class="fas fa-columns"></i></div>
                                 Penilaian Praktek
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
@@ -59,7 +66,7 @@
 
                             <!-- menu materi -->
                            
-                            <a class="nav-link collapsed menu-halaqoh-online" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
+                            <a data-toggle="pill" role="tab" aria-selected="false"  class="nav-link collapsed menu-halaqoh-online" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Halaqoh Online
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
@@ -104,7 +111,8 @@
 
                       <div class="tampilkan-halaqoh-online"></div>
 
-
+                      <div id="menu-jadwal"></div>
+                      <div id="menu-mapel"></div>
 
                       <!-- akhir menu materi -->
                       <div class="dashboard">

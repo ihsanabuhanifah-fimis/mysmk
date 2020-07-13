@@ -8,6 +8,7 @@ use App\Jadwal;
 use App\Student_rombel;
 use App\Student;
 use App\Rombel;
+use App\Penilaian_siswa_praktek;
 use App\Cikgu;
 use App\Mapel;
 use App\Materi;
@@ -70,7 +71,7 @@ class PenilaianController extends Controller
         // return $nilai_akhir;
         // return $nilai;
 
-       return view('siswa.jadwal-ujian',['tas'=>$ta,'rombels'=>$rombel, 'nilais'=>$nilai]);
+       return view('siswa.jadwal-ujian',['ujian'=>$ujian,'tas'=>$ta,'rombels'=>$rombel, 'nilais'=>$nilai]);
     }
 
     public function jadwal_ujian_praktek()
@@ -287,7 +288,24 @@ class PenilaianController extends Controller
 
     public function masuk_ujian_praktek($id)
     {
-        return $id;
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+        $soal = DB::table('penilaians')
+        ->leftjoin('cikgus','cikgus.id_cikgu','=','penilaians.id_cikgu')
+        ->leftjoin('mapels','mapels.id_subject','=','penilaians.id_subject')
+        ->leftjoin('rombels','rombels.id_rombel','=','penilaians.id_rombel')
+        ->where('penilaians.id',$id)
+        ->get();
+        $soal_prakteks = $soal[0]->soal_praktek;
+        $soal_praktek = json_decode($soal_prakteks);
+  
+
+        return view('siswa.soal-praktek',
+        [
+            'soals'=>$soal_praktek,
+            'penilaians'=>$soal,
+        ]);
     }
     public function siswa_ujian(Request $request)
     {
@@ -1424,5 +1442,45 @@ class PenilaianController extends Controller
               return back();
           }
 
+          public function simpan_jawaban(Request $request)
+          {
+            $username= Auth::user()->username;
+            $nis=Student::where('username',"$username")->first();
+            $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+            $penilaian = DB::table('penilaians')
+            ->where('id',$request['id'])
+            ->first();
+
+
+            
+           
+            $nilai = new Penilaian_siswa_praktek();
+            $nilai -> id_penilaian = $request["id"];
+            $nilai -> jawaban = $request["jawaban"];
+            $nilai -> id_cikgu = $penilaian->id_cikgu;
+            $nilai -> id_subject = $penilaian->id_subject;
+            $nilai -> id_ta = $penilaian->id_ta;
+            $nilai -> semester = $penilaian->semester;
+            $nilai -> nis = $nis->nis;
+            $nilai -> status = 1;
+            $nilai-> tanggal = date('y-m-d h:i:s');
+
+            $cek = DB::table('penilaian_siswa_prakteks')
+            ->where('id_penilaian', $request["id"])
+            ->where('nis', $nis->nis)
+            ->first();
+
+
+           
+        
+            if($cek == NULL){
+                $nilai->save();
+                return "alhamdulilah jawaban berhasil tersimpan";
+            }
+          
+
+            return "Mohon maaf anda sudah menyimpan untuk penilaian ini";
+           
+          }
    
 }

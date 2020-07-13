@@ -78,10 +78,10 @@
         @if($ujian->tampil_nilai == 2)
         <td><p>Penilaian Offline</p></td>
         @else
-        <td class="text-center"><button class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</button></div>
+        <td class="text-center"><a class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</a></div>
         @endif
         @else
-        <td class="text-center"><button class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</button></div>
+        <td class="text-center"><a class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</a></div>
         @endif
         <td class="text-center"><button  id="{{$ujian->id}}" class="btn btn-primary nilai-ujian">Nilai</button></td>
         <td class="text-center"><button class="btn btn-danger text-center delete" id="{{$ujian->id}}" >Hapus</button></td>

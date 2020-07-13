@@ -35,7 +35,8 @@
         <div class="row">
         <div class="col-md-9"></div>
         <div class="col-md-2">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+        <button type="button" class="form-control btn-success" data-toggle="modal" data-target="#exampleModal">
             Tambah_bab
         </button>
         </div>
@@ -126,11 +127,15 @@
           <label for="youtube">Youtube</label>
           
           <input class="form-control" value="{{$materi->youtube }}" type="text" name="youtube" id="youtube" />  
-            <br>
-         
+            <br>  
+
 </div>
 
-
+  @if($materi->submateri != NULL)
+  <button id="{{$materi->id}}" class="mb-4 preview form-control btn-success">PREVIEW</button>
+  @else
+ 
+  @endif
 		<textarea class="summernote" name="isi_materi">{{$materi->isi_materi}}</textarea>
         <br/>
         <div class="notice text-center"></div>
@@ -326,5 +331,49 @@
             });
         });
   </script>
+
+<script>
+$(document).ready(function(){
+    var id
+  $(".preview").on('click',function(){
+    
+    id = $(this).attr('id');
+   
+  
+
+      $.ajax({
+          url:"/guru/preview-materi/"+id,
+          beforeSend:function(){
+         
+          },
+            success:function(data){
+              $('.preview-modal').html(data);
+              $("#previewModal").modal();
+          
+            }
+         });
+    });
+  });
+ 
+
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Preview</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="preview-modal"></div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 @endsection

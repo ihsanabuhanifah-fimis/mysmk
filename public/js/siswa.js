@@ -24,6 +24,7 @@ $('.menu-jadwal-ujian-teori').click(function(){
     $(".tampilkan-ujian-teori").load("/siswa/jadwal-ujian");
  
 });
+
     
 });
 

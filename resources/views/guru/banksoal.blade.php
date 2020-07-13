@@ -43,9 +43,9 @@
             <td>{{$banksoal->materi}}</td>
             <td class="text-center">{{$banksoal->nama_tipe}}</td>
             @if($banksoal->id_tipe == 1)
-            <td class="text-center"><button class="btn btn-success" href="{{route('buatsoalpraktek',['id'=>$banksoal->id])}}">Buat Soal</button></td>
+            <td class="text-center"><a class="btn btn-success" href="{{route('buatsoalpraktek',['id'=>$banksoal->id])}}">Buat Soal</a></td>
             @else
-            <td class="text-center"><button class="btn btn-success" href="{{route('buatsoal',['id'=>$banksoal->id])}}">Buat Soal</button></td>
+            <td class="text-center"><a class="btn btn-success" href="{{route('buatsoal',['id'=>$banksoal->id])}}">Buat Soal</a></td>
             @endif
             <td class="text-center"><button class="btn btn-danger deletebank" id="{{$banksoal->id}}" >Hapus</button></td>
             @if($banksoal->status == 1)

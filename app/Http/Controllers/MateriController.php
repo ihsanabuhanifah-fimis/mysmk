@@ -94,4 +94,6 @@ class MateriController extends Controller
 
         return view('siswa.akses-materi',['materi'=>$materi]);
     }
+
+  
 }

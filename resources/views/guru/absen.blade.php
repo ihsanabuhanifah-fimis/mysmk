@@ -4,7 +4,15 @@
 @section('title','Absensi Harian')
 
 @section('content')
+<style>
+.absen{
+    min-width:100px;
+}
+.keterangan{
+    min-width:250px;
 
+}
+</style>
  <div class="container-fluid bg-white">
         <div class="row">
             <div class="col-md-8 col-xl-6">
@@ -141,24 +149,26 @@
       </div>
     
     <div class="row ">
-          <table class="table mx-5 border table-responsive-sm">
+          <table class="table mx-md-5 mx-sm-2 border table-responsive-sm">
             <thead>
                 <tr class="tr">
                     <th class="no">No</th>
                     <th class="tr">Nama Siswa</th>
-                    <th class="tr">Absensi</th>
-                    <th class="tr">Keterangan</th>
+                    <th class="absen">Absensi</th>
+                    <th class=" keterangan">Keterangan</th>
                 </tr>
             </thead>>
             <tbody>
+            <div class="p-3">
             @forelse($absensi as $absen)
                 <tr class="tr">
                     <td class="no">{{$loop->iteration}}</td>
                         <input class="form-control nis" value="{{$absen->nis}}"  type="hidden" name="nis[]" id="nis" />
                     <td class="tr">
-                        <input class="form-control nama" value="{{$absen->nama}}"  type="text" name="nama[]" id="nama" />
+                        {{$absen->nama}}
+                        <input class="form-control nama" value="{{$absen->nama}}"  type="hidden" name="nama[]" id="nama" />
                     </td>
-                    <td class="no2">
+                    <td class="absen">
                         <select class="form-control status" name="status[]" id="status"> 
                         <option value=1>Hadir</option>
                         <option value=2>Sakit</option>
@@ -166,12 +176,13 @@
                         <option value=4>Tanpa Keterangan</option>  
                         </select>
                     </td>
-                    <td class="tr">  
+                    <td class=" keterangan">  
                         <input class="form-control ket" type="text" name="ket[]" id="ket" value="" />
                     </td>
                 </tr>
                 @empty
                 @endforelse
+                </div>
                 </tbody>     
           </table>
            

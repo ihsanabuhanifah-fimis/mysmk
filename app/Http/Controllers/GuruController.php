@@ -368,6 +368,16 @@ class GuruController extends Controller
         $materi-> id_angkatan=$request["angkatan"];
         $materi->save();
 
+        $id = DB::table('materis')
+        ->where('id_subject',$validateData["id_subject"] )
+        ->where('id_cikgu',$id_cikgu->id_cikgu )
+        ->where('id_rombel',$validateData["id_rombel"] )
+        ->where('id_bab',$validateData["id_bab"] )
+        ->where('urut',$request["index"] )
+        ->where('submateri',$validateData["submateri"] )
+        ->where('youtube',$request["youtube"] )
+        ->get();
+
 
         return "alhamdulilah materi di tambahkan";
 
@@ -1249,5 +1259,19 @@ class GuruController extends Controller
       
     }
 
-    
+    public function preview_materi($id)
+    {
+      
+        
+        $materi = Materi::find($id);
+
+        
+        return view('guru.preview-materi',
+        [
+            'materi'=>$materi
+        ]);
+    }
 }
+
+    
+
