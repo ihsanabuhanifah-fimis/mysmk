@@ -4,7 +4,7 @@
                        <ol class="breadcrumb mb-4">
                            <li class="breadcrumb-item active">
                              <div class="text-center"> </div>
-                           
+                            List penilaian Teori yang ada di kelas ini
                            </li>
                        </ol>
 </h4>

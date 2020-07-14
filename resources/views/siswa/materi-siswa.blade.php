@@ -41,6 +41,12 @@
   </div>
 <?php $i++ ; ?>
 @empty
+
 @endforelse
+ <?php $jml_mapel =count($mapels) ?>
 
 </div>
+
+@if($jml_mapel== NULL)
+<div class="card p-5 text-center alert-warning"><b>SAAT INI BELUM ADA MATERI YANG DIBUAT UNTUK</b></div>
+@endif

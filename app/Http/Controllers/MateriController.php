@@ -39,7 +39,14 @@ class MateriController extends Controller
         ->where('materis.id_rombel',$id_rombel->id_rombel)->OrWhere('materis.id_angkatan', $id_rombel->id_angkatan)
         ->groupBy('materis.id_subject')
         ->get();
+        
+        
 
+        if(count($mapel)==NULL){
+            $materi=[];
+            return view('siswa.materi-siswa',['mapels'=>$mapel,'materis'=>$materi]);
+
+        }
         
 
         $jml_mapel=count($mapel);
@@ -94,6 +101,123 @@ class MateriController extends Controller
 
         return view('siswa.akses-materi',['materi'=>$materi]);
     }
+    public function jadwal()
+    {
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $rombel=Student_rombel::where('nis',$nis->nis)->first();
 
+       
   
+     $jadwal = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+   
+     ->get();
+     $senin = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Monday')
+   
+     ->get();
+     $senin = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Monday')
+     ->orderby('waktu','asc')
+     ->get();
+  
+     $selasa = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Tuesday')
+     ->orderby('waktu','asc')
+     ->get();
+     $rabu = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Wednesday')
+     ->orderby('waktu','asc')
+     ->get();
+     $kamis = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Thursday')
+     ->orderby('waktu','asc')
+     ->get();
+     $jumat = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Friday')
+      ->orderby('waktu','asc')
+     ->get();
+     $sabtu = DB:: table('jadwals')
+     ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+     ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+     ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+     ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+     ->where('jadwals.id_rombel',$rombel->id_rombel)
+     ->where('jadwals.status', 1)
+     ->where('days','Saturday')
+     ->orderby('waktu','asc')
+     ->get();
+     return view('wali.jadwal-mapel',
+     [
+         'jadwals'=>$jadwal,
+         'senins'=>$senin,
+         'selasas'=>$selasa,
+         'rabus'=>$rabu,
+         'kamiss'=>$kamis,
+         'jumats'=>$jumat,
+         'sabtus'=>$sabtu,
+         ]);
+}
+public function mapel_aktif()
+{
+    $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $rombel=Student_rombel::where('nis',$nis->nis)->first();
+
+   $mapel = DB:: table('jadwals')
+   ->leftjoin('cikgus','cikgus.id_cikgu','=','jadwals.id_cikgu')
+   ->leftjoin('rombels','rombels.id_rombel','=','jadwals.id_rombel')
+   ->leftjoin('mapels','mapels.id_subject','=','jadwals.id_subject')
+   ->leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
+   ->where('jadwals.id_rombel',$rombel->id_rombel)
+   ->where('jadwals.status', 1)
+   ->groupby('jadwals.id_subject')
+   ->get();
+
+
+   return view('wali.mapel-aktif',['mapels'=>$mapel]);
+   return dump($mapel);
+}
 }

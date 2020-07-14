@@ -31,7 +31,7 @@
             </td>
             </tr>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
         @empty
         @endforelse
     </tbody>

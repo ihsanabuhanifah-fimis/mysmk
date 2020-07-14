@@ -199,6 +199,14 @@ class PenilaianController extends Controller
         ->where('penilaians.semester',$request["semester"])
         ->where('penilaians.id_tipe',1)
         ->get();
+
+        
+        if(count($ujian) == NULL){
+           
+            $nilai=[];
+            $nilai_akhir=[];
+            return view('siswa.jadwal-ujian-praktek2',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]);
+        }
         $jml_ujian=count($ujian);
         $nilai=DB::table('penilaian_siswas')
         ->where('nis',$nis->nis)

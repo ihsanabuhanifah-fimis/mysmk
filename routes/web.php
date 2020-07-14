@@ -158,6 +158,8 @@ Route::put('/halaqoh/simpan','HalaqohsiswaController@halaqoh_save')->name("halaq
 Route::get('/harian','HalaqohsiswaController@harian')->name("harian");
 Route::post('/harian/simpan','HalaqohsiswaController@simpan_harian')->name("simpan.harian");
 Route::get('/harian/tampil','HalaqohsiswaController@tampil_harian')->name("tampil.harian");
+Route::get('/mapel-aktif','MateriController@mapel_aktif')->name('mapel.aktif');
+Route::get('/jadwal','MateriController@jadwal')->name('jadwal');
 });
 //Route Uplod
 Route::get('/file-upload', 'FileUploadController@fileUpload')->name('fileupload');

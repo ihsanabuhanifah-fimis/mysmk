@@ -256,11 +256,15 @@
                     $(".simpan-harian").text("Simpan");
                     $('.ket-harian').addClass('alert alert-success');
                     $('.ket-harian').text(data);
+                   
                     setTimeout(function(){
                         $('.ket-harian').removeClass('alert alert-success');
                         $('.ket-harian').removeClass('alert alert-danger');
                         $('.ket-harian').empty();
-                    }, 2000);
+                        $('#modalHarian').modal('toggle');
+                        $('.kegiatan-harian').load("/siswa/harian/tampil");
+
+                    }, 1000);
                    
                 },
                 error: function (jqXHR, exception) {

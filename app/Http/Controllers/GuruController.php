@@ -39,7 +39,9 @@ class GuruController extends Controller
         -> leftjoin('tas','tas.id_ta','=','jadwals.id_ta')
         ->where('days',$days )
        
-        ->where('id_cikgu',$id_cikgu->id_cikgu)->get();
+        ->where('id_cikgu',$id_cikgu->id_cikgu)
+        ->orderby('waktu', 'asc')
+        ->get();
   
         
 

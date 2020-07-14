@@ -122,7 +122,7 @@ $(document).ready(function(){
       $(".tampilkan-ujian-praktek").hide();
       $(".tampilkan-halaqoh-online").hide();
       $("#menu-jadwal").show();
-      $("#menu-jadwal").load('/wali/jadwal');
+      $("#menu-jadwal").load('/siswa/jadwal');
      
      
    
@@ -140,7 +140,7 @@ $(document).ready(function(){
       $("#menu-jadwal").hide();
       $('#menu-harian').hide();
       $('#menu-mapel').show();
-      $("#menu-mapel").load('/wali/mapel-aktif');
+      $("#menu-mapel").load('/siswa/mapel-aktif');
     
    
  
