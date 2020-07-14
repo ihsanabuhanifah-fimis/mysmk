@@ -81,7 +81,8 @@
 		$(".simpan-pengumuman").click(function(){
            $(this).text("Menyimpan ...");
            $('.ket-peng').removeClass('alert alert-success');
-                         $('.ket-peng').empty();
+           $('.ket-peng').removeClass('alert alert-danger');
+               $('.ket-peng').empty();
             $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -100,11 +101,16 @@
                     setTimeout(function(){
                         $('.ket-peng').removeClass('alert alert-success');
                          $('.ket-peng').empty();
-                        },3000);
+                        },1000);
                 },
                 error: function(jqXHR, exception){
-                   
-                   
+                  $(".simpan-pengumuman").text("Simpan");
+                   $('.ket-peng').addClass('alert alert-danger');
+                   $('.ket-peng').text("Pengumuman tidak berhasil tersimpan, Pastikan tanggal tersisi dan koneksi internet lancar");
+                   setTimeout(function(){
+                        $('.ket-peng').removeClass('alert alert-danger');
+                         $('.ket-peng').empty();
+                        },3000);
                 }
 			});
 			

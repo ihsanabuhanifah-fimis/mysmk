@@ -42,6 +42,7 @@
               <select class="form-control" name="hapus" id="hapus">
                   <option value="">-</option>
                   <option value="1">Ya</option>
+                  <option value="2">Batal</option>
               </select>
 
           </div>
@@ -106,6 +107,23 @@
 			
 			});
 		});
-	
+        $(document).ready(function(){
+        var i=1;
+  $("#hapus").change(function(){
+    
+    var a = $(this).val();
+    if(a==1){
+        $('.simpan-pengumuman').removeClass('btn-success');
+        $('.simpan-pengumuman').addClass('btn-danger');
+        $('.simpan-pengumuman').text("Hapus");
+
+
+    }else{
+        $('.simpan-pengumuman').removeClass('btn-danger');
+        $('.simpan-pengumuman').addClass('btn-success');
+        $('.simpan-pengumuman').text("Edit");
+    }
+    });
+});
   </script>
   

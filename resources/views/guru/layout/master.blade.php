@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/guru-13072020.js') }}"></script>
+    <script src="{{ asset('js/guru-14072020.js') }}"></script>
    
     <link rel="stylesheet" href="/css/summernote.css"> 
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>

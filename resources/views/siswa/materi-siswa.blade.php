@@ -1,7 +1,11 @@
-<h1 class="mt-4">Pelajaran</h1>
-  <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">Daftar Pelajaran Anda di kelas X Teknik Komputer dan Jaringan</li>
-  </ol>                       
+<h4 class="mt-5 mb-3 text-center"> DAFTAR MATERI </h4>
+                       <ol class="breadcrumb mb-4">
+                           <li class="breadcrumb-item active">
+                             <div class="text-center">Daftar Materi Pelajaran di kelas</div>
+                           
+                           </li>
+                       </ol>
+</h4>                   
 <div class="row row-cols-1 row-cols-md-4 ">
 <?php $i=0; ?>
 @forelse ($mapels as $mapel)

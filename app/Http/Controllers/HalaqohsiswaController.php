@@ -10,6 +10,7 @@ use App\Jadwal;
 use App\Student_rombel;
 use App\Student;
 use App\Rombel;
+use App\Harian;
 use App\Cikgu;
 use App\Kelompok_halaqoh;
 use App\Pembimbing_halaqoh;
@@ -34,18 +35,33 @@ use Illuminate\Support\Facades\Auth;
 class HalaqohsiswaController extends Controller
 {
     public function halaqoh(){
+       
         $username= Auth::user()->username;
         $nis=Student::where('username',"$username")->first();
         $id_kelompok=DB::table('rombel_halaqohs')
         ->where('nis',$nis->nis)
         ->where('status', 1)
-        ->first()->id_kelompok;
+        ->first();
+
+     
+        if($id_kelompok == NULL)
+        {
+           
+            $halaqoh_online =[];
+            return view('siswa.halaqoh-online', ['halaqohs'=>$halaqoh_online]);
+        }
 
         $halaqoh_online=DB::table('laporan_halaqoh_onlines')
         ->leftjoin('tas','tas.id_ta','=','laporan_halaqoh_onlines.id_ta')
-        ->where('id_kelompok', $id_kelompok)
+        ->where('id_kelompok', $id_kelompok->id_kelompok)
         ->orderBy('tanggal','desc')
         ->get();
+
+        if($halaqoh_online == NULL)
+        {
+            $halaqoh_online =[];
+           
+        }
       
         return view('siswa.halaqoh-online', ['halaqohs'=>$halaqoh_online]);
         
@@ -122,6 +138,7 @@ class HalaqohsiswaController extends Controller
         ->where('id_halaqoh',$id)
         ->get();
 
+        
   
         $jml_halaqoh=count($halaqoh);
         $surat =DB::table('surat_alqurans')
@@ -162,4 +179,86 @@ class HalaqohsiswaController extends Controller
       
         return view('siswa.setoran-halaqoh-online',['halaqoh'=>$halaqoh_siswa]);
     }
+
+    public function harian()
+
+    {
+        return view('siswa.harian');
+    }
+
+    public function simpan_harian(Request $request)
+    {
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $rombel=Student_rombel::where('nis', $nis->nis)->first();
+      
+        $data [] = 
+        [
+            'ta'=> $request["tahajud"],
+            'k1'=> $request["ket1"],
+            'su'=> $request["subuh"],
+            'k2'=> $request["ket2"],
+            'ha'=> $request["halaqoh"],
+            'k3'=> $request["ket3"],
+            'du'=> $request["dhuha"],
+            'k4'=> $request["ket4"],
+            'dz'=> $request["dzukur"],
+            'k5'=> $request["ket5"],
+            'as'=> $request["ashar"],
+            'k6'=> $request["ket6"],
+            'pa'=> $request["pagi"],
+            'k7'=> $request["ket7"],
+            'pe'=> $request["petang"],
+            'k8'=> $request["ket8"],
+            'ma'=> $request["maghrib"],
+            'k9'=> $request["ket9"],
+            'is'=> $request["isya"],
+            'k10'=> $request["ket10"],
+            'qu'=> $request["quran"],
+            'k11'=> $request["ket11"],
+        ];
+
+     
+
+        $kegiatan =json_encode($data);
+        
+        $harian = new Harian();
+        $harian -> tanggal = $request["tanggal"];
+        $harian -> hari = $request["hari"];
+        $harian -> nis =$nis->nis;
+        $harian -> kegiatan = $kegiatan;
+        $harian -> id_rombel = $rombel->id_rombel;
+     
+        $cek = DB::table("harians")
+        ->where('tanggal', $request["tanggal"])
+        ->get();
+
+       
+        if(count($cek) != NULL){
+            return "Mohon Maaf Kegiatan Harian di tanggal ini sudah tersimpan";
+        }
+
+    
+        $harian->save();
+        return "Alhamdulilah kegiatan Harian tersimpan";
+
+    }
+
+
+    public function tampil_harian()
+    {
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $rombel=Student_rombel::where('nis', $nis->nis)->first();
+        $daftar = DB::table('harians')
+        ->where('nis', $nis->nis)
+        ->orderby('tanggal', 'desc')
+        ->get();
+
+        return view('siswa.daftar-harian',
+        [
+            'daftars'=>$daftar
+        ]);
+    }
+    
 }

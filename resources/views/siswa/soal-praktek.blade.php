@@ -45,7 +45,7 @@
                         <h6><i>Bismillahirahmanirahim</i></h6>
                         <p>Silahkan baca instruksi yang diberikan oleh Ustadz pengampu dengan benar.</p>
                         <p>Silahkan Tuliskan jawaban di kolom yang sudah di sedikan</p>
-                        <p>Berikut langkah-langkah untuk meembuat jawaban di soal praktek, Silahkan tontong <a href="#">disini</a></p>  
+                        <p>Berikut langkah-langkah untuk meembuat jawaban di soal praktek, Silahkan simak  <a href="#">disini</a></p>  
                     </div>
                     <div class="ket-simpan font-weight-bold"></div>
                       
@@ -71,7 +71,20 @@
         
         <script>
         $(document).ready(function() {
-        $('.summernote').summernote();
+            $(".summernote").summernote({
+        height: 300,
+        toolbar: [
+            [ 'style', [ 'style' ] ],
+            [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
+            [ 'fontname', [ 'fontname' ] ],
+            [ 'fontsize', [ 'fontsize' ] ],
+            [ 'color', [ 'color' ] ],
+            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
+            [ 'table', [ 'table' ] ],
+            [ 'insert', [ 'link'] ],
+            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+        ]
+    });
         });     
     </script>
     <script src="{{ asset('js/summernote.js') }}"></script>

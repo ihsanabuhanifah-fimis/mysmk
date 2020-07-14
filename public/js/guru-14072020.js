@@ -179,7 +179,7 @@ $(document).ready(function(){
 
                 $(document).ready(function(){
                     $("#tombol-jadwal-saya-hari-ini").click(function(){
-
+                        $(this).text("Mencari ...")
                         $.ajaxSetup({
                           headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -191,7 +191,7 @@ $(document).ready(function(){
                             data: $('#form-jadwal-hari-ini').serialize(),
                             success: function(data) {
                             $(".tampilkan-jadwal").html(data);
-                            
+                            $("#tombol-jadwal-saya-hari-ini").text('Submit')
                                
                             },
                             error: function (jqXHR, exception) {
@@ -321,35 +321,5 @@ $(document).ready(function(){
 
 
                                        
-	$(document).ready(function(){
-        var a;
-		$("#materi1").click(function(){
-            a = $(".materiw").val();
-            $.ajaxSetup({
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-            });
-            $.ajax({
-				type: 'POST',
-				url: "{{route('savejurnal')}}",
-				data: {materi:"kkkk"},
-				success: function(data) {
-                    // $('.notif-absen').addClass('alert alert-success');
-                    // $('.notif-absen').text(data);
-                    // $('#send_form').html('Simpan');
-                   alert(data);
-                   
-                },
-                error: function (jqXHR, exception) {
-                    // $('.notif-absen').addClass('alert alert-danger');
-                    // $('.notif-absen').text("Absensi tidak berhasil tersimpan, Mohon untuk mengecek tanggal");
-                    // $('#send_form').html('Simpan');       
-                }
-			});
-			
-			
-			});
-		});
 	
   

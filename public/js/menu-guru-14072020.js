@@ -4,7 +4,8 @@ $(document).ready(function(){
        $(".tampilkan-menu-jadwal").hide();
        $(".tampilkan-menu-mapel").hide();
        $("#menu-kelas").hide(); 
-       $("#menu-jadwal-siswa").hide();  
+       $("#menu-jadwal-siswa").hide();
+       $(".tampilkan-rekap-absen").hide();  
        $("#menu-pengumuman").hide(); 
        $(".tampilkan-menu-jurnal-guru").hide();
        $(".tampilkan-menu-halaqoh").hide(); 
@@ -22,6 +23,7 @@ $(document).ready(function(){
         $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide();
         $("#menu-kelas").hide(); 
+        $(".tampilkan-rekap-absen").hide();
         $("#menu-pengumuman").hide(); 
         $(".tampilkan-menu-jurnal-guru").hide();
         $(".tampilkan-menu-bank-soal").hide();
@@ -43,6 +45,7 @@ $(document).ready(function(){
     $(".tampilkan-menu-halaqoh").hide(); 
     $(".tampilkan-menu-jurnal-guru").hide();
     $("#menu-kelas").hide(); 
+    $(".tampilkan-rekap-absen").hide();
     $("#menu-pengumuman").hide(); 
     $("#menu-jadwal-siswa").hide();  
     $(".tampilkan-menu-mapel").hide();
@@ -60,6 +63,8 @@ $(document).ready(function(){
       $(".tampilkan-menu-halaqoh").hide(); 
       $(".tampilkan-menu-jurnal-guru").hide();
       $("#menu-kelas").hide(); 
+      $(".tampilkan-menu-bank-soal").hide();
+      $(".tampilkan-rekap-absen").hide();
         $(".tampilkan-menu-penilaian").hide(); 
         $(".tampilkan-menu-mapel").hide();
         $("#menu-pengumuman").hide(); 
@@ -76,6 +81,7 @@ $(document).ready(function(){
   $(document).ready(function(){
     $(".menu-penilaian").click(function(){
     $(".tampilkan-menu-materi").hide(); 
+    $(".tampilkan-rekap-absen").hide();
     $(".tampilkan-menu-jurnal-guru").hide();
     $(".tampilkan-menu-mapel").hide();
     $("#menu-kelas").hide(); 
@@ -125,6 +131,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-jurnal-guru").hide();
         $(".tampilkan-menu-mapel").hide();
         $(".tampilkan-edit-absen").hide();
+        $(".tampilkan-rekap-absen").hide();
         $("#menu-kelas").hide(); 
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
@@ -144,6 +151,7 @@ $(document).ready(function(){
   $(document).ready(function(){
     $(".menu-mapel").click(function(){
         $(".tampilkan-menu-materi").hide(); 
+        $(".tampilkan-rekap-absen").hide();
         $(".tampilkan-menu-jurnal-guru").hide();
         $(".tampilkan-edit-absen").hide();
         $("#menu-kelas").hide(); 
@@ -165,6 +173,7 @@ $(document).ready(function(){
     $(".menu-jurnal-guru").click(function(){
         $(".tampilkan-menu-materi").hide(); 
         $("#menu-kelas").hide(); 
+        $(".tampilkan-rekap-absen").hide();
         $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide(); 
         $("#menu-pengumuman").hide(); 
@@ -189,6 +198,7 @@ $(document).ready(function(){
       
         $(".dashboard").hide(); 
         $(".tampilkan-menu-materi").hide(); 
+        $(".tampilkan-rekap-absen").hide();
         $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide(); 
          $(".tampilkan-menu-penilaian").hide(); 
@@ -215,6 +225,7 @@ $(document).ready(function(){
         $(".tampilkan-menu-materi").hide(); 
         $(".tampilkan-edit-absen").hide();
         $(".tampilkan-menu-jadwal").hide(); 
+        $(".tampilkan-rekap-absen").hide();
          $(".tampilkan-menu-penilaian").hide(); 
         $(".dashboard").hide();
         $(".tampilkan-menu-bank-soal").hide();
@@ -237,7 +248,8 @@ $(document).ready(function(){
           $(".tampilkan-menu-materi").hide(); 
           $(".tampilkan-edit-absen").hide();
           $(".tampilkan-menu-jadwal").hide(); 
-           $(".tampilkan-menu-penilaian").hide(); 
+           $(".tampilkan-menu-penilaian").hide();
+           $(".tampilkan-rekap-absen").hide(); 
           $(".dashboard").hide();
           $(".tampilkan-menu-bank-soal").hide();
           $(".tampilkan-menu-halaqoh").hide();

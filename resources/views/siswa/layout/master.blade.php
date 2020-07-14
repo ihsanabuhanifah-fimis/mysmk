@@ -30,9 +30,13 @@
         width:400px;
 
     }
+    .nav-height{
+        height:60px;
+    }
    
 </style>
 <body class="bg-light  ">
+<div class="nav-height">
 <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar fixed-top navbar-expand navbar-dark bg-white d-flex justify-content-between">
         <div>  
@@ -71,6 +75,8 @@
             <img class="rounded-circle mt-1" src="/img/avatar.jpeg" height="40" width="40" alt="">
             </div>
         </nav>
+        </div>
+</div>
 @yield('content')
 
             </div>

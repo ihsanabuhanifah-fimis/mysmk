@@ -5,6 +5,10 @@
     td{
         font-size:12px;
     }
+
+   .nav-height{
+       height:60px;
+   }
 </style>
 
 <table class="table table-responsive-sm table-bordered ">

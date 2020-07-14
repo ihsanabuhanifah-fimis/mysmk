@@ -1,6 +1,13 @@
-<div>
-
-
+ <div class="text-center bg-gradient-success">
+   
+   <h4 class="mt-5 mb-3 text-center"> DAFTAR PENILAIAN TEORI </h4>
+                       <ol class="breadcrumb mb-4">
+                           <li class="breadcrumb-item active">
+                             <div class="text-center"> </div>
+                           
+                           </li>
+                       </ol>
+</h4>
 </div>
     <form method="post" class="form-jadwal-ujian-teori"  action="javascript:void(0)">
     <div class="form-row">
@@ -45,8 +52,42 @@
     </form>
 
     
-    <script>
+    <script>$.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+				type: 'POST',
+				url: "/siswa/jadwal-ujian-teori",
+				data: $('.form-jadwal-ujian-teori').serialize(),
+				success: function(data) {
+                    
+                    $(".tampilkan-jadwal-ujian-teori").html(data);
+                    // $(".noticeujian").text(data);
+                    // $("#tambah-ujian").text("Save");
+                    // $(".tampilkanujian").load("guru/tampilkanujian");   
+                    // setTimeout(function(){
+                    //     $(".noticeujian").removeClass("alert alert-success");
+                    //     $(".noticeujian").empty();
+                    //     },5000);
+                    //     document.getElementById("form-ujian").reset();               
+                   
+                },
+                // error: function (jqXHR, exception) {
+                // $(".noticeujian").text("Penilaian tidak berhasil ditambahkan");
+                // $(".noticeujian").addClass("alert alert-danger");
+                // $("#tambah-ujian").text("Simpan");
+                // setTimeout(function(){
+                //     $(".noticeujian").removeClass("alert alert-danger");
+                //     $(".noticeujian").empty();
+                //     },3000);
+                // }
+			});
+			
+			
     $(document).ready(function(){
+      
 		$(".temukan-jadwal-ujian-teori").click(function(){
            
             $.ajaxSetup({

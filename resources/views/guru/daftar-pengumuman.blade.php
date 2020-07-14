@@ -59,5 +59,6 @@ $(document).ready(function(){
     });
   });
 });
+
 </script>
 <!-- Modal -->

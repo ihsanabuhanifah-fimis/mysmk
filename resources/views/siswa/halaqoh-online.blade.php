@@ -3,6 +3,17 @@
         $('#myHalaqohOnline').DataTable();
     } );
     </script>
+    <div class="text-center bg-gradient-success">
+   
+   <h4 class="mt-5 mb-3 text-center">KEGIATAN HALAQOH ONLINE </h4>
+                       <ol class="breadcrumb mb-4">
+                           <li class="breadcrumb-item active">
+                             <div class="text-center">  Setiap santri wajib untuk setoran secara online ataupun langsung dari Senin - Jumat</div>
+                           
+                           </li>
+                       </ol>
+</h4>
+</div>
 <table id="myHalaqohOnline" class="table table-bordered mt-4 table-responsive-sm">
     <thead class="bg-success text-center">
         <tr>

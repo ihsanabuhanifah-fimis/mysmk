@@ -128,6 +128,7 @@ Route::get('/tampilkan/jadwal','AdminController@tampilkan_jadwal_kelas')->name('
 
 //Route Siswa Ujian
 Route::prefix('/siswa')->middleware('CekSessionSiswa')->group(function (){
+Route::get('/profil','WalisController@profil')->name("profil");
 Route::get('/jadwal-ujian','PenilaianController@jadwal_ujian')->name("jadwal_ujian");
 Route::get('/jadwal-ujian-praktek','PenilaianController@jadwal_ujian_praktek')->name("jadwal_ujian_praktek");
 Route::post('/jadwal-ujian-teori','PenilaianController@jadwal_ujian_teori')->name("jadwal_ujian_teori");
@@ -153,7 +154,10 @@ Route::get('/materi/akses/{id}','MateriController@akses_siswa')->name("akses.sis
 
 Route::get('/halaqoh','HalaqohsiswaController@halaqoh')->name("halaqoh");
 Route::get('/halaqoh-hasil/{id}','HalaqohsiswaController@halaqoh_hasil')->name("halaqoh.hasil");
-Route::put('/halaqoh','HalaqohsiswaController@halaqoh_save')->name("halaqoh.save");
+Route::put('/halaqoh/simpan','HalaqohsiswaController@halaqoh_save')->name("halaqoh.save");
+Route::get('/harian','HalaqohsiswaController@harian')->name("harian");
+Route::post('/harian/simpan','HalaqohsiswaController@simpan_harian')->name("simpan.harian");
+Route::get('/harian/tampil','HalaqohsiswaController@tampil_harian')->name("tampil.harian");
 });
 //Route Uplod
 Route::get('/file-upload', 'FileUploadController@fileUpload')->name('fileupload');

@@ -1,4 +1,12 @@
-
+<h4 class="mt-5 mb-3 text-center"> DAFTAR PENILAIAN PRAKTEK</h4>
+                       <ol class="breadcrumb mb-4">
+                           <li class="breadcrumb-item active">
+                             <div class="text-center"> </div>
+                           
+                           </li>
+                       </ol>
+</h4>
+    
     <form method="post" class="form-jadwal-ujian-praktek"  action="javascript:void(0)">
     <div class="form-row">
     @csrf
@@ -44,6 +52,22 @@
     
     <script>
     $(document).ready(function(){
+      $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+				type: 'POST',
+				url: "/siswa/jadwal-ujian-praktek2",
+				data: $('.form-jadwal-ujian-praktek').serialize(),
+				success: function(data) {
+                    
+                    $(".tampilkan-jadwal-ujian-praktek").html(data);
+                   
+                },
+               
+			});
 		$(".temukan-jadwal-ujian-praktek").click(function(){
            
             $.ajaxSetup({
@@ -58,25 +82,9 @@
 				success: function(data) {
                     
                     $(".tampilkan-jadwal-ujian-praktek").html(data);
-                    // $(".noticeujian").text(data);
-                    // $("#tambah-ujian").text("Save");
-                    // $(".tampilkanujian").load("guru/tampilkanujian");   
-                    // setTimeout(function(){
-                    //     $(".noticeujian").removeClass("alert alert-success");
-                    //     $(".noticeujian").empty();
-                    //     },5000);
-                    //     document.getElementById("form-ujian").reset();               
                    
                 },
-                // error: function (jqXHR, exception) {
-                // $(".noticeujian").text("Penilaian tidak berhasil ditambahkan");
-                // $(".noticeujian").addClass("alert alert-danger");
-                // $("#tambah-ujian").text("Simpan");
-                // setTimeout(function(){
-                //     $(".noticeujian").removeClass("alert alert-danger");
-                //     $(".noticeujian").empty();
-                //     },3000);
-                // }
+               
 			});
 			
 			

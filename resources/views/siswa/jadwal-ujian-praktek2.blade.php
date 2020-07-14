@@ -57,6 +57,7 @@
 
         <?php $k++ ; ?>
         @empty
+        <td colspan="10" class="alert alert-warning text-center font-weight-bold">Saat ini tidak terdapat ujian untuk kelas ini</td>
         @endforelse
     </tbody>
 

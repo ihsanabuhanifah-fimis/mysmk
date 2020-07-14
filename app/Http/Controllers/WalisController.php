@@ -434,5 +434,32 @@ public function mapel_aktif()
 
     
   }
+
+  public function profil()
+  {
+    $username= Auth::user()->username;
+    $nisn=Student::where('username',"$username")->first()->nis;
+     
+ 
+    $rombel=DB::table('student_rombels')
+    ->leftjoin('rombels','rombels.id_rombel','=','student_rombels.id_rombel')
+    ->where('nis', $nisn)
+    ->get();
+    $siswa = DB::table('students')
+    ->where('nis', $nisn)
+    ->first();
+    
+
+    
+   
+    return view('wali.identitas',
+    [
+        'siswa'=>$siswa,
+        'rombels'=>$rombel,
+    ]);
+
+
+    
+  }  
       
 }

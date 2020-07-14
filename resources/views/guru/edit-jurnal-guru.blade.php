@@ -19,17 +19,20 @@
         @forelse($kegiatans as $kegiatan)
      <div class="form-row mt-3 ml-1 hapus{{$loop->iteration}}">
        <div class="col-md-2 mb-2">
+            <label class="font-weight-bold" for="waktu_mulai">Waktu Mulai</label>
             <input required type="time" value="{{$kegiatan->m}}" class="form-control waktu_mulai" name="waktu_mulai[]">
         </div>
         <div class="col-md-2 mb-2">
+        <label class="font-weight-bold" for="waktu_selesai">Waktu Selesai</label>
             <input required type="time" value="{{$kegiatan->s}}" class="form-control" name="waktu_selesai[]">
         </div>
         <div class="col-md-6 mb-1">
+        <label class="font-weight-bold" for="keterangan">Keterangan</label>
             <textarea required class="form-control" name="kegiatan[]" id="" cols="30" rows="1">{{$kegiatan->k}}</textarea>
          </div>  
          <div class="col-md-2 mt-1">
-            <button type="button" id="{{$loop->iteration}}"  class="btn btn-danger hapus"> Hapus</button>
-            <button type="button" class="btn btn-success tambah-kegiatan"> Tambah</button>
+            <button type="button" id="{{$loop->iteration}}"  class="btn mt-4 btn-danger hapus"> Hapus</button>
+            <button type="button" class="btn btn-success mt-4 tambah-kegiatan"> Tambah</button>
          </div> 
      </div>   
      @empty

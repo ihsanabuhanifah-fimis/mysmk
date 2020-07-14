@@ -3,14 +3,16 @@
     font-size:12px;
 }
 </style>
+
+
 <script>
     $(document).ready( function () {
-        $('#myTeoriUjian').DataTable();
+        $('#myTeori').DataTable();
     } );
     </script>
 
-<div class="mt-3 p-3 border">
-<table id="myTeoriUjian" class="table table-bordered table-striped mt-2 table-responsive-sm">
+<div class="mt-3 p-sm-0border">
+<table id="myTeori" class="table table-bordered table-striped mt-2 table-responsive-sm">
 <p class="d-flex justify-content-end font"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
     <thead class="bg-success">
         <tr>
@@ -60,6 +62,7 @@
 
         <?php $k++ ; ?>
         @empty
+        <td colspan="10" class="alert alert-warning text-center font-weight-bold">Saat ini tidak terdapat ujian untuk kelas ini</td>
         @endforelse
     </tbody>
 
