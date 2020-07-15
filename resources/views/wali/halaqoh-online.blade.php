@@ -24,8 +24,8 @@
             <th>Tanggal</th>
             <th>Ustadz <br> Pembimbing</th>
             <th>Setoran <br> Hafalan</th>
-            <th>Audio <br> Setoran</th>
-            <th>Koreksi <br> Ustadz</th>
+            <th>Audio Setoran</th>
+            <th>Koreksi Ustadz</th>
           
         </tr>
     </thead>
@@ -34,7 +34,21 @@
         <tr>
             <td class="font">{{$loop->iteration}}</td>
             <td class="font">{{$rekaman->tanggal}}</td>
-            <td class="font">{{$rekaman->id_pembimbing}}</td>
+            <td class="font">
+            <?php $jml_count = count($cikgus) ; $i = 0 ; ?>
+            @while($i < $jml_count)
+            @if($rekaman->id_pembimbing == $cikgus[$i]->id_cikgu)
+
+            Ust. {{$cikgus[$i]->cikgu_name}}
+            @endif
+
+
+            <?php $i++ ; ?>
+            
+            @endwhile
+
+            
+            </td>
             <td class="font">
             <?php $i=0; ?>
             <?php $jml_surat = count($surat) ; ?>
@@ -80,17 +94,14 @@
            @endif
             </td>
             <td class="font">
-            @if($rekaman->check == 0)
+            @if($rekaman->komentar == NULL)
+            <p>-</p>
 
-            <button class="btn btn-danger font">Santri Belum Upload</button>
+            @else
 
-            @elseif($rekaman->check == 1)
-            <button class="btn btn-primary font">Rekaman belum di koreksi</button>
 
-            @elseif($rekaman->check == 2)
-            <button class="btn btn-success font">Lihat Komentar</button>
-
-            @endif
+           <p>{{$rekaman->komentar}}</p>
+           @endif
             
             </td>
         </tr>

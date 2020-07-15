@@ -46,7 +46,7 @@ Tambahkan Halaqoh Harian
             <input class="form-control" type="date" name="tanggal" value="<?= date('Y-m-d') ; ?>" required>
 
             <label for="tanggal">Waktu</label>
-            <input class="form-control" type="time" name="waktu" value="17:00" required>
+            <input class="form-control" type="time" name="waktu" value="16:30" required>
 
             </div>
 

@@ -79,12 +79,18 @@
         <td><p>Penilaian Offline</p></td>
         @else
         <td class="text-center"><a class="btn btn-success" href="{{route('soalujian',['nilai'=>$ujian->id])}}">Soal</a></div>
+        <td class="text-center"><button  id="{{$ujian->id}}" class="btn btn-primary nilai-ujian">Nilai</button></td>
         @endif
         @else
         <td class="text-center"><a class="btn btn-success" href="{{route('soalujianpraktek',['nilai'=>$ujian->id])}}">Soal</a></div>
+        <td class="text-center"><a href="{{route('nilai.praktek',['nilai'=>$ujian->id])}}" class="btn btn-primary text-white nilai-ujian">Nilai</a></td>
         @endif
-        <td class="text-center"><button  id="{{$ujian->id}}" class="btn btn-primary nilai-ujian">Nilai</button></td>
-        <td class="text-center"><button class="btn btn-danger text-center delete" id="{{$ujian->id}}" >Hapus</button></td>
+      
+       
+      
+       
+     
+        <td class="text-center"><button class="btn btn-danger text-center delete" id="{{$ujian->id}}" >Hapus</a></td>
         <td><button id="{{$ujian->id}}" class="btn btn-success edit-ujian">Edit</button></td>
         <td class="text-center">{{$ujian->remidial}}</td>
         @if($ujian->tampil_nilai == 1)

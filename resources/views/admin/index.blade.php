@@ -113,7 +113,7 @@
         </footer>
             </div>
         </div>
-        <script src="/js/admin.js"></script>
-
+        <script src="{{ asset('js/admin-15072020.js') }}"></script>
+       
 
 @endsection

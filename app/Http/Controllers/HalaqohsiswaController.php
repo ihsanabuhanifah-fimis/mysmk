@@ -36,24 +36,28 @@ class HalaqohsiswaController extends Controller
 {
     public function halaqoh(){
        
+     
         $username= Auth::user()->username;
         $nis=Student::where('username',"$username")->first();
         $id_kelompok=DB::table('rombel_halaqohs')
         ->where('nis',$nis->nis)
         ->where('status', 1)
-        ->first();
+        ->get();
 
-     
-        if($id_kelompok == NULL)
+
+        if(count($id_kelompok) == NULL)
         {
            
+            
             $halaqoh_online =[];
             return view('siswa.halaqoh-online', ['halaqohs'=>$halaqoh_online]);
         }
 
+        $cikgu = DB::table('cikgus')->get();
+
         $halaqoh_online=DB::table('laporan_halaqoh_onlines')
         ->leftjoin('tas','tas.id_ta','=','laporan_halaqoh_onlines.id_ta')
-        ->where('id_kelompok', $id_kelompok->id_kelompok)
+        ->where('id_pembimbing', $id_kelompok[0]->id_kelompok)
         ->orderBy('tanggal','desc')
         ->get();
 
@@ -63,7 +67,11 @@ class HalaqohsiswaController extends Controller
            
         }
       
-        return view('siswa.halaqoh-online', ['halaqohs'=>$halaqoh_online]);
+        return view('siswa.halaqoh-online', 
+        [
+            'halaqohs'=>$halaqoh_online,
+            'cikgus'=>$cikgu
+        ]);
         
     }
 
@@ -91,7 +99,7 @@ class HalaqohsiswaController extends Controller
         $halaqoh->tanggal = $laporan[0]->tanggal;
         $halaqoh->semester= $laporan[0]->semester;
         $halaqoh->id_ta= $laporan[0]->id_ta;
-        $halaqoh->id_kelompok = $laporan[0]->id_kelompok;
+        $halaqoh->id_cikgu = $laporan[0]->id_cikgu;
        
 
         $cek = DB::table('rekaman_halaqoh_onlines')

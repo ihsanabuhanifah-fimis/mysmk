@@ -27,7 +27,7 @@
 <div class="div-inline">
 <button data-toggle="modal" data-target="#staticBackdrop{{$halaqoh[0]->id}}" class="btn btn-success komentar-ustadz">Lihat Komentar</button></td>
 @else
-<button class="btn btn-danger">Belum Dikoreksi</button></td>
+
 </div>
 @endif
 @endif

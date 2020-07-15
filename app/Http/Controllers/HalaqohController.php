@@ -40,24 +40,19 @@ class HalaqohController extends Controller
      
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
-
-       
         $id_pembimbing = DB::table('pembimbing_halaqohs')
         ->where('id_cikgu', $id_cikgu->id_cikgu)
         ->get();
 
+       
+        
         $rombel = DB::table('rombel_halaqohs')
         ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
         ->where('status', 1)
         ->get();
 
-        $halaqoh= new Laporan_halaqoh_online();
-        $halaqoh -> id_pembimbing = $id_pembimbing[0]->id_pembimbing;
-        $halaqoh -> id_kelompok = $rombel[0]->id_kelompok;
-        $halaqoh -> tanggal = $request["tanggal"];
-        $halaqoh -> waktu = $request["waktu"];
-        $halaqoh -> semester = $request["semester"];
-        $halaqoh -> id_ta = $request["id_ta"];
+        
+       
 
         $i=0;
         $jml_santri = count($rombel);
@@ -68,7 +63,19 @@ class HalaqohController extends Controller
             $i++;
         }
 
+        
+
         $nama_santri = json_encode($nama);
+       
+        $halaqoh= new Laporan_halaqoh_online();
+        $halaqoh -> id_pembimbing = $id_pembimbing[0]->id_pembimbing;
+        $halaqoh -> id_kelompok = $rombel[0]->id_kelompok;
+      
+        $halaqoh -> tanggal = $request["tanggal"];
+        $halaqoh -> waktu = $request["waktu"];
+        $halaqoh ->id_cikgu = $id_cikgu->id_cikgu;
+        $halaqoh -> semester = $request["semester"];
+        $halaqoh -> id_ta = $request["id_ta"];
         $halaqoh -> nama_santri = $nama_santri;
 
         if($request["hari"] == "Monday"){
@@ -89,7 +96,7 @@ class HalaqohController extends Controller
        
         $cek = DB::table('laporan_halaqoh_onlines')
         ->where('tanggal', $request["tanggal"])
-        ->where('id_kelompok', $rombel[0]->id_kelompok)
+        ->where('id_pembimbing', )
         ->get();
 
      
@@ -104,22 +111,25 @@ class HalaqohController extends Controller
 
     public function daftar_halaqoh()
     {
+     
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
 
-      
         $id_pembimbing = DB::table('pembimbing_halaqohs')
+
         ->where('id_cikgu', $id_cikgu->id_cikgu)
         ->get();
+
+       
+       
 
         $rombel = DB::table('rombel_halaqohs')
         ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
         ->get();
-
+      
         $cek = DB::table('laporan_halaqoh_onlines')
-        ->leftjoin('kelompok_halaqohs','kelompok_halaqohs.id_kelompok','=','laporan_halaqoh_onlines.id_kelompok')
+     
         ->leftjoin('tas','tas.id_ta','=','laporan_halaqoh_onlines.id_ta')
-        ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
         ->orderBy('tanggal','desc')
         ->get();
 
@@ -220,9 +230,7 @@ class HalaqohController extends Controller
             ]);
             $i++;
         }
-
-        return dump($data);
-        
+ 
      
    
         return view('guru.halaqoh-online',['siswas'=>$data,'rekaman'=>$halaqoh_siswa,'surat'=>$surat]);

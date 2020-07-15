@@ -6,7 +6,7 @@
 <?php $jml_siswa = count($rekaman) ; ?>
 
 <table  class="table table-responsive-sm table-bordered">
-<thead>
+<thead class="bg-success">
     <tr>
         <th>No</th>
         <th>Nama</th>
@@ -27,11 +27,13 @@
 
 <td>Santri Belum Upload</td>
 <td>Santri Belum Upload</td>
+<td><textarea name="komentar" id="komentar" cols="40" rows="1"></textarea></td>
+
 @else
 @while($i < $jml_siswa)
 
 @if($siswa->nis == $rekaman[$i][0]->nis)
-
+<div>
 <td class="text-center"><b>Surat {{$rekaman[$i][0]->surat_mulai}} Ayat {{$rekaman[$i][0]->ayat_mulai}}</b>
 <br>
 Sampai 
@@ -51,12 +53,16 @@ Sampai
 </td>
 <td>
   
-<textarea name="komentar" id="komentar" cols="40" rows="1">{{$rekaman[$i][0]->komentar}}</textarea>
+    <textarea name="komentar" id="komentar" cols="40" rows="1">{{$rekaman[$i][0]->komentar}}</textarea>
 
 </td>
 <input type="hidden" name="_token" id="token{{$rekaman[$i][0]->id}}" value="{{ csrf_token() }}">
 <input type="hidden" name="id{{$rekaman[$i][0]->id}}" value="{{$rekaman[$i][0]->id}}">
+</div>
 @break
+@else
+
+
 @endif
 <?php $i++; ?>  
 @endwhile
@@ -64,7 +70,7 @@ Sampai
 @endif
 
 
-<td><button  id="" class="btn btn-danger koreksi">Belum dikoreksi</button></td>
+<td><button  id="" class="btn btn-success koreksi">Kirim</button></td>
 </tr>
 
 

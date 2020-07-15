@@ -15,6 +15,7 @@ use App\Mapel;
 use App\Ta;
 use App\Banksoal;
 use App\Materi;
+use App\Penilaian_siswa_praktek;
 use App\Bab;
 use App\Jenis_ujian;
 use App\Tipe_ujian;
@@ -370,18 +371,10 @@ class GuruController extends Controller
         $materi-> id_angkatan=$request["angkatan"];
         $materi->save();
 
-        $id = DB::table('materis')
-        ->where('id_subject',$validateData["id_subject"] )
-        ->where('id_cikgu',$id_cikgu->id_cikgu )
-        ->where('id_rombel',$validateData["id_rombel"] )
-        ->where('id_bab',$validateData["id_bab"] )
-        ->where('urut',$request["index"] )
-        ->where('submateri',$validateData["submateri"] )
-        ->where('youtube',$request["youtube"] )
-        ->get();
+        
 
 
-        return "alhamdulilah materi di tambahkan";
+        return "Alhamdulilah materi di tambahkan";
 
 
 
@@ -683,6 +676,100 @@ class GuruController extends Controller
        
         // return $nilai[3]->nis;
         return view('guru.nilai',['hasils'=>$hasil_nilai, 'penilaian'=>$penilaian,'historys'=>$history]);
+
+    }
+    public function nilaiujian_praktek($id)
+    {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $penilaian = DB::table('penilaians')
+        ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
+        ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
+        ->leftjoin('rombels','rombels.id_rombel','=','penilaians.id_rombel')
+        ->leftjoin('mapels','mapels.id_subject','=','penilaians.id_subject')
+        ->where('id_cikgu',$id_cikgu->id_cikgu)
+        ->where('id',$id)
+        ->get();
+
+        
+      
+      
+
+        // return dump($nilai_ujian);
+        $hasils = $penilaian[0]->hasil;
+        $hasil = json_decode($hasils);
+        $jml=count($hasil);
+        $siswa_rombel = DB::table('student_rombels')
+        ->where('id_rombel', $penilaian[0]->id_rombel)
+        ->get();
+        $siswa = DB::table('students')
+        ->get();
+        $jml_siswa = count($siswa);
+        $jml_siswa_rombel = count($siswa_rombel);
+        $i=0;
+        while($i < $jml_siswa_rombel){
+           
+            $j=0;
+            while($j < $jml_siswa){
+              
+                if($siswa_rombel[$i]->nis == $siswa[$j]->nis){
+                    $k=0;
+                    while($k < $jml){
+                        if($siswa_rombel[$i]->nis == $hasil[$k]->s){
+                            
+                            $nilaix[$i] = 
+                            [
+                            'nis' =>$siswa_rombel[$i]->nis,
+                            'nama'=> $siswa[$j]->nama,
+                            'nilai'=>$hasil[$k]->n
+                            ];
+                        break;
+                        }
+                        $nilaix[$i] = 
+                        [
+                        'nis' =>$siswa_rombel[$i]->nis,
+                        'nama'=> $siswa[$j]->nama,
+                        'nilai'=>"",
+                        ];
+                        $k++;
+                    }
+                }
+                $j++;
+            }
+            $i++;
+        }
+
+        $history = DB::table('penilaian_siswas')
+        ->where('id_penilaian',$id)
+        ->get();
+
+ 
+
+        $json = json_encode($nilaix);
+        $hasil_nilai = json_decode($json);
+
+       
+        // return $nilai[3]->nis;
+        return view('guru.nilai-praktek',['hasils'=>$hasil_nilai, 'penilaian'=>$penilaian,'historys'=>$history]);
+
+    }
+    public function jawaban_praktek(Request $request)
+    {
+     
+      
+        $jawaban = DB::table('penilaian_siswa_prakteks')
+        ->where('id_penilaian', $request['id'])
+        ->where('nis', $request["nis"])
+        ->get();
+        if(count($jawaban) == NULL)
+        {
+            return "tidak ada";
+        }
+
+       return view('guru.jawaban-praktek',
+       [
+            'jawaban'=>$jawaban
+       ]);
 
     }
     public function hapusujian($id)

@@ -185,7 +185,7 @@
             </div>
         </div>
       
-        <script src="{{ asset('js/wali.js') }}"></script>
+        <script src="{{ asset('js/wali-15072020.js') }}"></script>
 
 
 @endsection

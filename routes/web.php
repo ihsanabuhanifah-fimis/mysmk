@@ -34,6 +34,7 @@ Route::get('/daftar/pengumuman','PengumumanController@daftar_pengumuman')->name(
 Route::get('/pengumuman','PengumumanController@pengumuman')->name('pengumuman');
 Route::post('/simpan/pengumuman','PengumumanController@simpan_pengumuman')->name('savepengumuman');
 Route::post('/admin/simpan-rombel','AdminController@simpan_rombel')->name('save.rombel');
+Route::post('/admin/simpan-halaqoh','AdminController@simpan_halaqoh')->name('save.halaqoh');
 Route::get('/admin/daftar-siswa-rombel/{id}','AdminController@daftar_siswa_rombel')->name('siswa.rombel');
 Route::post('/data-diri','HomeController@data_diri')->name('data');
 Route::prefix('/admin')->middleware('CekSessionAdmin')->group(function (){
@@ -79,6 +80,8 @@ Route::post('/rekapnilai','GuruController@rekapnilaiteori')->name('rekapnilai');
 Route::post('/rekapnilaipraktek','GuruController@rekapnilaipraktek2')->name('rekapnilaipraktek');
 Route::get('/hapusujian/{id}','GuruController@hapusujian')->name('hapusujian');
 Route::get('/nilai/{nilai}','GuruController@nilaiujian')->name('nilaiujian');
+Route::post('/ujian/praktek/jawaban','GuruController@jawaban_praktek')->name('jawaban.praktek');
+Route::get('/nilai/praktek/{nilai}','GuruController@nilaiujian_praktek')->name('nilai.praktek');
 Route::get('/edit/ujian/{nilai}','GuruController@editujian')->name('editujian');
 Route::put('/edit/ujian/','GuruController@edit_ujian_ini')->name('edit_ujian_ini');
 Route::get('/akses/ujian/{nilai}','GuruController@aksesujian')->name('aksesujian');
@@ -160,6 +163,7 @@ Route::post('/harian/simpan','HalaqohsiswaController@simpan_harian')->name("simp
 Route::get('/harian/tampil','HalaqohsiswaController@tampil_harian')->name("tampil.harian");
 Route::get('/mapel-aktif','MateriController@mapel_aktif')->name('mapel.aktif');
 Route::get('/jadwal','MateriController@jadwal')->name('jadwal');
+
 });
 //Route Uplod
 Route::get('/file-upload', 'FileUploadController@fileUpload')->name('fileupload');

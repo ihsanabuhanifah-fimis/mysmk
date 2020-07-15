@@ -178,6 +178,10 @@ class WalisController extends Controller
             ->where('nis', $nisn)
             ->where('status',1)
             ->get();
+
+            $cikgu = DB::table('cikgus')->get();
+
+          
            
       
             if(count($rombel) == NULL){
@@ -188,10 +192,11 @@ class WalisController extends Controller
 
             
             $jadwal = DB::table("laporan_halaqoh_onlines")
-            ->where('laporan_halaqoh_onlines.id_kelompok', $rombel[0]->id_kelompok)
+            ->where('laporan_halaqoh_onlines.id_pembimbing', $rombel[0]->id_kelompok)
             ->orderBy('tanggal','desc')
             ->get();
            
+          
             if(count($jadwal) == NULL){
                 $surat = [];
                 $datas=[];
@@ -216,7 +221,7 @@ class WalisController extends Controller
                 if($jml_rekaman == 0){
                     $data[$i]=[
                         'tanggal'=>$jadwal[$i]->tanggal,
-                        'id_pembimbing'=>$jadwal[$i]->id_pembimbing,
+                        'id_pembimbing'=>$jadwal[$i]->id_cikgu,
                         'rekaman'=>NULL ,
                         'surat_mulai'=>0,
                         'surat_akhir'=>0,
@@ -231,7 +236,7 @@ class WalisController extends Controller
 
                         $data[$i]=[
                         'tanggal'=>$jadwal[$i]->tanggal,
-                        'id_pembimbing'=>$jadwal[$i]->id_pembimbing,
+                        'id_pembimbing'=>$jadwal[$i]->id_cikgu,
                         'rekaman'=>$rekaman[$j]->rekaman,
                         'surat_mulai'=>$rekaman[$j]->surat_mulai,
                         'surat_akhir'=>$rekaman[$j]->surat_akhir,
@@ -244,7 +249,7 @@ class WalisController extends Controller
                     }else{
                         $data[$i]=[
                             'tanggal'=>$jadwal[$i]->tanggal,
-                            'id_pembimbing'=>$jadwal[$i]->id_pembimbing,
+                            'id_pembimbing'=>$jadwal[$i]->id_cikgu,
                             'rekaman'=>NULL ,
                             'surat_mulai'=>0,
                             'surat_akhir'=>0,
@@ -261,7 +266,7 @@ class WalisController extends Controller
 
             $json=json_encode($data);
             $datas=json_decode($json);
-            return view('wali.halaqoh-online',["surat"=>$surat, "rekamans"=>$datas]);
+            return view('wali.halaqoh-online',["surat"=>$surat, "rekamans"=>$datas, 'cikgus'=>$cikgu]);
         }
        
 public function mapel_aktif()

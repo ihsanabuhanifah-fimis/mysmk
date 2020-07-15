@@ -8,7 +8,7 @@
     <thead class="bg-success text-center">
         <tr>
             <th>No</th>
-            <th>Nama Kelompok</th>
+           
             <th>Tahun Ajaran</th>
             <th>Semester</th>
             <th>Tanggal</th>
@@ -22,7 +22,7 @@
         @forelse($daftars as $daftar)
         <tr>
             <td>{{$loop->iteration}}</td>
-            <td>{{$daftar->nama_kelompok}}</td>
+          
             <td>{{$daftar->nama_ta}}</td>
             <td>{{$daftar->semester}}</td>
             @if($daftar->hari == 1)

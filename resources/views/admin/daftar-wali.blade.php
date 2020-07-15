@@ -1,41 +1,35 @@
 
-
-<table class="table table-responsive-sm  table-responsive table-bordered table-striped">
+<script>
+      $(document).ready(function() {
+        $('#myTableWali').DataTable();
+      } );
+  </script>
+   <div class="text-center mt-5">
+<h5>Daftar Wali Santri Aktif</h5>
+</div>
+<table id="myTableWali" class="table table-responsive-sm  table-bordered table-striped">
 <thead class="bg-success">
     <tr>
         <th>No</th>
-        <th>Detail</th>
-        <th>Nama Wali</th>
+        <th>Nama</th>
+        <th>NISN</th>
+        <th>Wali dari</th>
         <th>Email</th>
-        <th>Tampat, Tanggal Lahir</th>
-        <th>Nama Ayah</th>
-        <th>Nama Ibu</th>
-        <th>Jurusan</th>
-        <th>Tahun Masuk</th>
-        <th>Sekolah Asal</th>
+        <th>No. Handphone</th>
+        
         
     </tr>
 </thead>
     <tbody>
-        @forelse($siswas as $siswa)
+        @forelse($walis as $wali)
         <tr>
             <td>{{$loop->iteration}}</td>
-            <td><button class="btn btn-success">Detail</button></td>
-            <td>{{$siswa->nis}}</td>
-            <td>{{$siswa->nama}}</td>
-            <td>{{$siswa->email}}</td>
-            <td>{{$siswa->tempat}}</td>
-            <td>{{$siswa->nama_ayah}}</td>
-            <td>{{$siswa->nama_ibu}}</td>
-            <td>
-                @if($siswa->jurusan == 1)
-                <p>Teknik Komputer dan Jaringan</p>
-                @else
-                <p>Rekayasa Perangkat Lunak</p>
-                @endif
-            </td>
-            <td>{{$siswa->tahun_masuk}}</td>
-            <td>{{$siswa->asal_sekolah}}</td>
+            <td>{{$wali->name}}</td>
+            <td>{{$wali->nisn}}</td>
+            <td>{{$wali->nama_santri}}</td>
+            <td>{{$wali->email}}</td>
+            <td>{{$wali->no_hp}}</td>
+            
             
         </tr>
         @empty

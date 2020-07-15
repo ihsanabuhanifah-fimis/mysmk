@@ -19,17 +19,17 @@
         <tr>
             <th>No</th>
             <th>Tanggal</th>
+            <th>Nama Ustadz</th>
             <th>Batas Waktu</th>
             <th>Tahun Ajaran</th>
             <th>Semester</th>
-           
             <th colspan="2">Setoran</th>
             <th>Upload Rekaman</th>
      
         </tr>
     </thead>
 
-    <tbody>
+    <tbody class="text-center">
         @forelse($halaqohs as $halaqoh)
         <tr>
             <td>{{$loop->iteration}}</td>
@@ -50,6 +50,18 @@
             <td>Minggu, {{$halaqoh->tanggal}}</td>
            
             @endif
+            <td>
+            
+           <?php $jml = count($cikgus) ; $x=0;?>
+           @while($x < $jml)
+
+           @if($halaqoh->id_cikgu == $cikgus[$x]->id_cikgu)
+           Ust. {{ $cikgus[0]->cikgu_name}}
+           @endif
+           <?php $x++; ?>
+           @endwhile
+            
+            </td>
             <td>{{$halaqoh->waktu}}</td>
             <td>{{$halaqoh->nama_ta}}</td>
             <td>Semester {{$halaqoh->semester}}</td>

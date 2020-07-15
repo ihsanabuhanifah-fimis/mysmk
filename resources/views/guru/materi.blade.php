@@ -167,6 +167,7 @@
 				data: $('#contact_us').serialize(),
 				success: function(data) {
                     $('#send_form').html('Simpan Materi');
+                
                     $(".notice").addClass("alert alert-success text-center")
                     $('.notice').text(data)
                     document.getElementById("contact_us").reset(); 

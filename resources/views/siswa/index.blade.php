@@ -125,6 +125,6 @@
         </footer>
             </div>
         </div>
-<script src="{{ asset('js/menu-siswa-14072020.js') }}"></script>
+<script src="{{ asset('js/menu-siswa-15072020.js') }}"></script>
 
 @endsection
