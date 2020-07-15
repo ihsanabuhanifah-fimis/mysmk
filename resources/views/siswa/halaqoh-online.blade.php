@@ -61,7 +61,7 @@
            @while($x < $jml)
 
            @if($halaqoh->id_cikgu == $cikgus[$x]->id_cikgu)
-           Ust. {{ $cikgus[0]->cikgu_name}}
+           Ust. {{ $cikgus[$x]->cikgu_name}}
            @endif
            <?php $x++; ?>
            @endwhile

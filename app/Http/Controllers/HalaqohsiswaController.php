@@ -61,6 +61,8 @@ class HalaqohsiswaController extends Controller
         ->orderBy('tanggal','desc')
         ->get();
 
+        
+
         if($halaqoh_online == NULL)
         {
             $halaqoh_online =[];
