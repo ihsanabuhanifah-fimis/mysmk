@@ -130,9 +130,10 @@
           <div class="form-row">
           <div class="col-6">
           <label for="surat_mulai">Surat Akhir</label>
+          <select class="form-control"  name="surat_akhir" id="surat_akhir{{$halaqoh->id}}">
           @forelse ($surats as $surat)
 
-          <option value="{{$surat->id_surat}}"> {{$surat->id_surat}} - {{$surat->nama_surat}} </option>
+            <option value="{{$surat->id_surat}}"> {{$surat->id_surat}} - {{$surat->nama_surat}} </option>
           @empty
           @endforelse
           </select>
