@@ -57,7 +57,7 @@ class HalaqohsiswaController extends Controller
 
         $halaqoh_online=DB::table('laporan_halaqoh_onlines')
         ->leftjoin('tas','tas.id_ta','=','laporan_halaqoh_onlines.id_ta')
-        ->where('id_pembimbing', $id_kelompok[0]->id_kelompok)
+        ->where('id_kelompok', $id_kelompok[0]->id_kelompok)
         ->orderBy('tanggal','desc')
         ->get();
 

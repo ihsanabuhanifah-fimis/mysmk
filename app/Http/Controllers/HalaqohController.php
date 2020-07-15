@@ -42,8 +42,10 @@ class HalaqohController extends Controller
         ->leftjoin('students','students.nis','=','rombel_halaqohs.nis')
         ->leftjoin('student_rombels','student_rombels.nis','=','rombel_halaqohs.nis')
         ->where('rombel_halaqohs.id_cikgu', $id_cikgu->id_cikgu)
+        ->orderby('students.nama','asc')
         ->get();
 
+       
         $rombeld=DB::table('rombels')->get();
 
         
