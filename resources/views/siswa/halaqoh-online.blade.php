@@ -115,7 +115,11 @@
           <div class="col-6">
           <label for="surat_mulai">Surat Mulai</label>
           <select class="form-control" name="surat_mulai" id="surat_mulai{{$halaqoh->id}}">
-          <option value="1">Alfatihah</option>
+          @forelse ($surats as $surat)
+
+            <option value="{{$surat->id_surat}}"> {{$surat->id_surat}} - {{$surat->nama_surat}} </option>
+          @empty
+          @endforelse
           </select>
           </div>
           <div class="col-6">
@@ -126,8 +130,11 @@
           <div class="form-row">
           <div class="col-6">
           <label for="surat_mulai">Surat Akhir</label>
-          <select class="form-control"  name="surat_akhir" id="surat_akhir{{$halaqoh->id}}">
-          <option value="1">Alfatihah</option>
+          @forelse ($surats as $surat)
+
+          <option value="{{$surat->id_surat}}"> {{$surat->id_surat}} - {{$surat->nama_surat}} </option>
+          @empty
+          @endforelse
           </select>
           </div>
           <div class="col-6 ">

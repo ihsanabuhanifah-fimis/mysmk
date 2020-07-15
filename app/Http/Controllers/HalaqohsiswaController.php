@@ -44,6 +44,11 @@ class HalaqohsiswaController extends Controller
         ->where('status', 1)
         ->get();
 
+        $surat = DB::table('surat_alqurans')
+        ->orderby('id_surat', 'asc')
+        ->get();
+
+        
 
         if(count($id_kelompok) == NULL)
         {
@@ -72,7 +77,8 @@ class HalaqohsiswaController extends Controller
         return view('siswa.halaqoh-online', 
         [
             'halaqohs'=>$halaqoh_online,
-            'cikgus'=>$cikgu
+            'cikgus'=>$cikgu,
+            'surats'=>$surat
         ]);
         
     }
