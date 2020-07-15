@@ -192,7 +192,7 @@ class WalisController extends Controller
 
             
             $jadwal = DB::table("laporan_halaqoh_onlines")
-            ->where('laporan_halaqoh_onlines.id_pembimbing', $rombel[0]->id_kelompok)
+            ->where('laporan_halaqoh_onlines.id_kelompok', $rombel[0]->id_kelompok)
             ->orderBy('tanggal','desc')
             ->get();
            

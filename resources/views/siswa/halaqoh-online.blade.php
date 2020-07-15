@@ -173,7 +173,7 @@
       <div class="d-flex justify-content-center mb-3">
       <h3>Penjelasan Halaqoh Online</h3>
       </div>
-      <div class="col-sm-12 col-md-8 col-lg-8 mx-auto pb-4">
+      <div class="col-sm-12 col-md-8 col-lg-8 mx-auto pb-4 mb-5">
           <div div class="embed-responsive embed-responsive-16by9"> 
             <iframe width="480" height="315"
                 src="https://www.youtube.com/embed/vyUmSU7HzsE?modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -182,12 +182,21 @@
 
           </div> 
           <div>
-
-          <div>
+          
           
           </div>
+          
       </div>
-     
+      <div class="col-sm-12 col-md-8 col-lg-8 mx-auto pb-4">
+          <div div class="embed-responsive embed-responsive-16by9"> 
+            <iframe width="480" height="315"
+                src="https://www.youtube.com/embed/Vg3H_GDrWBQ?modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        
+          </iframe>
+
+          </div> 
+          <div>
+          <div>
     </div>
   </div>
 </div>
