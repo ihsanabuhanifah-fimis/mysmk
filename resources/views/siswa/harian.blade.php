@@ -35,6 +35,7 @@
           <select class="ml-2 form-control"  name="hari" id="hari">
                              
           <option class="font-weight-bold " selected value="<?= date('l') ;?>"><?= date('l') ;?>
+                                
                               <option value="Monday">Monday</option>
                               <option value="Tuesday">Tuesday</option>
                               <option value="Wednesday">Wednesday</option>
@@ -63,7 +64,7 @@
                       <th>Sholat Tahajjud & Witir</th>
                       <td>
                           <select required class="form-control" name="tahajud" id="tahajud">
-                             
+                          <option value="">-</option>
                               <option value="1">Ya</option>
                               <option value="2">Tidak</option>
                           </select>
@@ -77,7 +78,7 @@
                       <th>Sholat Subuh</th>
                       <td>
                           <select required class="form-control" name="subuh" id="subuh">
-                            
+                          <option value="">-</option>
                               <option value="1">Berjamaah di Mesjid</option>
                               <option value="2">Berjamaah di Rumah</option>
                               <option value="3">Sendirian</option>
@@ -92,7 +93,7 @@
                       <th>Halaqoh Quran</th>
                       <td>
                           <select required class="form-control" name="halaqoh" id="halaqoh">
-                             
+                          <option value="">-</option>
                               <option value="1">Ya</option>
                               <option value="2">Tidak</option>
                           </select>
@@ -106,6 +107,7 @@
                       <th>sholat Dhuha</th>
                       <td>
                           <select required class="form-control" name="dhuha" id="dhuha">
+                          <option value="">-</option>
                               <option value="1">Ya</option>
                               <option value="2">Tidak</option>
                           </select>
@@ -119,7 +121,7 @@
                       <th>Sholat Dzuhur</th>
                       <td>
                           <select required class="form-control" name="dzuhur" id="dzuhur">
-                           
+                          <option value="">-</option>
                               <option value="1">Berjamaah di Mesjid</option>
                               <option value="2">Berjamaah di Rumah</option>
                               <option value="3">Sendirian</option>
@@ -134,7 +136,7 @@
                       <th>Sholat Ashar</th>
                       <td>
                           <select required class="form-control" name="ashar" id="ashar">
-                           
+                          <option value="">-</option>
                               <option value="1">Berjamaah di Mesjid</option>
                               <option value="2">Berjamaah di Rumah</option>
                               <option value="3">Sendirian</option>
@@ -149,7 +151,7 @@
                       <th>Dzikir Pagi</th>
                       <td>
                           <select required class="form-control" name="pagi" id="pagi">
-                            
+                          <option value="">-</option>
                               <option value="1">Ya</option>
                               <option value="2">Tidak</option>
                              
@@ -164,6 +166,7 @@
                       <th>Dzikir Petang</th>
                       <td>
                           <select required class="form-control" name="petang" id="petang">
+                          <option value="">-</option>
                           <option value="1">Ya</option>
                               <option value="2">Tidak</option>
                              
@@ -178,7 +181,7 @@
                       <th>Sholat Maghrib</th>
                       <td>
                           <select required class="form-control" name="maghrib" id="maghrib">
-                             
+                          <option value="">-</option>
                               <option value="1">Berjamaah di Mesjid</option>
                               <option value="2">Berjamaah di Rumah</option>
                               <option value="3">Sendirian</option>
@@ -193,7 +196,7 @@
                       <th>Sholat Isya</th>
                       <td>
                           <select required class="form-control" name="isya" id="isya">
-                            
+                          <option value="">-</option>
                               <option value="1">Berjamaah di Mesjid</option>
                               <option value="2">Berjamaah di Rumah</option>
                               <option value="3">Sendirian</option>
@@ -208,7 +211,7 @@
                       <th>Baca Alquran Mandiri</th>
                       <td>
                           <select required class="form-control" name="quran" id="quran">
-                             
+                            <option value="">-</option>
                               <option value="1">Ya</option>
                               <option value="2">Tidak</option>
                              

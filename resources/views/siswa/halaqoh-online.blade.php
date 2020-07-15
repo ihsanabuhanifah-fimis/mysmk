@@ -8,7 +8,7 @@
    <h4 class="mt-5 mb-3 text-center">KEGIATAN HALAQOH ONLINE </h4>
                        <ol class="breadcrumb mb-4">
                            <li class="breadcrumb-item active">
-                             <div class="text-center">  Setiap santri wajib untuk setoran secara online ataupun langsung dari Senin - Jumat</div>
+                             <div class="text-center">  Setiap santri wajib untuk setoran secara online ataupun langsung dari Senin - Jumat dari jam 05.00 - 06.30</div>
                            
                            </li>
                        </ol>
