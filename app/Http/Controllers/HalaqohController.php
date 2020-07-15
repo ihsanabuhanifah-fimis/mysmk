@@ -96,7 +96,7 @@ class HalaqohController extends Controller
        
         $cek = DB::table('laporan_halaqoh_onlines')
         ->where('tanggal', $request["tanggal"])
-        ->where('id_pembimbing', )
+        ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
         ->get();
 
      

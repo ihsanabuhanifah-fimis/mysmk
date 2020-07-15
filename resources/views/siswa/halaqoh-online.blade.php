@@ -14,6 +14,11 @@
                        </ol>
 </h4>
 </div>
+<div class="d-flex justify-content-end">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadHalaqoh">
+  Bagaimana Cara Upload?
+</button>
+</div>
 <table id="myHalaqohOnline" class="table table-bordered mt-4 table-responsive-sm">
     <thead class="bg-success text-center">
         <tr>
@@ -87,6 +92,8 @@
             <td><button id="{{$halaqoh->id}}"  class="upload-rekaman btn btn-success">Upload</button></td>
             
         </tr>
+        </tbody>
+</table>
 
         <div class="modal fade" id="exampleModal{{$halaqoh->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
@@ -150,10 +157,40 @@
         @empty
         <td colspan="10" class="alert alert-warning text-center text-bold ">Saat Ini Tidak Ada Jadwal Halaqoh</td>
         @endforelse
-    </tbody>
-</table>
+    
 
+<!-- Modal -->
+<div class="modal fade" id="uploadHalaqoh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="d-flex justify-content-center mb-3">
+      <h3>Penjelasan Halaqoh Online</h3>
+      </div>
+      <div class="col-sm-12 col-md-8 col-lg-8 mx-auto pb-4">
+          <div div class="embed-responsive embed-responsive-16by9"> 
+            <iframe width="480" height="315"
+                src="https://www.youtube.com/embed/vyUmSU7HzsE?modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        
+          </iframe>
 
+          </div> 
+          <div>
+
+          <div>
+          
+          </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
 
 
 
