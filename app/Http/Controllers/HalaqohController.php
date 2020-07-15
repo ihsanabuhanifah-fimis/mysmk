@@ -147,6 +147,7 @@ class HalaqohController extends Controller
         $cek = DB::table('laporan_halaqoh_onlines')
      
         ->leftjoin('tas','tas.id_ta','=','laporan_halaqoh_onlines.id_ta')
+        ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
         ->orderBy('tanggal','desc')
         ->get();
 
