@@ -121,7 +121,7 @@ class HalaqohsiswaController extends Controller
      
                
        if(count($cek) == NULL){
-           if(strtotime($tanggal) <= strtotime($laporan[0]->tanggal)){
+           if(strtotime($tanggal) == strtotime($laporan[0]->tanggal)){
 
            
            if($waktu > $laporan[0]->waktu){
@@ -131,7 +131,7 @@ class HalaqohsiswaController extends Controller
             return "Alhamdulilah rekaman hafalan tersimpan";
            }
         }else{
-            return "Mohon maaf waktu upload rekaman sudah habis";
+            return "Mohon maaf tanggal upload tidak sesuai";
         }
           
            
