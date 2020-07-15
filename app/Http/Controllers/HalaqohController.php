@@ -32,7 +32,22 @@ class HalaqohController extends Controller
 {
     public function get_halaqoh()
     {
-        return view('guru.halaqoh');
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $id_pembimbing = DB::table('pembimbing_halaqohs')
+        ->where('id_cikgu', $id_cikgu->id_cikgu)
+        ->get();
+
+        $rombel = DB::table('rombel_halaqohs')
+        ->leftjoin('students','students.nis','=','rombel_halaqohs.nis')
+        ->leftjoin('student_rombels','student_rombels.nis','=','rombel_halaqohs.nis')
+        ->where('rombel_halaqohs.id_cikgu', $id_cikgu->id_cikgu)
+        ->get();
+
+        $rombeld=DB::table('rombels')->get();
+
+        
+        return view('guru.halaqoh',['rombels'=>$rombel, 'rombelini'=>$rombeld]);
     }
 
     public function add_halaqoh(Request $request)

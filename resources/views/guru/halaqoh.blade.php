@@ -11,9 +11,15 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#halaqohModal">
+<div class="d-flex justify-content-sm-between justify-content-md-end">
+<button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#halaqohModal">
 Tambahkan Halaqoh Harian
 </button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+ Daftar Santri
+</button>
+
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="halaqohModal" tabindex="-1" role="dialog" aria-labelledby="examplModalLabel" aria-hidden="true">
@@ -131,3 +137,54 @@ Tambahkan Halaqoh Harian
             $(".list-halaqoh").load("guru/halaqoh/daftar")
         });
   </script>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DAFTAR SANTRI HALAQOH</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <table class="table table-striped table-responsive-sm">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+      </tr>
+      </thead>
+      @forelse($rombels as $rombel)
+      <tbody>
+      <tr>
+        <td>{{$loop->iteration}}</td>
+        <td>{{$rombel->nama}}</td>
+        <td>
+        <?php $jml_s = count($rombelini) ; $p=0; ?>
+        @while($p < $jml_s)
+
+@if($rombel->id_rombel == $rombelini[$p]->id_rombel)
+
+{{$rombelini[$p]->nama_rombel}}
+@endif
+
+        <?php $p++ ; ?>
+        @endwhile
+
+        </td>
+      </tr>
+      </tbody>
+      @empty
+      @endforelse
+      </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
