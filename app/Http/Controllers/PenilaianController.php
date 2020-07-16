@@ -28,7 +28,24 @@ use Illuminate\Support\Facades\Hash;
 class PenilaianController extends Controller
 {
     //Controleer siswa
+    public function tugas()
+    {
+        $username= Auth::user()->username;
+        $nis=Student::where('username',"$username")->first();
+        $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+        $pengumuman=DB::table('pengumumen')
+        ->leftjoin('rombels','rombels.id_rombel','=','pengumumen.id_rombel')
+        ->leftjoin('mapels','mapels.id_subject','=','pengumumen.id_subject')
+        ->leftjoin('cikgus','cikgus.id_cikgu','=','pengumumen.id_cikgu')
+        
+        ->where('pengumumen.id_rombel',$id_rombel->id_rombel)
+        ->orderby('pengumumen.tanggal', 'desc')
+        ->get();
+          
 
+          
+        return view('siswa.pengumuman',['umums'=>$pengumuman]);
+    }
     public function jadwal_ujian()
     {
         $username= Auth::user()->username;

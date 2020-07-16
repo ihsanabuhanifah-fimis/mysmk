@@ -220,4 +220,6 @@ public function mapel_aktif()
    return view('wali.mapel-aktif',['mapels'=>$mapel]);
    return dump($mapel);
 }
+
+
 }
