@@ -93,12 +93,6 @@
             
         </tr>
         </tbody>
-
-        @empty
-        <td colspan="10" class="alert alert-warning text-center text-bold ">Saat Ini Tidak Ada Jadwal Halaqoh</td>
-        @endforelse
-    
-        </table>
         <div class="modal fade" id="exampleModal{{$halaqoh->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -165,6 +159,13 @@
     </div>
   </div>
 </div>
+        @empty
+        <td colspan="10" class="alert alert-warning text-center text-bold ">Saat Ini Tidak Ada Jadwal Halaqoh</td>
+       
+        @endforelse
+    
+        </table>
+       
 
         
 <!-- Modal -->
