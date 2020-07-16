@@ -54,12 +54,15 @@ class JurnalController extends Controller
             $i++;
         }
 
-       
+      
         $kegiatan = json_encode($kegiatans);
         $jurnal_sudah_ada = DB::table("jurnal_gurus")
         ->where("tanggal",$request["tanggal"] )
-        ->where("id_cikgu"->$id_cikgu->id_cikgu)
+        ->where("id_cikgu",$id_cikgu->id_cikgu)
         ->get();
+
+    
+    
         
         $jurnal = new Jurnal_guru();
         $jurnal -> id_cikgu = $id_cikgu->id_cikgu;
