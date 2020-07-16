@@ -57,7 +57,9 @@ class JurnalController extends Controller
        
         $kegiatan = json_encode($kegiatans);
         $jurnal_sudah_ada = DB::table("jurnal_gurus")
-        ->where("tanggal",$request["tanggal"] )->first();
+        ->where("tanggal",$request["tanggal"] )
+        ->where("id_cikgu"->$id_cikgu->id_cikgu)
+        ->get();
         
         $jurnal = new Jurnal_guru();
         $jurnal -> id_cikgu = $id_cikgu->id_cikgu;
@@ -82,7 +84,7 @@ class JurnalController extends Controller
        
         
         if($jurnal_sudah_ada != NULL){
-            return "Mohon maaf Jurnal pada hari ini sudah tersimpan";
+            return "Untuk melakukan penambaha, silahkan gunakan edit";
         }else{
             $jurnal->save();
         return "Alhamdulilah Jurnal tersimpan";

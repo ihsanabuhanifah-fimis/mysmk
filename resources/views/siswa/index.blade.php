@@ -114,6 +114,7 @@
                       <div class="tampilkan-halaqoh-online"></div>
 
                       <div id="menu-jadwal"></div>
+                      <div id="menu-tugas"></div>
                       <div id="menu-mapel"></div>
                       <div id="menu-harian"></div>
 
@@ -125,6 +126,6 @@
         </footer>
             </div>
         </div>
-<script src="{{ asset('js/menu-siswa-15072020.js') }}"></script>
+<script src="{{ asset('js/menu-siswa-16072020.js') }}"></script>
 
 @endsection

@@ -66,7 +66,7 @@
 
     <div class="d-sm-block  d-md-none">
     @forelse($kbms as $kbm)
-    <div class="col mb-4 box mb-3 alert-success rounded ">
+    <div class="col mb-4 box mb-3 card rounded ">
       <div class="card-body">
         <div class="card-title text-center">
            

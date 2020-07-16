@@ -185,7 +185,7 @@ class HalaqohController extends Controller
         if($jml_rekaman == NULL){
            
 
-                $rekam=[];
+        $rekam=[];
         }else{
         $a=0;
         while($a < $jml_rekaman){

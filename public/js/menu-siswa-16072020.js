@@ -6,6 +6,7 @@ $(document).ready(function(){
     
     $('#menu-harian').hide();
     $(".tampilkan-halaqoh-online").hide();
+    $('#menu-tugas').hide();
     $(".tampilkan-menu-jadwal-ujian-teori").hide();
     $(".tampilkan-menu-jadwal-ujian-praktek").hide();
     $(".dashboard").show(); 
@@ -16,6 +17,7 @@ $(document).ready(function(){
     $(".menu-dashboard").click(function(){
     $(".tampilkan-menu-pelajaran").hide();
     $(".tampilkan-menu-jadwal-ujian").hide();
+    $('#menu-tugas').hide();
     $(".tampilkan-menu-jadwal-ujian-teori").hide();
     $(".tampilkan-menu-jadwal-ujian-praktek").hide();
     $(".tampilkan-ujian-praktek").hide();
@@ -37,6 +39,7 @@ $(document).ready(function(){
      $(".tampilkan-halaqoh-online").hide();
      $(".tampilkan-menu-jadwal-ujian").hide();
      $("#menu-jadwal").hide();
+     $('#menu-tugas').hide();
      $('#menu-mapel').hide();
      $(".tampilkan-ujian-praktek").hide();
      $('#menu-harian').hide();
@@ -57,6 +60,7 @@ $(document).ready(function(){
     $(".tampilkan-ujian-praktek").hide();
     $(".tampilkan-ujian-teori").hide();
     $("#menu-jadwal").hide();
+    $('#menu-tugas').hide();
     $('#menu-mapel').hide();
     $(".tampilkan-ujian-praktek").hide();
     $('#menu-harian').hide();
@@ -78,6 +82,7 @@ $(document).ready(function(){
     $("#menu-jadwal").hide();
     $('#menu-mapel').hide();
     $('#menu-harian').hide();
+    $('#menu-tugas').hide();
     $(".tampilkan-ujian-teori").hide();
     $(".tampilkan-menu-jadwal-ujian-praktek").show();
     $(".tampilkan-menu-jadwal-ujian-teori").hide();
@@ -93,6 +98,7 @@ $(document).ready(function(){
     $(".menu-halaqoh-online").click(function(){
     $(".tampilkan-menu-pelajaran").hide();
     $(".dashboard").hide();
+    $('#menu-tugas').hide();
     $(".tampilkan-menu-jadwal-ujian").hide();
     $(".tampilkan-menu-jadwal-ujian-teori").hide();
     $(".tampilkan-menu-jadwal-ujian-praktek").hide();
@@ -104,6 +110,7 @@ $(document).ready(function(){
     $(".tampilkan-ujian-teori").hide();
     $("#menu-jadwal").hide();
     $('#menu-harian').hide();
+    $('#menu-tugas').hide();
   
     $(".tampilkan-halaqoh-online").show();
     $(".tampilkan-halaqoh-online").load("/siswa/halaqoh");
@@ -116,6 +123,7 @@ $(document).ready(function(){
       $(".dashboard").hide();
       $('#menu-mapel').hide();
       $('#menu-harian').hide();
+      $('#menu-tugas').hide();
       $(".tampilkan-menu-jadwal-ujian").hide();
       $(".tampilkan-menu-jadwal-ujian-teori").hide();
       $(".tampilkan-menu-jadwal-ujian-praktek").hide();
@@ -131,6 +139,7 @@ $(document).ready(function(){
        
     $(".tampilkan-menu-pelajaran").hide();
       $(".dashboard").hide();
+      $('#menu-tugas').hide();
       $(".tampilkan-menu-jadwal-ujian").hide();
       $(".tampilkan-menu-jadwal-ujian-teori").hide();
       $(".tampilkan-menu-jadwal-ujian-praktek").hide();
@@ -151,6 +160,7 @@ $(document).ready(function(){
     $(".tampilkan-ujian-praktek").hide();   
   $(".tampilkan-menu-pelajaran").hide();
     $(".dashboard").hide();
+    $('#menu-tugas').hide();
     $(".tampilkan-menu-jadwal-ujian").hide();
     $(".tampilkan-menu-jadwal-ujian-teori").hide();
     $(".tampilkan-menu-jadwal-ujian-praktek").hide();
@@ -160,6 +170,22 @@ $(document).ready(function(){
     $('#menu-mapel').hide();
     $('#menu-harian').show();
     $('#menu-harian').load("/siswa/harian");
+
+});
+$('.menu-tugas').click(function(){
+  $(".tampilkan-ujian-praktek").hide();   
+$(".tampilkan-menu-pelajaran").hide();
+  $(".dashboard").hide();
+  $(".tampilkan-menu-jadwal-ujian").hide();
+  $(".tampilkan-menu-jadwal-ujian-teori").hide();
+  $(".tampilkan-menu-jadwal-ujian-praktek").hide();
+  $(".tampilkan-ujian-praktek").hide();
+  $("#menu-jadwal").hide();
+  $(".tampilkan-halaqoh-online").hide();
+  $('#menu-mapel').hide();
+  $('#menu-harian').hide();
+  $('#menu-tugas').show();
+  $('#menu-tugas').load('/siswa/tugas');
 
 });
 

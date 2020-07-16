@@ -153,6 +153,7 @@ Route::post('/simpan/jawaban/praktek','PenilaianController@simpan_jawaban')->nam
 Route::get('/materi','MateriController@materi_siswa')->name("materi_siswa");
 Route::get('/materi/bab/{id}','MateriController@bab_siswa')->name("bab.siswa");
 Route::get('/materi/akses/{id}','MateriController@akses_siswa')->name("akses.siswa");
+Route::get('/tugas','PenilaianController@tugas')->name("tugas");
 //route siswa Materi
 
 Route::get('/halaqoh','HalaqohsiswaController@halaqoh')->name("halaqoh");
