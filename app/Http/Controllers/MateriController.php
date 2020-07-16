@@ -52,7 +52,7 @@ class MateriController extends Controller
         ->leftjoin('rombels','rombels.id_rombel','=','materis.id_rombel')
         ->leftjoin('mapels','mapels.id_subject','=','materis.id_subject') 
         ->leftjoin('cikgus','cikgus.id_cikgu','=','materis.id_cikgu')
-        ->where('materis.id_rombel',$id_rombel->id_rombel)->OrWhere('materis.id_angkatan', $id_angkatan)
+        ->where('materis.id_rombel',$id_rombel->id_rombel)
         ->groupBy('materis.id_subject')
         ->get();
         
