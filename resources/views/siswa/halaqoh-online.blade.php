@@ -28,7 +28,7 @@
             <th>Batas Waktu</th>
             <th>Tahun Ajaran</th>
             <th>Semester</th>
-            <th colspan="2">Setoran</th>
+            <th>Setoran</th>
             <th>Upload Rekaman</th>
      
         </tr>

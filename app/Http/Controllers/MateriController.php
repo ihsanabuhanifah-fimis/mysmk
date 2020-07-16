@@ -31,12 +31,28 @@ class MateriController extends Controller
         $username= Auth::user()->username;
         $nis=Student::where('username',"$username")->first();
         $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+
+        
+        if($id_rombel->id_rombel == 1){
+            $id_angkatan = 1;
+
+        }elseif($id_rombel->id_rombel == 2){
+            $id_angkatan = 1;
+        }elseif($id_rombel->id_rombel == 3){
+            $id_angkatan = 2;
+        }elseif($id_rombel->id_rombel == 4){
+            $id_angkatan = 2;
+        }elseif($id_rombel->id_rombel == 5){
+            $id_angkatan = 3;
+        }elseif($id_rombel->id_rombel == 6){
+            $id_angkatan = 3;
+        }
         
         $mapel=DB::table('materis')
         ->leftjoin('rombels','rombels.id_rombel','=','materis.id_rombel')
         ->leftjoin('mapels','mapels.id_subject','=','materis.id_subject') 
         ->leftjoin('cikgus','cikgus.id_cikgu','=','materis.id_cikgu')
-        ->where('materis.id_rombel',$id_rombel->id_rombel)->OrWhere('materis.id_angkatan', $id_rombel->id_angkatan)
+        ->where('materis.id_rombel',$id_rombel->id_rombel)->OrWhere('materis.id_angkatan', $id_angkatan)
         ->groupBy('materis.id_subject')
         ->get();
         
