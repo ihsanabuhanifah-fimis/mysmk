@@ -11,9 +11,7 @@
     .tab{
         font-size:12px;
     }
-    .box{
-        box-shadow: 2px 2px 10px grey;
-      }
+   
 
 </style>
 <div class="card-group">
