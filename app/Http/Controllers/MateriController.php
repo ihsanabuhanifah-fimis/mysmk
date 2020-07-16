@@ -56,24 +56,16 @@ class MateriController extends Controller
         ->groupBy('materis.id_subject')
         ->get();
         
-
-        $mapel2=DB::table('materis')
-        ->leftjoin('rombels','rombels.id_rombel','=','materis.id_rombel')
-        ->leftjoin('mapels','mapels.id_subject','=','materis.id_subject') 
-        ->leftjoin('cikgus','cikgus.id_cikgu','=','materis.id_cikgu')
-        ->where('materis.id_rombel',$id_rombel->id_rombel)->OrWhere('materis.id_angkatan', $id_angkatan)
-       
-        ->get();
         
 
-        if(count($mapel2)==NULL){
+        if(count($mapel)==NULL){
             $materi=[];
             return view('siswa.materi-siswa',['mapels'=>$mapel,'materis'=>$materi]);
 
         }
         
 
-        $jml_mapel=count($mapel2);
+        $jml_mapel=count($mapel);
         $i = 0 ;
         for($i ; $i < $jml_mapel ; $i++){
             $materi[$i]=DB::table('materis')
@@ -81,8 +73,8 @@ class MateriController extends Controller
             ->leftjoin('mapels','mapels.id_subject','=','materis.id_subject') 
             ->leftjoin('cikgus','cikgus.id_cikgu','=','materis.id_cikgu')
             ->leftjoin('babs','babs.id_bab','=','materis.id_bab')
-            ->where('materis.id_subject', $mapel2[$i]->id_subject)
-            ->where('mareris.id_bab', $mapel2[$i]->id_bab)
+            ->where('materis.id_subject', $mapel[$i]->id_subject)
+            ->where('mareris.id_cikgu', $mapel[$i]->id_cikgu)
             ->groupby('materis.id_bab')
             ->get(); 
         }
