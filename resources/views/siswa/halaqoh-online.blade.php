@@ -70,7 +70,7 @@
             <td>{{$halaqoh->waktu}}</td>
             <td>{{$halaqoh->nama_ta}}</td>
             <td>Semester {{$halaqoh->semester}}</td>
-            <td colspan="2"><div class="text-center setoran{{$halaqoh->id}}"></div></td>
+            <td><div class="text-center setoran{{$halaqoh->id}}"></div></td>
             
          
             <script>
