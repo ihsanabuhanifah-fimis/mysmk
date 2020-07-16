@@ -115,7 +115,7 @@
     
         </tbody>
         <div class="text-center font-smaller"><b>Materi</b>
-        <div class="border card  p-1">
+        <div class="card  p-1">
              {{$kbm->materi}}</div>
         </div>
     </div>

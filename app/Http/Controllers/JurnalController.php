@@ -83,8 +83,8 @@ class JurnalController extends Controller
         $jurnal -> save = NOW();
        
         
-        if($jurnal_sudah_ada != NULL){
-            return "Untuk melakukan penambaha, silahkan gunakan edit";
+        if(count($jurnal_sudah_ada) != NULL){
+            return "Untuk melakukan penambahan, silahkan gunakan edit";
         }else{
             $jurnal->save();
         return "Alhamdulilah Jurnal tersimpan";
