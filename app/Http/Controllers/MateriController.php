@@ -74,7 +74,7 @@ class MateriController extends Controller
             ->leftjoin('cikgus','cikgus.id_cikgu','=','materis.id_cikgu')
             ->leftjoin('babs','babs.id_bab','=','materis.id_bab')
             ->where('materis.id_subject', $mapel[$i]->id_subject)
-            ->where('mareris.id_cikgu', $mapel[$i]->id_cikgu)
+            
             ->groupby('materis.id_bab')
             ->get(); 
         }
