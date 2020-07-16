@@ -42,7 +42,7 @@
         </table>
         </div>
     <div class="p-3">
-      <h6>Pengumuman :</h6>
+      <h6>Tugas :</h6>
       <p class="card-text text-justify">{!!$umum->pengumuman!!}</p>
       </div>
     </div>
