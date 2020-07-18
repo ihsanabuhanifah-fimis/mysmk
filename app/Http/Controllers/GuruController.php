@@ -428,7 +428,9 @@ class GuruController extends Controller
         $materi = DB::table('materis')
         -> leftjoin ('mapels','mapels.id_subject','=','materis.id_subject')
         -> leftjoin ('babs','babs.id_bab','=','materis.id_bab')
-        -> where('materis.id_cikgu',$id_cikgu->id_cikgu)->get();
+        -> where('materis.id_cikgu',$id_cikgu->id_cikgu)
+        -> orderby('waktu', 'desc')
+        ->get();
         return view('guru.listmateri',['materis'=>$materi]);
 
     }
@@ -500,10 +502,17 @@ class GuruController extends Controller
         $jml=count($siswa);
         $i=0;
         while($i<$jml){
+            if($request["status"] == 1){
+                $datas[$i]=[
+                    's'=>$siswa[$i]->nis,
+                    'a'=>"",
+                ];
+            }else{
             $datas[$i]=[
                 's'=>$siswa[$i]->nis,
                 'a'=>"1",
             ];
+             }
             $data[$i]=[
                 's'=>$siswa[$i]->nis,
                 'n'=>""];

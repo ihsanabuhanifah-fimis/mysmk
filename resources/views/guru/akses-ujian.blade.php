@@ -10,14 +10,14 @@
        height:60px;
    }
 </style>
-
+<button class="btn btn-success izinkan mb-4"> Izinkan semua</button>
 <table class="table table-responsive-sm table-bordered ">
-    <thead class="table-akses text-center">
+    <thead class="table-akses text-center bg-success">
         <tr>
             <th><h6>No</h6></th>
             <th><h6>Izin</h6></th>
             <th><h6>NISN</h6></th>
-            <th><h6>Nama</h6></th>
+            <th class="text-left"><h6>Nama</h6></th>
             
         </tr>
     </thead>
@@ -26,10 +26,10 @@
 @forelse ($akses as $aks)
 
     <tr>
-        <td>{{$loop->iteration}}</td>
-        <td>
+        <td class="text-center">{{$loop->iteration}}</td>
+        <td class="text-center">
      
-        <select class="form-control" name="izin[]" id="">
+        <select class="btn border" class="akses" name="izin[]" id="">
         @if($aks["hak_akses"]== 1)
         <option selected value="1">Ya</option>
         <option value="0">Tidak</option>
@@ -42,11 +42,12 @@
      
       
         </td>
+        <td class="text-center">
+        {{$aks['nis']}}   
+        <input class="form-control" type="hidden" name="nis[]" id="nis" value="{{$aks['nis']}}" />
         <td>
-        <input class="form-control" type="number" name="nis[]" id="nis" value="{{$aks['nis']}}" />
-        <td>
-    
-        <input class="form-control" type="text" name="nama[]" value="{{$aks['nama']}}">
+        {{$aks['nama']}}
+        <input class="form-control" type="hidden" name="nama[]" value="{{$aks['nama']}}">
        
         </td>
         
@@ -58,3 +59,11 @@
 <input type="hidden" name="id" value="{{$id->id}}">
 </tbody>
 </table>
+
+<script>
+$(document).ready(function(){
+  $(".izinkan").click(function(){
+   $(".akses").selected()
+  });
+});
+</script>

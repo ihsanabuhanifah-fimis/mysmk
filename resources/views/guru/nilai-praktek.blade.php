@@ -20,14 +20,18 @@
         </div>
     </div>
 
-
+<style>
+    .nilai{
+        min-width:80px;
+    }
+</style>
 <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">
-                              <h5>MATERI : {{$penilaian[0]->materi}}</h5>
+                              <h6>MATERI : {{$penilaian[0]->materi}}</h6>
                               </div>
                             
                             <form action="javascript:void(0)">
@@ -38,20 +42,25 @@
                             @forelse ($hasils as $hasil)
                             <tbody>
                          <tr>
+                             <td>{{$loop->iteration}}</td>
                             <td>
-                                <a id="{{$hasil->nama}}" class="nav-link lihat{{$loop->iteration}}" data-toggle="pill" role="tab" aria-selected="false" >
+                                <a id="{{$hasil->nama}}" class="lihat{{$loop->iteration}}" data-toggle="pill" role="tab" aria-selected="false" >
                                         {{$hasil->nama}}
                                         </a>
                                         <input type="hidden"  id="token{{$loop->iteration}}" value="{{ csrf_token() }}">
                                         <input type="hidden" id="id{{$loop->iteration}}" value="{{$penilaian[0]->id}}">
                                         <input type="hidden"  value="{{$hasil->nis}}" id="nis{{$loop->iteration}}">
-                            <input  placeholder="Nilai Siswa ..." class="form-control" type="number" value="{{$hasil->nilai}}">
+                          
                              </td>
+                             <td class="nilai">  <input  class="form-control" type="number" value="{{$hasil->nilai}}"></td>
                              <td>
                             <div> 
                             
                             </div>
                             </td>       
+                         </tr>
+                         <tr>
+                             
                          </tr>
                          <script type="text/javascript">
 	$(document).ready(function(){
@@ -94,11 +103,14 @@
                                 
                                   @empty
                                   @endforelse
+                                  
                                   </form>
+                                  
                                   </table>
                                 <!-- menu pelajaran -->
                           
                 </nav>
+                
             </div>
 
             <!-- konten -->
@@ -113,13 +125,44 @@
 
 
                       <!-- akhir menu materi -->
-                      <div class="akses-jawaban"></div>
-                  
+                      <div class="akses-jawaban p-md-5 p-lg-5 p-xl-5 p-sm-0"></div>
+                      
+    
                 </main>
                 <footer class="bg-light py-2">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Ihsanabuhanifah</div></div>
         </footer>
             </div>
         </div>
+        <script>
+$(document).ready(function(){
+    $(".simpan-nilai-ujian").click(function(){
+        $(this).text("Sedang Menyimpan Nilai...");
+        $(".notice-simpan-nilai").removeClass("alert alert-success");
+        $(".notice-simpan-nilai").empty();
+        $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+				type: 'PUT',
+				url: "{{route('simpannilai')}}",
+				data: $('.form-nilai-ujian').serialize(),
+				success: function(data){
+                $(".notice-simpan-nilai").addClass("alert alert-success");
+                $(".notice-simpan-nilai").text(data);
+                $(".simpan-nilai-ujian").text("Simpan");
+                
+                setTimeout(function(){
+                    $(".notice-simpan-nilai").removeClass("alert alert-success");
+                    $(".notice-simpan-nilai").empty();
+                }, 5000);
+               
+                }
+            });
+    });
+});
 
+</script>
 @endsection

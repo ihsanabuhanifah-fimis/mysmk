@@ -10004,9 +10004,10 @@ body {
   transform: translateX(-225px);
 }
 #layoutSidenav_nav{
-  position: fixed;
-  background-color: red;
-  height: 100%;
+  position:fixed;
+  overflow: auto;
+  background-color: white;
+  height: 95%;
   width:230px;
 }
 #layoutSidenav #layoutSidenav_content {
@@ -10026,7 +10027,8 @@ body {
 .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
   content: "";
   display: block;
-  position: absolute;
+  position: relative;
+  
   top: 0;
   left: 0;
   width: 100%;
