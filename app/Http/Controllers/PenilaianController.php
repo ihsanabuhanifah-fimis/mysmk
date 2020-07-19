@@ -51,7 +51,13 @@ class PenilaianController extends Controller
         $username= Auth::user()->username;
      
         $nis=Student::where('username',"$username")->first();
-        $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+        $id_rombel=DB::table('student_rombels')
+      
+        ->leftjoin('rombels','rombels.id_rombel','=','student_rombels.id_rombel')
+        ->where('nis',$nis->nis)
+        ->get();
+       
+
        
         $ta=DB::table('tas')->get();
         $rombel=DB::table('rombels')->get();
@@ -61,7 +67,7 @@ class PenilaianController extends Controller
         ->leftjoin('cikgus','cikgus.id_cikgu','=','penilaians.id_cikgu')
         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
         ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
-        ->where('penilaians.id_rombel',$id_rombel->id_rombel)->get();
+        ->where('penilaians.id_rombel',$id_rombel[0]->id_rombel)->get();
 
         $jml_ujian=count($ujian);
         $nilai=DB::table('penilaian_siswas')
@@ -103,7 +109,11 @@ class PenilaianController extends Controller
     {
         $username= Auth::user()->username;
         $nis=Student::where('username',"$username")->first();
-        $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+        $id_rombel=DB::table('student_rombels')
+      
+        ->leftjoin('rombels','rombels.id_rombel','=','student_rombels.id_rombel')
+        ->where('nis',$nis->nis)
+        ->get();
         $ta=DB::table('tas')->get();
         $rombel=DB::table('rombels')->get();
         $ujian=DB::table('penilaians')
@@ -112,7 +122,7 @@ class PenilaianController extends Controller
         ->leftjoin('cikgus','cikgus.id_cikgu','=','penilaians.id_cikgu')
         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
         ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
-        ->where('penilaians.id_rombel',$id_rombel->id_rombel)->get();
+        ->where('penilaians.id_rombel',$id_rombel[0]->id_rombel)->get();
         $jml_ujian=count($ujian);
         $nilai=DB::table('penilaian_siswas')
         ->where('nis',$nis->nis)
