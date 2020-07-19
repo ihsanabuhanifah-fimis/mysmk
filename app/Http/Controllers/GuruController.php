@@ -73,12 +73,13 @@ class GuruController extends Controller
         $namasiswa = DB::table('student_rombels') 
         -> leftjoin ('students','students.nis','=','student_rombels.nis')
         ->where('id_rombel', $kbm[0]->id_rombel) 
+        ->orderby('nama', 'asc')
         ->get();
 
         $i=0;
        
-        $jml = count ($absens);
-        $jml_siswa= count($namasiswa);
+        $jml = count ($namasiswa);
+        $jml_siswa= count($absens);
         while($i<$jml){
             $j=0;
             while($j<$jml_siswa){
@@ -88,7 +89,16 @@ class GuruController extends Controller
                     'n'=>$absens[$j]->n,
                     's'=>$absens[$j]->s,
                     'k'=>$absens[$j]->k,
+
                   ];
+                break;
+            }else{
+                $absensi[$i]=[
+                    'i'=>$namasiswa[$i]->nama,
+                    'n'=>$namasiswa[$i]->nis,
+                    's'=>'',
+                    'k'=>'4',
+                ];
             }
             $j++;
         }
@@ -770,14 +780,22 @@ class GuruController extends Controller
         ->where('id_penilaian', $request['id'])
         ->where('nis', $request["nis"])
         ->get();
-        if(count($jawaban) == NULL)
-        {
-            return "tidak ada";
-        }
+        $soal = DB::table('penilaians')
+        ->where('id', $request['id'])
+        ->get();
+        $soals = json_decode($soal[0]->soal_praktek);
+       
+        $siswa =DB::table('students')
+        ->where('nis', $request["nis"])
+        ->get();
+
+       
 
        return view('guru.jawaban-praktek',
        [
-            'jawaban'=>$jawaban
+            'jawaban'=>$jawaban,
+            'siswa'=>$siswa,
+            'soal'=>$soals
        ]);
 
     }
@@ -926,7 +944,8 @@ class GuruController extends Controller
     {
         $username= Auth::user()->username;
         $id_cikgu=Cikgu::where('username',"$username")->first();
-        $jml=count($request["nis"]);
+        $jml=count($request["nilai"]);
+       
         $id=$request["id"];
         $i=0;
         while($i<$jml){

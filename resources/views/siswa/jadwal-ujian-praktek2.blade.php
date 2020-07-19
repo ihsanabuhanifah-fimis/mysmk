@@ -9,7 +9,7 @@
     font-size:12px;
 }
 </style>
-<div class="mt-3 p-4 border">
+<div class="mt-3 p-md-4 p-sm-0 border">
 <table id="myPraktek" class="table table-bordered table-striped mt-2 table-responsive-sm">
 <p class="d-flex justify-content-end font"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
     <thead class="bg-success">

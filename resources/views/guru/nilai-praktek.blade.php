@@ -27,37 +27,41 @@
 </style>
 <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-dark mt-4" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">
                               <h6>MATERI : {{$penilaian[0]->materi}}</h6>
                               </div>
                             
-                            <form action="javascript:void(0)">
+                            <form action="javascript:void(0)" class="form-nilai-ujian">
                             @csrf
-                          
-                            <table class="table ">
-                           
+                            {{method_field('PUT')}}
+                            <table class="table table-borderless">
+                           <thead class="bg-success">
+                               <tr>
+                                   <th>No</th>
+                                   <th>Nama</th>
+                                   <th class="text-center">Nilai</th>
+                               </tr>
+                           </thead>
+                           <input type="hidden" name="id" value="{{$penilaian[0]->id}}">
                             @forelse ($hasils as $hasil)
                             <tbody>
                          <tr>
                              <td>{{$loop->iteration}}</td>
                             <td>
-                                <a id="{{$hasil->nama}}" class="lihat{{$loop->iteration}}" data-toggle="pill" role="tab" aria-selected="false" >
+                                <a id="{{$hasil->nama}}" class="lihat{{$loop->iteration}}"  >
                                         {{$hasil->nama}}
                                         </a>
                                         <input type="hidden"  id="token{{$loop->iteration}}" value="{{ csrf_token() }}">
                                         <input type="hidden" id="id{{$loop->iteration}}" value="{{$penilaian[0]->id}}">
-                                        <input type="hidden"  value="{{$hasil->nis}}" id="nis{{$loop->iteration}}">
+                                        <input type="hidden" name="nis[]"  value="{{$hasil->nis}}" id="nis{{$loop->iteration}}">
                           
                              </td>
-                             <td class="nilai">  <input  class="form-control" type="number" value="{{$hasil->nilai}}"></td>
-                             <td>
-                            <div> 
-                            
-                            </div>
-                            </td>       
+                         
+                             <td class="nilai text-center">  <input name="nilai[]" class="form-control text-center" type="number" value="{{$hasil->nilai}}"></td>
+                             
                          </tr>
                          <tr>
                              
@@ -68,6 +72,7 @@
         var token;
         var id; 
         var nis;
+        
         $('.lihat{{$loop->iteration}}').click(function(){
           
         
@@ -104,10 +109,13 @@
                                   @empty
                                   @endforelse
                                   
-                                  </form>
+                                 
                                   
                                   </table>
-                                <!-- menu pelajaran -->
+                                  <div class="notice-simpan-nilai text-center"></div>
+<button type="submit" class="btn btn-success form-control simpan-nilai-ujian" name="simpan-ujian">Simpan</button>
+<div style="height:100px"></div>
+</form>     <!-- menu pelajaran -->
                           
                 </nav>
                 

@@ -110,6 +110,7 @@ Route::get('/halaqoh','HalaqohController@get_halaqoh')->name('halaqoh');
 Route::get('/halaqoh/daftar','HalaqohController@daftar_halaqoh')->name('daftar.halaqoh');
 Route::get('/halaqoh/siswa/{id}','HalaqohController@siswa_halaqoh')->name('siswa.halaqoh');
 Route::post('/halaqoh','HalaqohController@add_halaqoh')->name('halaqoh.add');
+Route::put('/halaqoh/komentar','HalaqohController@komentar_halaqoh')->name('simpan.komentar');
 
 Route::post('/mapel-aktif/save','JadwalController@mapel_aktif_save')->name('save-mapel-aktif');
 Route::get('/mapel','JadwalController@mapel_saya')->name('guru.mapel-saya');

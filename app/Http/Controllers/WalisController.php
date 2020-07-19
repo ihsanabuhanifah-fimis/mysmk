@@ -108,6 +108,7 @@ class WalisController extends Controller
     }
         public function jadwal_ujian()
         {
+           
             $email= Auth::user()->email;
      
             $nisn = DB::table('walis')
@@ -119,7 +120,7 @@ class WalisController extends Controller
 
            
             $ta=DB::table('tas')->get();
-            $rombel=DB::table('rombels')->get();
+            $rombels=DB::table('rombels')->get();
             $ujian=DB::table('penilaians')
             ->leftjoin('rombels','rombels.id_rombel','=','penilaians.id_rombel')
             ->leftjoin('mapels','mapels.id_subject','=','penilaians.id_subject')
@@ -133,17 +134,18 @@ class WalisController extends Controller
 
             
             $jml_ujian=count($ujian);
+           
             $nilai = [];
             $nilai_akhir = [];
             if($jml_ujian == 0){
-                return view('wali.jadwal-ujian',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]); 
+                return view('wali.jadwal-ujian',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombels, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]); 
             }
             $nilai=DB::table('penilaian_siswas')
             ->where('nis',$nisn)
             ->where('status',1)
             ->get();
 
-         
+            
             // return $nilai;
             $a=0;
             while($a<$jml_ujian){
@@ -161,6 +163,7 @@ class WalisController extends Controller
             $a++;
         }
 
+   
           
            return view('wali.jadwal-ujian',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel]);
 

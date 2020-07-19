@@ -14,6 +14,7 @@ use App\Kelompok_halaqoh;
 use App\Pembimbing_halaqoh;
 use App\Rombel_halaqoh;
 use App\Laporan_halaqoh_online;
+use App\Rekaman_halaqoh_online;
 use App\Mapel;
 use App\Ta;
 use App\Banksoal;
@@ -167,6 +168,9 @@ class HalaqohController extends Controller
         ->get();    
         $surat =DB::table('surat_alqurans')
         ->get();
+        $rombel = DB::table('rombel_halaqohs')
+        ->where('id_pembimbing', $id_pembimbing[0]->id_pembimbing)
+        ->get();
 
        
 
@@ -226,13 +230,14 @@ class HalaqohController extends Controller
              
             }
         }
-            $json = json_encode($rekam);
-            $halaqoh_siswa = json_decode($json);
+        $json = json_encode($rekam);
+        $halaqoh_siswa = json_decode($json);
     
             // return dump($halaqoh_siswa);
 
-        $siswa = json_decode($halaqoh[0]->nama_santri);
-        $jml_siswa=count($siswa);
+       
+        $jml_siswa=count($rombel);
+      
 
 
      
@@ -241,7 +246,7 @@ class HalaqohController extends Controller
            
             $data [$i] = 
             DB::table("students")
-            ->where("students.nis", $siswa[$i]->n)
+            ->where("students.nis", $rombel[$i]->nis)
             ->first([
                 'nis',
                 'nama'
@@ -249,13 +254,26 @@ class HalaqohController extends Controller
             $i++;
         }
  
+       
      
-   
+
         return view('guru.halaqoh-online',['siswas'=>$data,'rekaman'=>$halaqoh_siswa,'surat'=>$surat]);
       
      
       
       
         
+    }
+
+    public function komentar_halaqoh(Request $request)
+    {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+      
+        $kbm= new Rekaman_halaqoh_online();
+        $kbm = Rekaman_halaqoh_online::where('id',$request["id"])->first(); 
+        $kbm-> komentar=$request["komentar"];
+        $kbm->save();
+        return "Alhamdulilah Komentar Tersimpan";
     }
 }

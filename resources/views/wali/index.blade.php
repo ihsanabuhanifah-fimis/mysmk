@@ -27,14 +27,14 @@
                         <div class="nav">
                         <div class="sb-sidenav-menu-heading">MYSMK</div>
                             <a class="nav-link active menu-dashboard"  data-toggle="pill" role="tab" aria-selected="false"
-                                ><div class="sb-nav-link-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></div>
+                                ><div class="sb-nav-link-icon"><i class="fa fa-lg mr-2 fa-user-circle" aria-hidden="true"></i></div>
                                 Profile Santri</a >
                                 
                                 <a class="nav-link menu-jadwal"  data-toggle="pill" role="tab" aria-selected="false"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                ><div class="sb-nav-link-icon"><i class="fas fa-lg mr-2 fa-book"></i></div>
                                 Jadwal Pelajaran</a >
                                 <a class="nav-link menu-pengumuman"  data-toggle="pill" role="tab" aria-selected="false"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-bullhorn"></i></div>
+                                ><div class="sb-nav-link-icon"><i class="fas fa-lg mr-2 fa-bullhorn"></i></div>
                                 Pengumuman</a >
 
 
@@ -43,46 +43,46 @@
                                 <!-- menu kehadiran -->
                             <div class="sb-sidenav-menu-heading">Menu</div>
                             <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-mapel" 
-                                ><div class="sb-nav-link-icon "><i class="fas fa-book"></i></div>
+                                ><div class="sb-nav-link-icon "><i class="fas fa-lg mr-2 fa-book"></i></div>
                                 Mata Pelajaran 
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                               
                               </a>
                             <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-kehadiran" 
-                                ><div class="sb-nav-link-icon "><i class="fa fa-users" aria-hidden="true"></i></div>
+                                ><div class="sb-nav-link-icon "><i class="fa fa-lg mr-2 fa-users" aria-hidden="true"></i></div>
                                 Kehadiran Santri
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                               
                               </a>
                                <!-- menu kehadiran -->
 
                                <!-- menu-rekap-nilai -->
                                <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-jadwal-ujian" 
-                                ><div class="sb-nav-link-icon "><i class="fas fa-laptop"></i></div>
+                                ><div class="sb-nav-link-icon "><i class="fas fa-lg mr-2 fa-laptop"></i></div>
                                 Penilaian dan Hasil
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            
                               </a>
                                  <!-- menu-rekap-nilai -->
 
                                    <!-- menu-halaqoh -->
                                <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-halaqoh-online" 
-                                ><div class="sb-nav-link-icon "><i class="fas fa-book"></i></div>
+                                ><div class="sb-nav-link-icon "><i class="fas fa-lg mr-2 fa-book"></i></div>
                                 Halaqoh Online
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              
                               </a>
                                  <!-- menu-halaqoh -->
 
                                   <!-- menu-nilai-sikap -->
                                <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-nilai-sikap" 
-                                ><div class="sb-nav-link-icon "><i class="fas fa-book"></i></div>
+                                ><div class="sb-nav-link-icon "><i class="fas fa-lg mr-2 fa-book"></i></div>
                                 Nilai Sikap
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                               
                               </a>
                                  <!-- menu-nilai-sikap -->
 
                                  <!-- menu-catatan-pelanggaran -->
                                <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-catatan-pelanggaran" 
-                                ><div class="sb-nav-link-icon "><i class="fas fa-book"></i></div>
+                                ><div class="sb-nav-link-icon "><i class="fas fa-lg mr-2 fa-book"></i></div>
                                 Catatan Pelanggaran
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              
                               </a>
                                  <!-- menu-catatan-pelanggaran -->
                             
@@ -185,7 +185,7 @@
             </div>
         </div>
       
-        <script src="{{ asset('js/wali-16072020.js') }}"></script>
+        <script src="{{ asset('js/wali-19072020.js') }}"></script>
 
 
 @endsection

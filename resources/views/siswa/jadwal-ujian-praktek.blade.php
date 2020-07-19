@@ -14,6 +14,7 @@
     <label for="id_rombel"> Kelas   </label>
     <select class="form-control" name="id_rombel" id="id_rombel">
         @forelse ($rombels as $rombel)
+        <option selected value="{{$ujian[0]->id_rombel}}">{{$ujian[0]->nama_rombel}}</option>
         <option value="{{$rombel->id_rombel}}">{{$rombel->nama_rombel}}</option>
         @empty
         @endforelse
@@ -32,6 +33,7 @@
   <label for="semester"> Semester</label>
  
     <select class="form-control" name="semester" id="semester">
+    <option selected value="{{$semester->semester}}">Semester {{$semester->semester}}</option>
    <option value="1">Semester 1</option>
    <option value="2">Semester 2</option>
    <option value="3">Semester 3</option>

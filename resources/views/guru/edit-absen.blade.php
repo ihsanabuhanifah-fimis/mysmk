@@ -44,7 +44,7 @@
                   <input type="hidden" name="id_rombel" id="id_rombel" />
                   <label class="font-weight-bolder" for="semester">Semester</label>
                   
-                  <input class="form-control" type="text" disabl= name="semester" id="semester" value="{{$kbms[0]->semester}}" />
+                  <input class="form-control" type="text" disabl= name="semester" id="semester" value="Semester     {{$kbms[0]->semester}}" />
       </div>
       <div class="col-md-6  col-lg-6">
                 
@@ -59,9 +59,9 @@
 
 </div>
 </div>
-             <div class="row">
-            <table class="table mx-5 border table-responsive-sm">
-            <thead>
+             <div class="row mt-2">
+            <table class="table  border table-responsive-sm">
+            <thead class="btn-success">
                 <tr class="tr">
                     <th class="no">No</th>
                     <th class="tr">Nama Siswa</th>

@@ -52,6 +52,7 @@ class PenilaianController extends Controller
      
         $nis=Student::where('username',"$username")->first();
         $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+       
         $ta=DB::table('tas')->get();
         $rombel=DB::table('rombels')->get();
         $ujian=DB::table('penilaians')
@@ -88,7 +89,14 @@ class PenilaianController extends Controller
         // return $nilai_akhir;
         // return $nilai;
 
-       return view('siswa.jadwal-ujian',['ujian'=>$ujian,'tas'=>$ta,'rombels'=>$rombel, 'nilais'=>$nilai]);
+       return view('siswa.jadwal-ujian',
+       [
+           'ujian'=>$ujian,
+           'tas'=>$ta,
+           'rombels'=>$rombel, 
+           'nilais'=>$nilai,
+           'semester'=>$id_rombel
+       ]);
     }
 
     public function jadwal_ujian_praktek()
@@ -131,7 +139,14 @@ class PenilaianController extends Controller
         // return $nilai_akhir;
         // return $nilai;
 
-       return view('siswa.jadwal-ujian-praktek',['tas'=>$ta,'rombels'=>$rombel, 'nilais'=>$nilai]);
+       return view('siswa.jadwal-ujian-praktek',
+       [
+           'tas'=>$ta,
+           'ujian'=>$ujian,
+           'rombels'=>$rombel, 
+           'nilais'=>$nilai,
+           'semester'=>$id_rombel
+       ]);
     }
 
     public function jadwal_ujian_teori(Request $request)
@@ -191,6 +206,7 @@ class PenilaianController extends Controller
         $nilai=DB::table('penilaian_siswas')
         ->where('nis',$nis->nis)
         ->where('status',1)
+        ->where('id_penilaian', $id)
         ->get();
 
         return view('siswa.history',['nilais'=>$nilai]);
@@ -249,9 +265,8 @@ class PenilaianController extends Controller
 
     
         // return $nilai_akhir;
-        // return $nilai;
 
-       return view('siswa.jadwal-ujian-praktek2',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]);
+       return view('siswa.jadwal-ujian-praktek2',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ]);
     }
 
 

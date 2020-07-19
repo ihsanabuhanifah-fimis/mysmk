@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="/js/guru.js"></script>
+   
     <link rel="stylesheet" href="/css/summernote.css"> 
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/style-nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-nav19072020.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script> 
     <script src="/DataTables/js/jquery.dataTables.min.js"></script>
     <script src="/DataTables/css/jquery.dataTables.min.css"></script>

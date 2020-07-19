@@ -341,7 +341,7 @@
         </div>
 
         <script src="/js/sintax.js"></script>
-        <script src="{{ asset('js/menu-guru-15072020.js') }}"></script>
+        <script src="{{ asset('js/menu-guru-19072020.js') }}"></script>
        
 
 

@@ -10009,6 +10009,7 @@ body {
   background-color: white;
   height: 95%;
   width:230px;
+  padding-bottom: 200px;
 }
 #layoutSidenav #layoutSidenav_content {
   position: relative;
