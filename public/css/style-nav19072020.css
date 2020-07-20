@@ -10007,9 +10007,9 @@ body {
   position:fixed;
   overflow: auto;
   background-color: white;
-  height: 95%;
+  height: 100%;
   width:230px;
-  padding-bottom: 200px;
+
 }
 #layoutSidenav #layoutSidenav_content {
   position: relative;
@@ -10032,11 +10032,11 @@ body {
   
   top: 0;
   left: 0;
-  width: 100%;
+  width: 0%;
   height: 100%;
   background: #000;
   z-index: 1037;
-  opacity: 0.6  ;
+  opacity: 0.7  ;
   transition: opacity 0.3s ease-in-out;
 }
 

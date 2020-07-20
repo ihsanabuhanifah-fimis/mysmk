@@ -235,7 +235,7 @@ class HalaqohController extends Controller
     
             // return dump($halaqoh_siswa);
 
-       
+          
         $jml_siswa=count($rombel);
       
 
@@ -253,11 +253,17 @@ class HalaqohController extends Controller
             ]);
             $i++;
         }
- 
+        
+        $js = json_encode($data);
+        $datas = json_decode($js);
+    
+
        
+
+
      
 
-        return view('guru.halaqoh-online',['siswas'=>$data,'rekaman'=>$halaqoh_siswa,'surat'=>$surat]);
+        return view('guru.halaqoh-online',['siswas'=>$datas,'rekaman'=>$halaqoh_siswa,'surat'=>$surat]);
       
      
       

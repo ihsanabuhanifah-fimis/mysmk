@@ -168,8 +168,9 @@ Route::get('/jadwal','MateriController@jadwal')->name('jadwal');
 
 });
 //Route Uplod
-Route::get('/file-upload', 'FileUploadController@fileUpload')->name('fileupload');
-Route::post('/file-upload', 'FileUploadController@prosesFileUpload')->name('prosesfileupload');
+Route::get('/upload/gambar', 'UploadFileController@uploadFile');
+Route::get('/media', 'UploadFileController@media');
+Route::post('upload', 'UploadFileController@StoreUploadFile');
 
 
 //Route Wali

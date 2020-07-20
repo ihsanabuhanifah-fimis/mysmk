@@ -136,6 +136,7 @@
   @else
  
   @endif
+  <div class="media mb-3"></div>
 		<textarea class="summernote" name="isi_materi">{{$materi->isi_materi}}</textarea>
         <br/>
         <div class="notice text-center"></div>
@@ -152,6 +153,7 @@
  
     <script type="text/javascript">
 	$(document).ready(function(){
+    $('.media').load('/media');
 		$("#send_form").click(function(){
             $('#send_form').html('Bismillah sedang menyimpan data..');
             $('.notice').empty();

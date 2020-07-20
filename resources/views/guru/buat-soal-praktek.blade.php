@@ -78,6 +78,7 @@
 </div>
 
 <div class="p-3">
+<div class="media mb-3"></div>
 <textarea class="summernote" name="soal[]" id="" cols="30" rows="10">{{$soal_praktek->s}}</textarea>
 
 </div>
@@ -98,6 +99,7 @@
     <script src="/js/"></script>
     <script>
         $(document).ready(function() {
+            $('.media').load('/media');
         $('.summernote').summernote();
         // $(".upload").load("/file-upload");
         
@@ -115,7 +117,7 @@
      
     var a = $(this).val();
     if(a==1){  
-    $(".soal").append('<div class="border p-3 mb-4 soal-no-'+i+'"><div class="mb-4 d-flex justify-content-end "><button type="button" id="'+i+'" class="btn btn-outline-danger hapus">Hapus soal</button></div><div class="mb-3"><label for="">Materi</label><br><input class="form-control" required name="materi[]" type="text" placeholder="materi..."></div><div class="p-3"><textarea class="summernote" name="soal[]" id="" cols="30" rows="10"></textarea></div></div>');
+    $(".soal").append('<div class="border p-3 mb-4 soal-no-'+i+'"><div class="mb-4 d-flex justify-content-end "><button type="button" id="'+i+'" class="btn btn-outline-danger hapus">Hapus soal</button></div><div class="mb-3"><label for="">Materi</label><br><input class="form-control" required name="materi[]" type="text" placeholder="materi..."></div><div class="p-3"><div class="media mb-3"></div><textarea class="summernote" name="soal[]" id="" cols="30" rows="10"></textarea></div></div>');
     }
     $(this).val('0');
     });

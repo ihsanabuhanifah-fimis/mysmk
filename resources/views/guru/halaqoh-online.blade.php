@@ -16,7 +16,7 @@
       
     </tr>
 </thead>
-<?php $k=0 ?>
+
 @forelse ($siswas as $siswa)
 <tr>
 <td>{{$loop->iteration}}</td>
@@ -52,10 +52,74 @@ Sampai
             </iframe>
 
 </td>
-
+<td>
 <input type="hidden" name="_token" id="token{{$rekaman[$i][0]->id}}" value="{{ csrf_token() }}">
 <input type="hidden" name="id{{$rekaman[$i][0]->id}}" value="{{$rekaman[$i][0]->id}}">
+
+{{method_field('PUT')}}
+   
+ 
+   <textarea name="komentar" id="komentar{{$i}}" cols="40" rows="1">{{$rekaman[$i][0]->komentar}}</textarea>
+   <div class="ket-komen{{$i}} mt-2 text-center"></div>
+   <br><button  type="button" id="koreksi{{$i}}" class="btn btn-success simpan-komentar">Kirim</button>
+   <input type="hidden" name="_token" id="token{{$i}}" value="{{ csrf_token() }}">
+   <input type="hidden" id="id{{$i}}" value="{{$rekaman[$i][0]->id}}">
+   <script type="text/javascript">
+       $(document).ready(function(){
+           var komentar;
+           var token;
+   
+           var id;
+          
+          
+           $('#koreksi{{$i}}').click(function(){
+               $(this).text("Menyimpan materi ...");
+               $('.ket-komen{{$i}}').removeClass('alert alert-success');
+               $('.ket-komen{{$i}}').removeClass('alert alert-danger   ');
+               $('.ket-komen{{$i}}').empty();
+             
+              
+              token = $('#token{{$i}}').val();  
+              id = $('#id{{$i}}').val(); 
+              komentar = $('#komentar{{$i}}').val();  
+               
+               $.ajax({
+                   type: 'PUT',
+                   url: "{{route('simpan.komentar')}}",
+                   data: {
+                       "_token":token,
+                       "komentar":komentar,  
+                       "id":id,                 
+                   },
+                   
+                   success: function(data) {
+                      $('.ket-komen{{$i}}').addClass('alert alert-success');
+                      $('.ket-komen{{$i}}').text(data);
+                       $('#koreksi{{$i}}').text('Simpan');
+                       setTimeout(function(){
+                       $('.ket-komen{{$i}}').removeClass('alert alert-success');
+                      $('.ket-komen{{$i}}').empty();
+                       }, 1000);
+                      
+                   },
+                   error: function (jqXHR, exception) {
+                       $('.ket-komen{{$i}}').addClass('alert alert-danger');
+                      $('.ket-komen{{$i}}').text("Komentar tidak tersimpan, Periksa Koneksi Internet");
+                       $('#koreksi{{$i}}').text('Simpan');
+                       setTimeout(function(){
+                           $('.ket-komen{{$i}}').removeClass('alert alert-danger');
+                      $('.ket-komen{{$i}}').empty();
+                       }, 2000);
+                   }
+               });
+               
+               
+               });
+           });
+       
+     </script>
 </div>
+</td>
 @break
 @else
 
@@ -67,70 +131,7 @@ Sampai
 
 @endif
 
-<td>
 
-
-    {{method_field('PUT')}}
-<textarea name="komentar" id="komentar{{$k}}" cols="40" rows="1">{{$rekaman[$k][0]->komentar}}</textarea>
-<div class="ket-komen{{$k}} mt-2 text-center"></div>
-<br><button  type="button" id="koreksi{{$k}}" class="btn btn-success simpan-komentar">Kirim</button>
-<input type="hidden" name="_token" id="token{{$k}}" value="{{ csrf_token() }}">
-<input type="hidden" id="id{{$k}}" value="{{$rekaman[$k][0]->id}}">
-<script type="text/javascript">
-	$(document).ready(function(){
-        var komentar;
-        var token;
-
-        var id;
-       
-       
-        $('#koreksi{{$k}}').click(function(){
-            $(this).text("Menyimpan materi ...");
-            $('.ket-komen{{$k}}').removeClass('alert alert-success');
-            $('.ket-komen{{$k}}').removeClass('alert alert-danger   ');
-            $('.ket-komen{{$k}}').empty();
-          
-           
-           token = $('#token{{$k}}').val();  
-           id = $('#id{{$k}}').val(); 
-           komentar = $('#komentar{{$k}}').val();  
-            
-            $.ajax({
-				type: 'PUT',
-				url: "{{route('simpan.komentar')}}",
-				data: {
-                    "_token":token,
-                    "komentar":komentar,  
-                    "id":id,                 
-                },
-                
-				success: function(data) {
-                   $('.ket-komen{{$k}}').addClass('alert alert-success');
-                   $('.ket-komen{{$k}}').text(data);
-                    $('#koreksi{{$k}}').text('Simpan');
-                    setTimeout(function(){
-                    $('.ket-komen{{$k}}').removeClass('alert alert-success');
-                   $('.ket-komen{{$k}}').empty();
-                    }, 1000);
-                   
-                },
-                error: function (jqXHR, exception) {
-                    $('.ket-komen{{$k}}').addClass('alert alert-danger');
-                   $('.ket-komen{{$k}}').text("Komentar tidak tersimpan, Periksa Koneksi Internet");
-                    $('#koreksi{{$k}}').text('Simpan');
-                    setTimeout(function(){
-                        $('.ket-komen{{$k}}').removeClass('alert alert-danger');
-                   $('.ket-komen{{$k}}').empty();
-                    }, 2000);
-                }
-			});
-			
-			
-			});
-		});
-	
-  </script>
-</td>
 
 
 </tr>
@@ -171,7 +172,7 @@ Sampai
 		});
 	
   </script>
-  <?php $k++; ?>
+ 
 @empty
 @endforelse
 </table>
