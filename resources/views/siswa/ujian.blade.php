@@ -71,7 +71,7 @@
 <style>
 
 </style>
-<div class="container-md container-lg container-fluid-sm container-fluid-small mt-3 d-flex justify-content-md-between">
+<div class="mt-3 d-flex justify-content-md-between">
 
 
 <div class="col-md-9 col-sm-12">
@@ -85,7 +85,7 @@
 @if($soal1->s != "xr")
 
 @if($jwb_soal1[$i]->k == "lk")
-<div class="alert alert-success p-3 card ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" type="radio" value="{{$soal1->k1}}">
@@ -115,7 +115,7 @@
 @if($jwb_soal1[$i]->n == $soals1[$g]->n)
 @if($jwb_soal1[$i]->n != NULL)
 @if($jwb_soal1[$i]->k == 1)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" checked="checked" type="radio" value="{{$soal1->k1}}">
@@ -136,7 +136,7 @@
 <input type="hidden" name="nomor_soal1[]" value="{{$soal1->n}}">
 </div>
 @elseif($jwb_soal1[$i]->k == 2)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1"  type="radio" value="{{$soal1->k1}}">
@@ -159,7 +159,7 @@
 
 </div>
 @elseif($jwb_soal1[$i]->k == 3)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1"  type="radio" value="{{$soal1->k1}}">
@@ -182,7 +182,7 @@
 
 </div>
 @elseif($jwb_soal1[$i]->k == 4)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1"  type="radio" value="{{$soal1->k1}}">
@@ -205,7 +205,7 @@
 
 </div>
 @elseif($jwb_soal1[$i]->k == 5)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" type="radio" value="{{$soal1->k1}}">
@@ -229,7 +229,7 @@
 </div>
 @else
 
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal1->s!!}</div>
 <input name="pg{{$i}}[]" id="k1" type="radio" value="{{$soal1->k1}}">
@@ -277,7 +277,7 @@
 @forelse($soals2 as $soal2)
 @if($soal2->s != "xr" )
 @if($jwb_soal2[$j]->k == "lk" || $jwb_soal2[$j]->k == "0")
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal2->s!!}</div>
 <label for="isian{{$j}}">Jawaban</label>
@@ -293,7 +293,7 @@
 @if($jwb_soal2[$j]->n != NULL)
 
 
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal2->s!!}</div>
 <label for="isian{{$j}}">Jawaban</label>
@@ -322,7 +322,7 @@
 @forelse ($soals3 as $soal3)
 @if($soal3->s != "xr")
 @if($jwb_soal3[$k]->k == "lk" || $jwb_soal3[$k]->k == "0")
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal3->s!!}</div>
 <select class="form-control" name="truefalse{{$k}}[]" id="truefalse{{$k}}">
@@ -340,7 +340,7 @@
 @if($jwb_soal3[$k]->n == $soals3[$h]->n)
 @if($jwb_soal3[$k]->n != NULL)
 @if($jwb_soal3[$k]->k == 1)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal3->s!!}</div>
 <select class="form-control" name="truefalse{{$k}}[]" id="truefalse{{$k}}">
@@ -351,7 +351,7 @@
 <input type="hidden" name="nomor_soal3[]" value="{{$soal3->n}}">
 </div>
 @elseif($jwb_soal3[$k]->k == 2)
-<div class="alert alert-success p-3 ">
+<div class="alert alert-success p-md-3 p-sm-0 ">
 
 <div>{!!$soal3->s!!}</div>
 <select class="form-control" name="truefalse{{$k}}[]" id="truefalse{{$k}}">
@@ -382,6 +382,7 @@
 <style>
 .timer{
     position:fixed;
+    z-index:9999;
 }
 i{
     font-size:12px;
@@ -391,7 +392,7 @@ i{
 }
 </style>
 
-<div class="col-md-3 ">
+<div class="col-md-3 col-sm-12  ">
 <div class="mt-5 bg-white timer border  rounded text-center p-2">
 <h4 class="waktu rounded text-center p-1 "></h4>
 <div class="info-ujian"></div>
@@ -426,6 +427,7 @@ i{
 </script>
 <script>
     $(document).ready(function(){
+      $('img').addClass('img-thumbnail');
         $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -496,6 +498,7 @@ i{
 
 <script>
     $(document).ready(function(){
+
 		setInterval(function() {
             $.ajaxSetup({
               headers: {

@@ -52,6 +52,7 @@
                         <form id="form-simpan-jawaban" method="post" action="javascript:void(0)">
                         @csrf
                         <input type="hidden" name="id" value="{{$penilaians[0]->id}}">
+                        <div class="media"></div>
                         <textarea class="summernote form-control" name="jawaban"></textarea>
                         <button class="form-control btn-success simpan-jawaban mt-3">Bismillah </button>
                         </form>
@@ -71,20 +72,8 @@
         
         <script>
         $(document).ready(function() {
-            $(".summernote").summernote({
-        height: 300,
-        toolbar: [
-            [ 'style', [ 'style' ] ],
-            [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
-            [ 'fontname', [ 'fontname' ] ],
-            [ 'fontsize', [ 'fontsize' ] ],
-            [ 'color', [ 'color' ] ],
-            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
-            [ 'table', [ 'table' ] ],
-            [ 'insert', [ 'link'] ],
-            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
-        ]
-    });
+            $('.media').load('/media'); 
+            $(".summernote").summernote();
         });     
     </script>
     <script src="{{ asset('js/summernote.js') }}"></script>

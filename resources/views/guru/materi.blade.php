@@ -36,7 +36,7 @@
         <div class="col-md-9"></div>
         <div class="col-md-2">
 
-        <button type="button" class="form-control btn-success" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="form-control btn-success" data-toggle="modal" data-target="#exampleModal2">
             Tambah_bab
         </button>
         </div>
@@ -238,7 +238,7 @@
   
 
   <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

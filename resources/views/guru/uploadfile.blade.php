@@ -1,7 +1,7 @@
 
 <div class="container">
  
-  <form action="{{ url('upload') }}" enctype="multipart/form-data" method="POST">
+  <form id="imageUploadForm" action="javascript:void(0)" enctype="multipart/form-data" method="POST">
     <div class="alert alert-danger print-error-msg" style="display:none">
       <ul></ul>
     </div>
@@ -12,13 +12,17 @@
     
 
       <div class="form-group">
-      <label>Gambar:</label>
+      <label><b>Upload Images</b></label>
       <input type="file" name="gambar" class="form-control ">
     </div>
+    <img class="img-thumbnail img" src="" alt="">
     <div class="link text-center"></div>
-    <p><i>Silahkan copy paste link di atas</i></p>
+    <div class="d-flex justify-content-end laer">
+        <i style="font-size:10px;">Gambar tidak melebihi 100KB</i>
+    </div>
+    <p><i style="font-size:12px;">Silahkan copy paste link di atas</i></p>
     <div class="form-group ">
-      <button class="btn btn-success upload-image" type="submit">Kirim</button>
+      <button class="form-control btn-success upload-image" type="submit">Simpan</button>
     </div>
   </form>
 
@@ -26,30 +30,69 @@
   
 
 <script src="http://malsup.github.com/jquery.form.js"></script>
-<script type="text/javascript">
-  $("body").on("click",".upload-image",function(e){
-    $(this).parents("form").ajaxForm(options);
-  });
-
-  var options = { 
-    complete: function(response) 
-    {
-        if($.isEmptyObject(response.responseJSON.error)){
-            $("input[name='judul']").val('');
-        $(".tampil").css('display','block');
-            $('.link').addClass('alert alert-success');
-            $('.link').text('/gambar/'+response.responseJSON.gambar);
-        }else{
-            printErrorMsg(response.responseJSON.error);
-        }
-    }
-  };
-
-  function printErrorMsg (msg) {
-    $(".print-error-msg").find("ul").html('');
-    $(".print-error-msg").css('display','block');
-    $.each( msg, function( key, value ) {
-        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-    });
-  }
-</script>
+<script>
+ 
+$(document).ready(function (e) {
+ 
+$('#imageUploadForm').on('submit',(function(e) {
+    $('.link').removeClass('alert alert-success');
+    $('.link').removeClass('alert alert-danger');
+      $('.link').empty();
+      $('.upload-image').text('Menyimpan ...');
+ 
+$.ajaxSetup({
+ 
+headers: {
+ 
+  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+ 
+}
+ 
+});
+ 
+e.preventDefault();
+ 
+var formData = new FormData(this);
+ 
+ 
+ 
+$.ajax({
+ 
+   type:'POST',
+ 
+   url: "{{ url('upload')}}",
+ 
+   data:formData,
+ 
+   cache:false,
+ 
+   contentType: false,
+ 
+   processData: false,
+ 
+   success:function(data){
+      $('.link').addClass('alert alert-success');
+      $('.link').text(data);
+      $('.img').attr('src',data);
+      $('.upload-image').text('Simpan');
+      document.getElementById("imageUploadForm").reset();     
+ 
+       
+ 
+   },
+ 
+   error: function(data){
+    $('.upload-image').text('Simpan');
+    $('.link').addClass('alert alert-danger');
+      $('.link').text('Upload gagal, Pastikan Koneksi Internet lancar');
+      
+ 
+   }
+ 
+});
+ 
+}));
+ 
+});
+ 
+</script> 
