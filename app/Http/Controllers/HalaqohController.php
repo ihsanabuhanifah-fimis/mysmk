@@ -239,20 +239,25 @@ class HalaqohController extends Controller
         $jml_siswa=count($rombel);
       
 
-
-     
+        $sw = DB::table("students")->get();
+        $jmlsiswa=count($sw);
+        
         $i = 0;
         while($i < $jml_siswa){
+           $j=0;
+           while($j < $jmlsiswa){
+               if($rombel[$i]->nis == $sw[$j]->nis){
+                   $data[$i] = 
+                   [
+                        'nis'=>$rombel[$i]->nis,
+                        'nama'=>$sw[$j]->nama
+                   ];
+               }
+               $j++;
+           }
            
-            $data [$i] = 
-            DB::table("students")
-            ->where("students.nis", $rombel[$i]->nis)
-            ->first([
-                'nis',
-                'nama'
-            ]);
             $i++;
-        }
+        };
         
         $js = json_encode($data);
         $datas = json_decode($js);
