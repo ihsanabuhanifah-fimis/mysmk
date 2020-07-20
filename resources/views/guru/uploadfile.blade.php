@@ -25,7 +25,6 @@
   <hr>
   
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript">
   $("body").on("click",".upload-image",function(e){
