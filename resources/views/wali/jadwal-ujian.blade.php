@@ -14,7 +14,7 @@
 <div class="p-md-4 p-sm-0 border ">
 <table style="width:100%" id="myJadwalUjian" class="hover table table-bordered table-striped mt-2 table-responsive-sm table-responsive-md">
 <p class="d-flex justify-content-end font"><i>*Nilai akhir adalah nilai yang diberikan oleh Guru Pengampu</i></p>
-    <thead class="bg-success">
+    <thead class="bg-success text-center">
         <tr>
             <th>No</th>
            <th>History</th>
@@ -25,7 +25,7 @@
             <th>Tipe Ujian</th>
             <th class="text-center">Tanggal Mulai</th>
             <th class="text-center">Tanggal Selesai</th>
-            <th class="text-center">Status</th>
+            <th class="text-center">Nilai Akhir</th>
           
        
            
@@ -57,7 +57,7 @@
             @else
             <td class="text-center">{{$ujian->tanggal_selesai}} <br> {{$ujian->waktu_selesai}}</td>
           @endif
-          <td class="text-center">Status</td>
+          <td class="text-center">{{$nilai_akhir[$k]}}</td>
 
            
             

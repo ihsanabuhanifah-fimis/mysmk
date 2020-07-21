@@ -36,7 +36,7 @@
 
     <tbody class="text-center">
         @forelse($halaqohs as $halaqoh)
-        <tr>
+        <tr class="text-center">
             <td>{{$loop->iteration}}</td>
             
             @if($halaqoh->hari == 1)

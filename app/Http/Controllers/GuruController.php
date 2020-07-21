@@ -319,6 +319,7 @@ class GuruController extends Controller
      
          $materi = $request["materi"];
       
+         
         $jurnal-> materi = $materi; 
         $jurnal-> save(); 
      

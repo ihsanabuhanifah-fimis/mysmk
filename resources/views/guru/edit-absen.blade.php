@@ -60,23 +60,24 @@
 </div>
 </div>
              <div class="row mt-2">
-            <table class="table  border table-responsive-sm">
+            <table class="table table-responsive-sm table-bordered">
             <thead class="btn-success">
                 <tr class="tr">
-                    <th class="no">No</th>
+                    <th class="text-center">No</th>
                     <th class="tr">Nama Siswa</th>
-                    <th class="tr">Absensi</th>
-                    <th class="tr">Keterangan</th>
+                    <th class="text-center">Absensi</th>
+                    <th class="text-center">Keterangan</th>
                 </tr>
             </thead>
             <tbody>
               
             @forelse($absensi as $absen)
                 <tr class="tr">
-                    <td class="no">{{$loop->iteration}}</td>
+                    <td class="text-center">{{$loop->iteration}}</td>
                         <input class="form-control nis" value="{{$absen->n}}"  type="hidden" name="nis[]" id="nis" />
                     <td class="tr">
-                        <input class="form-control nama" value="{{$absen->i}}"  type="text" name="nama[]" id="nama" />
+                    {{$absen->i}}
+                        <input class="form-control nama" value="{{$absen->i}}"  type="hidden" name="nama[]" id="nama" />
                     </td>
                     <td class="no2">
                         <select class="form-control status" name="status[]" id="status"> 
@@ -114,8 +115,8 @@
             <label  class="font-weight-bold" for="materi">Materi Jam ke- {{$i+1}}</label>
             @if(!isset($jurnal[$i]->materi))
             <textarea class="form-control " id="materi{{$i+1}}" ></textarea>
-            <input type="text" id="jam{{$i+1}}" name="jam{{$i+1}} value="">
-            <input type="text" id="id{{$i+1}}"  value="id{{$i+1}}">
+            <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}} value="">
+            <input type="hidden" id="id{{$i+1}}"  value="">
             @else
             <textarea class="form-control " id="materi{{$i+1}}" >{{$jurnal[$i]->materi}}</textarea>
             <input type="hidden" id="jam{{$i+1}}" name="jam{{$i+1}}" value="{{$jurnal[$i]->jam_ke}}">
@@ -182,7 +183,7 @@
 			});
 		});
 	
-  </script>
+         </script>
            @endfor
             </div>
             <br>

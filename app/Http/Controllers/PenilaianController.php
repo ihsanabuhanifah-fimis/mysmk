@@ -182,30 +182,39 @@ class PenilaianController extends Controller
         
         $jml_ujian=count($ujian);
     
-    //   
+      
 
     //            // return $nilai;
-    //     $a=0;
-    //     while($a<$jml_ujian){
-    //     $kumpulan_nilai_akhir =  $ujian[$a]->hasil;
-    //     $nilai_akhir_saya = json_decode($kumpulan_nilai_akhir);
-    //     $i = 0;
-    //     $jml= count($nilai_akhir_saya);
-    //     while($i < $jml){
-    //         if($nilai_akhir_saya[$i]->s == $nis->nis){
-    //             $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
-    //         }
+        $a=0;
+        while($a<$jml_ujian){
+        $kumpulan_nilai_akhir =  $ujian[$a]->hasil;
+        $nilai_akhir_saya = json_decode($kumpulan_nilai_akhir);
+        $i = 0;
+        $jml= count($nilai_akhir_saya);
+        while($i < $jml){
+            if($nilai_akhir_saya[$i]->s == $nis->nis){
+                $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
+            break;
+            }else{
+                $nilai_akhir[$a] = '';
+            }
             
-    //         $i++;
-    //     }
-    //     $a++;
-    // }
+            $i++;
+        }
+        $a++;
+    }
 
     
-        // return $nilai_akhir;
-        // return $nilai;
+       
+        
 
-       return view('siswa.jadwal-ujian-teori',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel]);
+       return view('siswa.jadwal-ujian-teori',
+       [
+           'ujians'=>$ujian,
+           'tas'=>$ta, 
+           'rombels'=>$rombel,
+           'nilai_akhir'=>$nilai_akhir
+           ]);
     }
 
     public function history($id)
@@ -248,23 +257,34 @@ class PenilaianController extends Controller
            
             $nilai=[];
             $nilai_akhir=[];
-            return view('siswa.jadwal-ujian-praktek2',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ,'nilai_akhir'=>$nilai_akhir]);
+            return view('siswa.jadwal-ujian-praktek2',
+            [
+                'ujians'=>$ujian,'tas'=>$ta,
+                 'rombels'=>$rombel,
+                  'nilais'=>$nilai ,
+                  'nilai_akhir'=>$nilai_akhir
+            ]);
         }
         $jml_ujian=count($ujian);
         $nilai=DB::table('penilaian_siswas')
         ->where('nis',$nis->nis)
         ->where('status',1)
         ->get();
+        
         // return $nilai;
         $a=0;
         while($a<$jml_ujian){
         $kumpulan_nilai_akhir =  $ujian[$a]->hasil;
+    
         $nilai_akhir_saya = json_decode($kumpulan_nilai_akhir);
         $i = 0;
         $jml= count($nilai_akhir_saya);
         while($i < $jml){
             if($nilai_akhir_saya[$i]->s == $nis->nis){
                 $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
+            break;
+            }else{
+                $nilai_akhir[$a] = '';
             }
             
             $i++;
@@ -273,10 +293,18 @@ class PenilaianController extends Controller
     }
 
 
+
     
         // return $nilai_akhir;
 
-       return view('siswa.jadwal-ujian-praktek2',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel, 'nilais'=>$nilai ]);
+       return view('siswa.jadwal-ujian-praktek2',
+       [
+           'ujians'=>$ujian,
+            'tas'=>$ta, 
+             'rombels'=>$rombel, 
+             'nilais'=>$nilai,
+             'nilai_akhir'=>$nilai_akhir
+        ]);
     }
 
 

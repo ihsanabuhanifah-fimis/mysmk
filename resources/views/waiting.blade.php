@@ -39,9 +39,9 @@
                     @if (Route::has('login'))
                     @auth
                     
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/Dashboard') }}" >Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/Home') }}" >Dashboard</a></li>
                         @else
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/Dashboard') }}" >Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/Home') }}" >Dashboard</a></li>
                         @if (Route::has('register'))
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('register') }}" >Registrasi</a></li>
                         @endif

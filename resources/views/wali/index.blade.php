@@ -84,7 +84,7 @@
                                 Catatan Pelanggaran
                               
                               </a>
-                                 <!-- menu-catatan-pelanggaran -->
+                              <div style="height:100px"></div>  <!-- menu-catatan-pelanggaran -->
                             
 
                             

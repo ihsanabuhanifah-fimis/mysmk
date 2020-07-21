@@ -20,9 +20,10 @@
             <th>Pengampu</th>
             <th>Jenis Ujian</th>
             <th>Tipe Ujian</th>
-            <th>Tanggal Mulai</th>
-            <th>Tanggal Selesai</th>
-            <th>Masuk</th>
+            <th class="text-center">Tanggal Mulai</th>
+            <th class="text-center">Tanggal Selesai</th>
+            <th class="text-center">Nilai Akhir</th>
+            <th class="text-center">Masuk</th>
         
            
             
@@ -40,16 +41,17 @@
             <td>{{$ujian->nama_tipe}}</td>
             @if($ujian->tanggal_mulai == 0)
 
-            <td >-</td>
+            <td class="text-center" >-</td>
             @else
-            <td>{{$ujian->tanggal_mulai}} <br> {{$ujian->waktu_mulai}}</td>
+            <td class="text-center">{{$ujian->tanggal_mulai}} <br> {{$ujian->waktu_mulai}}</td>
             @endif
             @if($ujian->tanggal_selesai == 0)
-            <td>-</td>
+            <td class="text-center">-</td>
             @else
-            <td>{{$ujian->tanggal_selesai}} <br> {{$ujian->waktu_selesai}}</td>
+            <td class="text-center">{{$ujian->tanggal_selesai}} <br> {{$ujian->waktu_selesai}}</td>
             @endif
-            <td><a href="{{route('masuk_ujian_praktek',['id'=>$ujian->id])}}" class="btn btn-primary kerjakan-soal">Masuk</a></td>
+            <td class="text-center">{{$nilai_akhir[$k]}}</td>
+            <td class="text-center"><a href="{{route('masuk_ujian_praktek',['id'=>$ujian->id])}}" class="btn btn-primary kerjakan-soal">Masuk</a></td>
            
           
             

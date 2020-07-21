@@ -94,6 +94,19 @@ class WalisController extends Controller
                         'kehadiran'=> $absensi_siswa[$j]->k,
                         'kehadiran2'=> $absensi_siswa[$j]->s,
                     ];
+                break;
+
+                }else{
+                    $rekap[$i] = 
+                    [
+                        'id_cikgu'=>$kbm[$i]->cikgu_name,
+                        'id_subject'=>$kbm[$i]->subject_name,
+                        'id_rombel'=>$kbm[$i]->nama_rombel,
+                        'materi'=> $kbm[$i]->materi,
+                        'jam_ke'=> $kbm[$i]->jam_ke,
+                        'kehadiran'=> '4',
+                        'kehadiran2'=> 'Saat Absensi dibuat,  santri belum masuk rombel',
+                    ];
                 }
                 $j++;
             }
@@ -156,6 +169,9 @@ class WalisController extends Controller
             while($i < $jml){
                 if($nilai_akhir_saya[$i]->s == $nisn){
                     $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
+                break;
+                }else{
+                    $nilai_akhir[$a] = $nilai_akhir_saya[$i]->n;
                 }
                 
                 $i++;
@@ -165,7 +181,12 @@ class WalisController extends Controller
 
    
           
-           return view('wali.jadwal-ujian',['ujians'=>$ujian,'tas'=>$ta, 'rombels'=>$rombel]);
+           return view('wali.jadwal-ujian',
+           [
+               'ujians'=>$ujian,
+               'tas'=>$ta,
+                'rombels'=>$rombel,
+                'nilai_akhir'=>$nilai_akhir]);
 
       
         }

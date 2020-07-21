@@ -120,9 +120,10 @@
                                 Halaqoh Online
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
+                            <div style="height:100px"></div>
                         </div>
                     </div>
-                    
+                   
                 </nav>
             </div>
 
