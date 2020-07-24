@@ -1335,11 +1335,22 @@ class GuruController extends Controller
         $penilaian = Penilaian::where('id',$id)->where('id_cikgu',$id_cikgu->id_cikgu)->first();
         $penilaian->kkm = $request["kkm"];
         $penilaian->durasi = $request["durasi"];
-        $penilaian->tanggal_mulai=$request["tanggal_mulai"]; 
-        $penilaian->tanggal_selesai=$request["tanggal_selesai"];
-        $penilaian->waktu_mulai=$request["waktu_mulai"];
-        $penilaian->waktu_selesai=$request["waktu_selesai"];
-        $penilaian->tanggal_mulai=$request["tanggal_mulai"]; 
+        if($request["status"] == 1)
+        {
+            $penilaian->tanggal_mulai= ""; 
+            $penilaian->tanggal_selesai= "";
+            $penilaian->waktu_mulai= "";
+            $penilaian->waktu_selesai="";
+          
+        }else
+        {
+            $penilaian->tanggal_mulai=$request["tanggal_mulai"]; 
+            $penilaian->tanggal_selesai=$request["tanggal_selesai"];
+            $penilaian->waktu_mulai=$request["waktu_mulai"];
+            $penilaian->waktu_selesai=$request["waktu_selesai"];
+            $penilaian->tanggal_mulai=$request["tanggal_mulai"]; 
+        }
+        
         $penilaian->materi=$request["materi"];
         $penilaian->id_ujian=$request["id_ujian"];
         $penilaian->disable_waktu=$request["status"];

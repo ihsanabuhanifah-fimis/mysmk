@@ -11,6 +11,7 @@ use App\Rombel;
 use App\Penilaian_siswa_praktek;
 use App\Cikgu;
 use App\Mapel;
+use App\Progres_praktek;
 use App\Materi;
 use App\Banksoal;
 use App\Bab;
@@ -383,14 +384,42 @@ class PenilaianController extends Controller
         $i=0;
         
         if($soal[0]->disable_waktu == 1){
+           
             while($i < $jml){
             if($nis->nis == $akses[$i]->s){
                 if($akses[$i]->a == 1){
+                    
+                    $save = new Progres_praktek();
+                    $cek=Progres_praktek::where('nis',$nis->nis)
+                    ->where('id_penilaian', $soal[0]->id)->get();
+                    
+                   $jml=count($cek);
+               
+                   if($jml == NULL){
+                    $save -> id_penilaian = $soal[0]->id;
+                    $save -> id_subject = $soal[0]->id_subject;
+                    $save -> id_cikgu = $soal[0]->id_cikgu;
+                    $save -> id_ta = $soal[0]->semester;
+                    $save -> tanggal = date('Y-m-d');
+                    $save -> jawaban = "";
+                    $save -> nis = $nis->nis;
+                    $save->save();
+                    $jawab=Progres_praktek::where('nis',$nis->nis)
+                    ->where('id_penilaian', $soal[0]->id)->get();
+                    $jawaban = $jawab[0]->jawaban;
+                   }else{
+                       $jawaban = $cek[0]->jawaban;
+                   }
+                   
+
                     return view('siswa.soal-praktek',
                     [
                         'soals'=>$soal_praktek,
                         'penilaians'=>$soal,
+                        'jawaban'=>$jawaban
                     ]); 
+                }else{
+                    return view('siswa.pesan')->with('pesan',"Mohon Maaf anda sudah mengejakan ujian ini.");
                 }
             }
             $i++;
@@ -398,10 +427,37 @@ class PenilaianController extends Controller
         }else{
             "ok";
         }
-
         
+        
+        $sekarang = date('Y-m-d');
+        $jam_sekarang = date("h:i:s");
+      if($soal[0]->tanggal_mulai > $sekarang)
+      {
+          return "belum masuk waktu ujian";
+      }
+      elseif($soal[0]->tanggal_selesai < $sekarang)
+      {
+          return "waktu ujian sudah lewat";
+      }
+      if($soal[0]->tanggal_mulai < $sekarang)
+      {
+       if($soal[0]->tanggal_selesai == $sekarang)
+       {
+           if($soal[0]->waktu_selesai < $jam_sekarang)
+           {
+               return "waktu ujian sudah lfewat";
+           }
+       }
+       
 
-        return view('siswa.soal-praktek',
+      }
+      elseif($soal[0]->tanggal_mulai == $sekarang)
+      {
+          return "okaja";
+      }
+    //   return $soal[0]->waktu_selesai;
+      return $jam_sekarang;  
+      return view('siswa.soal-praktek',
         [
             'soals'=>$soal_praktek,
             'penilaians'=>$soal,
@@ -823,7 +879,7 @@ class PenilaianController extends Controller
                         }else{
                         
                             if($ujian_saya[0]->status ==2){
-                                return "mohon maaf terdapat ujian aktfi";
+                                return "mohon maaf terdapat ujian aktif";
                             }else{
                                 $attemp_sekarang = $jml_ujian +1;
                                 $jml_soal1=count($soals1);
@@ -1579,8 +1635,24 @@ class PenilaianController extends Controller
             }
           
 
-            return "Mohon maaf anda sudah menyimpan untuk penilaian ini, untuk melakukan perubahan silahkan hubungi pengampu";
+            return "Mohon maaf anda sudah menyimpan untuk penilaian ini, jawaban yang sudah dikumpulkan tidak bisa dirubah";
            
           }
    
+
+          public function simpan_progress(Request $request)
+          {
+            
+            $username= Auth::user()->username;
+            $nis=Student::where('username',"$username")->first();
+            $id_rombel=Student_rombel::where('nis',$nis->nis)->first();
+            $simpan=Progres_praktek::where('nis',$nis->nis)
+            ->where('id_penilaian', $request["id"])->first();
+            $simpan -> jawaban = $request["jawaban"];
+            $simpan -> save();
+
+            return "Alhamdulilah tersimpan, untuk mengumpulkan tugas silakan kirim dengan tombol Kumpulkan Tugas";
+
+            
+          }
 }

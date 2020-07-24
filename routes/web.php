@@ -137,7 +137,7 @@ Route::get('/jadwal-ujian','PenilaianController@jadwal_ujian')->name("jadwal_uji
 Route::get('/jadwal-ujian-praktek','PenilaianController@jadwal_ujian_praktek')->name("jadwal_ujian_praktek");
 Route::post('/jadwal-ujian-teori','PenilaianController@jadwal_ujian_teori')->name("jadwal_ujian_teori");
 Route::post('/jadwal-ujian-praktek2','PenilaianController@jadwal_ujian_praktek2')->name("jadwal_ujian_praktek2");
-Route::get('/Validasi/praktek/{id}','PenilaianController@masuk_ujian_praktek')->name("masuk_ujian_praktek")->middleware('prevent-back-history');
+Route::get('/praktek/{id}','PenilaianController@masuk_ujian_praktek')->name("masuk_ujian_praktek")->middleware('prevent-back-history');
 Route::get('/Validasi/{id}','PenilaianController@masuk_ujian')->name("masuk_ujian")->middleware('prevent-back-history');
 Route::post('/ujian','PenilaianController@siswa_ujian')->name("kerjakan_ujian")->middleware('prevent-back-history');
 Route::get('/ujian','PenilaianController@siswa_ujian_refresh')->name("kerjakan_ujian_refresh")->middleware('prevent-back-history');
@@ -151,6 +151,7 @@ Route::get('/ujian/nilai/{nilai}','PenilaianController@nilai_ujian')->name("nila
 //Route Siswa Ujian
 //route siswa Materi
 Route::post('/simpan/jawaban/praktek','PenilaianController@simpan_jawaban')->name("simpan.jawaban.praktek");
+Route::put('/simpan/jawaban/progress','PenilaianController@simpan_progress')->name("simpan.jawaban.progress");
 Route::get('/materi','MateriController@materi_siswa')->name("materi_siswa");
 Route::get('/materi/bab/{id}','MateriController@bab_siswa')->name("bab.siswa");
 Route::get('/materi/akses/{id}','MateriController@akses_siswa')->name("akses.siswa");
