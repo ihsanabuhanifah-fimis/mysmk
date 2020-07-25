@@ -26,15 +26,17 @@
 <h5 class="mt-2 text-center font-weight-bold">VALIDASI PENILAIAN </h5>
 </div>
 <div class="container">
-<div class="container">
-@if(session()->has('pesan'))
-<div class="alert alert-danger text-center" role="alert">
-{{ session()->get('pesan')}}
-</div>
-@endif
 
 
+<div class="alert alert-danger text-center font-weight-bold" role="alert">
+Mohon maaf anda tidak memilki akses terhadap ujian ini
+<br>
+Silahkan hubungi guru pengampu
 </div>
+
+
+
 </div>
+
     
 @endsection

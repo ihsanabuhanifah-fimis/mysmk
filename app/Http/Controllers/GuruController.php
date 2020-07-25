@@ -1137,9 +1137,27 @@ class GuruController extends Controller
             's' => $soals
         ];
 
-        $soal_praktek = json_encode($data);
 
-      
+       
+
+       $siswa=DB::table('student_rombels')
+        ->where('id_rombel',$soal->id_rombel)->get();
+        $jml=count($siswa);
+        $i=0;
+        while($i<$jml){
+          
+            $datas[$i]=[
+                's'=>$siswa[$i]->nis,
+                'a'=>"1",
+            ];
+             
+            $i++;
+        };
+     
+        $akses=json_encode($datas);
+        $soal_praktek = json_encode($data);
+        $soal-> akses = $akses;
+ 
         $soal -> soal_praktek = $soal_praktek;
         $soal ->save();
 
@@ -1378,6 +1396,26 @@ class GuruController extends Controller
        
     }
 
+    public function editbab($id)
+    {
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $bab=DB::table('babs')
+        ->leftjoin('mapels','mapels.id_subject','=','babs.id_subject')
+        ->where('babs.id_bab', $id)
+        ->get();
+    
+
+    
+        return view('guru.edit-bab',
+            [
+                'mapels'=>$bab
+            ]);
+    }
+    public function edit_bab_ini(Request $request)
+    {
+        return "ok";
+    }
     public function dapatkan_bab($id)
     {
         $username= Auth::user()->username;

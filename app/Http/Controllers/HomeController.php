@@ -55,7 +55,8 @@ class HomeController extends Controller
             
             
             $rombel = DB::table('rombels')->get();
-            $babs = DB::table('babs')->get();
+            $babs = DB::table('babs')
+            ->where('id_cikgu', $id_cikgu->id_cikgu)->get();
             $subject = DB::table('mapels')->get();
             $ujian = DB::table('jenis_ujians')->get();
             $tipe = DB::table('tipe_ujians')->get();

@@ -30,7 +30,8 @@
                 <td class="text-center">{{$loop->iteration}}</td>
                 <td>{{$bab->subject_name}}</td>
                 <td>{{$bab->nama_bab}}</td>
-                <td class="text-center"><a class="btn btn-danger">Hapus</a></td>
+
+                <td class="text-center"><a id="{{$bab->id_bab}}" class="btn btn-success text-white edit-bab ">Edit/Hapus</a></td>
 
               
             </tr>
@@ -43,7 +44,24 @@
 </div>
 
 
-
+<div class="modal fade" id="myModalbab" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="babsaya"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" id="edit-bab-ini" class="btn btn-success">Edit</button>
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".tambah_bab").click(function(){
@@ -100,4 +118,82 @@
     });
    
   });
+  
+  </script>
+
+<script>
+$(document).ready(function(){
+    var id
+  $(".edit-bab").on('click',function(){
+    
+    id = $(this).attr('id');
+   
+    $("#myModalbab").modal();
+  
+
+
+      $.ajax({
+          url:"/guru/bab/edit/"+id,
+            success:function(data)
+          {
+             
+            $('.babsaya').html(data);
+          }
+         });
+    });
+
+});
+
+  $(document).ready(function(){
+   
+   
+    $(".bab-saya").click(function(){
+      $(".tampilkanmateri").hide();
+        $(".tampilkanbab").load("guru/tampilkanbab"); 
+       
+        $(".tampilkanbab").show(); 
+    });
+  });
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#edit-bab-ini").click(function(){
+       
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            $.ajax({
+				type: 'put',
+				url: "{{route('edit_bab_ini')}}",
+				data: $('.form_tambah_bab').serialize(),
+				success: function(data) {
+                 
+                 alert(data);
+                   
+                    setTimeout(function(){
+                        
+                    },10000);
+                },
+                error: function(jqXHR, exception){
+                     
+                    setTimeout(function(){
+                        
+                        
+                    },5000);
+
+                    
+                   
+                }
+			});
+			
+			
+			});
+		});
+       
+   
+
+  
   </script>

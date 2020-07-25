@@ -71,6 +71,9 @@ Route::put('/edit-materi', 'GuruController@updatemateri')->name('updatemateri');
 Route::get('/edit-materi/{materi}', 'GuruController@editmateri')->name('editmateri');
 Route::get('/tampilkanmateri','GuruController@tampilkanmateri')->name('tampilkanmateri');
 Route::get('/tampilkanbab','GuruController@tampilkanbab')->name('tampilkanbab');
+Route::get('/bab/edit/{id}','GuruController@editbab')->name('editbab');
+Route::put('/bab/edit/','GuruController@edit_bab_ini')->name('edit_bab_ini');
+
 Route::get('/hapus-materi/{id}','GuruController@hapusmateri')->name('hapusmateri');
 Route::post('/tambahujian','GuruController@tambahujian')->name('tambahujian');
 Route::get('/tampilkanujian','GuruController@tampilkanujian')->name('tampilkanujian');

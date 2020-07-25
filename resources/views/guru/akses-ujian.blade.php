@@ -29,9 +29,9 @@
         <td class="text-center">{{$loop->iteration}}</td>
         <td class="text-center">
      
-        <select class="btn border" class="akses" name="izin[]" id="">
+        <select class="btn border"  name="izin[]" id="akses">
         @if($aks["hak_akses"]== 1)
-        <option selected value="1">Ya</option>
+        <option class="ops" selected value="1">Ya</option>
         <option value="0">Tidak</option>
         @else
         <option selected value="0">Tidak</option>
@@ -63,7 +63,10 @@
 <script>
 $(document).ready(function(){
   $(".izinkan").click(function(){
-   $(".akses").selected()
+      alert();
+      $("#akses").prop("selectedIndex",1);
+
+
   });
 });
 </script>
