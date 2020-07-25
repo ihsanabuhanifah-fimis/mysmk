@@ -31,3 +31,11 @@
         
         
 </div>
+
+<script>
+$(document).ready(function(){
+ 
+    $("img").addClass("img-thumbnail");
+ 
+});
+</script>

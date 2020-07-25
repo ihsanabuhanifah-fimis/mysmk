@@ -159,7 +159,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#edit-bab-ini").click(function(){
-       
+       alert();
             $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -168,7 +168,7 @@ $(document).ready(function(){
             $.ajax({
 				type: 'put',
 				url: "{{route('edit_bab_ini')}}",
-				data: $('.form_tambah_bab').serialize(),
+				data: $('.form_edit_bab').serialize(),
 				success: function(data) {
                  
                  alert(data);

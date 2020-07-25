@@ -1414,7 +1414,26 @@ class GuruController extends Controller
     }
     public function edit_bab_ini(Request $request)
     {
-        return "ok";
+        $username= Auth::user()->username;
+        $id_cikgu=Cikgu::where('username',"$username")->first();
+        $bab = new Bab();
+        $bab = Bab::where('id_bab', $request->id)->first();
+     
+       if($request["hapus"]==1){
+           return "ok";
+        $bab -> delete();
+        return "Alhamdulilah bab ini sudah di hapus dari daftar";
+        
+        return response()->json('Update Success', 200);
+       }
+      
+
+       $bab-> nama_bab = $request["id_bab"]; 
+       $bab-> save();
+       
+       return "Alhamdulilah nama bab berhasil di rubah";
+      
+       
     }
     public function dapatkan_bab($id)
     {

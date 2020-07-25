@@ -34,15 +34,15 @@
                 
                 var a = $(this).val();
                 if(a==1){
-                    $('#hapus-bab').removeClass('btn-success');
-                    $('#hapus-bab').addClass('btn-danger');
-                    $('#hapus-bab').text("Hapus");
+                    $('#edit-bab-ini').removeClass('btn-success');
+                    $('#edit-bab-ini').addClass('btn-danger');
+                    $('#edit-bab-ini').text("Hapus");
 
 
                 }else{
-                    $('#hapus-bab').removeClass('btn-danger');
-                    $('#hapus-bab').addClass('btn-success');
-                    $('#hapus-bab').text("Edit");
+                    $('#edit-bab-ini').removeClass('btn-danger');
+                    $('#edit-bab-ini').addClass('btn-success');
+                    $('#edit-bab-ini').text("Edit");
                 }
                 });
 });
