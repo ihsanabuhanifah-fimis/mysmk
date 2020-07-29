@@ -723,6 +723,7 @@ class GuruController extends Controller
         ->where('id_rombel', $penilaian[0]->id_rombel)
         ->get();
         $siswa = DB::table('students')
+       
         ->get();
         $jml_siswa = count($siswa);
         $jml_siswa_rombel = count($siswa_rombel);

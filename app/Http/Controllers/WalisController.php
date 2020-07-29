@@ -71,6 +71,7 @@ class WalisController extends Controller
         $i=0;
         $jml_kbm = count($kbm);
         
+        
        if($jml_kbm == 0){
            $rekap_absen =[];
         return view('wali.kehadiran',["kbms"=>$rekap_absen]);
