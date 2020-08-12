@@ -123,6 +123,7 @@ class PenilaianController extends Controller
         ->leftjoin('cikgus','cikgus.id_cikgu','=','penilaians.id_cikgu')
         ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
         ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
+        ->orderby('id', 'asc')
         ->where('penilaians.id_rombel',$id_rombel[0]->id_rombel)->get();
         $jml_ujian=count($ujian);
         $nilai=DB::table('penilaian_siswas')
@@ -179,12 +180,11 @@ class PenilaianController extends Controller
         ->where('penilaians.id_ta',$request["id_ta"])
         ->where('penilaians.semester',$request["semester"])
         ->where('penilaians.id_tipe',2)
+        ->orderby('id', 'asc')
         ->get();
         
         $jml_ujian=count($ujian);
     
-      
-
     //            // return $nilai;
         $a=0;
         while($a<$jml_ujian){

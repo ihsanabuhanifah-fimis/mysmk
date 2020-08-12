@@ -30,3 +30,11 @@
 <div class="p-3 table-responsive ">{!!$materi->isi_materi!!}</div>
 @endif
 </div>
+
+<script>
+$(document).ready(function(){
+ 
+    $("img").addClass("img-thumbnail");
+ 
+});
+</script>
