@@ -213,6 +213,13 @@
 	
 	
   </script>
+  <script>
+$(document).ready(function(){
+ 
+    $("img").addClass("img-thumbnail");
+ 
+});
+</script>
 !-- Modal -->
 <div class="modal fade" id="uploadHalaqoh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
