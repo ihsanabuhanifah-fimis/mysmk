@@ -251,7 +251,7 @@ class PenilaianController extends Controller
         ->where('penilaians.id_ta',$request["id_ta"])
         ->where('penilaians.semester',$request["semester"])
         ->where('penilaians.id_tipe',1)
-        ->orderBy('id', 'asc')
+        ->orderBy('id', 'desc')
         ->get();
 
         
