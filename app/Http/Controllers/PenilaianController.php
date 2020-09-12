@@ -75,7 +75,7 @@ class PenilaianController extends Controller
         ->where('nis',$nis->nis)
         ->where('status',1)
         ->get();
-        // return $nilai;
+        // return $nilaiww;
         $a=0;
         while($a<$jml_ujian){
         $kumpulan_nilai_akhir =  $ujian[$a]->hasil;
