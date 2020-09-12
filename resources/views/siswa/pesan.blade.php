@@ -23,20 +23,19 @@
     </div>
 <!-- awal web -->
 <div class="mt-5">
-<h5 class="mt-2 text-center font-weight-bold">VALIDASI PENILAIAN </h5>
+<h5 class="mt-2 text-center font-weight-bold">VALIDASI PENILAIAN</h5>
 </div>
 <div class="container">
+<div class="container">
 
-
-<div class="alert alert-danger text-center font-weight-bold" role="alert">
-Mohon maaf anda tidak memilki akses terhadap ujian ini
-<br>
-Silahkan hubungi guru pengampu
+<div class="alert alert-danger text-center font-weight-bold text-uppercase" role="alert">
+{{ $pesan }}
 </div>
 
 
 
+  
 </div>
-
+</div>
     
 @endsection

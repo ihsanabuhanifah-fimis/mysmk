@@ -66,11 +66,7 @@
                                 Penilaian Praktek
                                
                             </a>
-                            <a data-toggle="pill" role="tab" aria-selected="false" class="nav-link collapsed menu-harian" aria-expanded="false" aria-controls="collapseLayouts"
-                                ><div class="sb-nav-link-icon "><i class="fa fa-list-ul fa-lg mr-2" aria-hidden="true"></i></div>
-                                Kegiatan Harian
-                               
-                            </a>
+                           
 
                             <!-- menu materi -->
                            

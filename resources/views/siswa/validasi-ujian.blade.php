@@ -28,7 +28,7 @@
 <div class="container">
 <div class="container">
 @if(session()->has('pesan'))
-<div class="alert alert-danger text-center" role="alert">
+<div class="alert alert-danger text-center font-weight-bold text-uppercase" role="alert">
 {{ session()->get('pesan')}}
 </div>
 @endif

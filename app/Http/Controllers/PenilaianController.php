@@ -345,11 +345,19 @@ class PenilaianController extends Controller
 
         }else{
         $cek = $ujian_aktif[0]->status;
-        $sisa_waktu=$ujian_aktif[0]->sisa_waktu;
+        $waktu_mulai = $ujian_aktif[0]-> tanggal ;
+                $waktu_saat_ini = strtotime(date('Y:m:d G:i:s '));  
+                $diff = ($waktu_mulai - $waktu_saat_ini)/60;  
+                number_format($diff,0);
+                 
+               
+                $sisa_waktu    = number_format($diff,0)-1;
+                
     
         if($cek == 2 ){
             $hash_attemp_saya = Hash::make($ujian_aktif[0]->attemp); 
-            return view('siswa.validasi-lanjut',['ujians' =>$ujian,'ujian_aktif'=>$ujian_aktif, 'attemp'=>$hash_attemp_saya]);
+          
+            return view('siswa.validasi-lanjut',['sisa_waktu' => $sisa_waktu, 'ujians' =>$ujian,'ujian_aktif'=>$ujian_aktif, 'attemp'=>$hash_attemp_saya]);
         }else{
         
         
@@ -382,10 +390,10 @@ class PenilaianController extends Controller
         $akses = json_decode($soal[0]->akses);
         $jml = count($akses);
 
-        $i=0;
+       
         
         if($soal[0]->disable_waktu == 1){
-           
+            $i=0;
             while($i < $jml){
             if($nis->nis == $akses[$i]->s){
                 if($akses[$i]->a == 1){
@@ -426,43 +434,67 @@ class PenilaianController extends Controller
             $i++;
             }
         }else{
-            "ok";
+           
+            if($soal[0]->tanggal_mulai > date('Y-m-d')){
+                return view('siswa.pesan',['pesan'=> 'belum masuk waktu ujian']);
+            } else{
+                if( $soal[0]->tanggal_mulai === date('Y-m-d') and $soal[0]->waktu_mulai > date('G:i:s')){
+                    return view('siswa.pesan',['pesan'=> 'belum masuk waktu ujian']);  
+                }else {
+                    if(($soal[0]->tanggal_mulai === date('Y-m-d') and $soal[0]->waktu_selesai < date('G:i:s'))){
+                        return view('siswa.pesan',['pesan'=> 'Waktu Ujian sudah lewat']);
+                    }else{
+                        if($soal[0]->tanggal_selesai < date('Y-m-d') or($soal[0]->tanggal_selesai === date('Y-m-d') and $soal[0]->waktu_selesai < date('G:i:s'))){
+                            return view('siswa.pesan',['pesan'=> 'Waktu Ujian sudah lewat']);
+                        }else{
+                            $i=0;
+                            while($i < $jml){
+                            if($nis->nis == $akses[$i]->s){
+                                if($akses[$i]->a == 1){
+                                    
+                                    $save = new Progres_praktek();
+                                    $cek=Progres_praktek::where('nis',$nis->nis)
+                                    ->where('id_penilaian', $soal[0]->id)->get();
+                                    
+                                   $jml=count($cek);
+                               
+                                   if($jml == NULL){
+                                    $save -> id_penilaian = $soal[0]->id;
+                                    $save -> id_subject = $soal[0]->id_subject;
+                                    $save -> id_cikgu = $soal[0]->id_cikgu;
+                                    $save -> id_ta = $soal[0]->semester;
+                                    $save -> tanggal = date('Y-m-d');
+                                    $save -> jawaban = "";
+                                    $save -> nis = $nis->nis;
+                                    $save->save();
+                                    $jawab=Progres_praktek::where('nis',$nis->nis)
+                                    ->where('id_penilaian', $soal[0]->id)->get();
+                                    $jawaban = $jawab[0]->jawaban;
+                                   }else{
+                                       $jawaban = $cek[0]->jawaban;
+                                   }
+                                   
+                
+                                    return view('siswa.soal-praktek',
+                                    [
+                                        'soals'=>$soal_praktek,
+                                        'penilaians'=>$soal,
+                                        'jawaban'=>$jawaban
+                                    ]); 
+                                }else{
+                                    return view('siswa.pesan')->with('pesan',"Mohon Maaf anda sudah mengejakan ujian ini.");
+                                }
+                            }
+                            $i++;
+                            } 
+                        }
+                    }
+                }
+            }
         }
         
         
-        $sekarang = date('Y-m-d');
-        $jam_sekarang = date("h:i:s");
-      if($soal[0]->tanggal_mulai > $sekarang)
-      {
-          return "belum masuk waktu ujian";
-      }
-      elseif($soal[0]->tanggal_selesai < $sekarang)
-      {
-          return "waktu ujian sudah lewat";
-      }
-      if($soal[0]->tanggal_mulai < $sekarang)
-      {
-       if($soal[0]->tanggal_selesai == $sekarang)
-       {
-           if($soal[0]->waktu_selesai < $jam_sekarang)
-           {
-               return "waktu ujian sudah lfewat";
-           }
-       }
-       
-
-      }
-      elseif($soal[0]->tanggal_mulai == $sekarang)
-      {
-          return "okaja";
-      }
-    //   return $soal[0]->waktu_selesai;
-      return $jam_sekarang;  
-      return view('siswa.soal-praktek',
-        [
-            'soals'=>$soal_praktek,
-            'penilaians'=>$soal,
-        ]);
+        
     }
     public function siswa_ujian(Request $request)
     {
@@ -582,6 +614,8 @@ class PenilaianController extends Controller
                                 $jawaban_soal_pg=json_encode($jwbpg);
                                 $jawaban_soal_isi=json_encode($jwbisi);
                                 $jawaban_soal_truefalse=json_encode($jwbtruefalse);
+                                $waktu = strtotime(date('Y:m:d G:i:s '));
+                               
                                 if(Hash::check($attemp_sekarang,$attemp)){
                                     $nilai = new Penilaian_siswa();
                                     $nilai -> id_cikgu = $banksoal[0]->id_cikgu;
@@ -592,7 +626,7 @@ class PenilaianController extends Controller
                                     $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
-                                    $nilai -> tanggal= date('y-m-d h:i');
+                                    $nilai -> tanggal= $waktu + ($banksoal[0]->durasi*60);
                                     $nilai-> status=2;
                                     $nilai-> sisa_waktu =$banksoal[0]->durasi;
                                     $nilai -> jawab_soal1 = $jawaban_soal_pg;
@@ -622,7 +656,7 @@ class PenilaianController extends Controller
                         }else{
                         
                             if($ujian_saya[0]->status ==2){
-                                return "mohon maaf terdapat ujian aktfi";
+                                return "mohon maaf terdapat ujian aktif ";
                             }else{
                                 $attemp_sekarang = $jml_ujian +1;
                                 $jml_soal1=count($soals1);
@@ -680,7 +714,8 @@ class PenilaianController extends Controller
                                     $jwb_soal1=json_decode($jawaban_soal_pg);
                                     $jwb_soal2=json_decode($jawaban_soal_isi);
                                     $jwb_soal3=json_decode($jawaban_soal_truefalse);
-                               
+                                    $waktu = strtotime(date('Y:m:d G:i:s '));
+                                   
                                 if(Hash::check($attemp_sekarang,$attemp)){
                                     $nilai = new Penilaian_siswa();
                                     $nilai -> id_cikgu = $banksoal[0]->id_cikgu;
@@ -691,7 +726,7 @@ class PenilaianController extends Controller
                                     $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
-                                    $nilai -> tanggal= NOW();
+                                    $nilai -> tanggal= $waktu + ($banksoal[0]->durasi*60);
                                     $nilai-> status=2;
                                     $nilai-> sisa_waktu =$banksoal[0]->durasi;
                                     $nilai -> jawab_soal1 = $jawaban_soal_pg;
@@ -736,23 +771,25 @@ class PenilaianController extends Controller
             {
                 return back()->with('pesan',"Mohon maaf Belum masuk Tanggal Ujian");
             } else {
-                if($validasi[0]->waktu_mulai > date('h:i:s') and $validasi[0]->tanggal_mulai > date('Y-m-d') )
+                if( $validasi[0]->tanggal_mulai === date('Y-m-d') and $validasi[0]->waktu_mulai > date('G:i:s'))
                 {
-                    return back()->with('pesan',"Belum masuk waktu ujian");
+                    return back()->with('pesan',"Mohon Maaf Belum masuk waktu ujian");
                 } else{
-                    if($validasi[0]->tanggal_selesai < date('Y-m-d'))
+                    if(($validasi[0]->tanggal_mulai === date('Y-m-d') and $validasi[0]->waktu_selesai < date('G:i:s')) or ($validasi[0]->tanggal_selesai === date('Y-m-d') and $validasi[0]->waktu_selesai < date('G:i:s')))
                     {
                         return back()->with('pesan',"Mohon maaf waktu ujian sudah lewat");
                     }else{
-                        if($validasi[0]->waktu_selesai < date('h:i:s') and $validasi[0]->tanggal_selesai < date('Y-m-d'))
+                        if($validasi[0]->tanggal_selesai < date('Y-m-d'))
                         {
-                            return back()->with('pesan',"waktu waktu ujian sudah lewat");
+                            return back()->with('pesan',"Waktu Ujian sudah lewat1");
                         }else{
+                           
+                            
                             $banksoal=DB::table('penilaians')
-            ->leftjoin('mapels','mapels.id_subject','=','penilaians.id_subject')
-            ->where('id',$id)
-            ->where('penilaians.id_rombel',$id_rombel->id_rombel)
-            ->get();
+                            ->leftjoin('mapels','mapels.id_subject','=','penilaians.id_subject')
+                            ->where('id',$id)
+                            ->where('penilaians.id_rombel',$id_rombel->id_rombel)
+                            ->get();
 
             $soal1=$banksoal[0]->soal1;
             $soal2=$banksoal[0]->soal2;
@@ -839,6 +876,8 @@ class PenilaianController extends Controller
                                 $jawaban_soal_pg=json_encode($jwbpg);
                                 $jawaban_soal_isi=json_encode($jwbisi);
                                 $jawaban_soal_truefalse=json_encode($jwbtruefalse);
+                                $waktu = strtotime(date('Y:m:d G:i:s '));
+                              
                                 if(Hash::check($attemp_sekarang,$attemp)){
                                     $nilai = new Penilaian_siswa();
                                     $nilai -> id_cikgu = $banksoal[0]->id_cikgu;
@@ -849,7 +888,7 @@ class PenilaianController extends Controller
                                     $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
-                                    $nilai -> tanggal= date('y-m-d h:i');
+                                    $nilai -> tanggal= $waktu + ($banksoal[0]->durasi*60);
                                     $nilai-> status=2;
                                     $nilai-> sisa_waktu =$banksoal[0]->durasi;
                                     $nilai -> jawab_soal1 = $jawaban_soal_pg;
@@ -938,7 +977,8 @@ class PenilaianController extends Controller
                                     $jwb_soal1=json_decode($jawaban_soal_pg);
                                     $jwb_soal2=json_decode($jawaban_soal_isi);
                                     $jwb_soal3=json_decode($jawaban_soal_truefalse);
-                               
+                                    $waktu = strtotime(date('Y:m:d G:i:s '));
+                                    
                                 if(Hash::check($attemp_sekarang,$attemp)){
                                     $nilai = new Penilaian_siswa();
                                     $nilai -> id_cikgu = $banksoal[0]->id_cikgu;
@@ -949,7 +989,8 @@ class PenilaianController extends Controller
                                     $nilai -> semester = $banksoal[0]->semester;
                                     $nilai -> nis = $nis->nis;
                                     $nilai-> nilai = 0;
-                                    $nilai -> tanggal= NOW();
+                                  
+                                    $nilai -> tanggal= $waktu + ($banksoal[0]->durasi*60);
                                     $nilai-> status=2;
                                     $nilai-> sisa_waktu =$banksoal[0]->durasi;
                                     $nilai -> jawab_soal1 = $jawaban_soal_pg;
@@ -1520,9 +1561,7 @@ class PenilaianController extends Controller
         
         
         $idujian=DB::table('penilaian_siswas')
-        // ->leftjoin('mapels','mapels.id_subject','=','penilaian_siswas.id_subject')
-        // ->leftjoin('cikgus','cikgus.id_cikgu','=','penilaian_siswas.id_cikgu')
-        // ->leftjoin('rombels','rombels.id_rombel','=','penilaian_siswas.id_rombel')
+        
         ->where('nis',$nis->nis)
         ->where('attemp',$request["attemp"])
         ->where('penilaian_siswas.id_cikgu',$request["id_cikgu"] )
@@ -1534,16 +1573,22 @@ class PenilaianController extends Controller
                
                 $nilai = Penilaian_siswa::where('id',$idujian[0]->id)
                 ->where('nis',$nis->nis)->first();
-                $nilai-> tanggal = date('y-m-d h:i');      
+                $waktu_mulai = $nilai-> tanggal ;
+                $waktu_saat_ini = strtotime(date('Y:m:d G:i:s '));  
+                $diff = ($waktu_mulai - $waktu_saat_ini)/60;  
+                number_format($diff,0);
+                 
                 $status = $nilai->status;
-                $waktu_sisa= $nilai->sisa_waktu;
+                $sisa_waktu    = number_format($diff,0)-1;
+                $nilai -> sisa_waktu = $sisa_waktu ;
+                $nilai ->save();
                 
 
         $jwb_soal1 = json_decode($idujian[0]->jawab_soal1);
         $jwb_soal2 = json_decode($idujian[0]->jawab_soal2);
         $jwb_soal3 = json_decode($idujian[0]->jawab_soal3);
 
-        if($idujian[0]->sisa_waktu <= 0){
+        if($sisa_waktu <= 0){
             if($nilai->status = 2){
                 $nilai->status = 1;
                 $nilai->save();
@@ -1551,9 +1596,17 @@ class PenilaianController extends Controller
             }
             
         }
+        $Attemp=DB::table('penilaian_siswas')
+    
+        ->where('nis',$nis->nis)
+        ->where('attemp',$request["attemp"])
+        ->where('penilaian_siswas.id_cikgu',$request["id_cikgu"] )
+        ->where('penilaian_siswas.id_subject',$request["id_subject"] )
+        ->where('penilaian_siswas.id_penilaian',$request["id_ujian"])
+        ->get();
 
         
-        return view('siswa.ujian',['attemp'=>$idujian,'jwb_soal1'=>$jwb_soal1,'jwb_soal2'=>$jwb_soal2,'jwb_soal3'=>$jwb_soal3,'banksoals'=>$banksoal,'soals1'=>$soals1,'soals2'=>$soals2,'soals3'=>$soals3]);
+        return view('siswa.ujian',['attemp'=>$Attemp,'jwb_soal1'=>$jwb_soal1,'jwb_soal2'=>$jwb_soal2,'jwb_soal3'=>$jwb_soal3,'banksoals'=>$banksoal,'soals1'=>$soals1,'soals2'=>$soals2,'soals3'=>$soals3]);
        }
 
        

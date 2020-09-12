@@ -75,7 +75,7 @@
         <tr>
             <th>Sisa Waktu</th>
             <td >:</td>
-            <td>{{$ujian_aktif[0]->sisa_waktu}} </td>
+            <td>{{$sisa_waktu}} </td>
         </tr>
         <tr>
             <th>Status</th>

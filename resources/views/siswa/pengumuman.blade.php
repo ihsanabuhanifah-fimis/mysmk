@@ -39,7 +39,7 @@
             </tr>
         </table>
         </div>
-    <div class="p-3">
+    <div class="p-3 overflow-auto">
       <h6>Tugas :</h6>
       <p class="card-text text-justify">{!!$umum->pengumuman!!}</p>
       </div>
