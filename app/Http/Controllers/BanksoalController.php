@@ -152,6 +152,7 @@ class BanksoalController extends Controller
         $id=$request["id"];
         $soal = new Banksoal();
         $soal = Banksoal::where('id',$id)->where('id_cikgu',$id_cikgu->id_cikgu)->first();
+        
 
         $i=0;
         $j=0;
