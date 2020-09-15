@@ -448,17 +448,11 @@ class PenilaianController extends Controller
                     return view('siswa.pesan',['pesan'=> 'belum masuk waktu ujian']);  
                 }else {
                     if(($soal[0]->tanggal_mulai === date('Y-m-d') and $soal[0]->waktu_selesai > date('G:i:s'))){
-                        return [
-                            'waktu_ujian' => $soal[0]->waktu_selesai,
-                            'waktu_saat_ini' => date('G:i:s')
-                        ];
+                        
                         return view('siswa.pesan',['pesan'=> 'Waktu Ujian sudah lewet']);
                     }else{
                         if($soal[0]->tanggal_selesai < date('Y-m-d') or($soal[0]->tanggal_selesai === date('Y-m-d') and $soal[0]->waktu_selesai > date('G:i:s'))){
-                            return [
-                                'waktu_ujian' => $soal[0]->waktu_selesai,
-                                'waktu_saat_ini' => date('G:i:s')
-                            ];
+                            
                             return view('siswa.pesan',['pesan'=> 'Waktu Ujian sudah lewat']);
                         }else{
                             $i=0;
