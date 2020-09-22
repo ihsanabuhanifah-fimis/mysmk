@@ -17,7 +17,7 @@
     <thead class="bg-success text-center">
         <tr>
             <th>No</th>
-           <th>History</th>
+           <!-- <th>History</th> -->
             <th>Mata Pelajaran</th>
             <th>Materi</th>
             <th>Pengampu</th>
@@ -39,9 +39,9 @@
         <tr>
        
             <td>{{$loop->iteration}}</td>
-            <td class="text-center">
+            <!-- <td class="text-center">
            <button class="btn btn-success history" id="{{$ujian->id}}">Lihat</button>
-            </td>
+            </td> -->
             <td>{{$ujian->subject_name}}</td>
             <td>{{$ujian->materi}}</td>
             <td>{{$ujian->cikgu_name}}</td>

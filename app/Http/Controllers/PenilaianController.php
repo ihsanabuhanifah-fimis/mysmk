@@ -353,11 +353,16 @@ class PenilaianController extends Controller
                 //     'n'=> $waktu_mulai
                 // ];
                 $diff = ($waktu_mulai - $waktu)/60;  
+               if($diff < 0) {
+                    $sisa_waktu = 0;
+               }else{
                 number_format($diff,0);
                  
               
                 $sisa_waktu    = number_format($diff,0)-1;
-                // return $sisa_waktu;
+               }
+               
+               
                 
     
         if($cek == 2 ){

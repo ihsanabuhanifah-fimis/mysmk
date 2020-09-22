@@ -142,6 +142,7 @@ class WalisController extends Controller
             ->leftjoin('jenis_ujians','jenis_ujians.id_ujian','=','penilaians.id_ujian')
             ->leftjoin('tipe_ujians','tipe_ujians.id_tipe','=','penilaians.id_tipe')
             ->where('penilaians.id_rombel',$rombel[0]->id_rombel)
+            ->orderby('id', 'desc')
             
           
             ->get();
